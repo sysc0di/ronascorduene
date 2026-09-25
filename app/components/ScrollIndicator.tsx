@@ -29,7 +29,8 @@ export default function ScrollIndicator() {
       aria-label="Scroll down"
       className={`
         fixed
-        bottom-8
+        bottom-5
+        sm:bottom-8
         left-1/2
         z-50
         -translate-x-1/2
@@ -45,7 +46,7 @@ export default function ScrollIndicator() {
         }
       `}
     >
-      <div className="relative h-24 w-16">
+      <div className="scroll-indicator relative h-24 w-16">
 
         {/* LEFT TIRE TRACK */}
         <div

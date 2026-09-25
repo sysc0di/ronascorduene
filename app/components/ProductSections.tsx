@@ -126,7 +126,7 @@ function ProductItem({
             src={product.image}
             alt={product.title}
             fill
-            sizes="50vw"
+            sizes="(max-width: 600px) 60vw, (max-width: 1200px) 32vw, 440px"
             className="preview-image"
           />
         </div>

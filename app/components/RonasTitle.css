@@ -1,6 +1,7 @@
 .ronas-title-wrap {
   position: relative;
   display: inline-block;
+  max-width: 100%;
   overflow: hidden;
 }
 
@@ -92,6 +93,19 @@
 /* Mobile */
 @media (max-width: 640px) {
   .ronas-title {
-    font-size: clamp(3rem, 14vw, 5rem);
+    font-size: clamp(2.25rem, 12.5vw, 4.5rem);
+  }
+}
+
+/* Very small phones: wrap instead of clipping the last letter */
+@media (max-width: 420px) {
+  .ronas-title {
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .ronas-light-sweep {
+    top: -15%;
+    bottom: -15%;
   }
 }

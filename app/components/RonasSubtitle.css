@@ -3,7 +3,7 @@
   position: relative;
   display: block;
   width: fit-content;
-  max-width: 100%;
+  max-width: min(100%, 44ch);
   margin: 0 auto 2rem;
   overflow: hidden;
 
@@ -16,12 +16,13 @@
   display: block;
 
   font-size: 1.125rem;
-  line-height: 1.75rem;
+  line-height: 1.6rem;
   font-weight: 400;
   letter-spacing: 0.025em;
 
   color: #a6a6a6;
 
+  text-wrap: balance;
 
   transform: translateX(110%);
 
@@ -55,6 +56,17 @@
   .ronas-subtitle span {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ronas-subtitle {
+    margin-bottom: 1.25rem;
+  }
+
+  .ronas-subtitle span {
+    font-size: 1.0625rem;
+    line-height: 1.5rem;
   }
 }
 

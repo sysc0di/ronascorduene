@@ -31,6 +31,10 @@
     gap: 120px;
   width: min(1400px, 100%);
   margin: 0 auto;
+
+  /* The wordmarks are sized against this row, not the viewport,
+     so they never overflow on narrow screens */
+  container-type: inline-size;
 }
 
 /* -------------------------------- */
@@ -123,7 +127,9 @@
 
   color: #a6a6a6;
 
-  font-size: clamp(4rem, 9vw, 9rem);
+  /* 9.5cqw keeps the longest word (PERFORMANCE) clear of the
+     preview image, whatever the viewport is */
+  font-size: clamp(1.5rem, 9.5cqw, 8.5rem);
 
   font-weight: 700;
 
@@ -195,8 +201,8 @@
 
   top: 50%;
 
-  width: 440px;
-  height: 300px;
+  width: min(440px, 32cqw);
+  height: min(300px, 22cqw);
 
   opacity: 0;
 
@@ -300,7 +306,26 @@
 }
 
 /* -------------------------------- */
-/* MOBILE */
+/* TABLET / SMALL LAPTOP */
+/* -------------------------------- */
+
+@media (max-width: 1200px) {
+  .products {
+    padding: 88px 32px 120px;
+  }
+
+  .products-list {
+    gap: 100px;
+  }
+
+  .product-preview {
+    width: min(360px, 32cqw);
+    height: min(250px, 22cqw);
+  }
+}
+
+/* -------------------------------- */
+/* TABLET PORTRAIT */
 /* -------------------------------- */
 
 @media (max-width: 900px) {
@@ -316,17 +341,17 @@
     min-height: 140px;
   }
 
-  .product-title h2 {
-    font-size: clamp(3.5rem, 14vw, 7rem);
-  }
-
   .product-preview {
-    width: 300px;
-    height: 220px;
+    width: min(300px, 32cqw);
+    height: min(220px, 22cqw);
 
     opacity: 0.12;
   }
 }
+
+/* -------------------------------- */
+/* PHONE */
+/* -------------------------------- */
 
 @media (max-width: 600px) {
   .products-header {
@@ -334,21 +359,27 @@
     gap: 8px;
   }
 
+  .products-list {
+    gap: 72px;
+  }
+
   .product-item {
     padding: 20px 0 24px;
   }
 
   .product-content {
-    min-height: 120px;
+    min-height: 110px;
   }
 
+  /* The preview drops behind the wordmark here, so the title
+     gets the full row width */
   .product-title h2 {
-    font-size: clamp(3rem, 16vw, 5rem);
+    font-size: clamp(1.5rem, 14cqw, 4.5rem);
   }
 
   .product-preview {
-    width: 230px;
-    height: 170px;
+    width: min(230px, 60cqw);
+    height: min(170px, 44cqw);
 
     right: -20px !important;
     left: auto !important;

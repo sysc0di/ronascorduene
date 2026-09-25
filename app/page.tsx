@@ -8,7 +8,7 @@ import ProductSections from "./components/ProductSections";
 export default function Home() {
   return (
     <main className="home" >
-      <section className="relative h-[calc(100dvh-4rem)] overflow-hidden">
+      <section className="relative h-[calc(100dvh-var(--navbar-h))] overflow-hidden">
         <Image
           src={grtgt}
           alt="Toyota GR GT"
@@ -21,7 +21,7 @@ export default function Home() {
         <div className="absolute inset-0" />
 
         <div className="relative z-10 flex h-full items-center justify-center text-center">
-          <div className="page-title max-w-6xl w-full md:p-12">
+          <div className="page-title max-w-4xl w-full pt-12 pb-8 md:py-16">
             <RonasTitle />
             <RonasSubtitle />
           </div >
