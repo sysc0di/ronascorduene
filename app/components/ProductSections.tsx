@@ -70,7 +70,9 @@ function ProductItem({
   const isRight = index % 2 === 0;
 
   useEffect(() => {
-    if (!ref.current) return;
+    const element = ref.current;
+
+    if (!element) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -79,11 +81,12 @@ function ProductItem({
         }
       },
       {
-        threshold: 0.15,
+        threshold: 0.05,
+        rootMargin: "0px 0px -10% 0px",
       }
     );
 
-    observer.observe(ref.current);
+    observer.observe(element);
 
     return () => observer.disconnect();
   }, []);

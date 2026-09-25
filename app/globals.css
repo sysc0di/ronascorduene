@@ -46,6 +46,18 @@ body {
     max-width: 100%;
 }
 
+/* Kept out of the Tailwind utility class so the vh fallback survives
+   minification and the navbar height stays a single source of truth */
+.hero {
+  height: calc(100vh - var(--navbar-h));
+}
+
+@supports (height: 100svh) {
+  .hero {
+    height: calc(100svh - var(--navbar-h));
+  }
+}
+
 @media (max-width: 1024px) {
   :root {
     --gutter: 32px;

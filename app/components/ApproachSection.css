@@ -1,0 +1,352 @@
+.approach {
+  position: relative;
+  width: 100%;
+  min-height: 760px;
+
+  background: #000;
+  color: #a6a6a6;
+
+  overflow: hidden;
+}
+
+.approach-image {
+  position: absolute;
+  inset: 0;
+}
+
+.approach-image-content {
+  object-fit: cover;
+
+  filter: grayscale(100%);
+  transform: scale(1.08);
+
+  transition:
+    filter 1.2s ease,
+    transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.approach-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.65) 40%,
+      rgba(0, 0, 0, 0.25) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.65) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+}
+
+.approach-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(1400px, calc(100% - var(--gutter) * 2));
+  min-height: 760px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 42px 0;
+}
+
+.approach-top {
+  display: flex;
+  justify-content: space-between;
+
+  color: #666;
+
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.approach-line {
+  width: 100%;
+  height: 1px;
+
+  margin-top: 14px;
+
+  background: rgba(166, 166, 166, 0.3);
+
+  transform-origin: left;
+}
+
+.approach-main {
+  margin-top: auto;
+  margin-bottom: auto;
+
+  max-width: 700px;
+
+  /* Type is sized against this box, not the viewport, so the stacked
+     wordmarks keep their proportions on tablets and phones too */
+  container-type: inline-size;
+}
+
+.approach-label {
+  margin-bottom: 24px;
+
+  color: #777;
+
+  font-size: 10px;
+  letter-spacing: 0.22em;
+}
+
+.approach-main h2 {
+  margin: 0;
+
+  color: #e0e0e0;
+
+  font-size: clamp(2.4rem, 19cqw, 9rem);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.07em;
+}
+
+.approach-main p {
+  max-width: 430px;
+
+  margin: 35px 0 0 6px;
+
+  color: #999;
+
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.approach-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid rgba(166, 166, 166, 0.25);
+}
+
+.approach-values div {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 18px 0;
+
+  color: #777;
+
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.approach-values div + div {
+  padding-left: 30px;
+  border-left: 1px solid rgba(166, 166, 166, 0.15);
+}
+
+.approach-values span {
+  color: #444;
+}
+
+.approach-values strong {
+  color: #a6a6a6;
+  font-weight: 500;
+}
+
+/* REVEAL
+   The hidden state lives inside the keyframes rather than on the base
+   rules, so the title and copy render even if the observer never runs */
+
+.approach-visible .approach-line {
+  animation: approachLineIn 1s cubic-bezier(0.77, 0, 0.18, 1) both;
+}
+
+.approach-visible .approach-main h2 {
+  animation: approachTitleIn 900ms cubic-bezier(0.77, 0, 0.18, 1) both;
+}
+
+.approach-visible .approach-main p {
+  animation: approachCopyIn 700ms ease 250ms both;
+}
+
+.approach-visible .approach-image-content {
+  filter: grayscale(35%);
+  transform: scale(1);
+}
+
+@keyframes approachLineIn {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes approachTitleIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes approachCopyIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Old Android and any browser without container query units */
+@supports not (container-type: inline-size) {
+  .approach-main h2 {
+    font-size: clamp(2.4rem, 9vw, 9rem);
+  }
+}
+
+/* HOVER */
+
+.approach:hover .approach-image-content {
+  filter: grayscale(0%);
+  transform: scale(1.025);
+}
+
+@media (max-width: 900px) {
+  .approach {
+    min-height: 680px;
+  }
+
+  .approach-content {
+    min-height: 680px;
+    padding: 30px 0;
+  }
+
+  .approach-main h2 {
+    font-size: clamp(2.2rem, 15cqw, 7rem);
+  }
+
+  .approach-main p {
+    max-width: 380px;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (max-width: 900px) {
+    .approach-main h2 {
+      font-size: clamp(2.2rem, 12.5vw, 7rem);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  /* Lets the panel fill the screen while still growing with the stacked
+     value rows, instead of clipping on short phones */
+  .approach {
+    min-height: auto;
+  }
+
+  .approach-content {
+    min-height: 100svh;
+    padding: 26px 0;
+  }
+
+  .approach-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0.55)
+      ),
+      linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.8),
+        transparent
+      );
+  }
+
+  .approach-main h2 {
+    font-size: clamp(2rem, 15cqw, 6rem);
+  }
+
+  .approach-main p {
+    margin-top: 28px;
+    margin-left: 0;
+
+    font-size: 12px;
+  }
+
+  .approach-values {
+    grid-template-columns: 1fr;
+  }
+
+  .approach-values div + div {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid rgba(166, 166, 166, 0.15);
+  }
+
+  .approach-values div {
+    padding: 14px 0;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (max-width: 600px) {
+    .approach-main h2 {
+      font-size: clamp(2rem, 12vw, 6rem);
+    }
+  }
+}
+
+/* Older Android without small viewport units still fills the screen */
+@supports not (height: 100svh) {
+  @media (max-width: 600px) {
+    .approach-content {
+      min-height: 100vh;
+    }
+  }
+}
+
+/* Landscape phones: drop the full-screen height so the panel scrolls
+   naturally instead of pushing the values row off the bottom */
+@media (max-height: 560px) and (max-width: 1024px) {
+  .approach,
+  .approach-content {
+    min-height: auto;
+  }
+
+  .approach-content {
+    padding: 24px 0;
+  }
+
+  .approach-main h2 {
+    font-size: clamp(2rem, 9cqw, 4rem);
+  }
+
+  .approach-values div {
+    padding: 10px 0;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (max-height: 560px) and (max-width: 1024px) {
+    .approach-main h2 {
+      font-size: clamp(2rem, 7vw, 4rem);
+    }
+  }
+}

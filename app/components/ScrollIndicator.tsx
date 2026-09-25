@@ -1,23 +1,44 @@
 "use client";
-
-import { useEffect, useState } from "react";
 import "./ScrollIndicator.css"
+import { useEffect, useState } from "react";
+
 export default function ScrollIndicator() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setVisible(window.scrollY < 120);
+    const hero = document.getElementById("hero");
+
+    if (!hero) return;
+
+    // Eşik değerini hero'nun yüksekliğinin %20'si olarak sabitliyoruz.
+    // Mobilde dvh sürekli değiştiği için bunu her scroll'da yeniden
+    // ölçmek yerine, güncel yüksekliği anlık okuyoruz (state'te tutmuyoruz).
+    const getThreshold = () => hero.getBoundingClientRect().height * 0.2;
+
+    let ticking = false;
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setVisible(window.scrollY < getThreshold());
+        ticking = false;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // ilk yüklemede doğru state için
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollDown = () => {
+    const hero = document.getElementById("hero");
+
+    if (!hero) return;
+
     window.scrollTo({
-      top: window.innerHeight,
+      top: hero.offsetTop + hero.offsetHeight,
       behavior: "smooth",
     });
   };
@@ -28,27 +49,25 @@ export default function ScrollIndicator() {
       onClick={scrollDown}
       aria-label="Scroll down"
       className={`
-        fixed
-        bottom-5
-        sm:bottom-8
+        absolute
+        bottom-8
         left-1/2
-        z-50
+        z-[9999]
         -translate-x-1/2
         text-[#a6a6a6]
         transition-all
         duration-700
         ease-out
-        group
         ${
           visible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none"
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-4 opacity-0"
         }
       `}
     >
-      <div className="scroll-indicator relative h-24 w-16">
+      <div className="relative h-24 w-16">
 
-        {/* LEFT TIRE TRACK */}
+        {/* LEFT TRACK */}
         <div
           className="
             absolute
@@ -72,7 +91,7 @@ export default function ScrollIndicator() {
           />
         </div>
 
-        {/* RIGHT TIRE TRACK */}
+        {/* RIGHT TRACK */}
         <div
           className="
             absolute
@@ -97,16 +116,15 @@ export default function ScrollIndicator() {
           />
         </div>
 
-        {/* TREAD CUTS */}
+        {/* TREAD */}
         <div className="absolute inset-x-0 top-0 h-16 opacity-30">
           <div className="absolute left-[14px] top-2 h-1 w-3 rotate-[25deg] bg-current" />
           <div className="absolute right-[14px] top-6 h-1 w-3 -rotate-[25deg] bg-current" />
-
           <div className="absolute left-[14px] top-10 h-1 w-3 rotate-[25deg] bg-current" />
           <div className="absolute right-[14px] top-14 h-1 w-3 -rotate-[25deg] bg-current" />
         </div>
 
-        {/* CENTER ARROW */}
+        {/* ARROW */}
         <div
           className="
             absolute
@@ -142,7 +160,6 @@ export default function ScrollIndicator() {
             />
           </svg>
         </div>
-
       </div>
     </button>
   );

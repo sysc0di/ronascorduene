@@ -90,18 +90,15 @@
   }
 }
 
-/* Mobile */
+/* Mobile: stack the two words on their own lines */
 @media (max-width: 640px) {
   .ronas-title {
-    font-size: clamp(2.25rem, 12.5vw, 4.5rem);
-  }
-}
-
-/* Very small phones: wrap instead of clipping the last letter */
-@media (max-width: 420px) {
-  .ronas-title {
+    font-size: clamp(2.5rem, 15vw, 4.5rem);
     white-space: normal;
-    text-wrap: balance;
+  }
+
+  .ronas-title-word {
+    display: block;
   }
 
   .ronas-light-sweep {

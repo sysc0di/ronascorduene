@@ -3,7 +3,7 @@
   position: relative;
   display: block;
   width: fit-content;
-  max-width: min(100%, 44ch);
+  max-width: min(100%, 60ch);
   margin: 0 auto 2rem;
   overflow: hidden;
 
