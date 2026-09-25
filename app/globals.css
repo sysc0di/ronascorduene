@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+@import "tailwindcss";
+
+
+body {
+  font-family: "EB Garamond", serif;
+  background-color: black;
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title{
+    color: #a6a6a6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    height: 100%;
+    width: 100vw;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0,0,0,0.5);
+}
+.productonhome{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+}
