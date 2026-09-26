@@ -2,16 +2,30 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+import { LanguageSwitcher } from "./LanguageSwitcher";
+
+import type { Dictionary } from "../[lang]/dictionaries";
+import type { Locale } from "@/lib/i18n";
+
 import "./Navbar.css";
 
 const links = [
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-  { href: "/store", label: "Store" },
-];
+  { key: "about", href: "/about" },
+  { key: "contact", href: "/contact" },
+  { key: "store", href: "/store" },
+] as const;
 
-export function Navbar() {
+export function Navbar({
+  locale,
+  dict,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+}) {
   const [open, setOpen] = useState(false);
+
+  const base = `/${locale}`;
 
   useEffect(() => {
     if (!open) return;
@@ -35,7 +49,7 @@ export function Navbar() {
     <nav className={open ? "navbar navbar-open" : "navbar"}>
       <div className="navbar-inner">
 
-        <Link href="/" className="navbar-logo" onClick={() => setOpen(false)}>
+        <Link href={base} className="navbar-logo" onClick={() => setOpen(false)}>
           <span>Ronas Corduene</span>
 
           <svg
@@ -48,18 +62,34 @@ export function Navbar() {
           </svg>
         </Link>
 
+        <div className="navbar-lang">
+          <LanguageSwitcher
+            locale={locale}
+            label={dict.nav.language}
+            variant="dropdown"
+          />
+        </div>
+
         {/* Horizontal row on desktop, slide-in drawer on mobile */}
         <div className="navbar-links" id="navbar-menu">
           {links.map((link) => (
             <Link
-              key={link.href}
-              href={link.href}
+              key={link.key}
+              href={`${base}${link.href}`}
               className="navbar-link"
               onClick={() => setOpen(false)}
             >
-              {link.label}
+              {dict.nav[link.key]}
             </Link>
           ))}
+
+          <div className="navbar-drawer-language">
+            <LanguageSwitcher
+              locale={locale}
+              label={dict.nav.language}
+              variant="stacked"
+            />
+          </div>
         </div>
 
         <button
@@ -67,7 +97,7 @@ export function Navbar() {
           className="navbar-toggle"
           aria-expanded={open}
           aria-controls="navbar-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? dict.nav.closeMenu : dict.nav.openMenu}
           onClick={() => setOpen((isOpen) => !isOpen)}
         >
           <span className="navbar-toggle-bar" />
@@ -79,7 +109,7 @@ export function Navbar() {
       <button
         type="button"
         className="navbar-backdrop"
-        aria-label="Close menu"
+        aria-label={dict.nav.closeMenu}
         onClick={() => setOpen(false)}
       />
     </nav>

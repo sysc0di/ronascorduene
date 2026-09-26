@@ -1,12 +1,15 @@
 import Image from "next/image";
-import grtgt from "../public/assets/homebanner.jpg";
-import RonasTitle from "./components/RonasTitle";
-import RonasSubtitle from "./components/RonasSubtitle";
-import ScrollIndicator from "./components/ScrollIndicator";
-import ProductSections from "./components/ProductSections";
-import ApproachSection from "./components/ApproachSection";
+import grtgt from "@/public/assets/homebanner.jpg";
+import RonasTitle from "../components/RonasTitle";
+import RonasSubtitle from "../components/RonasSubtitle";
+import ScrollIndicator from "../components/ScrollIndicator";
+import ProductSections from "../components/ProductSections";
+import ApproachSection from "../components/ApproachSection";
+import { getDictionary } from "./dictionaries";
 
-export default function Home() {
+export default async function Home() {
+  const dict = await getDictionary();
+
   return (
     <main className="home">
       <section
@@ -15,7 +18,7 @@ export default function Home() {
       >
         <Image
           src={grtgt}
-          alt="Toyota GR GT"
+          alt={dict.home.heroAlt}
           fill
           priority
           sizes="100vw"
@@ -26,17 +29,17 @@ export default function Home() {
 
         <div className="relative z-10 flex h-full items-center justify-center text-center">
           <div className="page-title w-full max-w-6xl md:p-12">
-            <RonasTitle />
-            <RonasSubtitle />
+            <RonasTitle titleLines={dict.home.titleLines} />
+            <RonasSubtitle text={dict.home.subtitle} />
           </div>
         </div>
 
-        <ScrollIndicator />
+        <ScrollIndicator label={dict.home.scrollDown} />
       </section>
 
       <div className="productonhome">
-        <ProductSections />
-        <ApproachSection/>
+        <ProductSections dict={dict.home.products} />
+        <ApproachSection dict={dict.home.approach} />
       </div>
     </main>
   );

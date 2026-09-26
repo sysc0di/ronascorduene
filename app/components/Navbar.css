@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 32px;
 }
 
 /* Logo */
@@ -284,5 +284,34 @@
   .navbar-backdrop,
   .navbar-toggle-bar {
     transition: none;
+  }
+}
+
+/* -------------------------------- */
+/* LANGUAGE SWITCHER (additive only) */
+/* -------------------------------- */
+
+/* Sits immediately to the left of the nav links, which stay hard right */
+.navbar-lang {
+  margin-left: auto;
+}
+
+.navbar-drawer-language {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-drawer-language {
+    display: block;
+
+    margin-top: 28px;
+  }
+
+  .navbar-drawer-language .lang-switch-option {
+    font-size: 1.1rem;
+  }
+
+  .navbar-drawer-language .lang-switch-name {
+    font-size: 0.8rem;
   }
 }

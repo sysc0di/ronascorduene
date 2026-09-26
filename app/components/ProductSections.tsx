@@ -3,45 +3,42 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
+import type { Dictionary } from "../[lang]/dictionaries";
+
 import "./ProductSections.css";
 
-const products = [
-  {
-    number: "01",
-    title: "WHEELS",
-    subtitle: "Forged for the road.",
-    image: "/assets/wheel.jpg",
-  },
-  {
-    number: "02",
-    title: "EXTERIOR",
-    subtitle: "Built to stand apart.",
-    image: "/assets/exterior.jpg",
-  },
-  {
-    number: "03",
-    title: "PERFORMANCE",
-    subtitle: "Made to move.",
-    image: "/assets/performance.jpg",
-  },
+type ProductsDict = Dictionary["home"]["products"];
+
+const images = [
+  "/assets/wheel.jpg",
+  "/assets/exterior.jpg",
+  "/assets/performance.jpg",
 ];
 
-export default function ProductSections() {
+export default function ProductSections({
+  dict,
+}: {
+  dict: ProductsDict;
+}) {
   const [active, setActive] = useState<number | null>(null);
 
   return (
     <section className="products">
 
       <div className="products-header">
-        <span>RONAS</span>
-        <span>AUTOMOTIVE EQUIPMENT</span>
+        <span>{dict.brand}</span>
+        <span>{dict.label}</span>
       </div>
 
       <div className="products-list">
-        {products.map((product, index) => (
+        {dict.items.map((product, index) => (
           <ProductItem
-            key={product.number}
+            key={product.title}
             product={product}
+            image={images[index]}
+            number={(index + 1).toString().padStart(2, "0")}
+            meta={dict.meta}
             index={index}
             active={active}
             setActive={setActive}
@@ -55,11 +52,17 @@ export default function ProductSections() {
 
 function ProductItem({
   product,
+  image,
+  number,
+  meta,
   index,
   active,
   setActive,
 }: {
-  product: (typeof products)[number];
+  product: ProductsDict["items"][number];
+  image: string | undefined;
+  number: string;
+  meta: string;
   index: number;
   active: number | null;
   setActive: (index: number | null) => void;
@@ -106,8 +109,8 @@ function ProductItem({
       <div className="product-top">
 
         <div className="product-meta">
-          <span>{product.number}</span>
-          <span>RONAS / EQUIPMENT</span>
+          <span>{number}</span>
+          <span>{meta}</span>
         </div>
 
         <div className="product-line">
@@ -124,15 +127,17 @@ function ProductItem({
           <p>{product.subtitle}</p>
         </div>
 
-        <div className="product-preview">
-          <Image
-            src={product.image}
-            alt={product.title}
-            fill
-            sizes="(max-width: 600px) 60vw, (max-width: 1200px) 32vw, 440px"
-            className="preview-image"
-          />
-        </div>
+        {image && (
+          <div className="product-preview">
+            <Image
+              src={image}
+              alt={product.title}
+              fill
+              sizes="(max-width: 600px) 60vw, (max-width: 1200px) 32vw, 440px"
+              className="preview-image"
+            />
+          </div>
+        )}
 
       </div>
     </div>

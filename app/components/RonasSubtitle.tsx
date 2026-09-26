@@ -1,11 +1,10 @@
-
 "use client";
 import "./RonasSubtitle.css";
 
-export default function RonasSubtitle() {
+export default function RonasSubtitle({ text }: { text: string }) {
   return (
     <div className="ronas-subtitle">
-      <span>High-performance engineering and motorsport heritage</span>
+      <span>{text}</span>
     </div>
   );
 }

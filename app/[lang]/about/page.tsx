@@ -1,7 +1,29 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+
+import { getDictionary, getDictionaryFor } from "../dictionaries";
 import "./About.css";
 
-export default function AboutPage() {
+export async function generateMetadata({
+  params,
+}: PageProps<"/[lang]/about">): Promise<Metadata> {
+  const { lang } = await params;
+  const dict = getDictionaryFor(lang);
+
+  return {
+    title: dict.nav.about,
+    description: dict.about.hero.body,
+    alternates: {
+      canonical: `/${lang}/about`,
+      languages: { en: "/en/about", tr: "/tr/about" },
+    },
+  };
+}
+
+export default async function AboutPage() {
+  const dict = await getDictionary();
+  const { about } = dict;
+
   return (
     <main className="about-page">
 
@@ -10,28 +32,25 @@ export default function AboutPage() {
       <section className="about-hero">
         <div className="about-hero-meta">
           <span>01</span>
-          <span>RONAS / ABOUT</span>
+          <span>{about.meta.hero}</span>
         </div>
 
         <div className="about-hero-line" />
 
         <div className="about-hero-content">
           <span className="about-label">
-            AUTOMOTIVE EQUIPMENT
+            {about.hero.label}
           </span>
 
           <h1>
-            BUILT
+            {about.hero.titleLines[0]}
             <br />
-            FOR THE
+            {about.hero.titleLines[1]}
             <br />
-            ROAD.
+            {about.hero.titleLines[2]}
           </h1>
 
-          <p>
-            Ronas Corduene creates automotive equipment where
-            engineering, design and character meet.
-          </p>
+          <p>{about.hero.body}</p>
         </div>
       </section>
 
@@ -42,7 +61,7 @@ export default function AboutPage() {
 
         <div className="about-section-header">
           <span>02</span>
-          <span>THE IDEA</span>
+          <span>{about.meta.idea}</span>
         </div>
 
         <div className="about-story-grid">
@@ -53,30 +72,17 @@ export default function AboutPage() {
 
           <div className="about-story-content">
             <h2>
-              FORM
+              {about.story.titleLines[0]}
               <br />
-              FOLLOWS
+              {about.story.titleLines[1]}
               <br />
-              FUNCTION.
+              {about.story.titleLines[2]}
             </h2>
 
             <div className="about-story-text">
-              <p>
-                We believe automotive equipment should never feel
-                like an afterthought.
-              </p>
-
-              <p>
-                Every detail has a purpose. From the shape of a
-                component to the way it interacts with the road,
-                our approach is built around precision, simplicity
-                and intent.
-              </p>
-
-              <p>
-                Ronas is about creating equipment that belongs
-                naturally on the vehicle — not simply adding to it.
-              </p>
+              {about.story.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </div>
 
@@ -90,43 +96,20 @@ export default function AboutPage() {
 
         <div className="about-section-header">
           <span>03</span>
-          <span>WHAT DRIVES US</span>
+          <span>{about.meta.values}</span>
         </div>
 
         <div className="about-values-grid">
 
-          <article className="about-value">
-            <span>01</span>
+          {about.values.map((value, index) => (
+            <article className="about-value" key={value.title}>
+              <span>{(index + 1).toString().padStart(2, "0")}</span>
 
-            <h3>DESIGN</h3>
+              <h3>{value.title}</h3>
 
-            <p>
-              Clean proportions, deliberate surfaces and a visual
-              language designed to complement the vehicle.
-            </p>
-          </article>
-
-          <article className="about-value">
-            <span>02</span>
-
-            <h3>ENGINEERING</h3>
-
-            <p>
-              Every solution begins with function, precision and
-              the demands of real-world driving.
-            </p>
-          </article>
-
-          <article className="about-value">
-            <span>03</span>
-
-            <h3>CHARACTER</h3>
-
-            <p>
-              Equipment should change the presence of a vehicle
-              without losing what made it special in the first place.
-            </p>
-          </article>
+              <p>{value.body}</p>
+            </article>
+          ))}
 
         </div>
       </section>
@@ -139,7 +122,7 @@ export default function AboutPage() {
         <div className="about-image">
           <Image
             src="/assets/approach.jpg"
-            alt="Ronas automotive design"
+            alt={about.image.alt}
             fill
             sizes="100vw"
             className="about-image-content"
@@ -148,8 +131,8 @@ export default function AboutPage() {
           <div className="about-image-overlay" />
 
           <div className="about-image-caption">
-            <span>RONAS / CORDUENE</span>
-            <span>ENGINEERED WITH PURPOSE</span>
+            <span>{about.image.brand}</span>
+            <span>{about.image.caption}</span>
           </div>
         </div>
 
@@ -162,33 +145,29 @@ export default function AboutPage() {
 
         <div className="about-section-header">
           <span>04</span>
-          <span>OUR APPROACH</span>
+          <span>{about.meta.approach}</span>
         </div>
 
         <div className="about-closing-content">
 
           <h2>
-            MORE
+            {about.closing.titleLines[0]}
             <br />
-            THAN
+            {about.closing.titleLines[1]}
             <br />
-            EQUIPMENT.
+            {about.closing.titleLines[2]}
           </h2>
 
-          <p>
-            We build for the people who see their vehicle as more
-            than transportation. Every component is an opportunity
-            to make the drive feel more intentional.
-          </p>
+          <p>{about.closing.body}</p>
 
         </div>
 
         <div className="about-closing-line" />
 
         <div className="about-closing-bottom">
-          <span>RONAS CORDUENE</span>
-          <span>EST. —</span>
-          <span>AUTOMOTIVE EQUIPMENT</span>
+          <span>{about.closing.brand}</span>
+          <span>{about.closing.established}</span>
+          <span>{dict.common.automotiveEquipment}</span>
         </div>
 
       </section>

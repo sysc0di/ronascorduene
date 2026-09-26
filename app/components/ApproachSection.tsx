@@ -2,9 +2,18 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
+import type { Dictionary } from "../[lang]/dictionaries";
+
 import "./ApproachSection.css";
 
-export default function ApproachSection() {
+type ApproachDict = Dictionary["home"]["approach"];
+
+export default function ApproachSection({
+  dict,
+}: {
+  dict: ApproachDict;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -34,7 +43,7 @@ export default function ApproachSection() {
       <div className="approach-image">
         <Image
           src="/assets/approach.jpg"
-          alt="Ronas automotive equipment"
+          alt={dict.alt}
           fill
           sizes="100vw"
           className="approach-image-content"
@@ -46,46 +55,34 @@ export default function ApproachSection() {
       <div className="approach-content">
         <div className="approach-top">
           <span>04</span>
-          <span>RONAS / APPROACH</span>
+          <span>{dict.meta}</span>
         </div>
 
         <div className="approach-line" />
 
         <div className="approach-main">
           <div className="approach-label">
-            ENGINEERED FOR THE DRIVE
+            {dict.label}
           </div>
 
           <h2>
-            BUILT
+            {dict.titleLines[0]}
             <br />
-            WITH
+            {dict.titleLines[1]}
             <br />
-            PURPOSE.
+            {dict.titleLines[2]}
           </h2>
 
-          <p>
-            Every component is designed around the same idea:
-            precise engineering, purposeful form, and a character
-            that belongs on the road.
-          </p>
+          <p>{dict.body}</p>
         </div>
 
         <div className="approach-values">
-          <div>
-            <span>01</span>
-            <strong>PRECISION</strong>
-          </div>
-
-          <div>
-            <span>02</span>
-            <strong>FUNCTION</strong>
-          </div>
-
-          <div>
-            <span>03</span>
-            <strong>CHARACTER</strong>
-          </div>
+          {dict.values.map((value, index) => (
+            <div key={value}>
+              <span>{(index + 1).toString().padStart(2, "0")}</span>
+              <strong>{value}</strong>
+            </div>
+          ))}
         </div>
       </div>
     </section>

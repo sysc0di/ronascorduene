@@ -2,7 +2,7 @@
 import "./ScrollIndicator.css"
 import { useEffect, useState } from "react";
 
-export default function ScrollIndicator() {
+export default function ScrollIndicator({ label }: { label: string }) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function ScrollIndicator() {
     <button
       type="button"
       onClick={scrollDown}
-      aria-label="Scroll down"
+      aria-label={label}
       className={`
         absolute
         bottom-8

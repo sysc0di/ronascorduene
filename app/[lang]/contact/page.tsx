@@ -1,6 +1,29 @@
+import type { Metadata } from "next";
+
+import { getDictionary, getDictionaryFor } from "../dictionaries";
 import "./Contact.css";
 
-export default function ContactPage() {
+export async function generateMetadata({
+  params,
+}: PageProps<"/[lang]/contact">): Promise<Metadata> {
+  const { lang } = await params;
+  const dict = getDictionaryFor(lang);
+
+  return {
+    title: dict.nav.contact,
+    description: dict.contact.hero.body,
+    alternates: {
+      canonical: `/${lang}/contact`,
+      languages: { en: "/en/contact", tr: "/tr/contact" },
+    },
+  };
+}
+
+export default async function ContactPage() {
+  const dict = await getDictionary();
+  const { contact } = dict;
+  const { form } = contact;
+
   return (
     <main className="contact-page">
       {/* HERO */}
@@ -8,27 +31,26 @@ export default function ContactPage() {
       <section className="contact-hero">
         <div className="contact-hero-meta">
           <span>02</span>
-          <span>RONAS / CONTACT</span>
+          <span>{contact.meta.hero}</span>
         </div>
 
         <div className="contact-hero-line" />
 
         <div className="contact-hero-content">
           <div className="contact-label">
-            ENGINEERED FOR THE ROAD
+            {contact.hero.label}
           </div>
 
           <h1>
-            LET&apos;S
-            <br />
-            TALK.
+            {contact.hero.titleLines.map((line, index) => (
+              <span key={line}>
+                {line}
+                {index < contact.hero.titleLines.length - 1 && <br />}
+              </span>
+            ))}
           </h1>
 
-          <p>
-            Have a project in mind, need more information about
-            our equipment, or simply want to get in touch?
-            Send us a message.
-          </p>
+          <p>{contact.hero.body}</p>
         </div>
       </section>
 
@@ -37,19 +59,19 @@ export default function ContactPage() {
       <section className="contact-info">
         <div className="contact-section-header">
           <span>01</span>
-          <span>CONTACT INFORMATION</span>
+          <span>{contact.meta.info}</span>
         </div>
 
         <div className="contact-info-grid">
           <a
-            href="mailto:hello@ronascorduene.com"
+            href={`mailto:${contact.info.emailValue}`}
             className="contact-info-item"
           >
             <span className="contact-info-number">01</span>
 
             <div>
-              <span className="contact-info-label">EMAIL</span>
-              <strong>hello@ronascorduene.com</strong>
+              <span className="contact-info-label">{contact.info.email}</span>
+              <strong>{contact.info.emailValue}</strong>
             </div>
 
             <span className="contact-arrow">↗</span>
@@ -59,8 +81,8 @@ export default function ContactPage() {
             <span className="contact-info-number">02</span>
 
             <div>
-              <span className="contact-info-label">LOCATION</span>
-              <strong>CORDUENE / TURKEY</strong>
+              <span className="contact-info-label">{contact.info.location}</span>
+              <strong>{contact.info.locationValue}</strong>
             </div>
           </div>
 
@@ -71,8 +93,8 @@ export default function ContactPage() {
             <span className="contact-info-number">03</span>
 
             <div>
-              <span className="contact-info-label">INSTAGRAM</span>
-              <strong>@RONASCORDUENE</strong>
+              <span className="contact-info-label">{contact.info.instagram}</span>
+              <strong>{contact.info.instagramValue}</strong>
             </div>
 
             <span className="contact-arrow">↗</span>
@@ -85,54 +107,54 @@ export default function ContactPage() {
       <section className="contact-form-section">
         <div className="contact-section-header">
           <span>02</span>
-          <span>SEND A MESSAGE</span>
+          <span>{contact.meta.form}</span>
         </div>
 
         <form className="contact-form">
           <div className="contact-form-row">
             <label>
-              <span>01 / NAME</span>
+              <span>{form.name}</span>
 
               <input
                 type="text"
                 name="name"
-                placeholder="Your name"
+                placeholder={form.namePlaceholder}
               />
             </label>
 
             <label>
-              <span>02 / EMAIL</span>
+              <span>{form.email}</span>
 
               <input
                 type="email"
                 name="email"
-                placeholder="Your email"
+                placeholder={form.emailPlaceholder}
               />
             </label>
           </div>
 
           <label>
-            <span>03 / SUBJECT</span>
+            <span>{form.subject}</span>
 
             <input
               type="text"
               name="subject"
-              placeholder="What can we help with?"
+              placeholder={form.subjectPlaceholder}
             />
           </label>
 
           <label>
-            <span>04 / MESSAGE</span>
+            <span>{form.message}</span>
 
             <textarea
               name="message"
               rows={6}
-              placeholder="Tell us about your project..."
+              placeholder={form.messagePlaceholder}
             />
           </label>
 
           <button type="submit" className="contact-submit">
-            <span>SEND MESSAGE</span>
+            <span>{form.submit}</span>
             <span>↗</span>
           </button>
         </form>
@@ -144,15 +166,15 @@ export default function ContactPage() {
         <div className="contact-bottom-line" />
 
         <div className="contact-bottom-content">
-          <span>RONAS CORDUENE</span>
+          <span>{contact.closing.brand}</span>
 
           <strong>
-            BUILT
+            {contact.closing.titleLines[0]}
             <br />
-            TO MOVE.
+            {contact.closing.titleLines[1]}
           </strong>
 
-          <span>AUTOMOTIVE EQUIPMENT</span>
+          <span>{contact.closing.label}</span>
         </div>
       </section>
     </main>

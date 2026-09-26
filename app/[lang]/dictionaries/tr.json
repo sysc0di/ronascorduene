@@ -1,0 +1,258 @@
+{
+  "meta": {
+    "title": "Ronas Corduene — Otomotiv Ekipmanları",
+    "description": "Yüksek performanslı mühendislik ve motorspor mirası. Sürüş için tasarlanmış dövme jantlar, dış aero ve performans parçaları."
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "store": "Mağaza",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "language": "Dil",
+    "primaryNavigation": "Ana gezinme"
+  },
+  "sidebar": {
+    "tagline": "Yol için tasarlanmış otomotiv ekipmanları.",
+    "email": "E-posta",
+    "location": "KORDUENE / TÜRKİYE"
+  },
+  "common": {
+    "automotiveEquipment": "OTOMOTİV EKİPMANLARI"
+  },
+  "home": {
+    "titleLines": ["Ronas", "Carduene"],
+    "subtitle": "Yüksek performanslı mühendislik ve motorspor mirası",
+    "scrollDown": "Aşağı kaydır",
+    "heroAlt": "Toyota GR GT",
+    "products": {
+      "brand": "RONAS",
+      "label": "OTOMOTİV EKİPMANLARI",
+      "meta": "RONAS / EKİPMAN",
+      "items": [
+        { "title": "JANTLAR", "subtitle": "Yol için dövüldü." },
+        { "title": "DIŞ TASARIM", "subtitle": "Fark yaratmak için." },
+        { "title": "PERFORMANS", "subtitle": "Hareket için üretildi." }
+      ]
+    },
+    "approach": {
+      "meta": "RONAS / YAKLAŞIM",
+      "label": "SÜRÜŞ İÇİN TASARLANDI",
+      "titleLines": ["AMAÇLA", "BİLİNÇLİ", "ÜRETİLDİ."],
+      "body": "Her bileşen aynı fikir üzerine kurulur: hassas mühendislik, amaçlı form ve yola ait bir karakter.",
+      "values": ["HASSASIYET", "İŞLEV", "KARAKTER"],
+      "alt": "Ronas otomotiv ekipmanları"
+    }
+  },
+  "about": {
+    "meta": {
+      "hero": "RONAS / HAKKIMIZDA",
+      "idea": "FİKİR",
+      "values": "BİZİ NELER İLERLETİR",
+      "approach": "YAKLAŞIMIMIZ"
+    },
+    "hero": {
+      "label": "OTOMOTİV EKİPMANLARI",
+      "titleLines": ["YOL", "İÇİN", "ÜRETİLDİ."],
+      "body": "Ronas Corduene; mühendisliğin, tasarımın ve karakterin buluştuğu otomotiv ekipmanları üretir."
+    },
+    "story": {
+      "titleLines": ["FORM", "İŞLEVİ", "İZLER."],
+      "paragraphs": [
+        "Otomotiv ekipmanının asla sonradan eklenmiş gibi hissettirmemesi gerektiğine inanıyoruz.",
+        "Her detayın bir amacı vardır. Bir bileşenin formundan yolla etkileşim biçimine kadar yaklaşımımız; hassasiyet, sadelik ve netlik üzerine kuruludur.",
+        "Ronas, araca doğal bir şekilde uyum sağlayan ekipmanlar üretmek üzerinedir — sadece üzerine eklemek değil."
+      ]
+    },
+    "values": [
+      {
+        "title": "TASARIM",
+        "body": "Sade oranlar, bilinçli yüzeyler ve aracı tamamlayan bir görsel dil."
+      },
+      {
+        "title": "MÜHENDİSLİK",
+        "body": "Her çözüm işlevden, hassasiyetten ve gerçek hayat sürüşünün taleplerinden başlar."
+      },
+      {
+        "title": "KARAKTER",
+        "body": "Ekipman, bir aracın ilk anda özel kılan yanını kaybettirmeden varlığını değiştirmelidir."
+      }
+    ],
+    "image": {
+      "alt": "Ronas otomotiv tasarımı",
+      "brand": "RONAS / CORDUENE",
+      "caption": "AMAÇLA TASARLANDI"
+    },
+    "closing": {
+      "titleLines": ["EKSİPMANIN", "ÖTESİ", "BİR ŞEY."],
+      "body": "Aracını sadece bir ulaşım aracı olarak görmeyenler için çalışıyoruz. Her bileşen, sürüşü daha bilinçli kılma fırsatıdır.",
+      "brand": "RONAS CORDUENE",
+      "established": "KUR. —"
+    }
+  },
+  "contact": {
+    "meta": {
+      "hero": "RONAS / İLETİŞİM",
+      "info": "İLETİŞİM BİLGİLERİ",
+      "form": "MESAJ GÖNDER"
+    },
+    "hero": {
+      "label": "YOL İÇİN TASARLANDI",
+      "titleLines": ["KONUŞALIM."],
+      "body": "Aklınızda bir proje mi var, ekipmanlarımız hakkında daha fazla bilgi mi istiyorsunuz, yoksa sadece iletişime mi geçmek istiyorsunuz? Bize mesaj gönderin."
+    },
+    "info": {
+      "email": "E-POSTA",
+      "emailValue": "hello@ronascorduene.com",
+      "location": "KONUM",
+      "locationValue": "KORDUENE / TÜRKİYE",
+      "instagram": "INSTAGRAM",
+      "instagramValue": "@RONASCORDUENE"
+    },
+    "form": {
+      "name": "01 / AD SOYAD",
+      "namePlaceholder": "Adınız",
+      "email": "02 / E-POSTA",
+      "emailPlaceholder": "E-posta adresiniz",
+      "subject": "03 / KONU",
+      "subjectPlaceholder": "Nasıl yardımcı olabiliriz?",
+      "message": "04 / MESAJ",
+      "messagePlaceholder": "Projenizden bahsedin...",
+      "submit": "MESAJ GÖNDER"
+    },
+    "closing": {
+      "brand": "RONAS CORDUENE",
+      "titleLines": ["HAREKET", "İÇİN ÜRETİLDİ."],
+      "label": "OTOMOTİV EKİPMANLARI"
+    }
+  },
+  "store": {
+    "meta": "RONAS / MAĞAZA",
+    "label": "OTOMOTİV EKİPMANLARI",
+    "titleLines": ["UYGUN", "ÜRETİLDİ."],
+    "body": "Ronas kataloğunu keşfedin. Bir kategori seçin, teknik özellikleri daraltın ve aracınıza uygun ekipmanı bulun.",
+    "products": "ÜRÜNLER",
+    "resetFilters": "FİLTRELERİ SIFIRLA",
+    "clearFilters": "FİLTRELERİ TEMİZLE",
+    "noProducts": "ÜRÜN BULUNAMADI.",
+    "search": "ARA",
+    "searchPlaceholder": "Ürünlerde ara...",
+    "all": "TÜMÜ",
+    "widthSpec": "GENİŞLİK",
+    "filters": {
+      "category": "KATEGORİ",
+      "diameter": "ÇAP",
+      "width": "GENİŞLİK",
+      "construction": "ÜRETİM",
+      "material": "MALZEME",
+      "finish": "BİTİŞ",
+      "application": "KULLANIM",
+      "component": "BİLEŞEN",
+      "system": "SİSTEM",
+      "type": "TİP"
+    },
+    "terms": {
+      "WHEELS": "JANTLAR",
+      "EXTERIOR": "DIŞ TASARIM",
+      "PERFORMANCE": "PERFORMANS",
+      "ACCESSORIES": "AKSESUARLAR",
+      "FORGED ALUMINUM": "DÖVME ALÜMİNYUM",
+      "CAST ALUMINUM": "DÖKME ALÜMİNYUM",
+      "FLOW FORMED": "AKIŞ FORM",
+      "CARBON FIBER": "KARBON ELYAF",
+      "ALUMINUM": "ALÜMİNYUM",
+      "STAINLESS STEEL": "PASLANMAZ ÇELİK",
+      "STEEL": "ÇELİK",
+      "FORGED": "DÖVME",
+      "CAST": "DÖKME",
+      "BRUSHED SILVER": "Fırçalanmış Gümüş",
+      "SATIN BLACK": "Saten Siyah",
+      "GUNMETAL": "Gün Metal",
+      "GRAPHITE": "Grafit",
+      "MATTE BLACK": "Mat Siyah",
+      "BRUSHED TITANIUM": "Fırçalanmış Titanyum",
+      "STREET": "SOKAK",
+      "TRACK": "PİST",
+      "GT": "GT",
+      "FRONT AERO": "ÖN AERO",
+      "SIDE AERO": "YAN AERO",
+      "REAR AERO": "ARKA AERO",
+      "INTAKE": "HAVA GİRİŞİ",
+      "EXHAUST": "EGZOZ",
+      "CHASSIS": "ŞASİ",
+      "WHEEL ACCESSORY": "JANT AKSESUARI",
+      "WHEEL HARDWARE": "JANT BAĞLANTI"
+    },
+    "items": {
+      "ronas-r01": {
+        "name": "R01 FORGED",
+        "description": "Yüksek performanslı uygulamalar için tasarlanmış hafif dövme jant."
+      },
+      "ronas-r02": {
+        "name": "R02 FORGED",
+        "description": "Dayanıklılık ve denge üzerine kurulu hafif çok kollu tasarım."
+      },
+      "ronas-r03": {
+        "name": "R03 TRACK",
+        "description": "Azaltılmış yaylanmayan kütle etrafında geliştirilmiş pist esinli dövme jant."
+      },
+      "ronas-r04": {
+        "name": "R04 FLOW",
+        "description": "Dayanıklılığı günlük kullanılabilirlikle birleştiren akış form üretim."
+      },
+      "ronas-r05": {
+        "name": "R05 STREET",
+        "description": "Modern sokak uygulamaları için tasarlanmış sade beş kollu geometri."
+      },
+      "ronas-r06": {
+        "name": "R06 GT",
+        "description": "Görsel etki ile performansı dengeleyen grand touring odaklı tasarım."
+      },
+      "ronas-front-splitter": {
+        "name": "ÖN SPLİTTER",
+        "description": "Ön profil keskinleştirmek için tasarlanmış fonksiyonel ön splitter."
+      },
+      "ronas-side-skirts": {
+        "name": "YAN EĞİMLER",
+        "description": "Aracı görsel olarak alçaltmak için tasarlanmış alçak profilli yan eklentiler."
+      },
+      "ronas-rear-diffuser": {
+        "name": "ARKA DİFÜZÖR",
+        "description": "Temiz, motorspor esinli profile sahip aerodinamik arka difüzör."
+      },
+      "ronas-gt-spoiler": {
+        "name": "GT SPOİLER",
+        "description": "Fazlalık olmadan varlık katan şekillendirilmiş arka spoiler."
+      },
+      "ronas-performance-intake": {
+        "name": "PERFORMANS HAVA GİRİŞİ",
+        "description": "İyileştirilmiş hava akışı etrafında tasarlanmış yüksek debili hava giriş sistemi."
+      },
+      "ronas-gt-exhaust": {
+        "name": "GT EGZOZ",
+        "description": "Akış, ağırlık ve karakter odaklı performans egzoz sistemi."
+      },
+      "ronas-strut-brace": {
+        "name": "STRUT BRACE",
+        "description": "Sertliği ve tepkiyi iyileştirmek için tasarlanmış şasi takviyesi."
+      },
+      "ronas-valve-caps": {
+        "name": "VALF KAPAKLARI",
+        "description": "Ronas imzasını taşıyan işlenmiş alüminyum valf kapakları."
+      },
+      "ronas-wheel-bolts": {
+        "name": "JANT BİLEĞENLERİ",
+        "description": "Ronas jantları için geliştirilmiş hassas işlenmiş jant bağlantı elemanları."
+      }
+    }
+  },
+  "footer": {
+    "brand": "RONAS / CORDUENE",
+    "titleLines": ["FARKLI", "ÜRETİLDİ."],
+    "middle": "RONAS",
+    "copyright": "© {year} RONAS CORDUENE",
+    "label": "OTOMOTİV EKİPMANLARI",
+    "rights": "TÜM HAKLARI SAKLIDIR"
+  }
+}

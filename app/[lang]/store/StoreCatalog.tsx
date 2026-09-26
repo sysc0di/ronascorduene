@@ -5,7 +5,11 @@ import { useMemo, useState } from "react";
 
 import products from "./storeData.json";
 
+import type { Dictionary } from "../dictionaries";
+
 import "./Store.css";
+
+type StoreDict = Dictionary["store"];
 
 const categories = [
   "ALL",
@@ -19,87 +23,32 @@ type Category = (typeof categories)[number];
 
 type Product = (typeof products)[number];
 
-type FilterConfig = {
-  key:
-    | "material"
-    | "diameter"
-    | "width"
-    | "construction"
-    | "finish"
-    | "application"
-    | "component"
-    | "system"
-    | "type";
+type FilterKey =
+  | "material"
+  | "diameter"
+  | "width"
+  | "construction"
+  | "finish"
+  | "application"
+  | "component"
+  | "system"
+  | "type";
 
-  label: string;
-};
-
-const categoryFilters: Record<
-  Exclude<Category, "ALL">,
-  FilterConfig[]
-> = {
+const filterKeys: Record<Exclude<Category, "ALL">, readonly FilterKey[]> = {
   WHEELS: [
-    {
-      key: "diameter",
-      label: "DIAMETER",
-    },
-    {
-      key: "width",
-      label: "WIDTH",
-    },
-    {
-      key: "construction",
-      label: "CONSTRUCTION",
-    },
-    {
-      key: "material",
-      label: "MATERIAL",
-    },
-    {
-      key: "finish",
-      label: "FINISH",
-    },
-    {
-      key: "application",
-      label: "APPLICATION",
-    },
+    "diameter",
+    "width",
+    "construction",
+    "material",
+    "finish",
+    "application",
   ],
-
-  EXTERIOR: [
-    {
-      key: "component",
-      label: "COMPONENT",
-    },
-    {
-      key: "material",
-      label: "MATERIAL",
-    },
-  ],
-
-  PERFORMANCE: [
-    {
-      key: "system",
-      label: "SYSTEM",
-    },
-    {
-      key: "material",
-      label: "MATERIAL",
-    },
-  ],
-
-  ACCESSORIES: [
-    {
-      key: "type",
-      label: "TYPE",
-    },
-    {
-      key: "material",
-      label: "MATERIAL",
-    },
-  ],
+  EXTERIOR: ["component", "material"],
+  PERFORMANCE: ["system", "material"],
+  ACCESSORIES: ["type", "material"],
 };
 
-export default function StoreCatalog() {
+export default function StoreCatalog({ dict }: { dict: StoreDict }) {
   const [category, setCategory] =
     useState<Category>("ALL");
 
@@ -109,29 +58,62 @@ export default function StoreCatalog() {
 
   const [search, setSearch] = useState("");
 
-  const activeFilters =
-    category === "ALL"
-      ? []
-      : categoryFilters[category];
+  /*
+   * Spec değerleri JSON içinde kanonik İngilizce
+   * anahtar olarak tutulur; ekranda gösterilecek metin
+   * sözlükteki karşılığına çevrilir. Böylece filtre
+   * state'i çeviriden bağımsız kalır.
+   *
+   * Sözlük anahtarları JSON'dan türetildiği için
+   * burada serbest string indekslemeye açılır.
+   */
+  const terms = dict.terms as Record<string, string>;
+
+  const items = dict.items as Record<
+    string,
+    { name: string; description: string }
+  >;
+
+  const term = (value: string) => terms[value] ?? value;
 
   /*
-   * Category değişince o kategoriye ait
-   * filtreleri sıfırla.
+   * Aktif kategoriye ait filtreler.
+   *
+   * ALL seçiliyken hiçbir kategori filtresi
+   * gösterilmiyor.
    */
-  const changeCategory = (value: Category) => {
-    setCategory(value);
+  const activeFilters = useMemo(() => {
+    if (category === "ALL") {
+      return [];
+    }
+
+    return filterKeys[category];
+  }, [category]);
+
+  /*
+   * Kategori değiştiğinde:
+   *
+   * 1. Kategori değişir.
+   * 2. Önceki kategoriye ait filtreler temizlenir.
+   *
+   * Böylece örneğin WHEELS'den EXTERIOR'a
+   * geçerken DIAMETER gibi eski filtreler
+   * ürünleri yanlışlıkla etkilemez.
+   */
+  const changeCategory = (value: string) => {
+    const nextCategory = value as Category;
+
+    setCategory(nextCategory);
     setFilters({});
   };
 
   /*
-   * Seçili kategoriye göre filtre seçeneklerini
-   * JSON içerisindeki gerçek datadan oluştur.
+   * Aktif kategoriye göre filtre seçeneklerini
+   * JSON içerisindeki gerçek ürünlerden oluştur.
    */
   const filterOptions = useMemo(() => {
-    const result: Record<string, string[]> = {};
-
     if (category === "ALL") {
-      return result;
+      return {};
     }
 
     const categoryProducts = products.filter(
@@ -139,39 +121,51 @@ export default function StoreCatalog() {
         product.category === category
     );
 
-    activeFilters.forEach((filter) => {
-      const values = categoryProducts
-        .map((product) => {
-          const value =
-            product[
-              filter.key as keyof Product
-            ];
+    const result: Record<string, string[]> = {};
 
-          if (
-            value === undefined ||
-            value === null
-          ) {
-            return null;
-          }
+    filterKeys[category].forEach(
+      (key) => {
+        const values = categoryProducts
+          .map((product) => {
+            const value =
+              product[
+                key as keyof Product
+              ];
 
-          return String(value);
-        })
-        .filter(
-          (value): value is string =>
-            value !== null
-        );
+            if (
+              value === undefined ||
+              value === null ||
+              value === ""
+            ) {
+              return null;
+            }
 
-      result[filter.key] = [
-        "ALL",
-        ...Array.from(new Set(values)),
-      ];
-    });
+            return String(value);
+          })
+          .filter(
+            (value): value is string =>
+              value !== null
+          );
+
+        result[key] = [
+          "ALL",
+          ...Array.from(
+            new Set(values)
+          ),
+        ];
+      }
+    );
 
     return result;
-  }, [category, activeFilters]);
+  }, [category]);
 
   /*
-   * Ürünleri filtrele.
+   * ÜRÜNLER
+   *
+   * Önce kategori,
+   * sonra arama,
+   * sonra kategoriye özel filtreler
+   * uygulanıyor.
    */
   const filteredProducts = useMemo(() => {
     const searchValue =
@@ -179,75 +173,94 @@ export default function StoreCatalog() {
 
     return products.filter((product) => {
       /*
-       * Category
+       * CATEGORY
        */
-      const matchesCategory =
-        category === "ALL" ||
-        product.category === category;
-
-      if (!matchesCategory) {
+      if (
+        category !== "ALL" &&
+        product.category !== category
+      ) {
         return false;
       }
 
       /*
-       * Search
+       * SEARCH
        */
-      const matchesSearch =
-        !searchValue ||
-        product.name
-          .toLowerCase()
-          .includes(searchValue) ||
-        product.description
-          .toLowerCase()
-          .includes(searchValue);
+      if (searchValue) {
+        const copy = items[product.id];
 
-      if (!matchesSearch) {
-        return false;
-      }
+        const haystack = [
+          product.name,
+          product.description,
+          copy?.name,
+          copy?.description,
+        ]
+          .filter(
+            (value): value is string =>
+              typeof value === "string"
+          )
+          .join(" ")
+          .toLowerCase();
 
-      /*
-       * Dynamic filters
-       */
-      for (const filter of activeFilters) {
-        const selected =
-          filters[filter.key];
-
-        if (
-          !selected ||
-          selected === "ALL"
-        ) {
-          continue;
-        }
-
-        const productValue =
-          product[
-            filter.key as keyof Product
-          ];
-
-        if (
-          String(productValue) !== selected
-        ) {
+        if (!haystack.includes(searchValue)) {
           return false;
+        }
+      }
+
+      /*
+       * CATEGORY-SPECIFIC FILTERS
+       */
+      if (category !== "ALL") {
+        const keysForCategory =
+          filterKeys[category];
+
+        for (const key of keysForCategory) {
+          const selectedValue = filters[key];
+
+          /*
+           * ALL veya boş ise filtre
+           * uygulanmıyor.
+           */
+          if (
+            !selectedValue ||
+            selectedValue === "ALL"
+          ) {
+            continue;
+          }
+
+          const productValue =
+            product[
+              key as keyof Product
+            ];
+
+          /*
+           * Üründe bu değer yoksa
+           * ürün eşleşmiyor.
+           */
+          if (
+            productValue === undefined ||
+            productValue === null
+          ) {
+            return false;
+          }
+
+          if (
+            String(productValue) !==
+            selectedValue
+          ) {
+            return false;
+          }
         }
       }
 
       return true;
     });
-  }, [
-    category,
-    filters,
-    search,
-    activeFilters,
-  ]);
+  }, [category, filters, search, items]);
 
-  const resetFilters = () => {
-    setCategory("ALL");
-    setFilters({});
-    setSearch("");
-  };
-
+  /*
+   * Filtre değiştirme
+   */
   const updateFilter = (
-    key: string,
+    key: FilterKey,
     value: string
   ) => {
     setFilters((current) => ({
@@ -256,41 +269,52 @@ export default function StoreCatalog() {
     }));
   };
 
+  /*
+   * Her şeyi sıfırla
+   */
+  const resetFilters = () => {
+    setCategory("ALL");
+    setFilters({});
+    setSearch("");
+  };
+
   return (
     <main className="store">
-      {/* HERO */}
+      {/* ==================================================
+          HERO
+      ================================================== */}
 
       <section className="store-hero">
         <div className="store-meta">
           <span>03</span>
-          <span>RONAS / STORE</span>
+
+          <span>{dict.meta}</span>
         </div>
 
         <div className="store-line" />
 
         <div className="store-hero-content">
           <span className="store-label">
-            AUTOMOTIVE EQUIPMENT
+            {dict.label}
           </span>
 
           <h1>
-            BUILT
+            {dict.titleLines[0]}
             <br />
-            TO FIT.
+            {dict.titleLines[1]}
           </h1>
 
-          <p>
-            Explore the Ronas catalog. Select a
-            category, refine the specifications and
-            find the equipment built for your
-            vehicle.
-          </p>
+          <p>{dict.body}</p>
         </div>
       </section>
 
-      {/* CATALOG */}
+      {/* ==================================================
+          CATALOG
+      ================================================== */}
 
       <section className="store-catalog">
+        {/* FILTER HEADER */}
+
         <div className="store-filter-header">
           <div>
             <span className="store-filter-count">
@@ -299,52 +323,51 @@ export default function StoreCatalog() {
                 .padStart(2, "0")}
             </span>
 
-            <span>PRODUCTS</span>
+            <span>{dict.products}</span>
           </div>
 
           <button
             type="button"
             onClick={resetFilters}
           >
-            RESET FILTERS
+            {dict.resetFilters}
           </button>
         </div>
 
-        {/* FILTERS */}
+        {/* ==================================================
+            FILTERS
+        ================================================== */}
 
         <div className="store-filters">
-          {/* CATEGORY HER ZAMAN VAR */}
+          {/* CATEGORY */}
 
           <Filter
-            label="CATEGORY"
+            key={`category-${category}`}
+            label={dict.filters.category}
             value={category}
-            options={categories}
-            onChange={(value) =>
-              changeCategory(
-                value as Category
-              )
-            }
+            options={categories.map((value) => ({
+              value,
+              label: value === "ALL" ? dict.all : term(value),
+            }))}
+            onChange={changeCategory}
           />
 
-          {/* KATEGORİYE ÖZEL FİLTRELER */}
+          {/* CATEGORY-SPECIFIC FILTERS */}
 
-          {activeFilters.map((filter) => (
+          {activeFilters.map((key) => (
             <Filter
-              key={filter.key}
-              label={filter.label}
-              value={
-                filters[filter.key] ||
-                "ALL"
-              }
-              options={
-                filterOptions[filter.key] ||
-                ["ALL"]
-              }
+              key={`${category}-${key}`}
+              label={dict.filters[key]}
+              value={filters[key] ?? "ALL"}
+              options={(filterOptions[key] ?? ["ALL"]).map(
+                (value) => ({
+                  value,
+                  label:
+                    value === "ALL" ? dict.all : term(value),
+                })
+              )}
               onChange={(value) =>
-                updateFilter(
-                  filter.key,
-                  value
-                )
+                updateFilter(key, value)
               }
             />
           ))}
@@ -352,106 +375,139 @@ export default function StoreCatalog() {
           {/* SEARCH */}
 
           <div className="store-search">
-            <label>SEARCH</label>
+            <label htmlFor="store-search">
+              {dict.search}
+            </label>
 
             <input
+              id="store-search"
               type="search"
-              placeholder="Search products..."
+              placeholder={dict.searchPlaceholder}
               value={search}
               onChange={(event) =>
-                setSearch(event.target.value)
+                setSearch(
+                  event.currentTarget.value
+                )
               }
             />
           </div>
         </div>
 
-        {/* PRODUCTS */}
+        {/* ==================================================
+            PRODUCTS
+        ================================================== */}
 
         <div className="store-products">
           {filteredProducts.map(
-            (product) => (
-              <article
-                key={product.id}
-                className="store-product"
-              >
-                <div className="store-product-image">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    sizes="(max-width: 700px) 100vw, 50vw"
-                    className="store-product-img"
-                  />
+            (product) => {
+              const copy = items[product.id];
 
-                  <span className="store-product-number">
-                    {product.id
-                      .slice(-2)
-                      .toUpperCase()}
-                  </span>
-                </div>
+              return (
+                <article
+                  key={product.id}
+                  className="store-product"
+                >
+                  {/* IMAGE */}
 
-                <div className="store-product-info">
-                  <div>
-                    <span className="store-product-category">
-                      {product.category}
+                  <div className="store-product-image">
+                    <Image
+                      src={product.image}
+                      alt={
+                        copy?.name ?? product.name
+                      }
+                      fill
+                      sizes="
+                        (max-width: 600px) 100vw,
+                        50vw
+                      "
+                      className="store-product-img"
+                    />
+
+                    <span className="store-product-number">
+                      {product.id
+                        .slice(-2)
+                        .toUpperCase()}
                     </span>
-
-                    <h2>
-                      {product.name}
-                    </h2>
                   </div>
 
-                  <span className="store-product-arrow">
-                    ↗
-                  </span>
-                </div>
+                  {/* TITLE */}
 
-                <div className="store-product-specs">
-                  {"diameter" in product &&
-                    product.diameter && (
-                      <span>
-                        {product.diameter}&quot;
+                  <div className="store-product-info">
+                    <div>
+                      <span className="store-product-category">
+                        {term(product.category)}
                       </span>
-                    )}
 
-                  {"width" in product &&
-                    product.width && (
-                      <span>
-                        {product.width}&quot; WIDTH
-                      </span>
-                    )}
+                      <h2>
+                        {copy?.name ?? product.name}
+                      </h2>
+                    </div>
 
-                  {product.material && (
-                    <span>
-                      {product.material}
+                    <span className="store-product-arrow">
+                      ↗
                     </span>
-                  )}
+                  </div>
 
-                  {"finish" in product &&
-                    product.finish && (
+                  {/* SPECS */}
+
+                  <div className="store-product-specs">
+                    {"diameter" in product &&
+                      product.diameter && (
+                        <span>
+                          {product.diameter}
+                          &quot;
+                        </span>
+                      )}
+
+                    {"width" in product &&
+                      product.width && (
+                        <span>
+                          {product.width}
+                          &quot; {dict.widthSpec}
+                        </span>
+                      )}
+
+                    {product.material && (
                       <span>
-                        {product.finish}
+                        {term(product.material)}
                       </span>
                     )}
-                </div>
-              </article>
-            )
+
+                    {"finish" in product &&
+                      product.finish && (
+                        <span>
+                          {term(product.finish)}
+                        </span>
+                      )}
+
+                    {"construction" in product &&
+                      product.construction && (
+                        <span>
+                          {term(
+                            product.construction
+                          )}
+                        </span>
+                      )}
+                  </div>
+                </article>
+              );
+            }
           )}
         </div>
 
-        {/* EMPTY */}
+        {/* ==================================================
+            EMPTY STATE
+        ================================================== */}
 
         {filteredProducts.length === 0 && (
           <div className="store-empty">
-            <span>
-              NO PRODUCTS FOUND.
-            </span>
+            <span>{dict.noProducts}</span>
 
             <button
               type="button"
               onClick={resetFilters}
             >
-              CLEAR FILTERS
+              {dict.clearFilters}
             </button>
           </div>
         )}
@@ -459,6 +515,10 @@ export default function StoreCatalog() {
     </main>
   );
 }
+
+/* ========================================================
+   FILTER COMPONENT
+======================================================== */
 
 function Filter({
   label,
@@ -468,7 +528,7 @@ function Filter({
 }: {
   label: string;
   value: string;
-  options: readonly string[];
+  options: readonly { value: string; label: string }[];
   onChange: (value: string) => void;
 }) {
   return (
@@ -477,16 +537,18 @@ function Filter({
 
       <select
         value={value}
-        onChange={(event) =>
-          onChange(event.target.value)
-        }
+        onChange={(event) => {
+          onChange(
+            event.currentTarget.value
+          );
+        }}
       >
         {options.map((option) => (
           <option
-            key={option}
-            value={option}
+            key={`${label}-${option.value}`}
+            value={option.value}
           >
-            {option}
+            {option.label}
           </option>
         ))}
       </select>
