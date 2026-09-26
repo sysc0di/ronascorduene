@@ -1,36 +1,52 @@
-
 .ronas-subtitle {
   position: relative;
   display: block;
   width: fit-content;
-  max-width: min(100%, 60ch);
-  margin: 0 auto 2rem;
+  max-width: min(100%, 52ch);
+
+  margin: 1.8rem auto 2rem;
+
   overflow: hidden;
 
   opacity: 0;
+
   animation:
-    subtitleReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+    subtitleReveal
+    1.6s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    1.8s
+    forwards;
 }
 
 .ronas-subtitle span {
   display: block;
+  font-size: 0.95rem;
+  line-height: 1.65rem;
 
-  font-size: 1.125rem;
-  line-height: 1.6rem;
   font-weight: 400;
-  letter-spacing: 0.025em;
 
-  color: #a6a6a6;
+  letter-spacing: 0.045em;
+
+  color: rgba(166, 166, 166, 0.78);
+
+  text-align: center;
 
   text-wrap: balance;
 
   transform: translateX(110%);
 
   animation:
-    subtitleSlide 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+    subtitleSlide
+    1.6s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    1.8s
+    forwards;
 }
 
-/* Sağdan → sola */
+/* ─────────────────────────────
+   SLIDE
+───────────────────────────── */
+
 @keyframes subtitleSlide {
   0% {
     transform: translateX(110%);
@@ -41,7 +57,10 @@
   }
 }
 
-/* Hafif görünme */
+/* ─────────────────────────────
+   FADE
+───────────────────────────── */
+
 @keyframes subtitleReveal {
   0% {
     opacity: 0;
@@ -52,23 +71,54 @@
   }
 }
 
+/* ─────────────────────────────
+   DESKTOP
+───────────────────────────── */
+
 @media (min-width: 768px) {
+  .ronas-subtitle {
+    margin-top: 2.2rem;
+  }
+
   .ronas-subtitle span {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.7rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* ─────────────────────────────
+   MOBILE
+───────────────────────────── */
+
+@media (max-width: 640px) {
+  .ronas-subtitle {
+    max-width: 34ch;
+    margin-top: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .ronas-subtitle span {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.035em;
   }
 }
 
 @media (max-width: 480px) {
   .ronas-subtitle {
-    margin-bottom: 1.25rem;
+    max-width: 30ch;
   }
 
   .ronas-subtitle span {
-    font-size: 1.0625rem;
-    line-height: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.45rem;
   }
 }
+
+/* ─────────────────────────────
+   REDUCED MOTION
+───────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   .ronas-subtitle,

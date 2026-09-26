@@ -1,5 +1,5 @@
 import Image from "next/image";
-import grtgt from "../public/assets/toyota-gr-gt.webp";
+import grtgt from "../public/assets/homebanner.jpg";
 import RonasTitle from "./components/RonasTitle";
 import RonasSubtitle from "./components/RonasSubtitle";
 import ScrollIndicator from "./components/ScrollIndicator";

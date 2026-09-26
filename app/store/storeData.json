@@ -1,0 +1,166 @@
+[
+  {
+    "id": "ronas-r01",
+    "name": "R01 FORGED",
+    "category": "WHEELS",
+    "description": "Lightweight forged wheel engineered for high-performance applications.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=85",
+    "material": "FORGED ALUMINUM",
+    "diameter": 18,
+    "width": 9,
+    "construction": "FORGED",
+    "finish": "BRUSHED SILVER",
+    "application": "STREET",
+    "featured": true
+  },
+  {
+    "id": "ronas-r02",
+    "name": "R02 FORGED",
+    "category": "WHEELS",
+    "description": "A lightweight multi-spoke design focused on strength and balance.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=85",
+    "material": "FORGED ALUMINUM",
+    "diameter": 19,
+    "width": 9.5,
+    "construction": "FORGED",
+    "finish": "SATIN BLACK",
+    "application": "STREET"
+  },
+  {
+    "id": "ronas-r03",
+    "name": "R03 TRACK",
+    "category": "WHEELS",
+    "description": "Track-inspired forged wheel developed around reduced unsprung mass.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=85",
+    "material": "FORGED ALUMINUM",
+    "diameter": 20,
+    "width": 10,
+    "construction": "FORGED",
+    "finish": "GUNMETAL",
+    "application": "TRACK"
+  },
+  {
+    "id": "ronas-r04",
+    "name": "R04 FLOW",
+    "category": "WHEELS",
+    "description": "Flow-formed construction combining strength with everyday usability.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=85",
+    "material": "FLOW FORMED",
+    "diameter": 18,
+    "width": 8.5,
+    "construction": "FLOW FORMED",
+    "finish": "GRAPHITE",
+    "application": "STREET"
+  },
+  {
+    "id": "ronas-r05",
+    "name": "R05 STREET",
+    "category": "WHEELS",
+    "description": "Clean five-spoke geometry designed for modern street applications.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=70",
+    "material": "CAST ALUMINUM",
+    "diameter": 17,
+    "width": 8,
+    "construction": "CAST",
+    "finish": "MATTE BLACK",
+    "application": "STREET"
+  },
+  {
+    "id": "ronas-r06",
+    "name": "R06 GT",
+    "category": "WHEELS",
+    "description": "Grand touring focused design balancing visual presence and performance.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=65",
+    "material": "FLOW FORMED",
+    "diameter": 19,
+    "width": 9,
+    "construction": "FLOW FORMED",
+    "finish": "BRUSHED TITANIUM",
+    "application": "GT"
+  },
+
+  {
+    "id": "ronas-front-splitter",
+    "name": "FRONT SPLITTER",
+    "category": "EXTERIOR",
+    "description": "Functional front splitter designed to sharpen the front-end profile.",
+    "image": "https://images.unsplash.com/photo-1770172505161-9719a778253e?auto=format&fit=crop&w=1600&q=85",
+    "material": "CARBON FIBER",
+    "component": "FRONT AERO",
+    "featured": true
+  },
+  {
+    "id": "ronas-side-skirts",
+    "name": "SIDE SKIRTS",
+    "category": "EXTERIOR",
+    "description": "Low-profile side extensions designed to visually lower the vehicle.",
+    "image": "https://images.unsplash.com/photo-1770172505161-9719a778253e?auto=format&fit=crop&w=1600&q=80",
+    "material": "CARBON FIBER",
+    "component": "SIDE AERO"
+  },
+  {
+    "id": "ronas-rear-diffuser",
+    "name": "REAR DIFFUSER",
+    "category": "EXTERIOR",
+    "description": "Aerodynamic rear diffuser with a clean motorsport-inspired profile.",
+    "image": "https://images.unsplash.com/photo-1770172505161-9719a778253e?auto=format&fit=crop&w=1600&q=75",
+    "material": "CARBON FIBER",
+    "component": "REAR AERO"
+  },
+  {
+    "id": "ronas-gt-spoiler",
+    "name": "GT SPOILER",
+    "category": "EXTERIOR",
+    "description": "A sculpted rear spoiler developed to add presence without excess.",
+    "image": "https://images.unsplash.com/photo-1770172505161-9719a778253e?auto=format&fit=crop&w=1600&q=70",
+    "material": "CARBON FIBER",
+    "component": "REAR AERO"
+  },
+
+  {
+    "id": "ronas-performance-intake",
+    "name": "PERFORMANCE INTAKE",
+    "category": "PERFORMANCE",
+    "description": "High-flow intake system designed around improved airflow.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=85",
+    "material": "ALUMINUM",
+    "system": "INTAKE"
+  },
+  {
+    "id": "ronas-gt-exhaust",
+    "name": "GT EXHAUST",
+    "category": "PERFORMANCE",
+    "description": "Performance exhaust system focused on flow, weight and character.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=80",
+    "material": "STAINLESS STEEL",
+    "system": "EXHAUST"
+  },
+  {
+    "id": "ronas-strut-brace",
+    "name": "STRUT BRACE",
+    "category": "PERFORMANCE",
+    "description": "Chassis reinforcement designed to improve rigidity and response.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=75",
+    "material": "ALUMINUM",
+    "system": "CHASSIS"
+  },
+
+  {
+    "id": "ronas-valve-caps",
+    "name": "VALVE CAPS",
+    "category": "ACCESSORIES",
+    "description": "Machined aluminum valve caps with the Ronas signature.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=70",
+    "material": "ALUMINUM",
+    "type": "WHEEL ACCESSORY"
+  },
+  {
+    "id": "ronas-wheel-bolts",
+    "name": "WHEEL BOLTS",
+    "category": "ACCESSORIES",
+    "description": "Precision-machined wheel hardware developed for Ronas wheels.",
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=65",
+    "material": "STEEL",
+    "type": "WHEEL HARDWARE"
+  }
+]
