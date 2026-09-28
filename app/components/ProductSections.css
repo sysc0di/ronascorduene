@@ -133,7 +133,9 @@
 
   font-weight: 700;
 
-  line-height: 0.82;
+  /* The longer locales wrap this to two lines, so the leading has to
+     clear the diacritics (Î, Ê, Û, Ç) rather than stay wordmark-tight */
+  line-height: 1.15;
 
   /* Tracking also lands after the last glyph, so a run is one step wider
      than the ink it paints. The right variant cancels that step on its
@@ -145,10 +147,10 @@
     scale 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-/* The wordmark runs on a 0.82 line height, so the glyphs already
-   reach past the bottom of their own line box */
+/* The wordmark still nearly fills its own line box, so the gap below it
+   reads a touch tighter than the value suggests */
 .product-title p {
-  margin: 30px 0 0;
+  margin: 18px 0 0;
 
   color: #555;
 

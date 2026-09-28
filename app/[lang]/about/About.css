@@ -59,7 +59,9 @@
   font-size: clamp(5rem, 13vw, 11rem);
   font-weight: 500;
 
-  line-height: 0.78;
+  /* Three forced lines, so the leading has to clear the diacritics
+     (Î, Ê, Û, Ç) instead of the 0.78 a single-line wordmark could take */
+  line-height: 1.1;
   letter-spacing: -0.055em;
 
   color: #bdbdbd;
@@ -71,7 +73,7 @@
   margin-top: 60px;
 
   font-size: 0.95rem;
-  line-height: 1.8;
+  line-height: 2;
 
   letter-spacing: 0.035em;
 
@@ -121,7 +123,7 @@
   font-size: clamp(3.5rem, 7vw, 7rem);
   font-weight: 500;
 
-  line-height: 0.82;
+  line-height: 1.15;
   letter-spacing: -0.045em;
 
   color: #b5b5b5;
@@ -308,7 +310,7 @@
   font-size: clamp(5rem, 11vw, 10rem);
   font-weight: 500;
 
-  line-height: 0.76;
+  line-height: 1.1;
   letter-spacing: -0.055em;
 
   color: #b8b8b8;

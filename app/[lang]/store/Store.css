@@ -72,7 +72,10 @@
     );
 
   font-weight: 500;
-  line-height: 0.78;
+
+  /* Wraps in the longer locales, so the leading has to clear the
+     diacritics (Î, Ê, Û, Ç) instead of the 0.78 a single line could take */
+  line-height: 1.1;
 
   letter-spacing:
     -0.055em;

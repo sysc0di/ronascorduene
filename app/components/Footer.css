@@ -57,7 +57,10 @@
   color: #a6a6a6;
   font-size: clamp(3rem, 6vw, 6rem);
   font-weight: 700;
-  line-height: 0.82;
+
+  /* Two forced lines, so the leading has to clear the diacritics
+     (Î, Ê, Û, Ç) instead of the 0.82 a single-line wordmark could take */
+  line-height: 1.15;
   letter-spacing: -0.065em;
 }
 

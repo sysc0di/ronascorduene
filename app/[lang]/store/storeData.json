@@ -60,7 +60,7 @@
     "family": "airflow-dynamics",
     "category": "brake-cooling-ducts",
     "description": "brake-cooling-duct-description",
-    "image": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/brakecolling.jpg",
     "material": "carbon-fiber",
     "construction": "high-flow",
     "finish": "matte"

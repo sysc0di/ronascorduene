@@ -12,7 +12,7 @@
 
   font-size: clamp(4rem, 9vw, 8rem);
   font-weight: 500;
-  line-height: 0.88;
+  line-height: 1.15;
   letter-spacing: -0.045em;
 
   color: #b0b0b0;
@@ -115,7 +115,10 @@
 @media (max-width: 640px) {
   .ronas-title {
     font-size: clamp(3.2rem, 15vw, 5rem);
-    line-height: 0.9;
+
+    /* Two stacked words here, so the leading has to clear the
+       diacritics (Î, Ê, Û, Ç) rather than stay wordmark-tight */
+    line-height: 1.2;
     letter-spacing: -0.04em;
     white-space: normal;
   }

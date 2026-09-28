@@ -110,7 +110,10 @@
 
   font-size: clamp(2.4rem, 19cqw, 9rem);
   font-weight: 700;
-  line-height: 0.8;
+
+  /* Three stacked lines, so the leading has to clear the diacritics
+     (Î, Ê, Û, Ç) instead of the 0.8 a single wordmark could take */
+  line-height: 1.15;
   letter-spacing: -0.07em;
 }
 
