@@ -40,7 +40,8 @@
     transform 250ms ease;
 }
 
-.navbar-logo:hover {
+.navbar-logo.is-hovered,
+.navbar-logo:focus-visible {
   color: #ffffff;
   transform: translateX(2px);
 }
@@ -56,7 +57,8 @@
     opacity 300ms ease;
 }
 
-.navbar-logo:hover .navbar-logo-icon {
+.navbar-logo.is-hovered .navbar-logo-icon,
+.navbar-logo:focus-visible .navbar-logo-icon {
   opacity: 1;
   transform: rotate(-8deg);
 }
@@ -102,11 +104,13 @@
   transition: transform 300ms ease;
 }
 
-.navbar-link:hover {
+.navbar-link.is-hovered,
+.navbar-link:focus-visible {
   color: #ffffff;
 }
 
-.navbar-link:hover::after {
+.navbar-link.is-hovered::after,
+.navbar-link:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -134,7 +138,8 @@
   transition: color 250ms ease;
 }
 
-.navbar-toggle:hover {
+.navbar-toggle.is-hovered,
+.navbar-toggle:focus-visible {
   color: #ffffff;
 }
 

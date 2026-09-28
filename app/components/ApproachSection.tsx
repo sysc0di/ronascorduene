@@ -38,11 +38,12 @@ export default function ApproachSection({
   return (
     <section
       ref={sectionRef}
+      data-hover-target
       className={`approach ${visible ? "approach-visible" : ""}`}
     >
       <div className="approach-image">
         <Image
-          src="/assets/approach.jpg"
+          src="/assets/739d6f87-00fc-4c94-aa88-213a021c47a8.jpg"
           alt={dict.alt}
           fill
           sizes="100vw"

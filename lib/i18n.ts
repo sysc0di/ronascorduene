@@ -1,4 +1,4 @@
-export const locales = ["en", "tr"] as const;
+export const locales = ["en", "tr", "ku"] as const;
 
 export type Locale = (typeof locales)[number];
 
@@ -11,11 +11,19 @@ export function hasLocale(value: string): value is Locale {
 export const localeLabels: Record<Locale, string> = {
   en: "EN",
   tr: "TR",
+  ku: "KU",
 };
 
 export const localeNames: Record<Locale, string> = {
   en: "English",
   tr: "Türkçe",
+  ku: "Kurmancî",
+};
+
+export const ogLocales: Record<Locale, string> = {
+  en: "en_US",
+  tr: "tr_TR",
+  ku: "ku_TR",
 };
 
 export const LOCALE_COOKIE = "NEXT_LOCALE";

@@ -75,6 +75,7 @@ export function LanguageSwitcher({
       hrefLang={item}
       lang={item}
       className="lang-option"
+      data-hover-target
       aria-current={item === locale ? "true" : undefined}
       onClick={() => {
         rememberLocale(item);
@@ -100,6 +101,7 @@ export function LanguageSwitcher({
       <button
         type="button"
         className="lang-trigger"
+        data-hover-target
         aria-expanded={open}
         aria-haspopup="true"
         aria-label={label}

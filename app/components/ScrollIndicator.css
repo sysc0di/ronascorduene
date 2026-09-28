@@ -92,6 +92,13 @@
   }
 }
 
+/* HOVER */
+
+/* Emulated in JS, so the arrow only lifts under a real mouse */
+[data-hover-target].is-hovered [data-hover-arrow] {
+  transform: translateY(4px);
+}
+
 @keyframes trackMove {
   0% {
     transform: translateY(-32px);

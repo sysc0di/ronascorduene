@@ -49,7 +49,12 @@ export function Navbar({
     <nav className={open ? "navbar navbar-open" : "navbar"}>
       <div className="navbar-inner">
 
-        <Link href={base} className="navbar-logo" onClick={() => setOpen(false)}>
+        <Link
+          href={base}
+          className="navbar-logo"
+          data-hover-target
+          onClick={() => setOpen(false)}
+        >
           <span>Ronas Corduene</span>
 
           <svg
@@ -77,6 +82,7 @@ export function Navbar({
               key={link.key}
               href={`${base}${link.href}`}
               className="navbar-link"
+              data-hover-target
               onClick={() => setOpen(false)}
             >
               {dict.nav[link.key]}
@@ -95,6 +101,7 @@ export function Navbar({
         <button
           type="button"
           className="navbar-toggle"
+          data-hover-target
           aria-expanded={open}
           aria-controls="navbar-menu"
           aria-label={open ? dict.nav.closeMenu : dict.nav.openMenu}

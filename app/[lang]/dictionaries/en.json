@@ -31,9 +31,9 @@
       "label": "AUTOMOTIVE EQUIPMENT",
       "meta": "RONAS / EQUIPMENT",
       "items": [
-        { "title": "WHEELS", "subtitle": "Forged for the road." },
-        { "title": "EXTERIOR", "subtitle": "Built to stand apart." },
-        { "title": "PERFORMANCE", "subtitle": "Made to move." }
+        { "title": "AIRFLOW DYNAMICS", "subtitle": "Forged for the road." },
+        { "title": "DRIVER INTERFACE", "subtitle": "Built to stand apart." },
+        { "title": "STRUCTAL AERO", "subtitle": "Made to move." }
       ]
     },
     "approach": {
@@ -128,125 +128,145 @@
     }
   },
   "store": {
-    "meta": "RONAS / STORE",
-    "label": "AUTOMOTIVE EQUIPMENT",
-    "titleLines": ["BUILT", "TO FIT."],
-    "body": "Explore the Ronas catalog. Select a category, refine the specifications and find the equipment built for your vehicle.",
-    "products": "PRODUCTS",
-    "resetFilters": "RESET FILTERS",
-    "clearFilters": "CLEAR FILTERS",
-    "noProducts": "NO PRODUCTS FOUND.",
-    "search": "SEARCH",
-    "searchPlaceholder": "Search products...",
-    "all": "ALL",
-    "widthSpec": "WIDTH",
-    "filters": {
-      "category": "CATEGORY",
-      "diameter": "DIAMETER",
-      "width": "WIDTH",
-      "construction": "CONSTRUCTION",
-      "material": "MATERIAL",
-      "finish": "FINISH",
-      "application": "APPLICATION",
-      "component": "COMPONENT",
-      "system": "SYSTEM",
-      "type": "TYPE"
-    },
-    "terms": {
-      "WHEELS": "WHEELS",
-      "EXTERIOR": "EXTERIOR",
-      "PERFORMANCE": "PERFORMANCE",
-      "ACCESSORIES": "ACCESSORIES",
-      "FORGED ALUMINUM": "FORGED ALUMINUM",
-      "CAST ALUMINUM": "CAST ALUMINUM",
-      "FLOW FORMED": "FLOW FORMED",
-      "CARBON FIBER": "CARBON FIBER",
-      "ALUMINUM": "ALUMINUM",
-      "STAINLESS STEEL": "STAINLESS STEEL",
-      "STEEL": "STEEL",
-      "FORGED": "FORGED",
-      "CAST": "CAST",
-      "BRUSHED SILVER": "BRUSHED SILVER",
-      "SATIN BLACK": "SATIN BLACK",
-      "GUNMETAL": "GUNMETAL",
-      "GRAPHITE": "GRAPHITE",
-      "MATTE BLACK": "MATTE BLACK",
-      "BRUSHED TITANIUM": "BRUSHED TITANIUM",
-      "STREET": "STREET",
-      "TRACK": "TRACK",
-      "GT": "GT",
-      "FRONT AERO": "FRONT AERO",
-      "SIDE AERO": "SIDE AERO",
-      "REAR AERO": "REAR AERO",
-      "INTAKE": "INTAKE",
-      "EXHAUST": "EXHAUST",
-      "CHASSIS": "CHASSIS",
-      "WHEEL ACCESSORY": "WHEEL ACCESSORY",
-      "WHEEL HARDWARE": "WHEEL HARDWARE"
-    },
-    "items": {
-      "ronas-r01": {
-        "name": "R01 FORGED",
-        "description": "Lightweight forged wheel engineered for high-performance applications."
-      },
-      "ronas-r02": {
-        "name": "R02 FORGED",
-        "description": "A lightweight multi-spoke design focused on strength and balance."
-      },
-      "ronas-r03": {
-        "name": "R03 TRACK",
-        "description": "Track-inspired forged wheel developed around reduced unsprung mass."
-      },
-      "ronas-r04": {
-        "name": "R04 FLOW",
-        "description": "Flow-formed construction combining strength with everyday usability."
-      },
-      "ronas-r05": {
-        "name": "R05 STREET",
-        "description": "Clean five-spoke geometry designed for modern street applications."
-      },
-      "ronas-r06": {
-        "name": "R06 GT",
-        "description": "Grand touring focused design balancing visual presence and performance."
-      },
-      "ronas-front-splitter": {
-        "name": "FRONT SPLITTER",
-        "description": "Functional front splitter designed to sharpen the front-end profile."
-      },
-      "ronas-side-skirts": {
-        "name": "SIDE SKIRTS",
-        "description": "Low-profile side extensions designed to visually lower the vehicle."
-      },
-      "ronas-rear-diffuser": {
-        "name": "REAR DIFFUSER",
-        "description": "Aerodynamic rear diffuser with a clean motorsport-inspired profile."
-      },
-      "ronas-gt-spoiler": {
-        "name": "GT SPOILER",
-        "description": "A sculpted rear spoiler developed to add presence without excess."
-      },
-      "ronas-performance-intake": {
-        "name": "PERFORMANCE INTAKE",
-        "description": "High-flow intake system designed around improved airflow."
-      },
-      "ronas-gt-exhaust": {
-        "name": "GT EXHAUST",
-        "description": "Performance exhaust system focused on flow, weight and character."
-      },
-      "ronas-strut-brace": {
-        "name": "STRUT BRACE",
-        "description": "Chassis reinforcement designed to improve rigidity and response."
-      },
-      "ronas-valve-caps": {
-        "name": "VALVE CAPS",
-        "description": "Machined aluminum valve caps with the Ronas signature."
-      },
-      "ronas-wheel-bolts": {
-        "name": "WHEEL BOLTS",
-        "description": "Precision-machined wheel hardware developed for Ronas wheels."
-      }
-    }
-  },
+     "eyebrow": "AUTOMOTIVE EQUIPMENT",
+     "title": "BUILT TO FIT.",
+     "description": "Explore the Ronas catalog. Engineered components designed around airflow, driver control and aerodynamic performance.",
+
+     "catalog": "CATALOG",
+     "categories": "CATEGORIES",
+     "products": "PRODUCTS",
+     "product": "PRODUCT",
+     "search": "SEARCH",
+     "searchPlaceholder": "Search catalog...",
+     "reset": "RESET",
+     "clear": "CLEAR",
+     "close": "CLOSE",
+     "openCategories": "OPEN CATEGORIES",
+
+     "allProducts": "ALL PRODUCTS",
+
+     "families": {
+       "airflow-dynamics": "AIRFLOW DYNAMICS",
+       "driver-interface": "DRIVER INTERFACE",
+       "structural-aero": "STRUCTURAL AERO"
+     },
+
+     "subcategories": {
+       "intake-manifolds": "INTAKE MANIFOLDS",
+       "cold-air-intakes": "COLD AIR INTAKES",
+       "carbon-airboxes": "CARBON AIRBOXES",
+       "air-intake-piping": "AIR INTAKE PIPING",
+       "exhaust-manifolds": "EXHAUST MANIFOLDS",
+       "brake-cooling-ducts": "BRAKE COOLING DUCTS",
+
+       "carbon-fiber-steering-wheels": "CARBON FIBER STEERING WHEELS",
+       "racing-seats": "RACING / PERFORMANCE SEATS",
+       "shift-knobs": "SHIFT KNOBS",
+       "carbon-fiber-interior-trims": "CARBON FIBER INTERIOR TRIMS",
+
+       "carbon-fiber-hoods": "CARBON FIBER HOODS / BONNETS",
+       "trunks-tailgates": "TRUNKS & TAILGATES",
+       "lightweight-doors": "LIGHTWEIGHT DOORS",
+       "spoilers-wings": "SPOILERS & WINGS"
+     },
+
+     "filters": {
+       "material": "MATERIAL",
+       "construction": "CONSTRUCTION",
+       "finish": "FINISH",
+       "all": "ALL"
+     },
+
+     "materials": {
+       "carbon-fiber": "CARBON FIBER",
+       "aluminum": "ALUMINUM",
+       "stainless-steel": "STAINLESS STEEL"
+     },
+
+     "constructions": {
+       "dry-carbon": "DRY CARBON",
+       "high-flow": "HIGH FLOW",
+       "cast": "CAST",
+       "mandrel-bent": "MANDREL BENT",
+       "tubular": "TUBULAR",
+       "forged-carbon": "FORGED CARBON",
+       "monocoque": "MONOCOQUE",
+       "machined": "MACHINED",
+       "pre-preg": "PRE-PREG"
+     },
+
+     "finishes": {
+       "matte": "MATTE",
+       "satin": "SATIN",
+       "polished": "POLISHED",
+       "brushed": "BRUSHED",
+       "gloss": "GLOSS"
+     },
+
+     "productsData": {
+       "carbon-airbox": {
+         "name": "CARBON AIRBOX",
+         "description": "High-flow carbon fiber airbox engineered for controlled intake temperatures."
+       },
+       "cold-air-intake": {
+         "name": "COLD AIR INTAKE",
+         "description": "A high-flow intake system developed to improve air delivery."
+       },
+       "intake-manifold": {
+         "name": "INTAKE MANIFOLD",
+         "description": "Precision-engineered manifold designed around efficient airflow."
+       },
+       "intake-piping": {
+         "name": "INTAKE PIPING",
+         "description": "Mandrel-bent intake piping designed for unrestricted airflow."
+       },
+       "exhaust-manifold": {
+         "name": "EXHAUST MANIFOLD",
+         "description": "Tubular performance manifold designed for efficient exhaust flow."
+       },
+       "brake-cooling-duct": {
+         "name": "BRAKE COOLING DUCT",
+         "description": "High-flow ducting developed to direct cooling air toward the brakes."
+       },
+       "carbon-steering-wheel": {
+         "name": "CARBON STEERING WHEEL",
+         "description": "Carbon fiber steering wheel designed for direct driver feedback."
+       },
+       "racing-seat": {
+         "name": "RACING SEAT",
+         "description": "Lightweight performance seat engineered around driver support."
+       },
+       "shift-knob": {
+         "name": "SHIFT KNOB",
+         "description": "Machined aluminum shift knob with a focused mechanical feel."
+       },
+       "carbon-interior-trim": {
+         "name": "CARBON INTERIOR TRIM",
+         "description": "Precision carbon fiber interior trim for a lightweight cockpit."
+       },
+       "carbon-hood": {
+         "name": "CARBON HOOD",
+         "description": "Lightweight carbon fiber hood engineered for reduced mass."
+       },
+       "lightweight-tailgate": {
+         "name": "LIGHTWEIGHT TAILGATE",
+         "description": "Carbon fiber tailgate designed to reduce rear-end mass."
+       },
+       "lightweight-door": {
+         "name": "LIGHTWEIGHT DOOR",
+         "description": "Lightweight structural door designed around mass reduction."
+       },
+       "rear-wing": {
+         "name": "REAR WING",
+         "description": "Carbon fiber aerodynamic wing engineered for high-speed stability."
+       }
+     },
+
+     "empty": {
+       "title": "NO PRODUCTS FOUND",
+       "description": "Try another category or adjust the selected filters."
+     }
+   },
   "footer": {
     "brand": "RONAS / CORDUENE",
     "titleLines": ["BUILT", "DIFFERENT."],

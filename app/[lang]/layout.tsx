@@ -7,7 +7,7 @@ import { Navbar } from "../components/navbar";
 import Footer from "../components/Footer";
 
 import { getDictionary, getLocale } from "./dictionaries";
-import { locales } from "@/lib/i18n";
+import { defaultLocale, hasLocale, locales, ogLocales } from "@/lib/i18n";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,15 +37,14 @@ export async function generateMetadata({
     description: dict.meta.description,
     alternates: {
       canonical: `/${lang}`,
-      languages: {
-        en: "/en",
-        tr: "/tr",
-      },
+      languages: Object.fromEntries(
+        locales.map((locale) => [locale, `/${locale}`]),
+      ),
     },
     openGraph: {
       title: dict.meta.title,
       description: dict.meta.description,
-      locale: lang === "tr" ? "tr_TR" : "en_US",
+      locale: ogLocales[hasLocale(lang) ? lang : defaultLocale],
       type: "website",
     },
   };

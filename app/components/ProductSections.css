@@ -58,7 +58,7 @@
   align-items: center;
   gap: 22px;
 
-  margin-bottom: 12px;
+  margin-bottom: 22px;
 
   color: #555;
 
@@ -93,6 +93,9 @@
 .product-content {
   position: relative;
 
+  /* Clears the meta rule above, the wordmark is the first thing in here */
+  margin-top: 34px;
+
   min-height: 160px;
 
   display: flex;
@@ -107,6 +110,14 @@
   position: relative;
 
   z-index: 4;
+
+  /* Wordmark and subtitle are aligned to the outer edge on their own, so
+     both stay flush to it no matter which of the two is the wider one.
+     A shrink-to-fit block plus text-align could not do that: the widest
+     child set the box width, and the other one then sat at that box edge
+     with its own tracking gap still attached. */
+  display: flex;
+  flex-direction: column;
 
   transition: transform 500ms ease;
 }
@@ -124,13 +135,20 @@
 
   line-height: 0.82;
 
+  /* Tracking also lands after the last glyph, so a run is one step wider
+     than the ink it paints. The right variant cancels that step on its
+     trailing edge; the left one already starts flush. */
   letter-spacing: -0.065em;
 
-  transition: color 300ms ease;
+  transition:
+    color 300ms ease,
+    scale 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+/* The wordmark runs on a 0.82 line height, so the glyphs already
+   reach past the bottom of their own line box */
 .product-title p {
-  margin: 20px 0 0;
+  margin: 30px 0 0;
 
   color: #555;
 
@@ -148,11 +166,18 @@
 .product-right .product-title {
   margin-left: auto;
 
-  text-align: right;
+  align-items: flex-end;
+}
+
+/* Without this the final glyph stops one tracking step short of the row
+   edge, so right-hand wordmarks read as inset compared to left-hand ones. */
+
+.product-right .product-title h2 {
+  margin-right: -0.065em;
 }
 
 .product-right .product-title p {
-  text-align: right;
+  margin-right: -0.12em;
 }
 
 /* -------------------------------- */
@@ -162,7 +187,7 @@
 .product-left .product-title {
   margin-right: auto;
 
-  text-align: left;
+  align-items: flex-start;
 }
 
 /* -------------------------------- */
@@ -196,7 +221,7 @@
    Right title → image left
 */
 
-.product-right .product-preview {
+.product-right {
   left: 3%;
 }
 
@@ -212,15 +237,6 @@
 /* IMAGE */
 /* -------------------------------- */
 
-.preview-image {
-  object-fit: contain;
-
-  filter: grayscale(100%);
-
-  transition:
-    filter 500ms ease,
-    transform 700ms ease;
-}
 
 /* -------------------------------- */
 /* REVEAL */
@@ -294,54 +310,40 @@
 /* HOVER */
 /* -------------------------------- */
 
-.product-active .product-title h2 {
+.is-hovered .product-title h2 {
   color: #fff;
+
+  /* The independent `scale` property, not `transform`: the reveal
+     keyframes below hold a transform with fill-mode both, and an
+     animation outranks a plain declaration, so a transform here would
+     be dropped the moment the wordmark finished animating in. */
+  scale: 1.05;
 }
 
-.product-active .product-line span {
+.is-hovered .product-line span {
   background: #fff;
 }
 
-.product-active .product-preview {
-  opacity: 1;
 
-  transform:
-    translateY(-50%)
-    scale(1);
-}
 
-.product-active .preview-image {
-  filter: grayscale(0%);
-  transform: scale(1.04);
-}
+
 
 /* Slight movement toward the center */
 
-.product-right.product-active .product-title {
+.product-right.is-hovered .product-title {
   transform: translateX(-8px);
 }
 
-.product-left.product-active .product-title {
+.product-left.is-hovered .product-title {
   transform: translateX(8px);
 }
 
-/* -------------------------------- */
-/* CONTAINER QUERY FALLBACK */
-/* -------------------------------- */
-
-/* Browsers without container query units (older Android WebView /
-   Chrome < 105) drop the cqw sizes, which would collapse the wordmark
-   to inherited text size. Fall back to viewport units there. */
 
 @supports not (container-type: inline-size) {
   .product-title h2 {
     font-size: clamp(1.5rem, 8.5vw, 6.5rem);
   }
 
-  .product-preview {
-    width: min(440px, 32vw);
-    height: min(300px, 22vw);
-  }
 }
 
 /* -------------------------------- */
@@ -357,17 +359,8 @@
     gap: 100px;
   }
 
-  .product-preview {
-    width: min(360px, 32cqw);
-    height: min(250px, 22cqw);
-  }
 
-  @supports not (container-type: inline-size) {
-    .product-preview {
-      width: min(360px, 32vw);
-      height: min(250px, 22vw);
-    }
-  }
+
 }
 
 /* -------------------------------- */
@@ -387,19 +380,6 @@
     min-height: 140px;
   }
 
-  .product-preview {
-    width: min(300px, 32cqw);
-    height: min(220px, 22cqw);
-
-    opacity: 0.12;
-  }
-
-  @supports not (container-type: inline-size) {
-    .product-preview {
-      width: min(300px, 32vw);
-      height: min(220px, 22vw);
-    }
-  }
 }
 
 /* -------------------------------- */
@@ -418,6 +398,7 @@
 
   .product-item {
     padding: 20px 0 24px;
+     padding-right: 12px;
   }
 
   .product-content {
@@ -430,24 +411,10 @@
     font-size: clamp(1.5rem, 14cqw, 4.5rem);
   }
 
-  .product-preview {
-    width: min(230px, 60cqw);
-    height: min(170px, 44cqw);
-
-    right: -20px !important;
-    left: auto !important;
-
-    opacity: 0.08;
-  }
 
   @supports not (container-type: inline-size) {
     .product-title h2 {
       font-size: clamp(1.5rem, 12.5vw, 4.5rem);
-    }
-
-    .product-preview {
-      width: min(230px, 60vw);
-      height: min(170px, 44vw);
     }
   }
 }

@@ -29,7 +29,8 @@
     border-color 250ms ease;
 }
 
-.lang-trigger:hover,
+.lang-trigger.is-hovered,
+.lang-trigger:focus-visible,
 .lang-trigger[aria-expanded="true"] {
   color: #ffffff;
   border-color: rgba(166, 166, 166, 0.5);
@@ -100,7 +101,8 @@
     background-color 200ms ease;
 }
 
-.lang-option:hover {
+.lang-option.is-hovered,
+.lang-option:focus-visible {
   color: #ffffff;
   background: rgba(166, 166, 166, 0.1);
 }
@@ -110,7 +112,8 @@
   background: #a6a6a6;
 }
 
-.lang-option[aria-current="true"]:hover {
+.lang-option[aria-current="true"].is-hovered,
+.lang-option[aria-current="true"]:focus-visible {
   color: #050505;
   background: #c2c2c2;
 }
@@ -142,7 +145,8 @@
   border-radius: 0;
 }
 
-.lang-switch-stacked .lang-option:hover {
+.lang-switch-stacked .lang-option.is-hovered,
+.lang-switch-stacked .lang-option:focus-visible {
   color: #ffffff;
   background: transparent;
 }
@@ -152,7 +156,8 @@
   background: transparent;
 }
 
-.lang-switch-stacked .lang-option[aria-current="true"]:hover {
+.lang-switch-stacked .lang-option[aria-current="true"].is-hovered,
+.lang-switch-stacked .lang-option[aria-current="true"]:focus-visible {
   color: #ffffff;
   background: transparent;
 }

@@ -66,6 +66,7 @@ export default async function ContactPage() {
           <a
             href={`mailto:${contact.info.emailValue}`}
             className="contact-info-item"
+            data-hover-target
           >
             <span className="contact-info-number">01</span>
 
@@ -77,7 +78,7 @@ export default async function ContactPage() {
             <span className="contact-arrow">↗</span>
           </a>
 
-          <div className="contact-info-item">
+          <div className="contact-info-item" data-hover-target>
             <span className="contact-info-number">02</span>
 
             <div>
@@ -89,6 +90,7 @@ export default async function ContactPage() {
           <a
             href="#"
             className="contact-info-item"
+            data-hover-target
           >
             <span className="contact-info-number">03</span>
 
@@ -153,7 +155,11 @@ export default async function ContactPage() {
             />
           </label>
 
-          <button type="submit" className="contact-submit">
+          <button
+            type="submit"
+            className="contact-submit"
+            data-hover-target
+          >
             <span>{form.submit}</span>
             <span>↗</span>
           </button>

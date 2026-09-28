@@ -119,7 +119,7 @@ export default async function AboutPage() {
 
       <section className="about-image-section">
 
-        <div className="about-image">
+        <div className="about-image" data-hover-target>
           <Image
             src="/assets/approach.jpg"
             alt={about.image.alt}

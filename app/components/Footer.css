@@ -99,11 +99,13 @@
   transition: transform 300ms ease;
 }
 
-.footer-nav a:hover {
+.footer-nav a.is-hovered,
+.footer-nav a:focus-visible {
   color: #fff;
 }
 
-.footer-nav a:hover::after {
+.footer-nav a.is-hovered::after,
+.footer-nav a:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
 }

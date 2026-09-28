@@ -48,6 +48,7 @@ export default function ScrollIndicator({ label }: { label: string }) {
       type="button"
       onClick={scrollDown}
       aria-label={label}
+      data-hover-target
       className={`
         absolute
         bottom-8
@@ -126,6 +127,7 @@ export default function ScrollIndicator({ label }: { label: string }) {
 
         {/* ARROW */}
         <div
+          data-hover-arrow
           className="
             absolute
             bottom-0
@@ -133,7 +135,6 @@ export default function ScrollIndicator({ label }: { label: string }) {
             -translate-x-1/2
             transition-transform
             duration-300
-            group-hover:translate-y-1
           "
         >
           <svg

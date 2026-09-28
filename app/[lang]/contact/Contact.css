@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 
   font-size: 9px;
   font-weight: 500;
@@ -94,7 +94,7 @@
   align-items: center;
   justify-content: space-between;
 
-  padding-bottom: 16px;
+  padding-bottom: 22px;
 
   border-bottom: 1px solid rgba(166, 166, 166, 0.22);
 
@@ -204,12 +204,14 @@
     transform 300ms ease;
 }
 
-.contact-info-item:hover {
+.contact-info-item.is-hovered,
+.contact-info-item:focus-visible {
   color: #ffffff;
   padding-left: 8px;
 }
 
-.contact-info-item:hover .contact-arrow {
+.contact-info-item.is-hovered .contact-arrow,
+.contact-info-item:focus-visible .contact-arrow {
   opacity: 1;
   transform: translate(0, 0);
 }
@@ -341,7 +343,8 @@
   transition: transform 300ms ease;
 }
 
-.contact-submit:hover {
+.contact-submit.is-hovered,
+.contact-submit:focus-visible {
   padding-left: 12px;
   padding-right: 12px;
 
@@ -350,7 +353,8 @@
   border-color: rgba(255, 255, 255, 0.65);
 }
 
-.contact-submit:hover span:last-child {
+.contact-submit.is-hovered span:last-child,
+.contact-submit:focus-visible span:last-child {
   transform: translate(5px, -5px);
 }
 

@@ -39,7 +39,11 @@ export default function Footer({
 
         <nav className="footer-nav">
           {links.map((link) => (
-            <Link key={link.key} href={`${base}${link.href}`}>
+            <Link
+              key={link.key}
+              href={`${base}${link.href}`}
+              data-hover-target
+            >
               {dict.nav[link.key]}
             </Link>
           ))}

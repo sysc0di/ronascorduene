@@ -21,8 +21,6 @@ export default function ProductSections({
 }: {
   dict: ProductsDict;
 }) {
-  const [active, setActive] = useState<number | null>(null);
-
   return (
     <section className="products">
 
@@ -36,12 +34,9 @@ export default function ProductSections({
           <ProductItem
             key={product.title}
             product={product}
-            image={images[index]}
             number={(index + 1).toString().padStart(2, "0")}
             meta={dict.meta}
             index={index}
-            active={active}
-            setActive={setActive}
           />
         ))}
       </div>
@@ -52,20 +47,14 @@ export default function ProductSections({
 
 function ProductItem({
   product,
-  image,
   number,
   meta,
   index,
-  active,
-  setActive,
 }: {
   product: ProductsDict["items"][number];
-  image: string | undefined;
   number: string;
   meta: string;
   index: number;
-  active: number | null;
-  setActive: (index: number | null) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -97,14 +86,12 @@ function ProductItem({
   return (
     <div
       ref={ref}
+      data-hover-target
       className={`
         product-item
         ${visible ? "product-visible" : ""}
-        ${active === index ? "product-active" : ""}
         ${isRight ? "product-right" : "product-left"}
       `}
-      onMouseEnter={() => setActive(index)}
-      onMouseLeave={() => setActive(null)}
     >
       <div className="product-top">
 
@@ -127,17 +114,6 @@ function ProductItem({
           <p>{product.subtitle}</p>
         </div>
 
-        {image && (
-          <div className="product-preview">
-            <Image
-              src={image}
-              alt={product.title}
-              fill
-              sizes="(max-width: 600px) 60vw, (max-width: 1200px) 32vw, 440px"
-              className="preview-image"
-            />
-          </div>
-        )}
 
       </div>
     </div>

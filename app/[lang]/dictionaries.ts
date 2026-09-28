@@ -3,12 +3,14 @@ import { notFound } from "next/navigation";
 
 import en from "./dictionaries/en.json";
 import tr from "./dictionaries/tr.json";
+import ku from "./dictionaries/ku.json";
 
 import { hasLocale, type Locale } from "@/lib/i18n";
 
 const dictionaries = {
   en,
   tr,
+  ku,
 };
 
 export type Dictionary = (typeof dictionaries)["en"];
