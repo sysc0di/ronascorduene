@@ -22,7 +22,10 @@
     "automotiveEquipment": "OTOMOTİV EKİPMANLARI"
   },
   "home": {
-    "titleLines": ["Ronas", "Carduene"],
+    "titleLines": [
+      "Ronas",
+      "Carduene"
+    ],
     "subtitle": "Yüksek performanslı mühendislik ve motorspor mirası",
     "scrollDown": "Aşağı kaydır",
     "heroAlt": "Toyota GR GT",
@@ -31,17 +34,34 @@
       "label": "OTOMOTİV EKİPMANLARI",
       "meta": "RONAS / EKİPMAN",
       "items": [
-        { "title": "HAVA DİNAMİĞİ", "subtitle": "Yol için dövüldü." },
-        { "title": "SÜRÜCÜ ARAYÜZÜ", "subtitle": "Fark yaratmak için." },
-        { "title": "AEORODİNAMİK", "subtitle": "Hareket için üretildi." }
+        {
+          "title": "HAVA DİNAMİĞİ",
+          "subtitle": "Yol için dövüldü."
+        },
+        {
+          "title": "SÜRÜCÜ ARAYÜZÜ",
+          "subtitle": "Fark yaratmak için."
+        },
+        {
+          "title": "AEORODİNAMİK",
+          "subtitle": "Hareket için üretildi."
+        }
       ]
     },
     "approach": {
       "meta": "RONAS / YAKLAŞIM",
       "label": "SÜRÜŞ İÇİN TASARLANDI",
-      "titleLines": ["AMAÇLA", "BİLİNÇLİ", "ÜRETİLDİ."],
+      "titleLines": [
+        "AMAÇLA",
+        "BİLİNÇLİ",
+        "ÜRETİLDİ."
+      ],
       "body": "Her bileşen aynı fikir üzerine kurulur: hassas mühendislik, amaçlı form ve yola ait bir karakter.",
-      "values": ["HASSASIYET", "İŞLEV", "KARAKTER"],
+      "values": [
+        "HASSASIYET",
+        "İŞLEV",
+        "KARAKTER"
+      ],
       "alt": "Ronas otomotiv ekipmanları"
     }
   },
@@ -54,11 +74,19 @@
     },
     "hero": {
       "label": "OTOMOTİV EKİPMANLARI",
-      "titleLines": ["YOL", "İÇİN", "ÜRETİLDİ."],
+      "titleLines": [
+        "YOL",
+        "İÇİN",
+        "ÜRETİLDİ."
+      ],
       "body": "Ronas Corduene; mühendisliğin, tasarımın ve karakterin buluştuğu otomotiv ekipmanları üretir."
     },
     "story": {
-      "titleLines": ["FORM", "İŞLEVİ", "İZLER."],
+      "titleLines": [
+        "FORM",
+        "İŞLEVİ",
+        "İZLER."
+      ],
       "paragraphs": [
         "Otomotiv ekipmanının asla sonradan eklenmiş gibi hissettirmemesi gerektiğine inanıyoruz.",
         "Her detayın bir amacı vardır. Bir bileşenin formundan yolla etkileşim biçimine kadar yaklaşımımız; hassasiyet, sadelik ve netlik üzerine kuruludur.",
@@ -85,7 +113,11 @@
       "caption": "AMAÇLA TASARLANDI"
     },
     "closing": {
-      "titleLines": ["EKİPMANIN", "ÖTESİ", "BİR ŞEY."],
+      "titleLines": [
+        "EKİPMANIN",
+        "ÖTESİ",
+        "BİR ŞEY."
+      ],
       "body": "Aracını sadece bir ulaşım aracı olarak görmeyenler için çalışıyoruz. Her bileşen, sürüşü daha bilinçli kılma fırsatıdır.",
       "brand": "RONAS CORDUENE",
       "established": "KUR. —"
@@ -99,7 +131,9 @@
     },
     "hero": {
       "label": "YOL İÇİN TASARLANDI",
-      "titleLines": ["KONUŞALIM."],
+      "titleLines": [
+        "KONUŞALIM."
+      ],
       "body": "Aklınızda bir proje mi var, ekipmanlarımız hakkında daha fazla bilgi mi istiyorsunuz, yoksa sadece iletişime mi geçmek istiyorsunuz? Bize mesaj gönderin."
     },
     "info": {
@@ -123,153 +157,152 @@
     },
     "closing": {
       "brand": "RONAS CORDUENE",
-      "titleLines": ["HAREKET", "İÇİN ÜRETİLDİ."],
+      "titleLines": [
+        "HAREKET",
+        "İÇİN ÜRETİLDİ."
+      ],
       "label": "OTOMOTİV EKİPMANLARI"
     }
   },
   "store": {
-     "eyebrow": "OTOMOTİV EKİPMANLARI",
-     "title": "UYUM İÇİN ÜRETİLDİ.",
-     "description": "Ronas kataloğunu keşfedin. Hava akışı, sürücü kontrolü ve aerodinamik performans için tasarlanmış bileşenler.",
-
-     "catalog": "KATALOG",
-     "categories": "KATEGORİLER",
-     "products": "ÜRÜNLER",
-     "product": "ÜRÜN",
-     "search": "ARAMA",
-     "searchPlaceholder": "Katalogda ara...",
-     "reset": "SIFIRLA",
-     "clear": "TEMİZLE",
-     "close": "KAPAT",
-     "openCategories": "KATEGORİLERİ AÇ",
-
-     "allProducts": "TÜM ÜRÜNLER",
-
-     "families": {
-       "airflow-dynamics": "HAVA AKIŞ DİNAMİKLERİ",
-       "driver-interface": "SÜRÜCÜ ARAYÜZÜ",
-       "structural-aero": "YAPISAL AERODİNAMİ"
-     },
-
-     "subcategories": {
-       "intake-manifolds": "EMME MANİFOLDLARI",
-       "cold-air-intakes": "SOĞUK HAVA EMİŞLERİ",
-       "carbon-airboxes": "KARBON HAVA KAZANLARI",
-       "air-intake-piping": "HAVA EMİŞ BORULARI",
-       "exhaust-manifolds": "EGZOZ MANİFOLDLARI / HEADERS",
-       "brake-cooling-ducts": "FREN HAVA SOĞUTMA KANALLARI",
-
-       "carbon-fiber-steering-wheels": "KARBON FİBER DİREKSİYONLAR",
-       "racing-seats": "YARIŞ / PERFORMANS KOLTUKLARI",
-       "shift-knobs": "VİTES TOPUZLARI",
-       "carbon-fiber-interior-trims": "KARBON FİBER İÇ TRİMLER",
-
-       "carbon-fiber-hoods": "KARBON FİBER KAPUTLAR",
-       "trunks-tailgates": "BAGAJ KAPAKLARI",
-       "lightweight-doors": "HAFİFLETİLMİŞ KAPILAR",
-       "spoilers-wings": "SPOILER VE KANATLAR"
-     },
-
-     "filters": {
-       "material": "MATERYAL",
-       "construction": "YAPI",
-       "finish": "YÜZEY",
-       "all": "TÜMÜ"
-     },
-
-     "materials": {
-       "carbon-fiber": "KARBON FİBER",
-       "aluminum": "ALÜMİNYUM",
-       "stainless-steel": "PASLANMAZ ÇELİK"
-     },
-
-     "constructions": {
-       "dry-carbon": "DRY CARBON",
-       "high-flow": "YÜKSEK AKIŞ",
-       "cast": "DÖKÜM",
-       "mandrel-bent": "MANDREL BENT",
-       "tubular": "BORU TİPİ",
-       "forged-carbon": "FORGED CARBON",
-       "monocoque": "MONOKOK",
-       "machined": "İŞLENMİŞ",
-       "pre-preg": "PRE-PREG"
-     },
-
-     "finishes": {
-       "matte": "MAT",
-       "satin": "SATEN",
-       "polished": "PARLAK",
-       "brushed": "FIRÇALI",
-       "gloss": "GLOSS"
-     },
-
-     "productsData": {
-       "carbon-airbox": {
-         "name": "KARBON HAVA KAZANI",
-         "description": "Emiş sıcaklığını kontrol etmek için geliştirilmiş yüksek akışlı karbon hava kazanı."
-       },
-       "cold-air-intake": {
-         "name": "SOĞUK HAVA EMİŞİ",
-         "description": "Hava akışını artırmak için geliştirilmiş yüksek akışlı emiş sistemi."
-       },
-       "intake-manifold": {
-         "name": "EMME MANİFOLDU",
-         "description": "Verimli hava akışı için hassas şekilde tasarlanmış manifold."
-       },
-       "intake-piping": {
-         "name": "HAVA EMİŞ BORUSU",
-         "description": "Kesintisiz hava akışı için mandrel bükümlü emiş borusu."
-       },
-       "exhaust-manifold": {
-         "name": "EGZOZ MANİFOLDU",
-         "description": "Verimli egzoz akışı için tasarlanmış performans manifold sistemi."
-       },
-       "brake-cooling-duct": {
-         "name": "FREN SOĞUTMA KANALI",
-         "description": "Soğutma havasını frenlere yönlendirmek için geliştirilmiş kanal sistemi."
-       },
-       "carbon-steering-wheel": {
-         "name": "KARBON DİREKSİYON",
-         "description": "Doğrudan sürücü geri bildirimi için tasarlanmış karbon fiber direksiyon."
-       },
-       "racing-seat": {
-         "name": "YARIŞ KOLTUĞU",
-         "description": "Sürücü desteği ve hafiflik odaklı performans koltuğu."
-       },
-       "shift-knob": {
-         "name": "VİTES TOPUZU",
-         "description": "Mekanik hissiyat için işlenmiş alüminyum vites topuzu."
-       },
-       "carbon-interior-trim": {
-         "name": "KARBON İÇ TRİM",
-         "description": "Hafif ve teknik bir kokpit için hassas karbon fiber iç trim."
-       },
-       "carbon-hood": {
-         "name": "KARBON KAPUT",
-         "description": "Ağırlık azaltımı için geliştirilmiş hafif karbon fiber kaput."
-       },
-       "lightweight-tailgate": {
-         "name": "HAFİF BAGAJ KAPAĞI",
-         "description": "Arka bölümde ağırlığı azaltmak için tasarlanmış karbon fiber kapak."
-       },
-       "lightweight-door": {
-         "name": "HAFİF KAPI",
-         "description": "Ağırlık azaltımı odaklı hafif yapısal kapı."
-       },
-       "rear-wing": {
-         "name": "ARKA KANAT",
-         "description": "Yüksek hız stabilitesi için geliştirilmiş karbon fiber aerodinamik kanat."
-       }
-     },
-
-     "empty": {
-       "title": "ÜRÜN BULUNAMADI",
-       "description": "Başka bir kategori deneyin veya filtreleri değiştirin."
-     }
-   },
+    "eyebrow": "OTOMOTİV EKİPMANLARI",
+    "title": "UYUM İÇİN ÜRETİLDİ.",
+    "description": "Ronas kataloğunu keşfedin. Hava akışı, sürücü kontrolü ve aerodinamik performans için tasarlanmış bileşenler.",
+    "catalog": "KATALOG",
+    "categories": "KATEGORİLER",
+    "products": "ÜRÜNLER",
+    "product": "ÜRÜN",
+    "search": "ARAMA",
+    "searchPlaceholder": "Katalogda ara...",
+    "reset": "SIFIRLA",
+    "clear": "TEMİZLE",
+    "close": "KAPAT",
+    "openCategories": "KATEGORİLERİ AÇ",
+    "allProducts": "TÜM ÜRÜNLER",
+    "families": {
+      "airflow-dynamics": "HAVA AKIŞ DİNAMİKLERİ",
+      "driver-interface": "SÜRÜCÜ ARAYÜZÜ",
+      "structural-aero": "YAPISAL AERODİNAMİ"
+    },
+    "subcategories": {
+      "intake-manifolds": "EMME MANİFOLDLARI",
+      "cold-air-intakes": "SOĞUK HAVA EMİŞLERİ",
+      "carbon-airboxes": "KARBON HAVA KAZANLARI",
+      "air-intake-piping": "HAVA EMİŞ BORULARI",
+      "exhaust-manifolds": "EGZOZ MANİFOLDLARI / HEADERS",
+      "brake-cooling-ducts": "FREN HAVA SOĞUTMA KANALLARI",
+      "headlight-intakes": "FAR HAVA GİRİŞLERİ",
+      "carbon-fiber-steering-wheels": "KARBON FİBER DİREKSİYONLAR",
+      "racing-seats": "YARIŞ / PERFORMANS KOLTUKLARI",
+      "shift-knobs": "VİTES TOPUZLARI",
+      "carbon-fiber-interior-trims": "KARBON FİBER İÇ TRİMLER",
+      "carbon-fiber-hoods": "KARBON FİBER KAPUTLAR",
+      "trunks-tailgates": "BAGAJ KAPAKLARI",
+      "lightweight-doors": "HAFİFLETİLMİŞ KAPILAR",
+      "spoilers-wings": "SPOILER VE KANATLAR"
+    },
+    "filters": {
+      "material": "MATERYAL",
+      "construction": "YAPI",
+      "finish": "YÜZEY",
+      "all": "TÜMÜ"
+    },
+    "materials": {
+      "carbon-fiber": "KARBON FİBER",
+      "aluminum": "ALÜMİNYUM",
+      "stainless-steel": "PASLANMAZ ÇELİK"
+    },
+    "constructions": {
+      "dry-carbon": "DRY CARBON",
+      "high-flow": "YÜKSEK AKIŞ",
+      "cast": "DÖKÜM",
+      "mandrel-bent": "MANDREL BENT",
+      "tubular": "BORU TİPİ",
+      "forged-carbon": "FORGED CARBON",
+      "monocoque": "MONOKOK",
+      "machined": "İŞLENMİŞ",
+      "pre-preg": "PRE-PREG"
+    },
+    "finishes": {
+      "matte": "MAT",
+      "satin": "SATEN",
+      "polished": "PARLAK",
+      "brushed": "FIRÇALI",
+      "gloss": "GLOSS"
+    },
+    "productsData": {
+      "carbon-airbox": {
+        "name": "KARBON HAVA KAZANI",
+        "description": "Emiş sıcaklığını kontrol etmek için geliştirilmiş yüksek akışlı karbon hava kazanı."
+      },
+      "cold-air-intake": {
+        "name": "SOĞUK HAVA EMİŞİ",
+        "description": "Hava akışını artırmak için geliştirilmiş yüksek akışlı emiş sistemi."
+      },
+      "intake-manifold": {
+        "name": "EMME MANİFOLDU",
+        "description": "Verimli hava akışı için hassas şekilde tasarlanmış manifold."
+      },
+      "intake-piping": {
+        "name": "HAVA EMİŞ BORUSU",
+        "description": "Kesintisiz hava akışı için mandrel bükümlü emiş borusu."
+      },
+      "exhaust-manifold": {
+        "name": "EGZOZ MANİFOLDU",
+        "description": "Verimli egzoz akışı için tasarlanmış performans manifold sistemi."
+      },
+      "brake-cooling-duct": {
+        "name": "FREN SOĞUTMA KANALI",
+        "description": "Soğutma havasını frenlere yönlendirmek için geliştirilmiş kanal sistemi."
+      },
+      "carbon-steering-wheel": {
+        "name": "KARBON DİREKSİYON",
+        "description": "Doğrudan sürücü geri bildirimi için tasarlanmış karbon fiber direksiyon."
+      },
+      "headlight-intake": {
+        "name": "FAR HAVA GİRİŞİ",
+        "description": "Motor bölmesine kontrollü hava akışı sağlamak ve agresif tasarımı güçlendirmek için tasarlanmış karbon fiber hava girişi."
+      },
+      "racing-seat": {
+        "name": "YARIŞ KOLTUĞU",
+        "description": "Sürücü desteği ve hafiflik odaklı performans koltuğu."
+      },
+      "shift-knob": {
+        "name": "VİTES TOPUZU",
+        "description": "Mekanik hissiyat için işlenmiş alüminyum vites topuzu."
+      },
+      "carbon-interior-trim": {
+        "name": "KARBON İÇ TRİM",
+        "description": "Hafif ve teknik bir kokpit için hassas karbon fiber iç trim."
+      },
+      "carbon-hood": {
+        "name": "KARBON KAPUT",
+        "description": "Ağırlık azaltımı için geliştirilmiş hafif karbon fiber kaput."
+      },
+      "lightweight-tailgate": {
+        "name": "HAFİF BAGAJ KAPAĞI",
+        "description": "Arka bölümde ağırlığı azaltmak için tasarlanmış karbon fiber kapak."
+      },
+      "lightweight-door": {
+        "name": "HAFİF KAPI",
+        "description": "Ağırlık azaltımı odaklı hafif yapısal kapı."
+      },
+      "rear-wing": {
+        "name": "ARKA KANAT",
+        "description": "Yüksek hız stabilitesi için geliştirilmiş karbon fiber aerodinamik kanat."
+      }
+    },
+    "empty": {
+      "title": "ÜRÜN BULUNAMADI",
+      "description": "Başka bir kategori deneyin veya filtreleri değiştirin."
+    }
+  },
   "footer": {
     "brand": "RONAS / CORDUENE",
-    "titleLines": ["FARKLI", "ÜRETİLDİ."],
+    "titleLines": [
+      "FARKLI",
+      "ÜRETİLDİ."
+    ],
     "middle": "RONAS",
     "copyright": "© {year} RONAS CORDUENE",
     "label": "OTOMOTİV EKİPMANLARI",

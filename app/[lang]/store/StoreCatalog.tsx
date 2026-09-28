@@ -39,6 +39,7 @@ const familyCategories: Record<
     "carbon-airboxes",
     "air-intake-piping",
     "exhaust-manifolds",
+    "headlight-intakes",
     "brake-cooling-ducts",
   ],
 
@@ -217,7 +218,7 @@ export default function StoreCatalog() {
         if (
           activeFamily &&
           product.family !==
-            activeFamily
+          activeFamily
         ) {
           return false;
         }
@@ -228,7 +229,7 @@ export default function StoreCatalog() {
         if (
           activeCategory &&
           product.category !==
-            activeCategory
+          activeCategory
         ) {
           return false;
         }
@@ -239,7 +240,7 @@ export default function StoreCatalog() {
         if (normalizedSearch) {
           const productTranslation =
             t.productsData[
-              product.name as keyof typeof t.productsData
+            product.name as keyof typeof t.productsData
             ];
 
           const searchableText = [
@@ -248,7 +249,7 @@ export default function StoreCatalog() {
             product.family,
             productTranslation?.name ?? "",
             productTranslation?.description ??
-              "",
+            "",
           ]
             .join(" ")
             .toLowerCase();
@@ -305,7 +306,7 @@ export default function StoreCatalog() {
         if (
           activeFamily &&
           product.family !==
-            activeFamily
+          activeFamily
         ) {
           return false;
         }
@@ -313,7 +314,7 @@ export default function StoreCatalog() {
         if (
           activeCategory &&
           product.category !==
-            activeCategory
+          activeCategory
         ) {
           return false;
         }
@@ -447,10 +448,9 @@ export default function StoreCatalog() {
         <aside
           className={`
             store-sidebar
-            ${
-              mobileMenuOpen
-                ? "is-open"
-                : ""
+            ${mobileMenuOpen
+              ? "is-open"
+              : ""
             }
           `}
         >
@@ -477,11 +477,10 @@ export default function StoreCatalog() {
               type="button"
               className={`
                 store-all-category
-                ${
-                  activeFamily === null &&
+                ${activeFamily === null &&
                   activeCategory === null
-                    ? "is-active"
-                    : ""
+                  ? "is-active"
+                  : ""
                 }
               `}
               onClick={selectAll}
@@ -510,10 +509,9 @@ export default function StoreCatalog() {
                     key={family}
                     className={`
                       store-family
-                      ${
-                        isFamilyActive
-                          ? "is-active"
-                          : ""
+                      ${isFamilyActive
+                        ? "is-active"
+                        : ""
                       }
                     `}
                   >
@@ -535,7 +533,7 @@ export default function StoreCatalog() {
                       <span>
                         {
                           t.families[
-                            family
+                          family
                           ]
                         }
                       </span>
@@ -543,10 +541,9 @@ export default function StoreCatalog() {
                       <span
                         className={`
                           store-family-symbol
-                          ${
-                            isOpen
-                              ? "is-open"
-                              : ""
+                          ${isOpen
+                            ? "is-open"
+                            : ""
                           }
                         `}
                       >
@@ -557,10 +554,9 @@ export default function StoreCatalog() {
                     <div
                       className={`
                         store-subcategories
-                        ${
-                          isOpen
-                            ? "is-open"
-                            : ""
+                        ${isOpen
+                          ? "is-open"
+                          : ""
                         }
                       `}
                     >
@@ -575,7 +571,7 @@ export default function StoreCatalog() {
                             type="button"
                             className={
                               activeCategory ===
-                              category
+                                category
                                 ? "is-active"
                                 : ""
                             }
@@ -588,7 +584,7 @@ export default function StoreCatalog() {
                             {
                               t
                                 .subcategories[
-                                category
+                              category
                               ]
                             }
                           </button>
@@ -627,12 +623,12 @@ export default function StoreCatalog() {
               <span className="store-section-label">
                 {activeCategory
                   ? t.subcategories[
-                      activeCategory
-                    ]
+                  activeCategory
+                  ]
                   : activeFamily
                     ? t.families[
-                        activeFamily
-                      ]
+                    activeFamily
+                    ]
                     : t.allProducts}
               </span>
 
@@ -699,10 +695,9 @@ export default function StoreCatalog() {
             <div
               className={`
                 store-extra-filters
-                ${
-                  mobileFiltersOpen
-                    ? "is-open"
-                    : ""
+                ${mobileFiltersOpen
+                  ? "is-open"
+                  : ""
                 }
               `}
             >
@@ -715,7 +710,7 @@ export default function StoreCatalog() {
                     <span>
                       {
                         t.filters[
-                          key
+                        key
                         ]
                       }
                     </span>
@@ -749,10 +744,10 @@ export default function StoreCatalog() {
                             }
                           >
                             {option ===
-                            "all"
+                              "all"
                               ? t
-                                  .filters
-                                  .all
+                                .filters
+                                .all
                               : option}
                           </option>
                         )
@@ -767,7 +762,7 @@ export default function StoreCatalog() {
           {/* PRODUCTS */}
 
           {filteredProducts.length >
-          0 ? (
+            0 ? (
             <div className="store-products">
               {filteredProducts.map(
                 (
@@ -776,7 +771,7 @@ export default function StoreCatalog() {
                 ) => {
                   const data =
                     t.productsData[
-                      product.name as keyof typeof t.productsData
+                    product.name as keyof typeof t.productsData
                     ];
 
                   return (
@@ -817,7 +812,7 @@ export default function StoreCatalog() {
                           {
                             t
                               .subcategories[
-                              product.category
+                            product.category
                             ]
                           }
                         </span>
@@ -828,7 +823,7 @@ export default function StoreCatalog() {
                           <span className="store-product-family">
                             {
                               t.families[
-                                product.family as FamilyKey
+                              product.family as FamilyKey
                               ]
                             }
                           </span>
@@ -853,7 +848,7 @@ export default function StoreCatalog() {
                         <span>
                           {
                             t.materials[
-                              product.material as keyof typeof t.materials
+                            product.material as keyof typeof t.materials
                             ]
                           }
                         </span>
@@ -861,7 +856,7 @@ export default function StoreCatalog() {
                         <span>
                           {
                             t.constructions[
-                              product.construction as keyof typeof t.constructions
+                            product.construction as keyof typeof t.constructions
                             ]
                           }
                         </span>
@@ -869,7 +864,7 @@ export default function StoreCatalog() {
                         <span>
                           {
                             t.finishes[
-                              product.finish as keyof typeof t.finishes
+                            product.finish as keyof typeof t.finishes
                             ]
                           }
                         </span>

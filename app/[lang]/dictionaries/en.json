@@ -22,7 +22,10 @@
     "automotiveEquipment": "AUTOMOTIVE EQUIPMENT"
   },
   "home": {
-    "titleLines": ["Ronas", "Carduene"],
+    "titleLines": [
+      "Ronas",
+      "Carduene"
+    ],
     "subtitle": "High-performance engineering and motorsport heritage",
     "scrollDown": "Scroll down",
     "heroAlt": "Toyota GR GT",
@@ -31,17 +34,34 @@
       "label": "AUTOMOTIVE EQUIPMENT",
       "meta": "RONAS / EQUIPMENT",
       "items": [
-        { "title": "AIRFLOW DYNAMICS", "subtitle": "Forged for the road." },
-        { "title": "DRIVER INTERFACE", "subtitle": "Built to stand apart." },
-        { "title": "STRUCTAL AERO", "subtitle": "Made to move." }
+        {
+          "title": "AIRFLOW DYNAMICS",
+          "subtitle": "Forged for the road."
+        },
+        {
+          "title": "DRIVER INTERFACE",
+          "subtitle": "Built to stand apart."
+        },
+        {
+          "title": "STRUCTAL AERO",
+          "subtitle": "Made to move."
+        }
       ]
     },
     "approach": {
       "meta": "RONAS / APPROACH",
       "label": "ENGINEERED FOR THE DRIVE",
-      "titleLines": ["BUILT", "WITH", "PURPOSE."],
+      "titleLines": [
+        "BUILT",
+        "WITH",
+        "PURPOSE."
+      ],
       "body": "Every component is designed around the same idea: precise engineering, purposeful form, and a character that belongs on the road.",
-      "values": ["PRECISION", "FUNCTION", "CHARACTER"],
+      "values": [
+        "PRECISION",
+        "FUNCTION",
+        "CHARACTER"
+      ],
       "alt": "Ronas automotive equipment"
     }
   },
@@ -54,11 +74,19 @@
     },
     "hero": {
       "label": "AUTOMOTIVE EQUIPMENT",
-      "titleLines": ["BUILT", "FOR THE", "ROAD."],
+      "titleLines": [
+        "BUILT",
+        "FOR THE",
+        "ROAD."
+      ],
       "body": "Ronas Corduene creates automotive equipment where engineering, design and character meet."
     },
     "story": {
-      "titleLines": ["FORM", "FOLLOWS", "FUNCTION."],
+      "titleLines": [
+        "FORM",
+        "FOLLOWS",
+        "FUNCTION."
+      ],
       "paragraphs": [
         "We believe automotive equipment should never feel like an afterthought.",
         "Every detail has a purpose. From the shape of a component to the way it interacts with the road, our approach is built around precision, simplicity and intent.",
@@ -85,7 +113,11 @@
       "caption": "ENGINEERED WITH PURPOSE"
     },
     "closing": {
-      "titleLines": ["MORE", "THAN", "EQUIPMENT."],
+      "titleLines": [
+        "MORE",
+        "THAN",
+        "EQUIPMENT."
+      ],
       "body": "We build for the people who see their vehicle as more than transportation. Every component is an opportunity to make the drive feel more intentional.",
       "brand": "RONAS CORDUENE",
       "established": "EST. —"
@@ -99,7 +131,10 @@
     },
     "hero": {
       "label": "ENGINEERED FOR THE ROAD",
-      "titleLines": ["LET'S", "TALK."],
+      "titleLines": [
+        "LET'S",
+        "TALK."
+      ],
       "body": "Have a project in mind, need more information about our equipment, or simply want to get in touch? Send us a message."
     },
     "info": {
@@ -123,153 +158,152 @@
     },
     "closing": {
       "brand": "RONAS CORDUENE",
-      "titleLines": ["BUILT", "TO MOVE."],
+      "titleLines": [
+        "BUILT",
+        "TO MOVE."
+      ],
       "label": "AUTOMOTIVE EQUIPMENT"
     }
   },
   "store": {
-     "eyebrow": "AUTOMOTIVE EQUIPMENT",
-     "title": "BUILT TO FIT.",
-     "description": "Explore the Ronas catalog. Engineered components designed around airflow, driver control and aerodynamic performance.",
-
-     "catalog": "CATALOG",
-     "categories": "CATEGORIES",
-     "products": "PRODUCTS",
-     "product": "PRODUCT",
-     "search": "SEARCH",
-     "searchPlaceholder": "Search catalog...",
-     "reset": "RESET",
-     "clear": "CLEAR",
-     "close": "CLOSE",
-     "openCategories": "OPEN CATEGORIES",
-
-     "allProducts": "ALL PRODUCTS",
-
-     "families": {
-       "airflow-dynamics": "AIRFLOW DYNAMICS",
-       "driver-interface": "DRIVER INTERFACE",
-       "structural-aero": "STRUCTURAL AERO"
-     },
-
-     "subcategories": {
-       "intake-manifolds": "INTAKE MANIFOLDS",
-       "cold-air-intakes": "COLD AIR INTAKES",
-       "carbon-airboxes": "CARBON AIRBOXES",
-       "air-intake-piping": "AIR INTAKE PIPING",
-       "exhaust-manifolds": "EXHAUST MANIFOLDS",
-       "brake-cooling-ducts": "BRAKE COOLING DUCTS",
-
-       "carbon-fiber-steering-wheels": "CARBON FIBER STEERING WHEELS",
-       "racing-seats": "RACING / PERFORMANCE SEATS",
-       "shift-knobs": "SHIFT KNOBS",
-       "carbon-fiber-interior-trims": "CARBON FIBER INTERIOR TRIMS",
-
-       "carbon-fiber-hoods": "CARBON FIBER HOODS / BONNETS",
-       "trunks-tailgates": "TRUNKS & TAILGATES",
-       "lightweight-doors": "LIGHTWEIGHT DOORS",
-       "spoilers-wings": "SPOILERS & WINGS"
-     },
-
-     "filters": {
-       "material": "MATERIAL",
-       "construction": "CONSTRUCTION",
-       "finish": "FINISH",
-       "all": "ALL"
-     },
-
-     "materials": {
-       "carbon-fiber": "CARBON FIBER",
-       "aluminum": "ALUMINUM",
-       "stainless-steel": "STAINLESS STEEL"
-     },
-
-     "constructions": {
-       "dry-carbon": "DRY CARBON",
-       "high-flow": "HIGH FLOW",
-       "cast": "CAST",
-       "mandrel-bent": "MANDREL BENT",
-       "tubular": "TUBULAR",
-       "forged-carbon": "FORGED CARBON",
-       "monocoque": "MONOCOQUE",
-       "machined": "MACHINED",
-       "pre-preg": "PRE-PREG"
-     },
-
-     "finishes": {
-       "matte": "MATTE",
-       "satin": "SATIN",
-       "polished": "POLISHED",
-       "brushed": "BRUSHED",
-       "gloss": "GLOSS"
-     },
-
-     "productsData": {
-       "carbon-airbox": {
-         "name": "CARBON AIRBOX",
-         "description": "High-flow carbon fiber airbox engineered for controlled intake temperatures."
-       },
-       "cold-air-intake": {
-         "name": "COLD AIR INTAKE",
-         "description": "A high-flow intake system developed to improve air delivery."
-       },
-       "intake-manifold": {
-         "name": "INTAKE MANIFOLD",
-         "description": "Precision-engineered manifold designed around efficient airflow."
-       },
-       "intake-piping": {
-         "name": "INTAKE PIPING",
-         "description": "Mandrel-bent intake piping designed for unrestricted airflow."
-       },
-       "exhaust-manifold": {
-         "name": "EXHAUST MANIFOLD",
-         "description": "Tubular performance manifold designed for efficient exhaust flow."
-       },
-       "brake-cooling-duct": {
-         "name": "BRAKE COOLING DUCT",
-         "description": "High-flow ducting developed to direct cooling air toward the brakes."
-       },
-       "carbon-steering-wheel": {
-         "name": "CARBON STEERING WHEEL",
-         "description": "Carbon fiber steering wheel designed for direct driver feedback."
-       },
-       "racing-seat": {
-         "name": "RACING SEAT",
-         "description": "Lightweight performance seat engineered around driver support."
-       },
-       "shift-knob": {
-         "name": "SHIFT KNOB",
-         "description": "Machined aluminum shift knob with a focused mechanical feel."
-       },
-       "carbon-interior-trim": {
-         "name": "CARBON INTERIOR TRIM",
-         "description": "Precision carbon fiber interior trim for a lightweight cockpit."
-       },
-       "carbon-hood": {
-         "name": "CARBON HOOD",
-         "description": "Lightweight carbon fiber hood engineered for reduced mass."
-       },
-       "lightweight-tailgate": {
-         "name": "LIGHTWEIGHT TAILGATE",
-         "description": "Carbon fiber tailgate designed to reduce rear-end mass."
-       },
-       "lightweight-door": {
-         "name": "LIGHTWEIGHT DOOR",
-         "description": "Lightweight structural door designed around mass reduction."
-       },
-       "rear-wing": {
-         "name": "REAR WING",
-         "description": "Carbon fiber aerodynamic wing engineered for high-speed stability."
-       }
-     },
-
-     "empty": {
-       "title": "NO PRODUCTS FOUND",
-       "description": "Try another category or adjust the selected filters."
-     }
-   },
+    "eyebrow": "AUTOMOTIVE EQUIPMENT",
+    "title": "BUILT TO FIT.",
+    "description": "Explore the Ronas catalog. Engineered components designed around airflow, driver control and aerodynamic performance.",
+    "catalog": "CATALOG",
+    "categories": "CATEGORIES",
+    "products": "PRODUCTS",
+    "product": "PRODUCT",
+    "search": "SEARCH",
+    "searchPlaceholder": "Search catalog...",
+    "reset": "RESET",
+    "clear": "CLEAR",
+    "close": "CLOSE",
+    "openCategories": "OPEN CATEGORIES",
+    "allProducts": "ALL PRODUCTS",
+    "families": {
+      "airflow-dynamics": "AIRFLOW DYNAMICS",
+      "driver-interface": "DRIVER INTERFACE",
+      "structural-aero": "STRUCTURAL AERO"
+    },
+    "subcategories": {
+      "intake-manifolds": "INTAKE MANIFOLDS",
+      "cold-air-intakes": "COLD AIR INTAKES",
+      "carbon-airboxes": "CARBON AIRBOXES",
+      "air-intake-piping": "AIR INTAKE PIPING",
+      "exhaust-manifolds": "EXHAUST MANIFOLDS",
+      "headlight-intakes": "HEADLIGHT INTAKES",
+      "brake-cooling-ducts": "BRAKE COOLING DUCTS",
+      "carbon-fiber-steering-wheels": "CARBON FIBER STEERING WHEELS",
+      "racing-seats": "RACING / PERFORMANCE SEATS",
+      "shift-knobs": "SHIFT KNOBS",
+      "carbon-fiber-interior-trims": "CARBON FIBER INTERIOR TRIMS",
+      "carbon-fiber-hoods": "CARBON FIBER HOODS / BONNETS",
+      "trunks-tailgates": "TRUNKS & TAILGATES",
+      "lightweight-doors": "LIGHTWEIGHT DOORS",
+      "spoilers-wings": "SPOILERS & WINGS"
+    },
+    "filters": {
+      "material": "MATERIAL",
+      "construction": "CONSTRUCTION",
+      "finish": "FINISH",
+      "all": "ALL"
+    },
+    "materials": {
+      "carbon-fiber": "CARBON FIBER",
+      "aluminum": "ALUMINUM",
+      "stainless-steel": "STAINLESS STEEL"
+    },
+    "constructions": {
+      "dry-carbon": "DRY CARBON",
+      "high-flow": "HIGH FLOW",
+      "cast": "CAST",
+      "mandrel-bent": "MANDREL BENT",
+      "tubular": "TUBULAR",
+      "forged-carbon": "FORGED CARBON",
+      "monocoque": "MONOCOQUE",
+      "machined": "MACHINED",
+      "pre-preg": "PRE-PREG"
+    },
+    "finishes": {
+      "matte": "MATTE",
+      "satin": "SATIN",
+      "polished": "POLISHED",
+      "brushed": "BRUSHED",
+      "gloss": "GLOSS"
+    },
+    "productsData": {
+      "carbon-airbox": {
+        "name": "CARBON AIRBOX",
+        "description": "High-flow carbon fiber airbox engineered for controlled intake temperatures."
+      },
+      "cold-air-intake": {
+        "name": "COLD AIR INTAKE",
+        "description": "A high-flow intake system developed to improve air delivery."
+      },
+      "intake-manifold": {
+        "name": "INTAKE MANIFOLD",
+        "description": "Precision-engineered manifold designed around efficient airflow."
+      },
+      "intake-piping": {
+        "name": "INTAKE PIPING",
+        "description": "Mandrel-bent intake piping designed for unrestricted airflow."
+      },
+      "exhaust-manifold": {
+        "name": "EXHAUST MANIFOLD",
+        "description": "Tubular performance manifold designed for efficient exhaust flow."
+      },
+      "brake-cooling-duct": {
+        "name": "BRAKE COOLING DUCT",
+        "description": "High-flow ducting developed to direct cooling air toward the brakes."
+      },
+      "headlight-intake": {
+        "name": "FAR HAVA GİRİŞİ",
+        "description": "Motor bölmesine kontrollü hava akışı sağlamak ve agresif tasarımı güçlendirmek için tasarlanmış karbon fiber hava girişi."
+      },
+      "carbon-steering-wheel": {
+        "name": "CARBON STEERING WHEEL",
+        "description": "Carbon fiber steering wheel designed for direct driver feedback."
+      },
+      "racing-seat": {
+        "name": "RACING SEAT",
+        "description": "Lightweight performance seat engineered around driver support."
+      },
+      "shift-knob": {
+        "name": "SHIFT KNOB",
+        "description": "Machined aluminum shift knob with a focused mechanical feel."
+      },
+      "carbon-interior-trim": {
+        "name": "CARBON INTERIOR TRIM",
+        "description": "Precision carbon fiber interior trim for a lightweight cockpit."
+      },
+      "carbon-hood": {
+        "name": "CARBON HOOD",
+        "description": "Lightweight carbon fiber hood engineered for reduced mass."
+      },
+      "lightweight-tailgate": {
+        "name": "LIGHTWEIGHT TAILGATE",
+        "description": "Carbon fiber tailgate designed to reduce rear-end mass."
+      },
+      "lightweight-door": {
+        "name": "LIGHTWEIGHT DOOR",
+        "description": "Lightweight structural door designed around mass reduction."
+      },
+      "rear-wing": {
+        "name": "REAR WING",
+        "description": "Carbon fiber aerodynamic wing engineered for high-speed stability."
+      }
+    },
+    "empty": {
+      "title": "NO PRODUCTS FOUND",
+      "description": "Try another category or adjust the selected filters."
+    }
+  },
   "footer": {
     "brand": "RONAS / CORDUENE",
-    "titleLines": ["BUILT", "DIFFERENT."],
+    "titleLines": [
+      "BUILT",
+      "DIFFERENT."
+    ],
     "middle": "RONAS",
     "copyright": "© {year} RONAS CORDUENE",
     "label": "AUTOMOTIVE EQUIPMENT",

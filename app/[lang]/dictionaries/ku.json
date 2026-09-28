@@ -22,7 +22,10 @@
     "automotiveEquipment": "EKÎPMANA OTOMOTÎVÊ"
   },
   "home": {
-    "titleLines": ["Ronas", "Carduene"],
+    "titleLines": [
+      "Ronas",
+      "Carduene"
+    ],
     "subtitle": "Mîhêndisiya performansa bilind û dîroka bişûrveyê",
     "scrollDown": "Bihûyê jêr bide",
     "heroAlt": "Toyota GR GT",
@@ -31,17 +34,34 @@
       "label": "EKÎPMANA OTOMOTÎVÊ",
       "meta": "RONAS / EKÎPMAN",
       "items": [
-        { "title": "DÎNAMÎKA HEWAYÊ", "subtitle": "Ji bo riyê duristkirî." },
-        { "title": "MÎHÊNDISÎ", "subtitle": "Ji bo ku ferq dike." },
-        { "title": "AERODÎNAMÎKA STRUKTURÊ", "subtitle": "Ji bo rakêştê hatîye." }
+        {
+          "title": "DÎNAMÎKA HEWAYÊ",
+          "subtitle": "Ji bo riyê duristkirî."
+        },
+        {
+          "title": "MÎHÊNDISÎ",
+          "subtitle": "Ji bo ku ferq dike."
+        },
+        {
+          "title": "AERODÎNAMÎKA STRUKTURÊ",
+          "subtitle": "Ji bo rakêştê hatîye."
+        }
       ]
     },
     "approach": {
       "meta": "RONAS / NÊZÎRKIRIN",
       "label": "JI BO RÎYÊ SÊKIRÎ",
-      "titleLines": ["BI", "ARMANA", "ÇÊKIRIN."],
+      "titleLines": [
+        "BI",
+        "ARMANA",
+        "ÇÊKIRIN."
+      ],
       "body": "Her komponent li bingeştina yekê hate sêkirin: mîhêndisiya rastîn, formeke bi arman, û karakterek ku li ser riyê dike.",
-      "values": ["SERRASTÎ", "FUNKSIYON", "KARAKTER"],
+      "values": [
+        "SERRASTÎ",
+        "FUNKSIYON",
+        "KARAKTER"
+      ],
       "alt": "Ekipmana otomotivê ya Ronas"
     }
   },
@@ -54,11 +74,19 @@
     },
     "hero": {
       "label": "EKÎPMANA OTOMOTÎVÊ",
-      "titleLines": ["JI BO", "RÎYÊ", "ÇÊKIRIN."],
+      "titleLines": [
+        "JI BO",
+        "RÎYÊ",
+        "ÇÊKIRIN."
+      ],
       "body": "Ronas Corduene ekipmana otomotivê diafirîşîn li ser bingeştina mîhêndisî, sêwiranê û karakterê."
     },
     "story": {
-      "titleLines": ["FORM", "FUNKSIYONÊ", "DÎŞÎDE."],
+      "titleLines": [
+        "FORM",
+        "FUNKSIYONÊ",
+        "DÎŞÎDE."
+      ],
       "paragraphs": [
         "Ekipmana otomotivê divê bi tufeh heye bihesibîtin.",
         "Her detay armanekî heye. Ji şekla komeponentê heta vegela wî bi riyê têkildar dibe, nêzîrkirina me li ser serrastî, sadebûn û arman avahî ye.",
@@ -85,7 +113,11 @@
       "caption": "BI ARMAN SÊKIRÎ"
     },
     "closing": {
-      "titleLines": ["MÎHÊNDÎ", "BÎ", "EKMAN."],
+      "titleLines": [
+        "MÎHÊNDÎ",
+        "BÎ",
+        "EKMAN."
+      ],
       "body": "Eku ji bo kesên ku ereka xwe wekî naşverê bihînin me dibe. Her komponent mirove ye ku riya bihate bihasibandin.",
       "brand": "RONAS CORDUENE",
       "established": "DENG. —"
@@ -99,7 +131,10 @@
     },
     "hero": {
       "label": "JI BO RÎYÊ SÊKIRÎ",
-      "titleLines": ["BIA", "AXAFTIN."],
+      "titleLines": [
+        "BIA",
+        "AXAFTIN."
+      ],
       "body": "Projeyek di hişê we heye, zêde agahî di derbar ekmana me bixwazin, yan jî tenê bixwazin ku têkili bikin? Peyvê bişînin."
     },
     "info": {
@@ -123,247 +158,246 @@
     },
     "closing": {
       "brand": "RONAS CORDUENE",
-      "titleLines": ["JI BO RÊ", "HATÎYE."],
+      "titleLines": [
+        "JI BO RÊ",
+        "HATÎYE."
+      ],
       "label": "EKÎPMANA OTOMOTÎVÊ"
     }
   },
   "store": {
-     "eyebrow": "AMÛRÊN OTOMOTÎVÊ",
-     "title": "JI BO FIT BÛYE.",
-     "description": "Katalogê Ronas keşf bikin. Parçeyên ji bo herikîna hewayê, kontrola ajokar û performansa aerodînamîkê hatine çêkirin.",
-
-     "catalog": "KATALOG",
-     "categories": "KATEGORÎ",
-     "products": "BERHEM",
-     "product": "BERHEM",
-     "search": "LÊGERÎN",
-     "searchPlaceholder": "Di katalogê de bigere...",
-     "reset": "RESET",
-     "clear": "PAQIJ KIRIN",
-     "close": "GIRTIN",
-     "openCategories": "KATEGORIYAN VEKE",
-
-     "allProducts": "HEMÛ BERHEM",
-
-     "families": {
-       "airflow-dynamics": "DÎNAMÎKÊN HERIKÎNA HEWAYÊ",
-       "driver-interface": "RÛYÊ SIVARÊ",
-       "structural-aero": "AERODÎNAMÎKA AVAHÎ"
-     },
-
-     "subcategories": {
-       "intake-manifolds": "MANÎFOLDÊN HILGIRTINA HEWAYÊ",
-       "cold-air-intakes": "HILGIRTINA HEWAYA SAR",
-       "carbon-airboxes": "QUTIYÊN HEWAYÊN KARBONÊ",
-       "air-intake-piping": "BORIYÊN HILGIRTINA HEWAYÊ",
-       "exhaust-manifolds": "MANÎFOLDÊN DERXISTINA GAZÊ",
-       "brake-cooling-ducts": "KANALÊN SAR-KIRINA FRENA",
-
-       "carbon-fiber-steering-wheels": "DOLABÊN KARBON FIBER",
-       "racing-seats": "CIHÊN RACE / PERFORMANSÊ",
-       "shift-knobs": "TOPIKÊN GEARÊ",
-       "carbon-fiber-interior-trims": "DETAYÊN NAVXWEYÊ KARBON FIBER",
-
-       "carbon-fiber-hoods": "KAPOTÊN KARBON FIBER",
-       "trunks-tailgates": "DERÎYÊN BAGAJÊ",
-       "lightweight-doors": "DERÎYÊN SIVIK",
-       "spoilers-wings": "SPOILER Û BALAFIR"
-     },
-
-     "filters": {
-       "material": "MATERYAL",
-       "construction": "AVAKIRIN",
-       "finish": "RÛMET",
-       "all": "HEMÛ"
-     },
-
-     "materials": {
-       "carbon-fiber": "KARBON FIBER",
-       "aluminum": "ALUMÎNYÛM",
-       "stainless-steel": "POLA BÊ ZENG"
-     },
-
-     "constructions": {
-       "dry-carbon": "DRY CARBON",
-       "high-flow": "HERIKÎNA BILIND",
-       "cast": "DOKIM",
-       "mandrel-bent": "MANDREL BENT",
-       "tubular": "BORÎ",
-       "forged-carbon": "FORGED CARBON",
-       "monocoque": "MONOKOK",
-       "machined": "MEKANÎZE",
-       "pre-preg": "PRE-PREG"
-     },
-
-     "finishes": {
-       "matte": "MAT",
-       "satin": "SATEN",
-       "polished": "POLÎŞ",
-       "brushed": "FIRÇE",
-       "gloss": "PARLAK"
-     },
-
-     "productsData": {
-       "carbon-airbox": {
-         "name": "QUTIYA HEWAYA KARBON",
-         "description": "Qutiyek karbonê ya herikîna bilind ji bo kontrolkirina germahiya hewaya hundir."
-       },
-       "cold-air-intake": {
-         "name": "HILGIRTINA HEWAYA SAR",
-         "description": "Pergalek hilgirtina hewayê ya herikîna bilind ji bo baştirkirina herikîna hewayê."
-       },
-       "intake-manifold": {
-         "name": "MANÎFOLDÊ HILGIRTINA HEWAYÊ",
-         "description": "Manîfoldek bi rastî hatiye sêwirandin ji bo herikîna hawayê ya bi bandor."
-       },
-       "intake-piping": {
-         "name": "BORIYA HILGIRTINA HEWAYÊ",
-         "description": "Boriya hilgirtina hewayê ya mandrel ji bo herikîna bê asteng."
-       },
-       "exhaust-manifold": {
-         "name": "MANÎFOLDÊ DERXISTINA GAZÊ",
-         "description": "Manîfoldek performansê ji bo herikîna gazê ya bi bandor."
-       },
-       "brake-cooling-duct": {
-         "name": "KANALA SAR-KIRINA FRENA",
-         "description": "Pergala kanalê ji bo rêkirina hewaya sar ber bi frenan."
-       },
-       "carbon-steering-wheel": {
-         "name": "DOLABA KARBON",
-         "description": "Dolabek karbon fiber ji bo paşvegera rasterast a ajokar."
-       },
-       "racing-seat": {
-         "name": "CIHÊ RACE",
-         "description": "Cihê performansê ya sivik ji bo piştgiriya ajokar."
-       },
-       "shift-knob": {
-         "name": "TOPIKA GEARÊ",
-         "description": "Topikek alumînyûmê ya mekanîze bi hesteke mekanîkî."
-       },
-       "carbon-interior-trim": {
-         "name": "TRIMA NAVXWEYÊ KARBON",
-         "description": "Trimê karbon fiber ji bo kokpîtê sivik û teknîk."
-       },
-       "carbon-hood": {
-         "name": "KAPOTA KARBON",
-         "description": "Kapotek karbon fiber ya sivik ji bo kêmkirina giraniyê."
-       },
-       "lightweight-tailgate": {
-         "name": "DERÎYA BAGAJÊ YA SIVIK",
-         "description": "Derîyek karbon fiber ji bo kêmkirina giraniya paşê."
-       },
-       "lightweight-door": {
-         "name": "DERÎYA SIVIK",
-         "description": "Derîyek avahî ya sivik ji bo kêmkirina giraniyê."
-       },
-       "rear-wing": {
-         "name": "BALAFIRA PAŞ",
-         "description": "Balafirek aerodînamîk a karbon fiber ji bo stabîlîtiya bilez."
-       }
-     },
-
-     "empty": {
-       "title": "BERHEM NEHAT DÎTIN",
-       "description": "Kategoriyek din biceribînin an jî filtreyan biguherînin."
-     }
-   },
-    "terms": {
-      "WHEELS": "FÎRSE",
-      "EXTERIOR": "DERVE",
-      "PERFORMANCE": "PERFORMANS",
-      "ACCESSORIES": "ZÛRNEY",
-      "FORGED ALUMINUM": "DURISTKIRÎ YA ALUMINYUMÊ",
-      "CAST ALUMINUM": "HILBERKIRÎ YA ALUMINYUMÊ",
-      "FLOW FORMED": "FORMÊ REWÊ",
-      "CARBON FIBER": "ELYAFA KARBONÊ",
-      "ALUMINUM": "ALUMINYUM",
-      "STAINLESS STEEL": "ÇELÎKA BÊKOR",
-      "STEEL": "ÇELÎK",
-      "FORGED": "DURISTKIRÎ",
-      "CAST": "HILBERKIRÎ",
-      "BRUSHED SILVER": "FIRÇEKIRÎ YA ZÎNCÊ",
-      "SATIN BLACK": "REŞÊ SATENÊ",
-      "GUNMETAL": "REŞÎ YA METALÎ",
-      "GRAPHITE": "GRAFÎT",
-      "MATTE BLACK": "REŞÊ MATÊ",
-      "BRUSHED TITANIUM": "FIRÇEKIRÎ YA TÎTANYUMÊ",
-      "STREET": "ŞUARÊ",
-      "TRACK": "PÎST",
-      "GT": "GT",
-      "FRONT AERO": "AERO YA PÊŞÎ",
-      "SIDE AERO": "AERO YA ALÎ",
-      "REAR AERO": "AERO YA PAŞÎ",
-      "INTAKE": "KIRINA HEWAYÊ",
-      "EXHAUST": "DERVEDAN",
-      "CHASSIS": "ŞASÎ",
-      "WHEEL ACCESSORY": "ZÛRNEYÊN FÎRSÊN",
-      "WHEEL HARDWARE": "BAJARNOKÊN FÎRSÊN"
+    "eyebrow": "AMÛRÊN OTOMOTÎVÊ",
+    "title": "JI BO FIT BÛYE.",
+    "description": "Katalogê Ronas keşf bikin. Parçeyên ji bo herikîna hewayê, kontrola ajokar û performansa aerodînamîkê hatine çêkirin.",
+    "catalog": "KATALOG",
+    "categories": "KATEGORÎ",
+    "products": "BERHEM",
+    "product": "BERHEM",
+    "search": "LÊGERÎN",
+    "searchPlaceholder": "Di katalogê de bigere...",
+    "reset": "RESET",
+    "clear": "PAQIJ KIRIN",
+    "close": "GIRTIN",
+    "openCategories": "KATEGORIYAN VEKE",
+    "allProducts": "HEMÛ BERHEM",
+    "families": {
+      "airflow-dynamics": "DÎNAMÎKÊN HERIKÎNA HEWAYÊ",
+      "driver-interface": "RÛYÊ SIVARÊ",
+      "structural-aero": "AERODÎNAMÎKA AVAHÎ"
     },
-    "items": {
-      "ronas-r01": {
-        "name": "R01 FORGED",
-        "description": "Firsa duristkirî ya sivik, ji bo kargotinên performansa bilind sêkirî."
+    "subcategories": {
+      "intake-manifolds": "MANÎFOLDÊN HILGIRTINA HEWAYÊ",
+      "cold-air-intakes": "HILGIRTINA HEWAYA SAR",
+      "carbon-airboxes": "QUTIYÊN HEWAYÊN KARBONÊ",
+      "air-intake-piping": "BORIYÊN HILGIRTINA HEWAYÊ",
+      "exhaust-manifolds": "MANÎFOLDÊN DERXISTINA GAZÊ",
+      "headlight-intakes": "DERZIYA HEWAYÊ YA FARÊ",
+      "brake-cooling-ducts": "KANALÊN SAR-KIRINA FRENA",
+      "carbon-fiber-steering-wheels": "DOLABÊN KARBON FIBER",
+      "racing-seats": "CIHÊN RACE / PERFORMANSÊ",
+      "shift-knobs": "TOPIKÊN GEARÊ",
+      "carbon-fiber-interior-trims": "DETAYÊN NAVXWEYÊ KARBON FIBER",
+      "carbon-fiber-hoods": "KAPOTÊN KARBON FIBER",
+      "trunks-tailgates": "DERÎYÊN BAGAJÊ",
+      "lightweight-doors": "DERÎYÊN SIVIK",
+      "spoilers-wings": "SPOILER Û BALAFIR"
+    },
+    "filters": {
+      "material": "MATERYAL",
+      "construction": "AVAKIRIN",
+      "finish": "RÛMET",
+      "all": "HEMÛ"
+    },
+    "materials": {
+      "carbon-fiber": "KARBON FIBER",
+      "aluminum": "ALUMÎNYÛM",
+      "stainless-steel": "POLA BÊ ZENG"
+    },
+    "constructions": {
+      "dry-carbon": "DRY CARBON",
+      "high-flow": "HERIKÎNA BILIND",
+      "cast": "DOKIM",
+      "mandrel-bent": "MANDREL BENT",
+      "tubular": "BORÎ",
+      "forged-carbon": "FORGED CARBON",
+      "monocoque": "MONOKOK",
+      "machined": "MEKANÎZE",
+      "pre-preg": "PRE-PREG"
+    },
+    "finishes": {
+      "matte": "MAT",
+      "satin": "SATEN",
+      "polished": "POLÎŞ",
+      "brushed": "FIRÇE",
+      "gloss": "PARLAK"
+    },
+    "productsData": {
+      "carbon-airbox": {
+        "name": "QUTIYA HEWAYA KARBON",
+        "description": "Qutiyek karbonê ya herikîna bilind ji bo kontrolkirina germahiya hewaya hundir."
       },
-      "ronas-r02": {
-        "name": "R02 FIVE-SPOKE",
-        "description": "Dîzanek pir-kolî ya sivik, li ser reh û hevedudanî veqetkirî ye."
+      "cold-air-intake": {
+        "name": "HILGIRTINA HEWAYA SAR",
+        "description": "Pergalek hilgirtina hewayê ya herikîna bilind ji bo baştirkirina herikîna hewayê."
       },
-      "ronas-r03": {
-        "name": "R03 TRACK",
-        "description": "Firsa duristkirî ya pîst-îlhamgir, bi kêmkirina girêngira neçûyan sêkirî."
+      "intake-manifold": {
+        "name": "MANÎFOLDÊ HILGIRTINA HEWAYÊ",
+        "description": "Manîfoldek bi rastî hatiye sêwirandin ji bo herikîna hawayê ya bi bandor."
       },
-      "ronas-r04": {
-        "name": "R04 FLOW FORMED",
-        "description": "Avahîsa formê rewê, reh û karbidestiya kevnar tê bihandin."
+      "intake-piping": {
+        "name": "BORIYA HILGIRTINA HEWAYÊ",
+        "description": "Boriya hilgirtina hewayê ya mandrel ji bo herikîna bê asteng."
       },
-      "ronas-r05": {
-        "name": "R05 STREET",
-        "description": "Geometriya pênc-kolî ya paş, ji bo kargotinên şuara niha sêkirî."
+      "exhaust-manifold": {
+        "name": "MANÎFOLDÊ DERXISTINA GAZÊ",
+        "description": "Manîfoldek performansê ji bo herikîna gazê ya bi bandor."
       },
-      "ronas-r06": {
-        "name": "R06 GT",
-        "description": "Dîzanek serdana mezin, xuyê erekê û performansê tê terazîkirin."
+      "brake-cooling-duct": {
+        "name": "KANALA SAR-KIRINA FRENA",
+        "description": "Pergala kanalê ji bo rêkirina hewaya sar ber bi frenan."
       },
-      "ronas-front-splitter": {
-        "name": "SPLÎTTERÊ PÊŞÎ",
-        "description": "Splîtterê funksiyonal ê pêşî, ji bo zêdekirina tîniya profîlê pêşî sêkirî."
+      "headlight-intake": {
+        "name": "DERZIYA HEWAYÊ YA FARÊ",
+        "description": "Derziyek hewayê ya karbonê ku ji bo dabînkirina herikîna hewayê ya kontrolkirî bo beşa motorê û xurtkirina karaktera tund a erebeyê hatiye sêwirandin."
       },
-      "ronas-side-skirts": {
-        "name": "JÎNEYÊN ALÎ",
-        "description": "Jîneyên alî yê profîlê nîzîk, ji bo kêmkirina bilindiya erekê sêkirî."
+      "carbon-steering-wheel": {
+        "name": "DOLABA KARBON",
+        "description": "Dolabek karbon fiber ji bo paşvegera rasterast a ajokar."
       },
-      "ronas-rear-diffuser": {
-        "name": "DÎFÛZORÊ PAŞÎ",
-        "description": "Dîfûzorerê aerodînamîkî yê paşî, bi profîla îlhamgirt a bişûrveyê."
+      "racing-seat": {
+        "name": "CIHÊ RACE",
+        "description": "Cihê performansê ya sivik ji bo piştgiriya ajokar."
       },
-      "ronas-gt-spoiler": {
-        "name": "GT SPOÎLER",
-        "description": "Spoîlerekî paşî yê bişilekirî, ji bo zêdekirina xuyê bê zêde sêkirî."
+      "shift-knob": {
+        "name": "TOPIKA GEARÊ",
+        "description": "Topikek alumînyûmê ya mekanîze bi hesteke mekanîkî."
       },
-      "ronas-performance-intake": {
-        "name": "KIRINA PERFORMANSÊ",
-        "description": "Sîstema kirinê ya debirê bilind, ji ser baştirbûna rewaya hewayê sêkirî."
+      "carbon-interior-trim": {
+        "name": "TRIMA NAVXWEYÊ KARBON",
+        "description": "Trimê karbon fiber ji bo kokpîtê sivik û teknîk."
       },
-      "ronas-gt-exhaust": {
-        "name": "GT DERVEDAN",
-        "description": "Sîstema dervisedanê ya performansê, bo debir, girêngir û karakterê tê sêkirin."
+      "carbon-hood": {
+        "name": "KAPOTA KARBON",
+        "description": "Kapotek karbon fiber ya sivik ji bo kêmkirina giraniyê."
       },
-      "ronas-strut-brace": {
-        "name": "STRUT BRACE",
-        "description": "Bêrnakîna şasîyê, sêkirin e bo baştirkirina zîlgirî û vegirtinê."
+      "lightweight-tailgate": {
+        "name": "DERÎYA BAGAJÊ YA SIVIK",
+        "description": "Derîyek karbon fiber ji bo kêmkirina giraniya paşê."
       },
-      "ronas-valve-caps": {
-        "name": "SERÊKÊN VALFÊ",
-        "description": "Serêkên valfê ya aluminyumê ya makînkirî, bi îmaya Ronas re."
+      "lightweight-door": {
+        "name": "DERÎYA SIVIK",
+        "description": "Derîyek avahî ya sivik ji bo kêmkirina giraniyê."
       },
-      "ronas-wheel-bolts": {
-        "name": "BAJARÊN FÎRSÊN",
-        "description": "Bajarokên fîrsê yên makînkirî bi tîna bilind, ji bo firsên Ronas hatine çêkirin."
+      "rear-wing": {
+        "name": "BALAFIRA PAŞ",
+        "description": "Balafirek aerodînamîk a karbon fiber ji bo stabîlîtiya bilez."
       }
     },
+    "empty": {
+      "title": "BERHEM NEHAT DÎTIN",
+      "description": "Kategoriyek din biceribînin an jî filtreyan biguherînin."
+    }
+  },
+  "terms": {
+    "WHEELS": "FÎRSE",
+    "EXTERIOR": "DERVE",
+    "PERFORMANCE": "PERFORMANS",
+    "ACCESSORIES": "ZÛRNEY",
+    "FORGED ALUMINUM": "DURISTKIRÎ YA ALUMINYUMÊ",
+    "CAST ALUMINUM": "HILBERKIRÎ YA ALUMINYUMÊ",
+    "FLOW FORMED": "FORMÊ REWÊ",
+    "CARBON FIBER": "ELYAFA KARBONÊ",
+    "ALUMINUM": "ALUMINYUM",
+    "STAINLESS STEEL": "ÇELÎKA BÊKOR",
+    "STEEL": "ÇELÎK",
+    "FORGED": "DURISTKIRÎ",
+    "CAST": "HILBERKIRÎ",
+    "BRUSHED SILVER": "FIRÇEKIRÎ YA ZÎNCÊ",
+    "SATIN BLACK": "REŞÊ SATENÊ",
+    "GUNMETAL": "REŞÎ YA METALÎ",
+    "GRAPHITE": "GRAFÎT",
+    "MATTE BLACK": "REŞÊ MATÊ",
+    "BRUSHED TITANIUM": "FIRÇEKIRÎ YA TÎTANYUMÊ",
+    "STREET": "ŞUARÊ",
+    "TRACK": "PÎST",
+    "GT": "GT",
+    "FRONT AERO": "AERO YA PÊŞÎ",
+    "SIDE AERO": "AERO YA ALÎ",
+    "REAR AERO": "AERO YA PAŞÎ",
+    "INTAKE": "KIRINA HEWAYÊ",
+    "EXHAUST": "DERVEDAN",
+    "CHASSIS": "ŞASÎ",
+    "WHEEL ACCESSORY": "ZÛRNEYÊN FÎRSÊN",
+    "WHEEL HARDWARE": "BAJARNOKÊN FÎRSÊN"
+  },
+  "items": {
+    "ronas-r01": {
+      "name": "R01 FORGED",
+      "description": "Firsa duristkirî ya sivik, ji bo kargotinên performansa bilind sêkirî."
+    },
+    "ronas-r02": {
+      "name": "R02 FIVE-SPOKE",
+      "description": "Dîzanek pir-kolî ya sivik, li ser reh û hevedudanî veqetkirî ye."
+    },
+    "ronas-r03": {
+      "name": "R03 TRACK",
+      "description": "Firsa duristkirî ya pîst-îlhamgir, bi kêmkirina girêngira neçûyan sêkirî."
+    },
+    "ronas-r04": {
+      "name": "R04 FLOW FORMED",
+      "description": "Avahîsa formê rewê, reh û karbidestiya kevnar tê bihandin."
+    },
+    "ronas-r05": {
+      "name": "R05 STREET",
+      "description": "Geometriya pênc-kolî ya paş, ji bo kargotinên şuara niha sêkirî."
+    },
+    "ronas-r06": {
+      "name": "R06 GT",
+      "description": "Dîzanek serdana mezin, xuyê erekê û performansê tê terazîkirin."
+    },
+    "ronas-front-splitter": {
+      "name": "SPLÎTTERÊ PÊŞÎ",
+      "description": "Splîtterê funksiyonal ê pêşî, ji bo zêdekirina tîniya profîlê pêşî sêkirî."
+    },
+    "ronas-side-skirts": {
+      "name": "JÎNEYÊN ALÎ",
+      "description": "Jîneyên alî yê profîlê nîzîk, ji bo kêmkirina bilindiya erekê sêkirî."
+    },
+    "ronas-rear-diffuser": {
+      "name": "DÎFÛZORÊ PAŞÎ",
+      "description": "Dîfûzorerê aerodînamîkî yê paşî, bi profîla îlhamgirt a bişûrveyê."
+    },
+    "ronas-gt-spoiler": {
+      "name": "GT SPOÎLER",
+      "description": "Spoîlerekî paşî yê bişilekirî, ji bo zêdekirina xuyê bê zêde sêkirî."
+    },
+    "ronas-performance-intake": {
+      "name": "KIRINA PERFORMANSÊ",
+      "description": "Sîstema kirinê ya debirê bilind, ji ser baştirbûna rewaya hewayê sêkirî."
+    },
+    "ronas-gt-exhaust": {
+      "name": "GT DERVEDAN",
+      "description": "Sîstema dervisedanê ya performansê, bo debir, girêngir û karakterê tê sêkirin."
+    },
+    "ronas-strut-brace": {
+      "name": "STRUT BRACE",
+      "description": "Bêrnakîna şasîyê, sêkirin e bo baştirkirina zîlgirî û vegirtinê."
+    },
+    "ronas-valve-caps": {
+      "name": "SERÊKÊN VALFÊ",
+      "description": "Serêkên valfê ya aluminyumê ya makînkirî, bi îmaya Ronas re."
+    },
+    "ronas-wheel-bolts": {
+      "name": "BAJARÊN FÎRSÊN",
+      "description": "Bajarokên fîrsê yên makînkirî bi tîna bilind, ji bo firsên Ronas hatine çêkirin."
+    }
+  },
   "footer": {
     "brand": "RONAS / CORDUENE",
-    "titleLines": ["FERR", "ÇÊKIRIN."],
+    "titleLines": [
+      "FERR",
+      "ÇÊKIRIN."
+    ],
     "middle": "RONAS",
     "copyright": "© {year} RONAS CORDUENE",
     "label": "EKÎPMANA OTOMOTÎVÊ",

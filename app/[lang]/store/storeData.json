@@ -67,12 +67,24 @@
   },
 
   {
+    "id": "air-007",
+    "name": "headlight-intake",
+    "family": "airflow-dynamics",
+    "category": "headlight-intakes",
+    "description": "headlight-description",
+    "image": "/assets/headlightintake.jpg",
+    "material": "carbon-fiber",
+    "construction": "high-flow",
+    "finish": "matte"
+  },
+
+  {
     "id": "driver-001",
     "name": "carbon-steering-wheel",
     "family": "driver-interface",
     "category": "carbon-fiber-steering-wheels",
     "description": "carbon-steering-wheel-description",
-    "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/carbonfibersteering.jpg",
     "material": "carbon-fiber",
     "construction": "forged-carbon",
     "finish": "matte"
@@ -83,7 +95,7 @@
     "family": "driver-interface",
     "category": "racing-seats",
     "description": "racing-seat-description",
-    "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/racingseat.jpg",
     "material": "carbon-fiber",
     "construction": "monocoque",
     "finish": "matte"
@@ -94,7 +106,7 @@
     "family": "driver-interface",
     "category": "shift-knobs",
     "description": "shift-knob-description",
-    "image": "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/shiftknobs.jpg",
     "material": "aluminum",
     "construction": "machined",
     "finish": "brushed"
@@ -105,7 +117,7 @@
     "family": "driver-interface",
     "category": "carbon-fiber-interior-trims",
     "description": "carbon-interior-trim-description",
-    "image": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/interiortrims.jpg",
     "material": "carbon-fiber",
     "construction": "pre-preg",
     "finish": "gloss"
@@ -117,7 +129,7 @@
     "family": "structural-aero",
     "category": "carbon-fiber-hoods",
     "description": "carbon-hood-description",
-    "image": "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/carbonfiberhood.jpg",
     "material": "carbon-fiber",
     "construction": "pre-preg",
     "finish": "gloss"
@@ -128,7 +140,7 @@
     "family": "structural-aero",
     "category": "trunks-tailgates",
     "description": "lightweight-tailgate-description",
-    "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/carbonfibertrunks.jpg",
     "material": "carbon-fiber",
     "construction": "pre-preg",
     "finish": "matte"
@@ -139,7 +151,7 @@
     "family": "structural-aero",
     "category": "lightweight-doors",
     "description": "lightweight-door-description",
-    "image": "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/lightweightdoor.jpg",
     "material": "carbon-fiber",
     "construction": "monocoque",
     "finish": "matte"
@@ -150,7 +162,7 @@
     "family": "structural-aero",
     "category": "spoilers-wings",
     "description": "rear-wing-description",
-    "image": "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1600&q=85",
+    "image": "/assets/spoilerwings.jpg",
     "material": "carbon-fiber",
     "construction": "pre-preg",
     "finish": "gloss"
