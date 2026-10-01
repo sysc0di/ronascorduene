@@ -18,6 +18,11 @@ export type Dictionary = (typeof dictionaries)["en"];
 export { hasLocale };
 export type { Locale };
 
+/** The `[lang]` param is optional while generating, hence the fallback. */
+async function currentLocale(): Promise<string> {
+  return (await lang()) ?? "en";
+}
+
 /** Explicit-locale lookup, for callers that already hold `lang`. */
 export function getDictionaryFor(locale: string): Dictionary {
   if (!hasLocale(locale)) {
@@ -38,9 +43,9 @@ export function getLocaleFor(locale: string): Locale {
 
 /** Resolves the locale from the `[lang]` route segment. */
 export async function getDictionary(): Promise<Dictionary> {
-  return getDictionaryFor(await lang());
+  return getDictionaryFor(await currentLocale());
 }
 
 export async function getLocale(): Promise<Locale> {
-  return getLocaleFor(await lang());
+  return getLocaleFor(await currentLocale());
 }

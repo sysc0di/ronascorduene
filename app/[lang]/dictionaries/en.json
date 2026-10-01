@@ -11,7 +11,8 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "language": "Language",
-    "primaryNavigation": "Primary navigation"
+    "primaryNavigation": "Primary navigation",
+    "list": "List"
   },
   "sidebar": {
     "tagline": "Automotive equipment engineered for the road.",
@@ -296,7 +297,10 @@
     "empty": {
       "title": "NO PRODUCTS FOUND",
       "description": "Try another category or adjust the selected filters."
-    }
+    },
+    "addToList": "ADD TO LIST",
+    "addedToList": "ADDED",
+    "goToList": "GO TO LIST"
   },
   "footer": {
     "brand": "RONAS / CORDUENE",
@@ -308,5 +312,38 @@
     "copyright": "© {year} RONAS CORDUENE",
     "label": "AUTOMOTIVE EQUIPMENT",
     "rights": "ALL RIGHTS RESERVED"
+  },
+  "list": {
+    "label": "YOUR LIST",
+    "title": "SEND YOUR LIST.",
+    "description": "Add the parts you are interested in, leave your contact details and send the list to us. We will get back to you to confirm availability, fitment and delivery.",
+    "meta": "PRODUCT LIST",
+    "empty": {
+      "title": "YOUR LIST IS EMPTY",
+      "description": "Browse the catalog and add the products you are interested in."
+    },
+    "items": "PRODUCTS",
+    "quantity": "QUANTITY",
+    "increase": "Increase quantity",
+    "decrease": "Decrease quantity",
+    "remove": "REMOVE",
+    "clear": "CLEAR LIST",
+    "total": "TOTAL",
+    "removed": "This product is no longer in the catalog.",
+    "details": "CONTACT DETAILS",
+    "detailsDescription": "These fields are required so we can process your request.",
+    "firstName": "FIRST NAME",
+    "lastName": "LAST NAME",
+    "email": "EMAIL",
+    "phone": "PHONE",
+    "notes": "NOTES",
+    "notesPlaceholder": "Extra details, vehicle model, preferred delivery time...",
+    "submit": "SEND LIST",
+    "sending": "SENDING...",
+    "backToStore": "BACK TO CATALOG",
+    "success": {
+      "title": "LIST SENT.",
+      "description": "Thank you. We received your list and will contact you to confirm the details."
+    }
   }
 }

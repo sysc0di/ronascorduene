@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -10,11 +9,6 @@ import "./ProductSections.css";
 
 type ProductsDict = Dictionary["home"]["products"];
 
-const images = [
-  "/assets/wheel.jpg",
-  "/assets/exterior.jpg",
-  "/assets/performance.jpg",
-];
 
 export default function ProductSections({
   dict,
@@ -23,7 +17,6 @@ export default function ProductSections({
 }) {
   return (
     <section className="products">
-
       <div className="products-header">
         <span>{dict.brand}</span>
         <span>{dict.label}</span>
@@ -40,7 +33,6 @@ export default function ProductSections({
           />
         ))}
       </div>
-
     </section>
   );
 }
@@ -59,7 +51,13 @@ function ProductItem({
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
-  const isRight = index % 2 === 0;
+  /*
+   * 0 = LEFT
+   * 1 = RIGHT
+   * 2 = LEFT
+   * 3 = RIGHT
+   */
+  const isRight = index % 2 !== 0;
 
   useEffect(() => {
     const element = ref.current;
@@ -94,7 +92,6 @@ function ProductItem({
       `}
     >
       <div className="product-top">
-
         <div className="product-meta">
           <span>{number}</span>
           <span>{meta}</span>
@@ -103,18 +100,14 @@ function ProductItem({
         <div className="product-line">
           <span />
         </div>
-
       </div>
 
       <div className="product-content">
-
         <div className="product-title">
           <h2>{product.title}</h2>
 
           <p>{product.subtitle}</p>
         </div>
-
-
       </div>
     </div>
   );

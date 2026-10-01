@@ -14,6 +14,7 @@ const links = [
   { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },
   { key: "store", href: "/store" },
+  { key: "list", href: "/list" },
 ] as const;
 
 export function Navbar({

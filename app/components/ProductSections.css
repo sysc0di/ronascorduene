@@ -1,4 +1,3 @@
-
 .products {
   position: relative;
   width: 100%;
@@ -10,6 +9,10 @@
 
   overflow: hidden;
 }
+
+/* -------------------------------- */
+/* HEADER */
+/* -------------------------------- */
 
 .products-header {
   width: min(1400px, 100%);
@@ -25,15 +28,23 @@
   text-transform: uppercase;
 }
 
+/* -------------------------------- */
+/* LIST */
+/* -------------------------------- */
+
 .products-list {
-    display: flex;
-    flex-direction: column;
-    gap: 120px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 120px;
+
   width: min(1400px, 100%);
   margin: 0 auto;
 
-  /* The wordmarks are sized against this row, not the viewport,
-     so they never overflow on narrow screens */
+  /*
+   * Wordmarks are sized relative to this container,
+   * not the viewport.
+   */
   container-type: inline-size;
 }
 
@@ -43,6 +54,8 @@
 
 .product-item {
   position: relative;
+
+  width: 100%;
 
   padding: 24px 0 30px;
 
@@ -93,13 +106,14 @@
 .product-content {
   position: relative;
 
-  /* Clears the meta rule above, the wordmark is the first thing in here */
   margin-top: 34px;
 
   min-height: 160px;
 
   display: flex;
   align-items: center;
+
+  width: 100%;
 }
 
 /* -------------------------------- */
@@ -111,13 +125,10 @@
 
   z-index: 4;
 
-  /* Wordmark and subtitle are aligned to the outer edge on their own, so
-     both stay flush to it no matter which of the two is the wider one.
-     A shrink-to-fit block plus text-align could not do that: the widest
-     child set the box width, and the other one then sat at that box edge
-     with its own tracking gap still attached. */
   display: flex;
   flex-direction: column;
+
+  max-width: 100%;
 
   transition: transform 500ms ease;
 }
@@ -127,28 +138,28 @@
 
   color: #a6a6a6;
 
-  /* 9.5cqw keeps the longest word (PERFORMANCE) clear of the
-     preview image, whatever the viewport is */
+  /*
+   * Responsive wordmark.
+   * It scales according to the product-list width.
+   */
   font-size: clamp(1.5rem, 9.5cqw, 8.5rem);
 
   font-weight: 700;
 
-  /* The longer locales wrap this to two lines, so the leading has to
-     clear the diacritics (Î, Ê, Û, Ç) rather than stay wordmark-tight */
   line-height: 1.15;
 
-  /* Tracking also lands after the last glyph, so a run is one step wider
-     than the ink it paints. The right variant cancels that step on its
-     trailing edge; the left one already starts flush. */
   letter-spacing: -0.065em;
+
+  max-width: 100%;
+
+  overflow-wrap: normal;
+  word-break: normal;
 
   transition:
     color 300ms ease,
     scale 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-/* The wordmark still nearly fills its own line box, so the gap below it
-   reads a touch tighter than the value suggests */
 .product-title p {
   margin: 18px 0 0;
 
@@ -167,12 +178,12 @@
 
 .product-right .product-title {
   margin-left: auto;
+  margin-right: 0;
 
   align-items: flex-end;
-}
 
-/* Without this the final glyph stops one tracking step short of the row
-   edge, so right-hand wordmarks read as inset compared to left-hand ones. */
+  text-align: right;
+}
 
 .product-right .product-title h2 {
   margin-right: -0.065em;
@@ -187,9 +198,12 @@
 /* -------------------------------- */
 
 .product-left .product-title {
+  margin-left: 0;
   margin-right: auto;
 
   align-items: flex-start;
+
+  text-align: left;
 }
 
 /* -------------------------------- */
@@ -219,34 +233,29 @@
     transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/*
-   Right title → image left
-*/
+.product-preview img {
+  object-fit: cover;
+}
 
-.product-right {
+/*
+ * Right title → image left
+ */
+
+.product-right .product-preview {
   left: 3%;
 }
 
 /*
-   Left title → image right
-*/
+ * Left title → image right
+ */
 
 .product-left .product-preview {
   right: 3%;
 }
 
 /* -------------------------------- */
-/* IMAGE */
-/* -------------------------------- */
-
-
-/* -------------------------------- */
 /* REVEAL */
 /* -------------------------------- */
-
-/* Everything is visible by default and the hidden start state lives
-   inside the keyframes, so the copy is readable with no JS at all.
-   The observer only adds the class that plays the animation. */
 
 .product-visible .product-meta {
   animation:
@@ -280,6 +289,10 @@
     200ms
     both;
 }
+
+/* -------------------------------- */
+/* ANIMATIONS */
+/* -------------------------------- */
 
 @keyframes productMetaIn {
   from {
@@ -315,10 +328,6 @@
 .is-hovered .product-title h2 {
   color: #fff;
 
-  /* The independent `scale` property, not `transform`: the reveal
-     keyframes below hold a transform with fill-mode both, and an
-     animation outranks a plain declaration, so a transform here would
-     be dropped the moment the wordmark finished animating in. */
   scale: 1.05;
 }
 
@@ -326,11 +335,9 @@
   background: #fff;
 }
 
-
-
-
-
-/* Slight movement toward the center */
+/* -------------------------------- */
+/* HOVER MOVEMENT */
+/* -------------------------------- */
 
 .product-right.is-hovered .product-title {
   transform: translateX(-8px);
@@ -340,12 +347,27 @@
   transform: translateX(8px);
 }
 
+/* -------------------------------- */
+/* IMAGE HOVER */
+/* -------------------------------- */
+
+.product-right.is-hovered .product-preview,
+.product-left.is-hovered .product-preview {
+  opacity: 1;
+
+  transform:
+    translateY(-50%)
+    scale(1);
+}
+
+/* -------------------------------- */
+/* FALLBACK */
+/* -------------------------------- */
 
 @supports not (container-type: inline-size) {
   .product-title h2 {
     font-size: clamp(1.5rem, 8.5vw, 6.5rem);
   }
-
 }
 
 /* -------------------------------- */
@@ -361,8 +383,9 @@
     gap: 100px;
   }
 
-
-
+  .product-title h2 {
+    font-size: clamp(1.5rem, 9cqw, 7rem);
+  }
 }
 
 /* -------------------------------- */
@@ -382,6 +405,14 @@
     min-height: 140px;
   }
 
+  .product-title h2 {
+    font-size: clamp(1.5rem, 10cqw, 6rem);
+  }
+
+  .product-preview {
+    width: min(360px, 35cqw);
+    height: min(240px, 25cqw);
+  }
 }
 
 /* -------------------------------- */
@@ -389,41 +420,219 @@
 /* -------------------------------- */
 
 @media (max-width: 600px) {
+  /*
+   * IMPORTANT:
+   * Equal left/right spacing.
+   * No extra padding on product-item.
+   */
+  .products {
+    padding: 70px 24px 90px;
+  }
+
   .products-header {
+    width: 100%;
+
     flex-direction: column;
+
     gap: 8px;
+
+    margin-bottom: 34px;
   }
 
   .products-list {
+    width: 100%;
+
     gap: 72px;
   }
 
   .product-item {
+    width: 100%;
+
     padding: 20px 0 24px;
-     padding-right: 12px;
+  }
+
+  .product-top {
+    width: 100%;
+  }
+
+  .product-meta {
+    gap: 14px;
+
+    font-size: 9px;
+  }
+
+  .product-line {
+    width: 100%;
   }
 
   .product-content {
+    width: 100%;
+
     min-height: 110px;
+
+    margin-top: 28px;
   }
 
-  /* The preview drops behind the wordmark here, so the title
-     gets the full row width */
+  /*
+   * Both sides use exactly the same available width.
+   */
+  .product-title {
+    max-width: 100%;
+  }
+
   .product-title h2 {
-    font-size: clamp(1.5rem, 14cqw, 4.5rem);
+    max-width: 100%;
+
+    /*
+     * Smaller mobile wordmark so it never reaches
+     * or crosses the viewport edge.
+     */
+    font-size: clamp(1.5rem, 11.5cqw, 4rem);
+
+    line-height: 1.1;
+
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
+  .product-title p {
+    max-width: 100%;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    letter-spacing: 0.1em;
+  }
+
+  /* -------------------------------- */
+  /* MOBILE LEFT */
+  /* -------------------------------- */
+
+  .product-left .product-title {
+    width: 100%;
+
+    margin-left: 0;
+    margin-right: auto;
+
+    align-items: flex-start;
+
+    text-align: left;
+  }
+
+  /* -------------------------------- */
+  /* MOBILE RIGHT */
+  /* -------------------------------- */
+
+  .product-right .product-title {
+    width: 100%;
+
+    margin-left: auto;
+    margin-right: 0;
+
+    align-items: flex-end;
+
+    text-align: right;
+  }
+
+  /*
+   * Keep the right wordmark inside the same
+   * 24px container edge as the left one.
+   */
+  .product-right .product-title h2 {
+    margin-right: -0.065em;
+  }
+
+  .product-right .product-title p {
+    margin-right: -0.12em;
+  }
+
+  /* -------------------------------- */
+  /* MOBILE IMAGE */
+  /* -------------------------------- */
+
+  .product-preview {
+    width: 70vw;
+    max-width: 300px;
+
+    height: 46vw;
+    max-height: 190px;
+
+    opacity: 0;
+
+    left: 50% !important;
+    right: auto !important;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.88);
+  }
+
+  .product-right.is-hovered .product-preview,
+  .product-left.is-hovered .product-preview {
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  /*
+   * Keep the title movement subtle on mobile.
+   */
+  .product-right.is-hovered .product-title {
+    transform: translateX(-5px);
+  }
+
+  .product-left.is-hovered .product-title {
+    transform: translateX(5px);
+  }
 
   @supports not (container-type: inline-size) {
     .product-title h2 {
-      font-size: clamp(1.5rem, 12.5vw, 4.5rem);
+      font-size: clamp(1.5rem, 11.5vw, 4rem);
     }
   }
 }
 
+/* -------------------------------- */
+/* VERY SMALL PHONES */
+/* -------------------------------- */
 
-.product-title h2:hover {
-      color: white;
-      transition: 2s cubic-bezier(0.075, 0.82, 0.165, 1);
-    scale: 1.01;
-    }
+@media (max-width: 380px) {
+  .products {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .products-list {
+    gap: 60px;
+  }
+
+  .product-title h2 {
+    font-size: clamp(1.4rem, 11vw, 3.2rem);
+  }
+
+  .product-title p {
+    font-size: 8px;
+  }
+}
+
+/* -------------------------------- */
+/* TOUCH DEVICES */
+/* -------------------------------- */
+
+@media (hover: none) {
+  .product-title h2:hover {
+    color: #a6a6a6;
+    scale: 1;
+  }
+
+  .is-hovered .product-title h2 {
+    color: #a6a6a6;
+    scale: 1;
+  }
+
+  .product-right.is-hovered .product-title,
+  .product-left.is-hovered .product-title {
+    transform: none;
+  }
+}

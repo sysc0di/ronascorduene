@@ -1,22 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 
-import products from "./storeData.json";
+import { useLocalList } from "@/lib/order-storage";
+
+import type { CatalogProduct } from "@/lib/order-types";
+import type { Dictionary } from "../dictionaries";
+import type { Locale } from "@/lib/i18n";
 
 import "./Store.css";
-
-type Product = (typeof products)[number];
-
-type Locale = "tr" | "en" | "ku";
 
 type FamilyKey =
   | "airflow-dynamics"
   | "driver-interface"
   | "structural-aero";
 
-type CategoryKey = Product["category"];
+type CategoryKey = keyof Dictionary["store"]["subcategories"];
 
 type FilterKey =
   | "material"
@@ -64,37 +65,15 @@ const filterKeys: FilterKey[] = [
   "finish",
 ];
 
-const translations = {
-  tr: require("../dictionaries/tr.json"),
-  en: require("../dictionaries/en.json"),
-  ku: require("../dictionaries/ku.json"),
-} as const;
-
-function getInitialLocale(): Locale {
-  if (typeof document === "undefined") {
-    return "tr";
-  }
-
-  const lang =
-    document.documentElement.lang
-      .toLowerCase()
-      .split("-")[0];
-
-  if (
-    lang === "en" ||
-    lang === "ku" ||
-    lang === "tr"
-  ) {
-    return lang;
-  }
-
-  return "tr";
-}
-
-export default function StoreCatalog() {
-  const [locale, setLocale] =
-    useState<Locale>(getInitialLocale);
-
+export default function StoreCatalog({
+  products,
+  locale,
+  dict,
+}: {
+  products: CatalogProduct[];
+  locale: Locale;
+  dict: Dictionary;
+}) {
   const [activeFamily, setActiveFamily] =
     useState<FamilyKey | null>(null);
 
@@ -120,33 +99,22 @@ export default function StoreCatalog() {
   const [mobileFiltersOpen, setMobileFiltersOpen] =
     useState(false);
 
-  const t =
-    translations[locale].store;
+  const t = dict.store;
 
   /*
-   * Dil sistemi document.lang değiştirirse
-   * Store'u da güncelle.
+   * Liste tarayıcıda saklanır; ekleme işlemi hiçbir istek yapmaz.
    */
-  useEffect(() => {
-    const updateLocale = () => {
-      setLocale(getInitialLocale());
-    };
+  const {
+    count: listCount,
+    has: inList,
+    add: addToList,
+  } = useLocalList();
 
-    updateLocale();
-
-    const observer =
-      new MutationObserver(updateLocale);
-
-    observer.observe(
-      document.documentElement,
-      {
-        attributes: true,
-        attributeFilter: ["lang"],
-      }
-    );
-
-    return () => observer.disconnect();
-  }, []);
+  const handleAddToList = (
+    productId: string
+  ) => {
+    addToList(productId);
+  };
 
   /*
    * Ana kategori seçimi.
@@ -294,6 +262,7 @@ export default function StoreCatalog() {
     activeCategory,
     filters,
     search,
+    products,
     t,
   ]);
 
@@ -362,6 +331,7 @@ export default function StoreCatalog() {
   }, [
     activeFamily,
     activeCategory,
+    products,
   ]);
 
   /*
@@ -640,13 +610,31 @@ export default function StoreCatalog() {
               </div>
             </div>
 
-            <button
-              type="button"
-              className="store-reset"
-              onClick={resetFilters}
-            >
-              {t.reset}
-            </button>
+            <div className="store-header-actions">
+              <button
+                type="button"
+                className="store-reset"
+                onClick={resetFilters}
+              >
+                {t.reset}
+              </button>
+
+              {listCount > 0 && (
+                <Link
+                  href={`/${locale}/list`}
+                  className="store-go-to-list"
+                  data-hover-target
+                >
+                  <span>{t.goToList}</span>
+
+                  <span className="store-go-to-list-count">
+                    {String(
+                      listCount
+                    ).padStart(2, "0")}
+                  </span>
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* SEARCH + FILTER */}
@@ -810,9 +798,8 @@ export default function StoreCatalog() {
 
                         <span className="store-product-category">
                           {
-                            t
-                              .subcategories[
-                            product.category
+                            t.subcategories[
+                            product.category as CategoryKey
                             ]
                           }
                         </span>
@@ -839,9 +826,35 @@ export default function StoreCatalog() {
                           </p>
                         </div>
 
-                        <span className="store-product-arrow">
-                          ↗
-                        </span>
+                        <button
+                          type="button"
+                          className={`
+                            store-product-add
+                            ${
+                              inList(product.id)
+                                ? "is-added"
+                                : ""
+                            }
+                          `}
+                          onClick={() =>
+                            handleAddToList(
+                              product.id
+                            )
+                          }
+                          data-hover-target
+                        >
+                          <span>
+                            {inList(product.id)
+                              ? t.addedToList
+                              : t.addToList}
+                          </span>
+
+                          <span>
+                            {inList(product.id)
+                              ? "✓"
+                              : "+"}
+                          </span>
+                        </button>
                       </div>
 
                       <div className="store-product-specs">

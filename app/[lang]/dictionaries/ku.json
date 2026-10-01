@@ -11,7 +11,8 @@
     "openMenu": "Menûyê bike",
     "closeMenu": "Menûyê veke",
     "language": "Ziman",
-    "primaryNavigation": "Rêbernavê sereke"
+    "primaryNavigation": "Rêbernavê sereke",
+    "list": "Lîsta"
   },
   "sidebar": {
     "tagline": "Ekipmana otomotivê ya ji bo riyê sêkirî.",
@@ -296,7 +297,10 @@
     "empty": {
       "title": "BERHEM NEHAT DÎTIN",
       "description": "Kategoriyek din biceribînin an jî filtreyan biguherînin."
-    }
+    },
+    "addToList": "LÎSTEYÊ ZÊDE BÎKÎN",
+    "addedToList": "ZÊDE HATIR",
+    "goToList": "BINÊ LÎSTEYÊ"
   },
   "terms": {
     "WHEELS": "FÎRSE",
@@ -402,5 +406,38 @@
     "copyright": "© {year} RONAS CORDUENE",
     "label": "EKÎPMANA OTOMOTÎVÊ",
     "rights": "HEMÛ HIQ HATÎRÎ"
+  },
+  "list": {
+    "label": "LÎSTA WE",
+    "title": "LÎSTA WE ŞÎNÎŞIN.",
+    "description": "Dilê we yên tê destpeç kirin, agahîyên xebatkirî binivîsîn û lîsta bişînin. Em ji bo stabeya malê, uyandin û teslimatê bi we re tê Civîn.",
+    "meta": "LÎSTA BERHEMAN",
+    "empty": {
+      "title": "LÎSTA WE VALA YE",
+      "description": "Kataloga binêrîn û hilberên dilê we zêde bike."
+    },
+    "items": "HILBER",
+    "quantity": "HEJMAR",
+    "increase": "Hejmê zêde bike",
+    "decrease": "Hejmê kêm bike",
+    "remove": "RÊKE",
+    "clear": "LÎSTA PAZ DE",
+    "total": "KOMAJÎ",
+    "removed": "Ev hilber di nav katalogê de cî bi nas nabe.",
+    "details": "AGAHÎYÊN XEBATKIRÎ",
+    "detailsDescription": "Ji bo ku daxwaza we were şêndekirî bibe, ev qad zorûn in.",
+    "firstName": "JÊR NAV",
+    "lastName": "PAŞ NAV",
+    "email": "E-POSTA",
+    "phone": "TELEFON",
+    "notes": "TÊBÎNÎ",
+    "notesPlaceholder": "Zêde têbînî, modela arabê, kî ji bo teslîmatê...",
+    "submit": "LÎSTEYÊ ŞÎNÎSE",
+    "sending": "DİŞÊN...",
+    "backToStore": "VEGERÊ KATALOGÊ",
+    "success": {
+      "title": "LÎSTEYÊ HATIR.",
+      "description": "Sipas. Lîsta we hate pejmêkirî, ji bo teyîtkirina hûmaneyê em ê bi we re tê Civîn."
+    }
   }
 }

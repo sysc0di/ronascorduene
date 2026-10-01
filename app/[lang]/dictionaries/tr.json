@@ -11,7 +11,8 @@
     "openMenu": "Menüyü aç",
     "closeMenu": "Menüyü kapat",
     "language": "Dil",
-    "primaryNavigation": "Ana gezinme"
+    "primaryNavigation": "Ana gezinme",
+    "list": "Liste"
   },
   "sidebar": {
     "tagline": "Yol için tasarlanmış otomotiv ekipmanları.",
@@ -295,7 +296,10 @@
     "empty": {
       "title": "ÜRÜN BULUNAMADI",
       "description": "Başka bir kategori deneyin veya filtreleri değiştirin."
-    }
+    },
+    "addToList": "LİSTEYE EKLE",
+    "addedToList": "EKLENDİ",
+    "goToList": "LİSTEYE GİT"
   },
   "footer": {
     "brand": "RONAS / CORDUENE",
@@ -307,5 +311,38 @@
     "copyright": "© {year} RONAS CORDUENE",
     "label": "OTOMOTİV EKİPMANLARI",
     "rights": "TÜM HAKLARI SAKLIDIR"
+  },
+  "list": {
+    "label": "LİSTENİZ",
+    "title": "LİSTENİZİ GÖNDERİN.",
+    "description": "İlgilendiğiniz ürünleri ekleyin, iletişim bilgilerinizi bırakın ve listeyi bize gönderin. Stok uygunluğu, uyum ve teslimat için sizinle iletişime geçelim.",
+    "meta": "ÜRÜN LİSTESİ",
+    "empty": {
+      "title": "LİSTENİZ BOŞ",
+      "description": "Kataloğa göz atın ve ilgilendiğiniz ürünleri listeye ekleyin."
+    },
+    "items": "ÜRÜNLER",
+    "quantity": "ADET",
+    "increase": "Adet artır",
+    "decrease": "Adet azalt",
+    "remove": "KALDIR",
+    "clear": "LİSTEYİ TEMİZLE",
+    "total": "TOPLAM",
+    "removed": "Bu ürün artık katalogda yer almıyor.",
+    "details": "İLETİŞİM BİLGİLERİ",
+    "detailsDescription": "Talebinizin işlenebilmesi için bu alanlar zorunludur.",
+    "firstName": "AD",
+    "lastName": "SOYAD",
+    "email": "E-POSTA",
+    "phone": "TELEFON",
+    "notes": "NOTLAR",
+    "notesPlaceholder": "Ek detaylar, araç modeli, tercih edilen teslimat saati...",
+    "submit": "LİSTEYİ GÖNDER",
+    "sending": "GÖNDERİLİYOR...",
+    "backToStore": "KATALOĞA DÖN",
+    "success": {
+      "title": "LİSTE GÖNDERİLDİ.",
+      "description": "Teşekkürler. Listeniz alındı, detayları teyit etmek için sizinle iletişime geçeceğiz."
+    }
   }
 }
