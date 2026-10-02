@@ -26,39 +26,127 @@ import {
   TableShell,
   Textarea,
 } from "@/components/admin/ui";
+import {
+  CATEGORIES,
+  SUBCATEGORIES,
+  categoryLabel,
+  familyOf,
+  isCategorySlug,
+  subcategoryLabel,
+  type CategorySlug,
+} from "@/lib/catalog-taxonomy";
+import {
+  defaultLocale,
+  localeLabels,
+  localeNames,
+  locales,
+  type Locale,
+} from "@/lib/i18n";
+
+type ProductTranslation = {
+  locale: Locale;
+  name: string;
+  description: string;
+};
 
 type Product = {
   id: string;
-  name: string;
   family: string;
   category: string;
-  description: string | null;
   image: string | null;
   material: string | null;
   construction: string | null;
   finish: string | null;
   visible: boolean;
+  translations: ProductTranslation[];
 };
 
-const CATEGORIES = [
-  "BEDROOM",
-  "LIVINGROOM",
-  "DININGROOM",
-  "OCCASIONAL",
-];
+type DraftTranslation = { name: string; description: string };
 
-const EMPTY_DRAFT = {
-  id: "",
-  name: "",
-  family: "",
-  category: "BEDROOM",
-  description: "",
-  image: "",
-  material: "",
-  construction: "",
-  finish: "",
-  visible: true,
+type Draft = {
+  id: string;
+  family: string;
+  category: string;
+  image: string;
+  material: string;
+  construction: string;
+  finish: string;
+  visible: boolean;
+  language: Locale;
+  translations: Record<Locale, DraftTranslation>;
 };
+
+const DEFAULT_FAMILY = CATEGORIES[0].slug;
+
+function emptyTranslations(): Record<Locale, DraftTranslation> {
+  return Object.fromEntries(
+    locales.map((locale) => [locale, { name: "", description: "" }]),
+  ) as Record<Locale, DraftTranslation>;
+}
+
+function emptyDraft(): Draft {
+  return {
+    id: "",
+    family: DEFAULT_FAMILY,
+    category: SUBCATEGORIES[DEFAULT_FAMILY][0].slug,
+    image: "",
+    material: "",
+    construction: "",
+    finish: "",
+    visible: true,
+    language: defaultLocale,
+    translations: emptyTranslations(),
+  };
+}
+
+function draftFromProduct(product: Product): Draft {
+  const translations = emptyTranslations();
+
+  for (const translation of product.translations) {
+    translations[translation.locale] = {
+      name: translation.name,
+      description: translation.description,
+    };
+  }
+
+  const language =
+    locales.find(
+      (locale) =>
+        translations[locale].name || translations[locale].description,
+    ) ?? defaultLocale;
+
+  return {
+    id: product.id,
+    family:
+      familyOf(product.category) ?? product.family ?? DEFAULT_FAMILY,
+    category: product.category,
+    image: product.image ?? "",
+    material: product.material ?? "",
+    construction: product.construction ?? "",
+    finish: product.finish ?? "",
+    visible: product.visible,
+    language,
+    translations,
+  };
+}
+
+/** Display name for the (English-only) admin: default locale, then any. */
+function productName(product: Product): string {
+  const translation =
+    product.translations.find(
+      (entry) => entry.locale === defaultLocale && entry.name,
+    ) ?? product.translations.find((entry) => entry.name);
+
+  return translation?.name || product.id;
+}
+
+function filledLocales(product: Product): Locale[] {
+  return locales.filter((locale) =>
+    product.translations.some(
+      (entry) => entry.locale === locale && entry.name,
+    ),
+  );
+}
 
 export function ProductsTable({
   initialProducts,
@@ -74,7 +162,7 @@ export function ProductsTable({
   const [notice, setNotice] = useState("");
   const [pendingId, setPendingId] = useState<string | null>(null);
 
-  const [draft, setDraft] = useState(EMPTY_DRAFT);
+  const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [draftErrors, setDraftErrors] = useState<string[]>([]);
   const [modal, setModal] = useState<"create" | "edit" | null>(null);
 
@@ -84,6 +172,22 @@ export function ProductsTable({
      re-run that effect on every keystroke and yank focus back to the trigger. */
   const closeModal = useCallback(() => setModal(null), []);
 
+  /* The draft's family, falling back when a product predates the taxonomy. */
+  const draftFamily: CategorySlug = isCategorySlug(draft.family)
+    ? draft.family
+    : DEFAULT_FAMILY;
+
+  /* A stored subcategory outside the current list stays selectable so editing
+     an older product never silently rewrites its category. */
+  const draftSubcategories = [
+    ...(SUBCATEGORIES[draftFamily].some(
+      (entry) => entry.slug === draft.category,
+    )
+      ? []
+      : [{ slug: draft.category, label: subcategoryLabel(draft.category) }]),
+    ...SUBCATEGORIES[draftFamily],
+  ];
+
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase();
 
@@ -92,7 +196,7 @@ export function ProductsTable({
       if (filter === "hidden" && product.visible) return false;
       if (!needle) return true;
 
-      return [product.id, product.name, product.family, product.category]
+      return [product.id, productName(product), product.family, product.category]
         .join(" ")
         .toLowerCase()
         .includes(needle);
@@ -108,6 +212,19 @@ export function ProductsTable({
   function fail(message: string) {
     setError(message);
     setNotice("");
+  }
+
+  function updateTranslation(
+    locale: Locale,
+    patch: Partial<DraftTranslation>,
+  ) {
+    setDraft((current) => ({
+      ...current,
+      translations: {
+        ...current.translations,
+        [locale]: { ...current.translations[locale], ...patch },
+      },
+    }));
   }
 
   async function request(url: string, init: RequestInit) {
@@ -127,9 +244,8 @@ export function ProductsTable({
   }
 
   const REQUIRED = [
-    ["name", "Name"],
-    ["family", "Family"],
-    ["description", "Description"],
+    ["family", "Category"],
+    ["category", "Subcategory"],
     ["image", "Image URL"],
     ["material", "Material"],
     ["construction", "Construction"],
@@ -147,12 +263,44 @@ export function ProductsTable({
       missing.push("Slug");
     }
 
+    /* Product text lives per language; anything typed must be complete. */
+    const filled = locales
+      .map((locale) => ({ locale, ...draft.translations[locale] }))
+      .filter(
+        (entry) => entry.name.trim() || entry.description.trim(),
+      );
+
+    if (filled.length === 0) {
+      missing.push("Name and description in at least one language");
+    } else if (
+      filled.some(
+        (entry) => !entry.name.trim() || !entry.description.trim(),
+      )
+    ) {
+      missing.push("Name and description for every language you filled in");
+    }
+
     setDraftErrors(missing);
 
     if (missing.length > 0) return;
 
-    const body = { ...draft };
     const editing = modal === "edit";
+
+    const body = {
+      id: draft.id,
+      family: draft.family,
+      category: draft.category,
+      image: draft.image,
+      material: draft.material,
+      construction: draft.construction,
+      finish: draft.finish,
+      visible: draft.visible,
+      translations: filled.map((entry) => ({
+        locale: entry.locale,
+        name: entry.name.trim(),
+        description: entry.description.trim(),
+      })),
+    };
 
     try {
       const payload = await request(
@@ -243,7 +391,7 @@ export function ProductsTable({
             <Button
               variant="primary"
               onClick={() => {
-                setDraft(EMPTY_DRAFT);
+                setDraft(emptyDraft());
                 setDraftErrors([]);
                 setModal("create");
               }}
@@ -307,107 +455,113 @@ export function ProductsTable({
             description="Adjust the search or visibility filter."
           />
         ) : (
-          <TableShell head={["Product", "Slug", "Category", "Visible", ""]}>
-            {visible.map((product) => (
-              <tr key={product.id}>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="size-9 shrink-0 overflow-hidden rounded-md border border-line bg-sunken">
-                      {product.image && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={product.image}
-                          alt=""
-                          className="size-full object-cover"
+          <TableShell head={["Product", "Languages", "Category", "Visible", ""]}>
+            {visible.map((product) => {
+              const name = productName(product);
+              const languages = filledLocales(product);
+
+              return (
+                <tr key={product.id}>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="size-9 shrink-0 overflow-hidden rounded-md border border-line bg-sunken">
+                        {product.image && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={product.image}
+                            alt=""
+                            className="size-full object-cover"
+                          />
+                        )}
+                      </div>
+
+                      <div className="min-w-0">
+                        <p className="cell-strong truncate">{name}</p>
+
+                        <p className="cell-muted truncate">
+                          {categoryLabel(product.family)}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div className="flex flex-wrap items-center gap-1">
+                      {languages.length > 0 ? (
+                        languages.map((locale) => (
+                          <Badge key={locale}>{localeLabels[locale]}</Badge>
+                        ))
+                      ) : (
+                        <span className="cell-muted">—</span>
+                      )}
+                    </div>
+
+                    <p className="cell-muted mono mt-1 truncate">
+                      {product.id}
+                    </p>
+                  </td>
+
+                  <td>
+                    <Badge>{subcategoryLabel(product.category)}</Badge>
+                  </td>
+
+                  <td>
+                    <div className="flex items-center gap-2">
+                      <Switch
+                        checked={product.visible}
+                        label={`Toggle visibility of ${name}`}
+                        onChange={() => toggleVisibility(product)}
+                      />
+
+                      <span className="cell-muted">
+                        {product.visible ? "Visible" : "Hidden"}
+                      </span>
+
+                      {pendingId === product.id && (
+                        <span
+                          className="spinner text-muted"
+                          aria-label="Saving"
                         />
                       )}
                     </div>
+                  </td>
 
-                    <div className="min-w-0">
-                      <p className="cell-strong truncate">
-                        {product.name}
-                      </p>
+                  <td>
+                    <div className="flex justify-end gap-1">
+                      <IconButton
+                        label={`${product.visible ? "Hide" : "Show"} ${name}`}
+                        onClick={() => toggleVisibility(product)}
+                        disabled={pendingId === product.id}
+                      >
+                        {product.visible ? (
+                          <EyeOff className="size-4" aria-hidden="true" />
+                        ) : (
+                          <Eye className="size-4" aria-hidden="true" />
+                        )}
+                      </IconButton>
 
-                      <p className="cell-muted truncate">
-                        {product.family || "—"}
-                      </p>
+                      <IconButton
+                        label={`Edit ${name}`}
+                        onClick={() => {
+                          setDraft(draftFromProduct(product));
+                          setDraftErrors([]);
+                          setModal("edit");
+                        }}
+                      >
+                        <Pencil className="size-4" aria-hidden="true" />
+                      </IconButton>
+
+                      <IconButton
+                        label={`Delete ${name}`}
+                        onClick={() => setRemoving(product)}
+                      >
+                        <Trash2 className="size-4 text-danger" aria-hidden="true" />
+                      </IconButton>
                     </div>
-                  </div>
-                </td>
-
-                <td className="mono text-muted">{product.id}</td>
-
-                <td>
-                  <Badge>{product.category}</Badge>
-                </td>
-
-                <td>
-                  <div className="flex items-center gap-2">
-                    <Switch
-                      checked={product.visible}
-                      label={`Toggle visibility of ${product.name}`}
-                      onChange={() => toggleVisibility(product)}
-                    />
-
-                    <span className="cell-muted">
-                      {product.visible ? "Visible" : "Hidden"}
-                    </span>
-
-                    {pendingId === product.id && (
-                      <span
-                        className="spinner text-muted"
-                        aria-label="Saving"
-                      />
-                    )}
-                  </div>
-                </td>
-
-                <td>
-                  <div className="flex justify-end gap-1">
-                    <IconButton
-                      label={`${product.visible ? "Hide" : "Show"} ${product.name}`}
-                      onClick={() => toggleVisibility(product)}
-                      disabled={pendingId === product.id}
-                    >
-                      {product.visible ? (
-                        <EyeOff className="size-4" aria-hidden="true" />
-                      ) : (
-                        <Eye className="size-4" aria-hidden="true" />
-                      )}
-                    </IconButton>
-
-                    <IconButton
-                      label={`Edit ${product.name}`}
-                      onClick={() => {
-                        setDraft({
-                          id: product.id,
-                          name: product.name,
-                          family: product.family ?? "",
-                          category: product.category,
-                          description: product.description ?? "",
-                          image: product.image ?? "",
-                          material: product.material ?? "",
-                          construction: product.construction ?? "",
-                          finish: product.finish ?? "",
-                          visible: product.visible,
-                        });
-                        setDraftErrors([]);
-                        setModal("edit");
-                      }}
-                    >
-                      <Pencil className="size-4" aria-hidden="true" />
-                    </IconButton>
-
-                    <IconButton
-                      label={`Delete ${product.name}`}
-                      onClick={() => setRemoving(product)}
-                    >
-                      <Trash2 className="size-4 text-danger" aria-hidden="true" />
-                    </IconButton>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                </tr>
+              );
+            })}
           </TableShell>
         )}
       </Panel>
@@ -433,16 +587,6 @@ export function ProductsTable({
         <div className="space-y-4">
           {draftErrors.length > 0 && <Alert>{draftErrors.join(" ")}</Alert>}
 
-          <Input
-            label="Name"
-            required
-            value={draft.name}
-            onChange={(event) =>
-              setDraft({ ...draft, name: event.target.value })
-            }
-            placeholder="Washed corduroy armchair"
-          />
-
           <div className="grid gap-4 sm:grid-cols-2">
             <Input
               label="Slug"
@@ -451,44 +595,94 @@ export function ProductsTable({
               onChange={(event) =>
                 setDraft({ ...draft, id: event.target.value })
               }
-              placeholder="washed-corduroy-armchair"
+              placeholder="intake-manifold"
               hint={modal === "edit" ? "Slug cannot change." : undefined}
             />
 
             <Select
               label="Category"
-              value={draft.category}
-              onChange={(event) =>
-                setDraft({ ...draft, category: event.target.value })
-              }
+              value={draft.family}
+              onChange={(event) => {
+                const family = event.target.value as CategorySlug;
+
+                /* The two fields move together: choosing a category always
+                   lands on a valid subcategory of that category. */
+                setDraft({
+                  ...draft,
+                  family,
+                  category: SUBCATEGORIES[family][0].slug,
+                });
+              }}
             >
               {CATEGORIES.map((category) => (
-                <option key={category} value={category}>
-                  {category}
+                <option key={category.slug} value={category.slug}>
+                  {category.name}
                 </option>
               ))}
             </Select>
           </div>
 
-          <Input
-            label="Family"
+          <Select
+            label="Subcategory"
             required
-            value={draft.family}
+            value={draft.category}
             onChange={(event) =>
-              setDraft({ ...draft, family: event.target.value })
+              setDraft({ ...draft, category: event.target.value })
             }
-            placeholder="Corduene"
-          />
+          >
+            {draftSubcategories.map((subcategory) => (
+              <option key={subcategory.slug} value={subcategory.slug}>
+                {subcategory.label}
+              </option>
+            ))}
+          </Select>
 
-          <Textarea
-            label="Description"
-            required
-            rows={3}
-            value={draft.description}
-            onChange={(event) =>
-              setDraft({ ...draft, description: event.target.value })
-            }
-          />
+          <div className="space-y-4 rounded-lg border border-line bg-sunken p-4">
+            <div>
+              <Select
+                label="Language"
+                value={draft.language}
+                onChange={(event) =>
+                  setDraft({ ...draft, language: event.target.value as Locale })
+                }
+              >
+                {locales.map((locale) => (
+                  <option key={locale} value={locale}>
+                    {localeNames[locale]} ({localeLabels[locale]})
+                    {draft.translations[locale].name ? " ✓" : ""}
+                  </option>
+                ))}
+              </Select>
+
+              <p className="field-hint mt-1">
+                Product text is stored per language; fill as many as you need.
+              </p>
+            </div>
+
+            <Input
+              label={`Name (${localeLabels[draft.language]})`}
+              required
+              value={draft.translations[draft.language].name}
+              onChange={(event) =>
+                updateTranslation(draft.language, {
+                  name: event.target.value,
+                })
+              }
+              placeholder="Washed corduroy armchair"
+            />
+
+            <Textarea
+              label={`Description (${localeLabels[draft.language]})`}
+              required
+              rows={3}
+              value={draft.translations[draft.language].description}
+              onChange={(event) =>
+                updateTranslation(draft.language, {
+                  description: event.target.value,
+                })
+              }
+            />
+          </div>
 
           <Input
             label="Image URL"
@@ -549,7 +743,7 @@ export function ProductsTable({
         title="Delete product"
         description={
           removing
-            ? `${removing.name} (${removing.id})`
+            ? `${productName(removing)} (${removing.id})`
             : undefined
         }
         footer={

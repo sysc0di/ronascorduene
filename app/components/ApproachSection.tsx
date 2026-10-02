@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 import type { Dictionary } from "../[lang]/dictionaries";
 
@@ -9,10 +9,20 @@ import "./ApproachSection.css";
 
 type ApproachDict = Dictionary["home"]["approach"];
 
+type ApproachContent = {
+  image: string;
+  title: string;
+  description: string;
+};
+
+const DEFAULT_IMAGE = "/assets/739d6f87-00fc-4c94-aa88-213a021c47a8.jpg";
+
 export default function ApproachSection({
   dict,
+  content,
 }: {
   dict: ApproachDict;
+  content?: ApproachContent | null;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
@@ -35,6 +45,14 @@ export default function ApproachSection({
     return () => observer.disconnect();
   }, []);
 
+  /* Admin-managed content wins; the dictionary stays as a safe fallback. */
+  const image = content?.image.trim() || DEFAULT_IMAGE;
+  const body = content?.description.trim() || dict.body;
+  const titleLines = (content?.title.trim() || dict.titleLines.join("\n"))
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+
   return (
     <section
       ref={sectionRef}
@@ -43,7 +61,7 @@ export default function ApproachSection({
     >
       <div className="approach-image">
         <Image
-          src="/assets/739d6f87-00fc-4c94-aa88-213a021c47a8.jpg"
+          src={image}
           alt={dict.alt}
           fill
           sizes="100vw"
@@ -67,14 +85,15 @@ export default function ApproachSection({
           </div>
 
           <h2>
-            {dict.titleLines[0]}
-            <br />
-            {dict.titleLines[1]}
-            <br />
-            {dict.titleLines[2]}
+            {titleLines.map((line, index) => (
+              <Fragment key={`${line}-${index}`}>
+                {index > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
           </h2>
 
-          <p>{dict.body}</p>
+          <p>{body}</p>
         </div>
 
         <div className="approach-values">

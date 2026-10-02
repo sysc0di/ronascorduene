@@ -30,7 +30,7 @@ export default async function ListPage({
   const locale = getLocaleFor(lang);
   const dict = await getDictionary();
 
-  const products = await getCatalog();
+  const products = await getCatalog(locale);
 
   return (
     <ProductList

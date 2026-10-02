@@ -34,10 +34,8 @@ model User {
 
 model Product {
   id           String   @id
-  name         String
   family       String
   category     String
-  description  String
   image        String
   material     String
   construction String
@@ -46,12 +44,61 @@ model Product {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  orderItems OrderItem[]
+  translations ProductTranslation[]
+  orderItems   OrderItem[]
 
   @@index([visible])
   @@index([family])
   @@index([category])
   @@map("products")
+}
+
+/// Per-language product text. Product content lives in the database, not in
+/// the UI dictionaries, so a product can exist in any subset of locales.
+model ProductTranslation {
+  id          String   @id @default(uuid())
+  productId   String
+  locale      String
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, locale])
+  @@index([productId])
+  @@map("product_translations")
+}
+
+/// Editable page content (e.g. the home "approach" section). Text is stored
+/// per language; fields like the image are shared across languages.
+model SiteSection {
+  id           String   @id @default(uuid())
+  key          String   @unique
+  image        String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  translations SiteSectionTranslation[]
+
+  @@map("site_sections")
+}
+
+model SiteSectionTranslation {
+  id          String   @id @default(uuid())
+  sectionId   String
+  locale      String
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  section SiteSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@unique([sectionId, locale])
+  @@index([sectionId])
+  @@map("site_section_translations")
 }
 
 model Order {

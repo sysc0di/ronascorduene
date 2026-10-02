@@ -3,7 +3,6 @@ import "dotenv/config";
 import argon2 from "argon2";
 import { PrismaPg } from "@prisma/adapter-pg";
 
-import storeProducts from "../app/[lang]/store/storeData.json";
 import { PrismaClient } from "../lib/generated/prisma/client";
 import { Role } from "../lib/generated/prisma/enums";
 
@@ -37,17 +36,11 @@ async function main() {
 
   console.log("Seeded admin user:", admin);
 
-  const productCount = await prisma.product.count();
-
-  if (productCount === 0) {
-    const { count } = await prisma.product.createMany({
-      data: storeProducts.map((product) => ({ ...product })),
-    });
-
-    console.log(`Seeded ${count} products from storeData.json`);
-  } else {
-    console.log(`Skipped product import, ${productCount} products already exist`);
-  }
+  /*
+   * Products are authored in the admin panel and their text lives in
+   * "product_translations" (one row per language). The seed only prepares the
+   * admin account; the storefront catalog is managed from /admin/products.
+   */
 }
 
 main()

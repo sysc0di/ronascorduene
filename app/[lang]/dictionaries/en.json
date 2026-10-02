@@ -232,68 +232,6 @@
       "brushed": "BRUSHED",
       "gloss": "GLOSS"
     },
-    "productsData": {
-      "carbon-airbox": {
-        "name": "CARBON AIRBOX",
-        "description": "High-flow carbon fiber airbox engineered for controlled intake temperatures."
-      },
-      "cold-air-intake": {
-        "name": "COLD AIR INTAKE",
-        "description": "A high-flow intake system developed to improve air delivery."
-      },
-      "intake-manifold": {
-        "name": "INTAKE MANIFOLD",
-        "description": "Precision-engineered manifold designed around efficient airflow."
-      },
-      "intake-piping": {
-        "name": "INTAKE PIPING",
-        "description": "Mandrel-bent intake piping designed for unrestricted airflow."
-      },
-      "exhaust-manifold": {
-        "name": "EXHAUST MANIFOLD",
-        "description": "Tubular performance manifold designed for efficient exhaust flow."
-      },
-      "brake-cooling-duct": {
-        "name": "BRAKE COOLING DUCT",
-        "description": "High-flow ducting developed to direct cooling air toward the brakes."
-      },
-      "headlight-intake": {
-        "name": "FAR HAVA GİRİŞİ",
-        "description": "Motor bölmesine kontrollü hava akışı sağlamak ve agresif tasarımı güçlendirmek için tasarlanmış karbon fiber hava girişi."
-      },
-      "carbon-steering-wheel": {
-        "name": "CARBON STEERING WHEEL",
-        "description": "Carbon fiber steering wheel designed for direct driver feedback."
-      },
-      "racing-seat": {
-        "name": "RACING SEAT",
-        "description": "Lightweight performance seat engineered around driver support."
-      },
-      "shift-knob": {
-        "name": "SHIFT KNOB",
-        "description": "Machined aluminum shift knob with a focused mechanical feel."
-      },
-      "carbon-interior-trim": {
-        "name": "CARBON INTERIOR TRIM",
-        "description": "Precision carbon fiber interior trim for a lightweight cockpit."
-      },
-      "carbon-hood": {
-        "name": "CARBON HOOD",
-        "description": "Lightweight carbon fiber hood engineered for reduced mass."
-      },
-      "lightweight-tailgate": {
-        "name": "LIGHTWEIGHT TAILGATE",
-        "description": "Carbon fiber tailgate designed to reduce rear-end mass."
-      },
-      "lightweight-door": {
-        "name": "LIGHTWEIGHT DOOR",
-        "description": "Lightweight structural door designed around mass reduction."
-      },
-      "rear-wing": {
-        "name": "REAR WING",
-        "description": "Carbon fiber aerodynamic wing engineered for high-speed stability."
-      }
-    },
     "empty": {
       "title": "NO PRODUCTS FOUND",
       "description": "Try another category or adjust the selected filters."

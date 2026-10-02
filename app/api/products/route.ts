@@ -7,8 +7,6 @@ import {
 } from "@/lib/products";
 import { prisma } from "@/lib/prisma";
 
-import type { Prisma } from "@/lib/generated/prisma/client";
-
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
@@ -54,22 +52,38 @@ export async function POST(request: Request) {
 
   if (!data) return badRequest(errors);
 
-  const payload = data as Prisma.ProductCreateInput;
+  const id = data.id as string;
 
   const existing = await prisma.product.findUnique({
-    where: { id: payload.id },
+    where: { id },
     select: { id: true },
   });
 
   if (existing) {
     return Response.json(
-      { errors: [`Product "${payload.id}" already exists.`] },
+      { errors: [`Product "${id}" already exists.`] },
       { status: 409 },
     );
   }
 
   const product = await prisma.product.create({
-    data: payload,
+    data: {
+      id,
+      family: data.family as string,
+      category: data.category as string,
+      image: data.image as string,
+      material: data.material as string,
+      construction: data.construction as string,
+      finish: data.finish as string,
+      visible: data.visible ?? true,
+      translations: {
+        create: (data.translations ?? []).map((translation) => ({
+          locale: translation.locale,
+          name: translation.name,
+          description: translation.description,
+        })),
+      },
+    },
     select: productSelect,
   });
 

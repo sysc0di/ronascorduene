@@ -5,10 +5,13 @@ import RonasSubtitle from "../components/RonasSubtitle";
 import ScrollIndicator from "../components/ScrollIndicator";
 import ProductSections from "../components/ProductSections";
 import ApproachSection from "../components/ApproachSection";
-import { getDictionary } from "./dictionaries";
+import { getDictionary, getLocale } from "./dictionaries";
+import { APPROACH_SECTION_KEY, getSiteSection } from "@/lib/content";
 
 export default async function Home() {
   const dict = await getDictionary();
+  const locale = await getLocale();
+  const approach = await getSiteSection(APPROACH_SECTION_KEY, locale);
 
   return (
     <main className="home">
@@ -39,7 +42,7 @@ export default async function Home() {
 
       <div className="productonhome">
         <ProductSections dict={dict.home.products} />
-        <ApproachSection dict={dict.home.approach} />
+        <ApproachSection dict={dict.home.approach} content={approach} />
       </div>
     </main>
   );

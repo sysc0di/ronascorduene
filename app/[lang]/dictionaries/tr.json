@@ -231,68 +231,6 @@
       "brushed": "FIRÇALI",
       "gloss": "GLOSS"
     },
-    "productsData": {
-      "carbon-airbox": {
-        "name": "KARBON HAVA KAZANI",
-        "description": "Emiş sıcaklığını kontrol etmek için geliştirilmiş yüksek akışlı karbon hava kazanı."
-      },
-      "cold-air-intake": {
-        "name": "SOĞUK HAVA EMİŞİ",
-        "description": "Hava akışını artırmak için geliştirilmiş yüksek akışlı emiş sistemi."
-      },
-      "intake-manifold": {
-        "name": "EMME MANİFOLDU",
-        "description": "Verimli hava akışı için hassas şekilde tasarlanmış manifold."
-      },
-      "intake-piping": {
-        "name": "HAVA EMİŞ BORUSU",
-        "description": "Kesintisiz hava akışı için mandrel bükümlü emiş borusu."
-      },
-      "exhaust-manifold": {
-        "name": "EGZOZ MANİFOLDU",
-        "description": "Verimli egzoz akışı için tasarlanmış performans manifold sistemi."
-      },
-      "brake-cooling-duct": {
-        "name": "FREN SOĞUTMA KANALI",
-        "description": "Soğutma havasını frenlere yönlendirmek için geliştirilmiş kanal sistemi."
-      },
-      "carbon-steering-wheel": {
-        "name": "KARBON DİREKSİYON",
-        "description": "Doğrudan sürücü geri bildirimi için tasarlanmış karbon fiber direksiyon."
-      },
-      "headlight-intake": {
-        "name": "FAR HAVA GİRİŞİ",
-        "description": "Motor bölmesine kontrollü hava akışı sağlamak ve agresif tasarımı güçlendirmek için tasarlanmış karbon fiber hava girişi."
-      },
-      "racing-seat": {
-        "name": "YARIŞ KOLTUĞU",
-        "description": "Sürücü desteği ve hafiflik odaklı performans koltuğu."
-      },
-      "shift-knob": {
-        "name": "VİTES TOPUZU",
-        "description": "Mekanik hissiyat için işlenmiş alüminyum vites topuzu."
-      },
-      "carbon-interior-trim": {
-        "name": "KARBON İÇ TRİM",
-        "description": "Hafif ve teknik bir kokpit için hassas karbon fiber iç trim."
-      },
-      "carbon-hood": {
-        "name": "KARBON KAPUT",
-        "description": "Ağırlık azaltımı için geliştirilmiş hafif karbon fiber kaput."
-      },
-      "lightweight-tailgate": {
-        "name": "HAFİF BAGAJ KAPAĞI",
-        "description": "Arka bölümde ağırlığı azaltmak için tasarlanmış karbon fiber kapak."
-      },
-      "lightweight-door": {
-        "name": "HAFİF KAPI",
-        "description": "Ağırlık azaltımı odaklı hafif yapısal kapı."
-      },
-      "rear-wing": {
-        "name": "ARKA KANAT",
-        "description": "Yüksek hız stabilitesi için geliştirilmiş karbon fiber aerodinamik kanat."
-      }
-    },
     "empty": {
       "title": "ÜRÜN BULUNAMADI",
       "description": "Başka bir kategori deneyin veya filtreleri değiştirin."

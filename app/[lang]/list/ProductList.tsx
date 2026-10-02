@@ -193,12 +193,6 @@ export default function ProductList({
                 const product =
                   productById.get(item.productId);
 
-                const data = product
-                  ? dict.store.productsData[
-                      product.name as keyof typeof dict.store.productsData
-                    ]
-                  : undefined;
-
                 return (
                   <article
                     key={item.productId}
@@ -210,7 +204,7 @@ export default function ProductList({
                         <Image
                           src={product.image}
                           alt={
-                            data?.name ?? product.name
+                            product.name
                           }
                           fill
                           sizes="(max-width: 700px) 30vw, 160px"
@@ -233,8 +227,7 @@ export default function ProductList({
                       </span>
 
                       <h2>
-                        {data?.name ??
-                          product?.name ??
+                        {product?.name ??
                           "—"}
                       </h2>
                     </div>

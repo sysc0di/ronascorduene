@@ -29,7 +29,7 @@ export default async function StorePage({
   const locale = getLocaleFor(lang);
 
   const [products, dict] = await Promise.all([
-    getCatalog(),
+    getCatalog(locale),
     getDictionary(),
   ]);
 

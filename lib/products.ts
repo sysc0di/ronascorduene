@@ -1,12 +1,11 @@
 import type { Prisma } from "@/lib/generated/prisma/client";
+import { locales, type Locale } from "@/lib/i18n";
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export const productFields = [
-  "name",
   "family",
   "category",
-  "description",
   "image",
   "material",
   "construction",
@@ -22,7 +21,6 @@ export const productFilters = [
 ] as const;
 
 export const productOrderByFields = [
-  "name",
   "family",
   "category",
   "material",
@@ -32,17 +30,28 @@ export const productOrderByFields = [
   "updatedAt",
 ] as const;
 
+export type ProductTranslationPayload = {
+  locale: Locale;
+  name: string;
+  description: string;
+};
+
 export type ProductPayload = {
   id?: string;
   visible?: boolean;
+  translations?: ProductTranslationPayload[];
 } & Partial<Record<(typeof productFields)[number], string>>;
+
+export const translationSelect = {
+  locale: true,
+  name: true,
+  description: true,
+} as const;
 
 export const productSelect = {
   id: true,
-  name: true,
   family: true,
   category: true,
-  description: true,
   image: true,
   material: true,
   construction: true,
@@ -50,6 +59,10 @@ export const productSelect = {
   visible: true,
   createdAt: true,
   updatedAt: true,
+  translations: {
+    orderBy: { locale: "asc" },
+    select: translationSelect,
+  },
 } as const;
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -78,6 +91,84 @@ function readText(
   }
 
   return { ok: true, value: value.trim() };
+}
+
+type TranslationsResult =
+  | { ok: true; value: ProductTranslationPayload[] | undefined }
+  | { ok: false; error: string };
+
+function readTranslations(value: unknown, required: boolean): TranslationsResult {
+  if (value === undefined || value === null) {
+    return required
+      ? { ok: false, error: '"translations" is required.' }
+      : { ok: true, value: undefined };
+  }
+
+  if (!Array.isArray(value) || value.length === 0) {
+    return {
+      ok: false,
+      error: '"translations" must be a non-empty array.',
+    };
+  }
+
+  if (value.length > locales.length) {
+    return {
+      ok: false,
+      error: `"translations" must contain at most ${locales.length} entries.`,
+    };
+  }
+
+  const translations: ProductTranslationPayload[] = [];
+  const seen = new Set<string>();
+
+  for (const entry of value) {
+    if (!isPlainObject(entry)) {
+      return { ok: false, error: "Each translation must be a JSON object." };
+    }
+
+    const { locale } = entry;
+
+    if (typeof locale !== "string" || !locales.includes(locale as Locale)) {
+      return {
+        ok: false,
+        error: `Translation "locale" must be one of: ${locales.join(", ")}.`,
+      };
+    }
+
+    if (seen.has(locale)) {
+      return {
+        ok: false,
+        error: `Duplicate translation for locale "${locale}".`,
+      };
+    }
+
+    seen.add(locale);
+
+    const localeName = readText(entry, "name", true);
+    const localeDescription = readText(entry, "description", true);
+
+    if (!localeName.ok) {
+      return {
+        ok: false,
+        error: `${locale}: ${localeName.error}`,
+      };
+    }
+
+    if (!localeDescription.ok) {
+      return {
+        ok: false,
+        error: `${locale}: ${localeDescription.error}`,
+      };
+    }
+
+    translations.push({
+      locale: locale as Locale,
+      name: localeName.value as string,
+      description: localeDescription.value as string,
+    });
+  }
+
+  return { ok: true, value: translations };
 }
 
 export function parseProductPayload(
@@ -122,6 +213,14 @@ export function parseProductPayload(
     }
   }
 
+  const translations = readTranslations(body.translations, !partial);
+
+  if (!translations.ok) {
+    errors.push(translations.error);
+  } else if (translations.value !== undefined) {
+    data.translations = translations.value;
+  }
+
   if (body.visible !== undefined && body.visible !== null) {
     if (typeof body.visible !== "boolean") {
       errors.push('"visible" must be a boolean.');
@@ -153,10 +252,18 @@ export function parseProductQuery(url: URL) {
 
   if (search) {
     where.OR = [
-      { name: { contains: search, mode: "insensitive" } },
       { family: { contains: search, mode: "insensitive" } },
       { category: { contains: search, mode: "insensitive" } },
-      { description: { contains: search, mode: "insensitive" } },
+      {
+        translations: {
+          some: {
+            OR: [
+              { name: { contains: search, mode: "insensitive" } },
+              { description: { contains: search, mode: "insensitive" } },
+            ],
+          },
+        },
+      },
     ];
   }
 

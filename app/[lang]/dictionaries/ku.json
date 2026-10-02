@@ -232,68 +232,6 @@
       "brushed": "FIRÇE",
       "gloss": "PARLAK"
     },
-    "productsData": {
-      "carbon-airbox": {
-        "name": "QUTIYA HEWAYA KARBON",
-        "description": "Qutiyek karbonê ya herikîna bilind ji bo kontrolkirina germahiya hewaya hundir."
-      },
-      "cold-air-intake": {
-        "name": "HILGIRTINA HEWAYA SAR",
-        "description": "Pergalek hilgirtina hewayê ya herikîna bilind ji bo baştirkirina herikîna hewayê."
-      },
-      "intake-manifold": {
-        "name": "MANÎFOLDÊ HILGIRTINA HEWAYÊ",
-        "description": "Manîfoldek bi rastî hatiye sêwirandin ji bo herikîna hawayê ya bi bandor."
-      },
-      "intake-piping": {
-        "name": "BORIYA HILGIRTINA HEWAYÊ",
-        "description": "Boriya hilgirtina hewayê ya mandrel ji bo herikîna bê asteng."
-      },
-      "exhaust-manifold": {
-        "name": "MANÎFOLDÊ DERXISTINA GAZÊ",
-        "description": "Manîfoldek performansê ji bo herikîna gazê ya bi bandor."
-      },
-      "brake-cooling-duct": {
-        "name": "KANALA SAR-KIRINA FRENA",
-        "description": "Pergala kanalê ji bo rêkirina hewaya sar ber bi frenan."
-      },
-      "headlight-intake": {
-        "name": "DERZIYA HEWAYÊ YA FARÊ",
-        "description": "Derziyek hewayê ya karbonê ku ji bo dabînkirina herikîna hewayê ya kontrolkirî bo beşa motorê û xurtkirina karaktera tund a erebeyê hatiye sêwirandin."
-      },
-      "carbon-steering-wheel": {
-        "name": "DOLABA KARBON",
-        "description": "Dolabek karbon fiber ji bo paşvegera rasterast a ajokar."
-      },
-      "racing-seat": {
-        "name": "CIHÊ RACE",
-        "description": "Cihê performansê ya sivik ji bo piştgiriya ajokar."
-      },
-      "shift-knob": {
-        "name": "TOPIKA GEARÊ",
-        "description": "Topikek alumînyûmê ya mekanîze bi hesteke mekanîkî."
-      },
-      "carbon-interior-trim": {
-        "name": "TRIMA NAVXWEYÊ KARBON",
-        "description": "Trimê karbon fiber ji bo kokpîtê sivik û teknîk."
-      },
-      "carbon-hood": {
-        "name": "KAPOTA KARBON",
-        "description": "Kapotek karbon fiber ya sivik ji bo kêmkirina giraniyê."
-      },
-      "lightweight-tailgate": {
-        "name": "DERÎYA BAGAJÊ YA SIVIK",
-        "description": "Derîyek karbon fiber ji bo kêmkirina giraniya paşê."
-      },
-      "lightweight-door": {
-        "name": "DERÎYA SIVIK",
-        "description": "Derîyek avahî ya sivik ji bo kêmkirina giraniyê."
-      },
-      "rear-wing": {
-        "name": "BALAFIRA PAŞ",
-        "description": "Balafirek aerodînamîk a karbon fiber ji bo stabîlîtiya bilez."
-      }
-    },
     "empty": {
       "title": "BERHEM NEHAT DÎTIN",
       "description": "Kategoriyek din biceribînin an jî filtreyan biguherînin."

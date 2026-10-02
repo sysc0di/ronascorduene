@@ -62,7 +62,7 @@ export async function PATCH(
 
   if (!data) return badRequest(errors);
 
-  const { id: nextId, ...fields } = data;
+  const { id: nextId, translations, ...fields } = data;
 
   if (nextId && nextId !== id) {
     const taken = await prisma.product.findUnique({
@@ -78,10 +78,32 @@ export async function PATCH(
     }
   }
 
-  const update: Prisma.ProductUpdateInput = { ...fields };
+  const update: Prisma.ProductUpdateInput = {
+    ...(fields as Omit<Prisma.ProductUpdateInput, "translations">),
+  };
 
   if (nextId && nextId !== id) {
     update.id = nextId;
+  }
+
+  if (translations) {
+    /* Merge: locales the admin filled are upserted, the rest are kept. */
+    update.translations = {
+      upsert: translations.map((translation) => ({
+        where: {
+          productId_locale: { productId: id, locale: translation.locale },
+        },
+        update: {
+          name: translation.name,
+          description: translation.description,
+        },
+        create: {
+          locale: translation.locale,
+          name: translation.name,
+          description: translation.description,
+        },
+      })),
+    };
   }
 
   const product = await prisma.product.update({

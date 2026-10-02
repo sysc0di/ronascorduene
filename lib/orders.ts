@@ -2,6 +2,8 @@ import { randomUUID } from "node:crypto";
 
 import { OrderStatus } from "@/lib/generated/prisma/enums";
 import type { Prisma } from "@/lib/generated/prisma/client";
+import { defaultLocale } from "@/lib/i18n";
+import { pickTranslation } from "@/lib/product-text";
 import { prisma } from "@/lib/prisma";
 
 export const contactFields = [
@@ -33,11 +35,13 @@ export const orderInclude = {
       product: {
         select: {
           id: true,
-          name: true,
           image: true,
           family: true,
           category: true,
           visible: true,
+          translations: {
+            select: { locale: true, name: true },
+          },
         },
       },
     },
@@ -76,7 +80,16 @@ export function serializeOrder(order: Prisma.OrderGetPayload<{ include: typeof o
     productId: item.productId,
     quantity: item.quantity,
     createdAt: item.createdAt,
-    product: item.product,
+    product: item.product
+      ? {
+          id: item.product.id,
+          name: pickTranslation(item.product.translations, defaultLocale)?.name ?? "",
+          image: item.product.image,
+          family: item.product.family,
+          category: item.product.category,
+          visible: item.product.visible,
+        }
+      : null,
   }));
 
   return {

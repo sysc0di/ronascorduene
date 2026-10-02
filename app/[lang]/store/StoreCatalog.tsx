@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import {
+  CATEGORY_SLUGS,
+  SUBCATEGORIES,
+  type CategorySlug,
+} from "@/lib/catalog-taxonomy";
 import { useLocalList } from "@/lib/order-storage";
 
 import type { CatalogProduct } from "@/lib/order-types";
@@ -12,10 +17,7 @@ import type { Locale } from "@/lib/i18n";
 
 import "./Store.css";
 
-type FamilyKey =
-  | "airflow-dynamics"
-  | "driver-interface"
-  | "structural-aero";
+type FamilyKey = CategorySlug;
 
 type CategoryKey = keyof Dictionary["store"]["subcategories"];
 
@@ -24,40 +26,20 @@ type FilterKey =
   | "construction"
   | "finish";
 
-const families: FamilyKey[] = [
-  "airflow-dynamics",
-  "driver-interface",
-  "structural-aero",
-];
+const families: FamilyKey[] = [...CATEGORY_SLUGS];
 
+/* Same source of truth as the admin panel. */
 const familyCategories: Record<
   FamilyKey,
   CategoryKey[]
-> = {
-  "airflow-dynamics": [
-    "intake-manifolds",
-    "cold-air-intakes",
-    "carbon-airboxes",
-    "air-intake-piping",
-    "exhaust-manifolds",
-    "headlight-intakes",
-    "brake-cooling-ducts",
-  ],
-
-  "driver-interface": [
-    "carbon-fiber-steering-wheels",
-    "racing-seats",
-    "shift-knobs",
-    "carbon-fiber-interior-trims",
-  ],
-
-  "structural-aero": [
-    "carbon-fiber-hoods",
-    "trunks-tailgates",
-    "lightweight-doors",
-    "spoilers-wings",
-  ],
-};
+> = Object.fromEntries(
+  CATEGORY_SLUGS.map((family) => [
+    family,
+    SUBCATEGORIES[family].map(
+      (subcategory) => subcategory.slug as CategoryKey,
+    ),
+  ]),
+) as Record<FamilyKey, CategoryKey[]>;
 
 const filterKeys: FilterKey[] = [
   "material",
@@ -206,18 +188,11 @@ export default function StoreCatalog({
          * SEARCH
          */
         if (normalizedSearch) {
-          const productTranslation =
-            t.productsData[
-            product.name as keyof typeof t.productsData
-            ];
-
           const searchableText = [
             product.name,
+            product.description,
             product.category,
             product.family,
-            productTranslation?.name ?? "",
-            productTranslation?.description ??
-            "",
           ]
             .join(" ")
             .toLowerCase();
@@ -263,7 +238,6 @@ export default function StoreCatalog({
     filters,
     search,
     products,
-    t,
   ]);
 
   /*
@@ -757,11 +731,6 @@ export default function StoreCatalog({
                   product,
                   index
                 ) => {
-                  const data =
-                    t.productsData[
-                    product.name as keyof typeof t.productsData
-                    ];
-
                   return (
                     <article
                       key={
@@ -775,7 +744,6 @@ export default function StoreCatalog({
                             product.image
                           }
                           alt={
-                            data?.name ??
                             product.name
                           }
                           fill
@@ -816,13 +784,11 @@ export default function StoreCatalog({
                           </span>
 
                           <h2>
-                            {data?.name ??
-                              product.name}
+                            {product.name}
                           </h2>
 
                           <p>
-                            {data?.description ??
-                              ""}
+                            {product.description}
                           </p>
                         </div>
 
