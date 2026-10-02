@@ -10,6 +10,17 @@ import {
   type CategorySlug,
 } from "@/lib/catalog-taxonomy";
 import { useLocalList } from "@/lib/order-storage";
+import { useCurrency } from "@/lib/use-currency";
+import {
+  CURRENCIES,
+  discountAmount,
+  discountPercentOf,
+  effectivePrice,
+  formatPrice,
+  isDiscounted,
+  selectMoney,
+  type Currency,
+} from "@/lib/price";
 
 import type { CatalogProduct } from "@/lib/order-types";
 import type { Dictionary } from "../dictionaries";
@@ -80,6 +91,8 @@ export default function StoreCatalog({
 
   const [mobileFiltersOpen, setMobileFiltersOpen] =
     useState(false);
+
+  const [currency, setCurrency] = useCurrency(locale);
 
   const t = dict.store;
 
@@ -585,6 +598,25 @@ export default function StoreCatalog({
             </div>
 
             <div className="store-header-actions">
+              <label className="store-currency">
+                <span className="store-currency-label">
+                  {t.currency}
+                </span>
+
+                <select
+                  value={currency}
+                  onChange={(event) =>
+                    setCurrency(event.target.value as Currency)
+                  }
+                >
+                  {CURRENCIES.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
               <button
                 type="button"
                 className="store-reset"
@@ -731,6 +763,11 @@ export default function StoreCatalog({
                   product,
                   index
                 ) => {
+                  const money = selectMoney(
+                    product,
+                    currency
+                  );
+
                   return (
                     <article
                       key={
@@ -790,6 +827,49 @@ export default function StoreCatalog({
                           <p>
                             {product.description}
                           </p>
+
+                          {money.price !== null && (
+                            <div className="store-product-price">
+                              {isDiscounted(money) ? (
+                                <>
+                                  <span className="store-product-price-current">
+                                    {formatPrice(
+                                      effectivePrice(money),
+                                      currency,
+                                    )}
+                                  </span>
+
+                                  <span className="store-product-price-original">
+                                    {formatPrice(
+                                      money.price,
+                                      currency,
+                                    )}
+                                  </span>
+
+                                  <span className="store-product-price-badge">
+                                    -{discountPercentOf(money) ?? 0}%
+                                  </span>
+
+                                  {discountAmount(money) !== null && (
+                                    <span className="store-product-price-save">
+                                      {t.save}{" "}
+                                      {formatPrice(
+                                        discountAmount(money),
+                                        currency,
+                                      )}
+                                    </span>
+                                  )}
+                                </>
+                              ) : (
+                                <span className="store-product-price-current">
+                                  {formatPrice(
+                                    money.price,
+                                    currency,
+                                  )}
+                                </span>
+                              )}
+                            </div>
+                          )}
                         </div>
 
                         <button

@@ -6,6 +6,16 @@ import { useState } from "react";
 
 import { submitOrder } from "@/lib/order-client";
 import { useLocalList } from "@/lib/order-storage";
+import { useCurrency } from "@/lib/use-currency";
+import {
+  CURRENCIES,
+  discountPercentOf,
+  effectivePrice,
+  formatPrice,
+  isDiscounted,
+  selectMoney,
+  type Currency,
+} from "@/lib/price";
 
 import type { CatalogProduct } from "@/lib/order-types";
 import type { StoredListItem } from "@/lib/order-storage";
@@ -43,6 +53,8 @@ export default function ProductList({
 }: Props) {
   const t = dict.list;
 
+  const [currency, setCurrency] = useCurrency(locale);
+
   const {
     list,
     count,
@@ -66,6 +78,28 @@ export default function ProductList({
   const productById = new Map(
     products.map((product) => [product.id, product]),
   );
+
+  /* Money totals come from the catalog prices; items whose product has no
+     price (or was removed) contribute nothing to the total. */
+  const totalPrice = items.reduce((sum, item) => {
+    const product = productById.get(item.productId);
+    const unit = product
+      ? effectivePrice(selectMoney(product, currency))
+      : null;
+
+    return sum + (unit ?? 0) * item.quantity;
+  }, 0);
+
+  const originalTotal = items.reduce((sum, item) => {
+    const product = productById.get(item.productId);
+    const money = product
+      ? selectMoney(product, currency)
+      : null;
+
+    return sum + (money?.price ?? 0) * item.quantity;
+  }, 0);
+
+  const savings = Math.max(originalTotal - totalPrice, 0);
 
   const updateField =
     (field: keyof Contact) =>
@@ -94,6 +128,7 @@ export default function ProductList({
 
     const result = await submitOrder({
       ...contact,
+      currency,
       items: list.items,
     });
 
@@ -178,20 +213,44 @@ export default function ProductList({
                   {String(total).padStart(2, "0")}
                 </span>
 
-                {!sent && (
-                  <button
-                    type="button"
-                    className="list-clear"
-                    onClick={clear}
-                  >
-                    {t.clear}
-                  </button>
-                )}
+                <div className="list-section-actions">
+                  <label className="list-currency">
+                    <span className="list-currency-label">
+                      {dict.store.currency}
+                    </span>
+
+                    <select
+                      value={currency}
+                      onChange={(event) =>
+                        setCurrency(event.target.value as Currency)
+                      }
+                    >
+                      {CURRENCIES.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  {!sent && (
+                    <button
+                      type="button"
+                      className="list-clear"
+                      onClick={clear}
+                    >
+                      {t.clear}
+                    </button>
+                  )}
+                </div>
               </div>
 
               {items.map((item) => {
                 const product =
                   productById.get(item.productId);
+                const money = product
+                  ? selectMoney(product, currency)
+                  : null;
 
                 return (
                   <article
@@ -230,6 +289,33 @@ export default function ProductList({
                         {product?.name ??
                           "—"}
                       </h2>
+
+                      {money && money.price !== null && (
+                        <div className="list-item-price">
+                          {isDiscounted(money) ? (
+                            <>
+                              <span className="list-item-price-current">
+                                {formatPrice(
+                                  effectivePrice(money),
+                                  currency,
+                                )}
+                              </span>
+
+                              <span className="list-item-price-original">
+                                {formatPrice(money.price, currency)}
+                              </span>
+
+                              <span className="list-item-price-badge">
+                                -{discountPercentOf(money) ?? 0}%
+                              </span>
+                            </>
+                          ) : (
+                            <span className="list-item-price-current">
+                              {formatPrice(money.price, currency)}
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     {!sent && product ? (
@@ -286,6 +372,33 @@ export default function ProductList({
                   </article>
                 );
               })}
+
+              {totalPrice > 0 && (
+                <div className="list-summary">
+                  {savings > 0 && (
+                    <>
+                      <div className="list-summary-row">
+                        <span>{t.subtotal}</span>
+                        <span className="list-summary-strike">
+                          {formatPrice(originalTotal, currency)}
+                        </span>
+                      </div>
+
+                      <div className="list-summary-row">
+                        <span>{t.savings}</span>
+                        <span>
+                          -{formatPrice(savings, currency)}
+                        </span>
+                      </div>
+                    </>
+                  )}
+
+                  <div className="list-summary-row list-summary-total">
+                    <span>{t.total}</span>
+                    <span>{formatPrice(totalPrice, currency)}</span>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* CONTACT FORM */}
@@ -400,10 +513,17 @@ export default function ProductList({
                   </button>
 
                   <span className="list-total">
-                    {t.total} /{" "}
-                    {String(
-                      total,
-                    ).padStart(2, "0")}
+                    {totalPrice > 0 ? (
+                      <>
+                        {t.total}{" "}
+                        {formatPrice(totalPrice, currency)}
+                      </>
+                    ) : (
+                      <>
+                        {t.items} /{" "}
+                        {String(total).padStart(2, "0")}
+                      </>
+                    )}
                   </span>
                 </div>
               </form>

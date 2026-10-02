@@ -11,6 +11,7 @@ export type OrderSubmission = {
   firstName: string;
   lastName: string;
   notes?: string;
+  currency?: string;
   items: { productId: string; quantity: number }[];
 };
 

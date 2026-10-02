@@ -13,4 +13,10 @@ export type CatalogProduct = {
   material: string;
   construction: string;
   finish: string;
+  priceUsd: number | null;
+  discountedPriceUsd: number | null;
+  discountPercentUsd: number | null;
+  priceTry: number | null;
+  discountedPriceTry: number | null;
+  discountPercentTry: number | null;
 };

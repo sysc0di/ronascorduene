@@ -1,5 +1,6 @@
 import type { Prisma } from "@/lib/generated/prisma/client";
 import { locales, type Locale } from "@/lib/i18n";
+import type { Money } from "@/lib/price";
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -40,6 +41,12 @@ export type ProductPayload = {
   id?: string;
   visible?: boolean;
   translations?: ProductTranslationPayload[];
+  priceUsd?: number | null;
+  discountedPriceUsd?: number | null;
+  discountPercentUsd?: number | null;
+  priceTry?: number | null;
+  discountedPriceTry?: number | null;
+  discountPercentTry?: number | null;
 } & Partial<Record<(typeof productFields)[number], string>>;
 
 export const translationSelect = {
@@ -56,6 +63,12 @@ export const productSelect = {
   material: true,
   construction: true,
   finish: true,
+  priceUsd: true,
+  discountedPriceUsd: true,
+  discountPercentUsd: true,
+  priceTry: true,
+  discountedPriceTry: true,
+  discountPercentTry: true,
   visible: true,
   createdAt: true,
   updatedAt: true,
@@ -171,6 +184,88 @@ function readTranslations(value: unknown, required: boolean): TranslationsResult
   return { ok: true, value: translations };
 }
 
+type NumberResult =
+  | { ok: true; value: number | null | undefined }
+  | { ok: false; error: string };
+
+function readMoney(
+  body: Record<string, unknown>,
+  field: string,
+): NumberResult {
+  const raw = body[field];
+
+  if (raw === undefined) return { ok: true, value: undefined };
+  if (raw === null || raw === "") return { ok: true, value: null };
+
+  const value = typeof raw === "number" ? raw : Number(raw);
+
+  if (!Number.isFinite(value) || value < 0) {
+    return {
+      ok: false,
+      error: `"${field}" must be a non-negative number.`,
+    };
+  }
+
+  return { ok: true, value: Math.round(value * 100) / 100 };
+}
+
+function readPercent(
+  body: Record<string, unknown>,
+  field: string,
+): NumberResult {
+  const raw = body[field];
+
+  if (raw === undefined) return { ok: true, value: undefined };
+  if (raw === null || raw === "") return { ok: true, value: null };
+
+  const value = typeof raw === "number" ? raw : Number(raw);
+
+  if (!Number.isInteger(value) || value < 0 || value > 100) {
+    return {
+      ok: false,
+      error: `"${field}" must be a whole number between 0 and 100.`,
+    };
+  }
+
+  return { ok: true, value };
+}
+
+/**
+ * Keeps a currency's price fields consistent: a discount only exists when the
+ * sale price is strictly below the regular price, and a missing middle value
+ * is derived from the other two.
+ */
+function normalizeMoney(money: Money): Money {
+  const price = money.price ?? null;
+  const discounted = money.discountedPrice ?? null;
+  const percent = money.discountPercent ?? null;
+
+  if (price === null || price <= 0) {
+    return { price, discountedPrice: null, discountPercent: null };
+  }
+
+  if (discounted !== null && discounted > 0 && discounted < price) {
+    return {
+      price,
+      discountedPrice: discounted,
+      discountPercent:
+        percent !== null && percent > 0
+          ? percent
+          : Math.round((1 - discounted / price) * 100),
+    };
+  }
+
+  if (discounted === null && percent !== null && percent > 0) {
+    const computed = Math.round(price * (1 - percent / 100) * 100) / 100;
+
+    if (computed > 0 && computed < price) {
+      return { price, discountedPrice: computed, discountPercent: percent };
+    }
+  }
+
+  return { price, discountedPrice: null, discountPercent: null };
+}
+
 export function parseProductPayload(
   body: unknown,
   { partial = false }: { partial?: boolean } = {},
@@ -221,6 +316,54 @@ export function parseProductPayload(
     data.translations = translations.value;
   }
 
+  const priceUsd = readMoney(body, "priceUsd");
+
+  if (!priceUsd.ok) {
+    errors.push(priceUsd.error);
+  } else if (priceUsd.value !== undefined) {
+    data.priceUsd = priceUsd.value;
+  }
+
+  const discountedPriceUsd = readMoney(body, "discountedPriceUsd");
+
+  if (!discountedPriceUsd.ok) {
+    errors.push(discountedPriceUsd.error);
+  } else if (discountedPriceUsd.value !== undefined) {
+    data.discountedPriceUsd = discountedPriceUsd.value;
+  }
+
+  const discountPercentUsd = readPercent(body, "discountPercentUsd");
+
+  if (!discountPercentUsd.ok) {
+    errors.push(discountPercentUsd.error);
+  } else if (discountPercentUsd.value !== undefined) {
+    data.discountPercentUsd = discountPercentUsd.value;
+  }
+
+  const priceTry = readMoney(body, "priceTry");
+
+  if (!priceTry.ok) {
+    errors.push(priceTry.error);
+  } else if (priceTry.value !== undefined) {
+    data.priceTry = priceTry.value;
+  }
+
+  const discountedPriceTry = readMoney(body, "discountedPriceTry");
+
+  if (!discountedPriceTry.ok) {
+    errors.push(discountedPriceTry.error);
+  } else if (discountedPriceTry.value !== undefined) {
+    data.discountedPriceTry = discountedPriceTry.value;
+  }
+
+  const discountPercentTry = readPercent(body, "discountPercentTry");
+
+  if (!discountPercentTry.ok) {
+    errors.push(discountPercentTry.error);
+  } else if (discountPercentTry.value !== undefined) {
+    data.discountPercentTry = discountPercentTry.value;
+  }
+
   if (body.visible !== undefined && body.visible !== null) {
     if (typeof body.visible !== "boolean") {
       errors.push('"visible" must be a boolean.');
@@ -229,6 +372,32 @@ export function parseProductPayload(
     }
   } else if (!partial) {
     data.visible = true;
+  }
+
+  if (errors.length === 0) {
+    if (data.priceUsd !== undefined) {
+      const money = normalizeMoney({
+        price: data.priceUsd,
+        discountedPrice: data.discountedPriceUsd ?? null,
+        discountPercent: data.discountPercentUsd ?? null,
+      });
+
+      data.priceUsd = money.price;
+      data.discountedPriceUsd = money.discountedPrice;
+      data.discountPercentUsd = money.discountPercent;
+    }
+
+    if (data.priceTry !== undefined) {
+      const money = normalizeMoney({
+        price: data.priceTry,
+        discountedPrice: data.discountedPriceTry ?? null,
+        discountPercent: data.discountPercentTry ?? null,
+      });
+
+      data.priceTry = money.price;
+      data.discountedPriceTry = money.discountedPrice;
+      data.discountPercentTry = money.discountPercent;
+    }
   }
 
   if (errors.length > 0) {

@@ -33,16 +33,28 @@ model User {
 }
 
 model Product {
-  id           String   @id
-  family       String
-  category     String
-  image        String
-  material     String
-  construction String
-  finish       String
-  visible      Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id              String   @id
+  family          String
+  category        String
+  image           String
+  material        String
+  construction    String
+  finish          String
+  /// Regular price in USD. Null means "price on request".
+  priceUsd           Decimal? @db.Decimal(10, 2)
+  /// Sale price in USD. Only a value strictly below `priceUsd` counts.
+  discountedPriceUsd Decimal? @db.Decimal(10, 2)
+  /// USD discount percentage; derived from the two prices when omitted.
+  discountPercentUsd Int?
+  /// Regular price in Turkish Lira. Null means "price on request".
+  priceTry           Decimal? @db.Decimal(10, 2)
+  /// Sale price in TRY. Only a value strictly below `priceTry` counts.
+  discountedPriceTry Decimal? @db.Decimal(10, 2)
+  /// TRY discount percentage; derived from the two prices when omitted.
+  discountPercentTry Int?
+  visible            Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   translations ProductTranslation[]
   orderItems   OrderItem[]
@@ -111,6 +123,8 @@ model Order {
   notes       String?
   status      OrderStatus @default(DRAFT)
   submittedAt DateTime?
+  /// Currency the customer checked out in. Order totals are shown in it.
+  currency    String      @default("TRY")
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 
@@ -126,6 +140,12 @@ model OrderItem {
   orderId   String
   productId String?
   quantity  Int      @default(1)
+  /// Price snapshot captured when the order was submitted. Stored so later
+  /// product price changes never alter an existing order's totals.
+  unitPriceUsd    Decimal? @db.Decimal(10, 2)
+  unitPriceTry    Decimal? @db.Decimal(10, 2)
+  regularPriceUsd Decimal? @db.Decimal(10, 2)
+  regularPriceTry Decimal? @db.Decimal(10, 2)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

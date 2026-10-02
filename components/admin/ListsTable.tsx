@@ -26,11 +26,17 @@ import {
   TableShell,
 } from "@/components/admin/ui";
 import { formatDate } from "@/lib/admin-format";
+import { formatPrice } from "@/lib/price";
 
 type Item = {
   id: string;
   productId: string | null;
   quantity: number;
+  currency: "USD" | "TRY";
+  unitPrice: number | null;
+  regularPrice: number | null;
+  lineTotal: number | null;
+  lineRegular: number | null;
   product: {
     id: string;
     name: string;
@@ -49,6 +55,10 @@ type Order = {
   lastName: string | null;
   notes: string | null;
   status: "DRAFT" | "SUBMITTED" | "PROCESSING" | "COMPLETED" | "CANCELLED";
+  currency: "USD" | "TRY";
+  subtotal: number;
+  discount: number;
+  total: number;
   submittedAt: string | null;
   createdAt: string;
   itemCount: number;
@@ -67,6 +77,10 @@ const STATUS_OPTIONS = [
   "COMPLETED",
   "CANCELLED",
 ] as const;
+
+function hasPricing(order: Order) {
+  return order.items.some((item) => item.unitPrice !== null);
+}
 
 export function ListsTable({
   initialOrders,
@@ -283,7 +297,7 @@ export function ListsTable({
           />
         ) : (
           <TableShell
-            head={["List", "Customer", "Contact", "Items", "Status", "Submitted", ""]}
+            head={["List", "Customer", "Contact", "Items", "Total", "Status", "Submitted", ""]}
           >
             {orders.map((order) => (
               <tr key={order.id}>
@@ -310,6 +324,12 @@ export function ListsTable({
 
                 <td className="cell-numeric cell-strong">
                   {order.itemCount}
+                </td>
+
+                <td className="cell-numeric cell-strong whitespace-nowrap">
+                  {hasPricing(order)
+                    ? formatPrice(order.total, order.currency)
+                    : "—"}
                 </td>
 
                 <td>
@@ -496,13 +516,16 @@ export function ListsTable({
             </dl>
 
             <div className="table-scroll rounded-lg border border-line">
-              <table className="data-table" style={{ minWidth: "28rem" }}>
+              <table className="data-table" style={{ minWidth: "30rem" }}>
                 <thead>
                   <tr>
                     <th scope="col">Product</th>
-                    <th scope="col">Category</th>
+                    <th scope="col">Unit</th>
                     <th scope="col" className="text-right">
                       Qty
+                    </th>
+                    <th scope="col" className="text-right">
+                      Total
                     </th>
                   </tr>
                 </thead>
@@ -516,7 +539,10 @@ export function ListsTable({
                         </p>
 
                         <p className="cell-muted">
-                          {item.product?.family ?? item.productId ?? "—"}
+                          {item.product?.category ??
+                            item.product?.family ??
+                            item.productId ??
+                            "—"}
                         </p>
 
                         {item.product && !item.product.visible && (
@@ -524,18 +550,70 @@ export function ListsTable({
                         )}
                       </td>
 
-                      <td className="cell-muted">
-                        {item.product?.category ?? "—"}
+                      <td className="cell-muted whitespace-nowrap">
+                        {item.unitPrice === null ? (
+                          "—"
+                        ) : (
+                          <>
+                            {formatPrice(item.unitPrice, item.currency)}
+
+                            {item.regularPrice !== null &&
+                              item.regularPrice > item.unitPrice && (
+                                <span className="block text-xs line-through">
+                                  {formatPrice(
+                                    item.regularPrice,
+                                    item.currency,
+                                  )}
+                                </span>
+                              )}
+                          </>
+                        )}
                       </td>
 
                       <td className="cell-numeric cell-strong text-right">
                         {item.quantity}
+                      </td>
+
+                      <td className="cell-numeric cell-strong whitespace-nowrap text-right">
+                        {item.lineTotal === null
+                          ? "—"
+                          : formatPrice(item.lineTotal, item.currency)}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+
+            {hasPricing(selected) && (
+              <div className="space-y-1.5 rounded-lg border border-line bg-sunken px-4 py-3">
+                <div className="flex items-center justify-between cell-muted">
+                  <span>Subtotal</span>
+
+                  <span>
+                    {formatPrice(selected.subtotal, selected.currency)}
+                  </span>
+                </div>
+
+                {selected.discount > 0 && (
+                  <div className="flex items-center justify-between cell-muted">
+                    <span>Discount</span>
+
+                    <span>
+                      -{formatPrice(selected.discount, selected.currency)}
+                    </span>
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between cell-strong">
+                  <span>Total</span>
+
+                  <span>
+                    {formatPrice(selected.total, selected.currency)}
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </Modal>

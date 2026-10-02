@@ -177,6 +177,7 @@
     "search": "SEARCH",
     "searchPlaceholder": "Search catalog...",
     "reset": "RESET",
+    "currency": "CURRENCY",
     "clear": "CLEAR",
     "close": "CLOSE",
     "openCategories": "OPEN CATEGORIES",
@@ -238,7 +239,8 @@
     },
     "addToList": "ADD TO LIST",
     "addedToList": "ADDED",
-    "goToList": "GO TO LIST"
+    "goToList": "GO TO LIST",
+    "save": "SAVE"
   },
   "footer": {
     "brand": "RONAS / CORDUENE",
@@ -267,6 +269,8 @@
     "remove": "REMOVE",
     "clear": "CLEAR LIST",
     "total": "TOTAL",
+    "subtotal": "SUBTOTAL",
+    "savings": "YOU SAVE",
     "removed": "This product is no longer in the catalog.",
     "details": "CONTACT DETAILS",
     "detailsDescription": "These fields are required so we can process your request.",

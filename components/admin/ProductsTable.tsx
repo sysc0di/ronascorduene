@@ -42,6 +42,17 @@ import {
   locales,
   type Locale,
 } from "@/lib/i18n";
+import {
+  CURRENCIES,
+  discountPercentOf,
+  effectivePrice,
+  formatPrice,
+  isDiscounted,
+  roundMoney,
+  selectMoney,
+  type Currency,
+  type Money,
+} from "@/lib/price";
 
 type ProductTranslation = {
   locale: Locale;
@@ -57,11 +68,23 @@ type Product = {
   material: string | null;
   construction: string | null;
   finish: string | null;
+  priceUsd: number | null;
+  discountedPriceUsd: number | null;
+  discountPercentUsd: number | null;
+  priceTry: number | null;
+  discountedPriceTry: number | null;
+  discountPercentTry: number | null;
   visible: boolean;
   translations: ProductTranslation[];
 };
 
 type DraftTranslation = { name: string; description: string };
+
+type DraftMoney = {
+  price: string;
+  discountedPrice: string;
+  discountPercent: string;
+};
 
 type Draft = {
   id: string;
@@ -71,6 +94,7 @@ type Draft = {
   material: string;
   construction: string;
   finish: string;
+  pricing: Record<Currency, DraftMoney>;
   visible: boolean;
   language: Locale;
   translations: Record<Locale, DraftTranslation>;
@@ -84,6 +108,81 @@ function emptyTranslations(): Record<Locale, DraftTranslation> {
   ) as Record<Locale, DraftTranslation>;
 }
 
+function moneyToDraft(
+  price: number | null,
+  discountedPrice: number | null,
+  discountPercent: number | null,
+): DraftMoney {
+  return {
+    price: price === null ? "" : String(price),
+    discountedPrice:
+      discountedPrice === null ? "" : String(discountedPrice),
+    discountPercent:
+      discountPercent === null ? "" : String(discountPercent),
+  };
+}
+
+function parseDraftMoney(
+  money: DraftMoney,
+  label: string,
+): {
+  price: number | null;
+  discountedPrice: number | null;
+  discountPercent: number | null;
+  errors: string[];
+} {
+  const errors: string[] = [];
+  const price = money.price.trim() === "" ? null : Number(money.price);
+  const discounted =
+    money.discountedPrice.trim() === ""
+      ? null
+      : Number(money.discountedPrice);
+  const percent =
+    money.discountPercent.trim() === ""
+      ? null
+      : Number(money.discountPercent);
+
+  if (price !== null && (!Number.isFinite(price) || price < 0)) {
+    errors.push(`${label} price must be a non-negative number`);
+  }
+
+  if (
+    discounted !== null &&
+    (!Number.isFinite(discounted) || discounted < 0)
+  ) {
+    errors.push(
+      `${label} discounted price must be a non-negative number`,
+    );
+  }
+
+  if (
+    percent !== null &&
+    (!Number.isInteger(percent) || percent < 0 || percent > 100)
+  ) {
+    errors.push(
+      `${label} discount % must be a whole number between 0 and 100`,
+    );
+  }
+
+  if (
+    price !== null &&
+    price > 0 &&
+    discounted !== null &&
+    discounted >= price
+  ) {
+    errors.push(
+      `${label} discounted price must be lower than the price`,
+    );
+  }
+
+  return {
+    price,
+    discountedPrice: discounted,
+    discountPercent: percent,
+    errors,
+  };
+}
+
 function emptyDraft(): Draft {
   return {
     id: "",
@@ -93,6 +192,10 @@ function emptyDraft(): Draft {
     material: "",
     construction: "",
     finish: "",
+    pricing: {
+      USD: { price: "", discountedPrice: "", discountPercent: "" },
+      TRY: { price: "", discountedPrice: "", discountPercent: "" },
+    },
     visible: true,
     language: defaultLocale,
     translations: emptyTranslations(),
@@ -124,6 +227,18 @@ function draftFromProduct(product: Product): Draft {
     material: product.material ?? "",
     construction: product.construction ?? "",
     finish: product.finish ?? "",
+    pricing: {
+      USD: moneyToDraft(
+        product.priceUsd,
+        product.discountedPriceUsd,
+        product.discountPercentUsd,
+      ),
+      TRY: moneyToDraft(
+        product.priceTry,
+        product.discountedPriceTry,
+        product.discountPercentTry,
+      ),
+    },
     visible: product.visible,
     language,
     translations,
@@ -145,6 +260,48 @@ function filledLocales(product: Product): Locale[] {
     product.translations.some(
       (entry) => entry.locale === locale && entry.name,
     ),
+  );
+}
+
+function ProductPriceCell({ product }: { product: Product }) {
+  const rows = CURRENCIES.map((currency) => ({
+    currency,
+    money: selectMoney(product, currency),
+  })).filter((row) => row.money.price !== null);
+
+  if (rows.length === 0) {
+    return <span className="cell-muted">—</span>;
+  }
+
+  return (
+    <div className="flex flex-col gap-2">
+      {rows.map(({ currency, money }) => (
+        <div
+          key={currency}
+          className="flex flex-col items-start gap-0.5"
+        >
+          {isDiscounted(money) ? (
+            <>
+              <span className="cell-strong flex items-center gap-1">
+                {formatPrice(effectivePrice(money), currency)}
+
+                <Badge tone="ok">
+                  -{discountPercentOf(money) ?? 0}%
+                </Badge>
+              </span>
+
+              <span className="cell-muted text-xs line-through">
+                {formatPrice(money.price, currency)}
+              </span>
+            </>
+          ) : (
+            <span className="cell-strong">
+              {formatPrice(money.price, currency)}
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -227,6 +384,89 @@ export function ProductsTable({
     }));
   }
 
+  /* Keep each currency's regular price, sale price and percentage in step:
+     editing any one of the three recomputes the others so values agree. */
+  function setPrice(currency: Currency, value: string) {
+    setDraft((current) => {
+      const money = { ...current.pricing[currency], price: value };
+      const price = Number(value);
+      const percent = Number(money.discountPercent);
+
+      if (
+        value.trim() !== "" &&
+        Number.isFinite(price) &&
+        price > 0 &&
+        money.discountPercent.trim() !== "" &&
+        Number.isFinite(percent) &&
+        percent > 0 &&
+        percent < 100
+      ) {
+        money.discountedPrice = roundMoney(
+          price * (1 - percent / 100),
+        ).toString();
+      }
+
+      return {
+        ...current,
+        pricing: { ...current.pricing, [currency]: money },
+      };
+    });
+  }
+
+  function setDiscountPercent(currency: Currency, value: string) {
+    setDraft((current) => {
+      const money = { ...current.pricing[currency], discountPercent: value };
+      const price = Number(money.price);
+      const percent = Number(value);
+
+      if (
+        money.price.trim() !== "" &&
+        Number.isFinite(price) &&
+        price > 0 &&
+        value.trim() !== "" &&
+        Number.isFinite(percent) &&
+        percent > 0 &&
+        percent < 100
+      ) {
+        money.discountedPrice = roundMoney(
+          price * (1 - percent / 100),
+        ).toString();
+      }
+
+      return {
+        ...current,
+        pricing: { ...current.pricing, [currency]: money },
+      };
+    });
+  }
+
+  function setDiscountedPrice(currency: Currency, value: string) {
+    setDraft((current) => {
+      const money = { ...current.pricing[currency], discountedPrice: value };
+      const price = Number(money.price);
+      const discounted = Number(value);
+
+      if (
+        money.price.trim() !== "" &&
+        Number.isFinite(price) &&
+        price > 0 &&
+        value.trim() !== "" &&
+        Number.isFinite(discounted) &&
+        discounted > 0 &&
+        discounted < price
+      ) {
+        money.discountPercent = String(
+          Math.round((1 - discounted / price) * 100),
+        );
+      }
+
+      return {
+        ...current,
+        pricing: { ...current.pricing, [currency]: money },
+      };
+    });
+  }
+
   async function request(url: string, init: RequestInit) {
     const response = await fetch(url, init);
     const payload = await response.json().catch(() => ({}));
@@ -280,6 +520,13 @@ export function ProductsTable({
       missing.push("Name and description for every language you filled in");
     }
 
+    /* Prices are optional, but anything typed must be a valid amount and a
+       discount has to be lower than the regular price. */
+    const usd = parseDraftMoney(draft.pricing.USD, "USD");
+    const tryPrice = parseDraftMoney(draft.pricing.TRY, "TRY");
+
+    missing.push(...usd.errors, ...tryPrice.errors);
+
     setDraftErrors(missing);
 
     if (missing.length > 0) return;
@@ -294,6 +541,12 @@ export function ProductsTable({
       material: draft.material,
       construction: draft.construction,
       finish: draft.finish,
+      priceUsd: usd.price,
+      discountedPriceUsd: usd.discountedPrice,
+      discountPercentUsd: usd.discountPercent,
+      priceTry: tryPrice.price,
+      discountedPriceTry: tryPrice.discountedPrice,
+      discountPercentTry: tryPrice.discountPercent,
       visible: draft.visible,
       translations: filled.map((entry) => ({
         locale: entry.locale,
@@ -381,6 +634,33 @@ export function ProductsTable({
 
   const hiddenCount = products.filter((product) => !product.visible).length;
 
+  /* Live preview of what the visitor will see for the draft, per currency. */
+  function previewMoney(currency: Currency): Money {
+    const money = draft.pricing[currency];
+
+    return {
+      price:
+        money.price.trim() === "" || !Number.isFinite(Number(money.price))
+          ? null
+          : Number(money.price),
+      discountedPrice:
+        money.discountedPrice.trim() === "" ||
+        !Number.isFinite(Number(money.discountedPrice))
+          ? null
+          : Number(money.discountedPrice),
+      discountPercent:
+        money.discountPercent.trim() === "" ||
+        !Number.isFinite(Number(money.discountPercent))
+          ? null
+          : Number(money.discountPercent),
+    };
+  }
+
+  const draftMoney: Record<Currency, Money> = {
+    USD: previewMoney("USD"),
+    TRY: previewMoney("TRY"),
+  };
+
   return (
     <div className="space-y-4">
       <Panel>
@@ -455,7 +735,9 @@ export function ProductsTable({
             description="Adjust the search or visibility filter."
           />
         ) : (
-          <TableShell head={["Product", "Languages", "Category", "Visible", ""]}>
+          <TableShell
+            head={["Product", "Languages", "Category", "Price", "Visible", ""]}
+          >
             {visible.map((product) => {
               const name = productName(product);
               const languages = filledLocales(product);
@@ -503,6 +785,10 @@ export function ProductsTable({
 
                   <td>
                     <Badge>{subcategoryLabel(product.category)}</Badge>
+                  </td>
+
+                  <td>
+                    <ProductPriceCell product={product} />
                   </td>
 
                   <td>
@@ -721,6 +1007,96 @@ export function ProductsTable({
                 setDraft({ ...draft, finish: event.target.value })
               }
             />
+          </div>
+
+          <div className="space-y-4 rounded-lg border border-line bg-sunken p-4">
+            {CURRENCIES.map((currency) => {
+              const money = draft.pricing[currency];
+              const preview = draftMoney[currency];
+
+              return (
+                <div key={currency} className="space-y-3">
+                  <p className="cell-strong text-sm">
+                    {currency === "USD"
+                      ? "US Dollar (USD)"
+                      : "Turkish Lira (TRY)"}
+                  </p>
+
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    <Input
+                      label={`${currency} price`}
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      inputMode="decimal"
+                      value={money.price}
+                      onChange={(event) =>
+                        setPrice(currency, event.target.value)
+                      }
+                      placeholder="0.00"
+                    />
+
+                    <Input
+                      label="Discount %"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      inputMode="numeric"
+                      value={money.discountPercent}
+                      onChange={(event) =>
+                        setDiscountPercent(currency, event.target.value)
+                      }
+                      placeholder="0"
+                    />
+
+                    <Input
+                      label="Discounted price"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      inputMode="decimal"
+                      value={money.discountedPrice}
+                      onChange={(event) =>
+                        setDiscountedPrice(currency, event.target.value)
+                      }
+                      placeholder="0.00"
+                    />
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 text-sm">
+                    <span className="cell-muted">Storefront:</span>
+
+                    {isDiscounted(preview) ? (
+                      <>
+                        <span className="cell-strong">
+                          {formatPrice(effectivePrice(preview), currency)}
+                        </span>
+
+                        <span className="cell-muted line-through">
+                          {formatPrice(preview.price, currency)}
+                        </span>
+
+                        <Badge tone="ok">
+                          -{discountPercentOf(preview) ?? 0}%
+                        </Badge>
+                      </>
+                    ) : preview.price !== null ? (
+                      <span className="cell-strong">
+                        {formatPrice(preview.price, currency)}
+                      </span>
+                    ) : (
+                      <span className="cell-muted">No price</span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+
+            <p className="field-hint">
+              Leave a currency blank to hide that price. Editing the
+              percentage fills the discounted price, and vice versa.
+            </p>
           </div>
 
           <div className="flex items-center justify-between rounded-lg border border-line bg-sunken px-3 py-2.5">

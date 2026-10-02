@@ -177,6 +177,7 @@
     "search": "LÊGERÎN",
     "searchPlaceholder": "Di katalogê de bigere...",
     "reset": "RESET",
+    "currency": "DIRAV",
     "clear": "PAQIJ KIRIN",
     "close": "GIRTIN",
     "openCategories": "KATEGORIYAN VEKE",
@@ -238,7 +239,8 @@
     },
     "addToList": "LÎSTEYÊ ZÊDE BÎKÎN",
     "addedToList": "ZÊDE HATIR",
-    "goToList": "BINÊ LÎSTEYÊ"
+    "goToList": "BINÊ LÎSTEYÊ",
+    "save": "TESERUF"
   },
   "terms": {
     "WHEELS": "FÎRSE",
@@ -361,6 +363,8 @@
     "remove": "RÊKE",
     "clear": "LÎSTA PAZ DE",
     "total": "KOMAJÎ",
+    "subtotal": "BIN KOMAJÎ",
+    "savings": "TESERUF",
     "removed": "Ev hilber di nav katalogê de cî bi nas nabe.",
     "details": "AGAHÎYÊN XEBATKIRÎ",
     "detailsDescription": "Ji bo ku daxwaza we were şêndekirî bibe, ev qad zorûn in.",

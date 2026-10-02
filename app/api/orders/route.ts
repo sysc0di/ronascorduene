@@ -2,9 +2,11 @@ import { authenticateAdmin } from "@/lib/admin-session";
 import { OrderStatus } from "@/lib/generated/prisma/enums";
 import {
   adminOnly,
+  buildItemSnapshots,
   createToken,
   findUnavailableProducts,
   listJson,
+  loadProductPricing,
   orderInclude,
   parseOrderQuery,
   parseSubmission,
@@ -93,6 +95,11 @@ export async function POST(request: Request) {
 
   const { items, ...contact } = data;
 
+  const products = await loadProductPricing(
+    items.map((item) => item.productId),
+  );
+  const snapshots = buildItemSnapshots(items, products);
+
   try {
     const order = await prisma.order.create({
       data: {
@@ -101,10 +108,7 @@ export async function POST(request: Request) {
         status: OrderStatus.SUBMITTED,
         submittedAt: new Date(),
         items: {
-          create: items.map((item) => ({
-            productId: item.productId,
-            quantity: item.quantity,
-          })),
+          create: snapshots,
         },
       },
       include: orderInclude,

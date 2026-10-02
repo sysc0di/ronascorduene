@@ -3,6 +3,7 @@ import { ArrowRight, Package, ScrollText } from "lucide-react";
 
 import { PageHeader, StatusBadge } from "@/components/admin/AdminShell";
 import { Panel } from "@/components/admin/ui";
+import { formatPrice } from "@/lib/price";
 import { prisma } from "@/lib/prisma";
 import { orderInclude, serializeOrder } from "@/lib/orders";
 
@@ -99,7 +100,15 @@ export default async function AdminOverviewPage() {
                       </p>
                     </div>
 
-                    <StatusBadge status={list.status} />
+                    <div className="flex shrink-0 items-center gap-3">
+                      {list.items.some((item) => item.unitPrice !== null) && (
+                        <span className="cell-strong cell-numeric whitespace-nowrap">
+                          {formatPrice(list.total, list.currency)}
+                        </span>
+                      )}
+
+                      <StatusBadge status={list.status} />
+                    </div>
                   </li>
                 );
               })}

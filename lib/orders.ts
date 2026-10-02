@@ -3,6 +3,15 @@ import { randomUUID } from "node:crypto";
 import { OrderStatus } from "@/lib/generated/prisma/enums";
 import type { Prisma } from "@/lib/generated/prisma/client";
 import { defaultLocale } from "@/lib/i18n";
+import {
+  decimalToNumber,
+  effectivePrice,
+  FALLBACK_CURRENCY,
+  isCurrency,
+  roundMoney,
+  type Currency,
+  type Money,
+} from "@/lib/price";
 import { pickTranslation } from "@/lib/product-text";
 import { prisma } from "@/lib/prisma";
 
@@ -75,22 +84,63 @@ export function createToken() {
 }
 
 export function serializeOrder(order: Prisma.OrderGetPayload<{ include: typeof orderInclude }>) {
-  const items = order.items.map((item) => ({
-    id: item.id,
-    productId: item.productId,
-    quantity: item.quantity,
-    createdAt: item.createdAt,
-    product: item.product
-      ? {
-          id: item.product.id,
-          name: pickTranslation(item.product.translations, defaultLocale)?.name ?? "",
-          image: item.product.image,
-          family: item.product.family,
-          category: item.product.category,
-          visible: item.product.visible,
-        }
-      : null,
-  }));
+  const currency: Currency = isCurrency(order.currency)
+    ? order.currency
+    : FALLBACK_CURRENCY;
+
+  const items = order.items.map((item) => {
+    const unitUsd = decimalToNumber(item.unitPriceUsd);
+    const unitTry = decimalToNumber(item.unitPriceTry);
+    const regularUsd = decimalToNumber(item.regularPriceUsd);
+    const regularTry = decimalToNumber(item.regularPriceTry);
+
+    const unitPrice = currency === "USD" ? unitUsd : unitTry;
+    const regularPrice = currency === "USD" ? regularUsd : regularTry;
+
+    const lineTotal =
+      unitPrice === null
+        ? null
+        : roundMoney(unitPrice * item.quantity);
+    const lineRegular =
+      regularPrice === null
+        ? null
+        : roundMoney(regularPrice * item.quantity);
+
+    return {
+      id: item.id,
+      productId: item.productId,
+      quantity: item.quantity,
+      createdAt: item.createdAt,
+      currency,
+      unitPrice,
+      regularPrice,
+      lineTotal,
+      lineRegular,
+      product: item.product
+        ? {
+            id: item.product.id,
+            name: pickTranslation(item.product.translations, defaultLocale)?.name ?? "",
+            image: item.product.image,
+            family: item.product.family,
+            category: item.product.category,
+            visible: item.product.visible,
+          }
+        : null,
+    };
+  });
+
+  const subtotal = roundMoney(
+    items.reduce(
+      (sum, item) => sum + (item.lineRegular ?? item.lineTotal ?? 0),
+      0,
+    ),
+  );
+
+  const total = roundMoney(
+    items.reduce((sum, item) => sum + (item.lineTotal ?? 0), 0),
+  );
+
+  const discount = roundMoney(Math.max(subtotal - total, 0));
 
   return {
     id: order.id,
@@ -100,10 +150,14 @@ export function serializeOrder(order: Prisma.OrderGetPayload<{ include: typeof o
     lastName: order.lastName,
     notes: order.notes,
     status: order.status,
+    currency,
+    subtotal,
+    discount,
+    total,
     submittedAt: order.submittedAt,
     createdAt: order.createdAt,
     updatedAt: order.updatedAt,
-    itemCount: items.reduce((total, item) => total + item.quantity, 0),
+    itemCount: items.reduce((count, item) => count + item.quantity, 0),
     items,
   };
 }
@@ -181,6 +235,7 @@ export type SubmissionItem = { productId: string; quantity: number };
 
 export type OrderSubmission = OrderPayload & {
   items: SubmissionItem[];
+  currency: Currency;
 };
 
 export const MAX_QUANTITY = 999;
@@ -204,6 +259,14 @@ export function parseSubmission(
   if (!contact.data) {
     errors.push(...contact.errors);
   }
+
+  const rawCurrency =
+    typeof body.currency === "string"
+      ? body.currency.trim().toUpperCase()
+      : "";
+  const currency: Currency = isCurrency(rawCurrency)
+    ? rawCurrency
+    : FALLBACK_CURRENCY;
 
   const merged = new Map<string, number>();
   const rawItems = body.items;
@@ -255,6 +318,7 @@ export function parseSubmission(
   return {
     data: {
       ...contact.data,
+      currency,
       items: [...merged].map(([productId, quantity]) => ({
         productId,
         quantity,
@@ -273,6 +337,61 @@ export async function findUnavailableProducts(productIds: string[]) {
   const available = new Set(products.map((product) => product.id));
 
   return productIds.filter((productId) => !available.has(productId));
+}
+
+export async function loadProductPricing(productIds: string[]) {
+  return prisma.product.findMany({
+    where: { id: { in: productIds } },
+    select: {
+      id: true,
+      priceUsd: true,
+      discountedPriceUsd: true,
+      priceTry: true,
+      discountedPriceTry: true,
+    },
+  });
+}
+
+/**
+ * Freezes each item's price at submission time. The values are copied onto the
+ * order row so later catalog changes never rewrite an existing order's total.
+ */
+export function buildItemSnapshots(
+  items: SubmissionItem[],
+  products: Array<{
+    id: string;
+    priceUsd: unknown;
+    discountedPriceUsd: unknown;
+    priceTry: unknown;
+    discountedPriceTry: unknown;
+  }>,
+) {
+  const byId = new Map(products.map((product) => [product.id, product]));
+
+  return items.map((item) => {
+    const product = byId.get(item.productId);
+
+    const usd: Money = {
+      price: decimalToNumber(product?.priceUsd),
+      discountedPrice: decimalToNumber(product?.discountedPriceUsd),
+      discountPercent: null,
+    };
+
+    const tryMoney: Money = {
+      price: decimalToNumber(product?.priceTry),
+      discountedPrice: decimalToNumber(product?.discountedPriceTry),
+      discountPercent: null,
+    };
+
+    return {
+      productId: item.productId,
+      quantity: item.quantity,
+      unitPriceUsd: effectivePrice(usd),
+      regularPriceUsd: usd.price,
+      unitPriceTry: effectivePrice(tryMoney),
+      regularPriceTry: tryMoney.price,
+    };
+  });
 }
 
 export function parseQuantity(

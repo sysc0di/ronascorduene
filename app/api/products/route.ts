@@ -75,6 +75,12 @@ export async function POST(request: Request) {
       material: data.material as string,
       construction: data.construction as string,
       finish: data.finish as string,
+      priceUsd: data.priceUsd ?? null,
+      discountedPriceUsd: data.discountedPriceUsd ?? null,
+      discountPercentUsd: data.discountPercentUsd ?? null,
+      priceTry: data.priceTry ?? null,
+      discountedPriceTry: data.discountedPriceTry ?? null,
+      discountPercentTry: data.discountPercentTry ?? null,
       visible: data.visible ?? true,
       translations: {
         create: (data.translations ?? []).map((translation) => ({

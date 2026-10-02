@@ -1,4 +1,5 @@
 import { defaultLocale, type Locale } from "@/lib/i18n";
+import { decimalToNumber } from "@/lib/price";
 import { pickTranslation } from "@/lib/product-text";
 import { prisma } from "@/lib/prisma";
 
@@ -12,6 +13,12 @@ const catalogSelect = {
   material: true,
   construction: true,
   finish: true,
+  priceUsd: true,
+  discountedPriceUsd: true,
+  discountPercentUsd: true,
+  priceTry: true,
+  discountedPriceTry: true,
+  discountPercentTry: true,
   translations: {
     select: { locale: true, name: true, description: true },
   },
@@ -45,6 +52,12 @@ export async function getCatalog(
       material: product.material,
       construction: product.construction,
       finish: product.finish,
+      priceUsd: decimalToNumber(product.priceUsd),
+      discountedPriceUsd: decimalToNumber(product.discountedPriceUsd),
+      discountPercentUsd: product.discountPercentUsd,
+      priceTry: decimalToNumber(product.priceTry),
+      discountedPriceTry: decimalToNumber(product.discountedPriceTry),
+      discountPercentTry: product.discountPercentTry,
     };
   });
 }
