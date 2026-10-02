@@ -1,6 +1,6 @@
 import Image from "next/image";
-import grtgt from "@/public/assets/homebanner.jpg";
-import RonasTitle from "../components/RonasTitle";
+import grtgt from "@/public/assets/homebannerimg.jpg";
+import RonasLogo from "../components/RonasLogo";
 import RonasSubtitle from "../components/RonasSubtitle";
 import ScrollIndicator from "../components/ScrollIndicator";
 import ProductSections from "../components/ProductSections";
@@ -32,7 +32,7 @@ export default async function Home() {
 
         <div className="relative z-10 flex h-full items-center justify-center text-center">
           <div className="page-title w-full max-w-6xl md:p-12">
-            <RonasTitle titleLines={dict.home.titleLines} />
+            <RonasLogo alt="Ronas Corduene" />
             <RonasSubtitle text={dict.home.subtitle} />
           </div>
         </div>

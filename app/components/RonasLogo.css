@@ -1,0 +1,93 @@
+.ronas-logo-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.ronas-logo-img {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-height: min(48vh, 34rem);
+  max-width: min(72vw, 30rem);
+
+  object-fit: contain;
+
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+
+  opacity: 0;
+  transform: scale(0.96);
+
+  animation:
+    ronas-logo-in
+    1s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.1s
+    forwards;
+}
+
+/* Border is drawn by an SVG rect: the path starts at the top-left
+   corner and runs clockwise, so the stroke forms from there. */
+.ronas-logo-border {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ronas-logo-border rect {
+  fill: none;
+
+  stroke: #d0d0d0;
+  stroke-width: 2;
+  stroke-linejoin: miter;
+
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
+
+  animation:
+    ronas-logo-border
+    1.8s
+    cubic-bezier(0.65, 0, 0.35, 1)
+    0.55s
+    forwards;
+}
+
+@keyframes ronas-logo-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ronas-logo-border {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .ronas-logo-img {
+    max-height: min(50vh, 26rem);
+    max-width: min(78vw, 22rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ronas-logo-img,
+  .ronas-logo-border rect {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+  }
+}

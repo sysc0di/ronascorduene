@@ -9,7 +9,8 @@ import type { Dictionary } from "../[lang]/dictionaries";
 import type { Locale } from "@/lib/i18n";
 
 import "./Navbar.css";
-
+import Image from "next/image";
+import logo from "../../public/ronas-logo.svg"
 const links = [
   { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },
@@ -56,16 +57,10 @@ export function Navbar({
           data-hover-target
           onClick={() => setOpen(false)}
         >
-          <span>Ronas Corduene</span>
+          <Image
+          className="navbar-logo-icon"
+            src={logo} alt="ronas" />
 
-          <svg
-            className="navbar-logo-icon"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
         </Link>
 
         <div className="navbar-lang">
