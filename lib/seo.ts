@@ -26,7 +26,13 @@ export const BUSINESS = {
   country: "TR",
 } as const;
 
-export type PageKey = "home" | "about" | "store" | "contact" | "list";
+export type PageKey =
+  | "home"
+  | "about"
+  | "initiative"
+  | "store"
+  | "contact"
+  | "list";
 
 type PageSeo = {
   /** Path after the locale segment, "" for the home page. */
@@ -89,6 +95,13 @@ export const SEO: Record<Locale, LocaleSeo> = {
         description:
           "Build your parts list and send it to Ronas Corduene. We confirm availability, fitment and delivery for performance parts and body kits.",
       },
+      initiative: {
+        path: "/initiative",
+        title:
+          "Our Initiative | Leftover Materials into Animal Mobility — Ronas Corduene",
+        description:
+          "Ronas Corduene turns production leftovers and material scraps into mobility equipment for stray animals — animal wheelchairs, mobility aids and custom support built with the same engineering as our performance parts.",
+      },
     },
   },
   tr: {
@@ -134,6 +147,13 @@ export const SEO: Record<Locale, LocaleSeo> = {
         title: "Parça Listeniz | Ronas Corduene",
         description:
           "Parça listenizi oluşturun ve Ronas Corduene'e gönderin. Stok, uyum ve teslimatı sizin için teyit ediyoruz.",
+      },
+      initiative: {
+        path: "/initiative",
+        title:
+          "İnisiyatifimiz | Üretim Artıklarından Hayvan Hareket Ekipmanı — Ronas Corduene",
+        description:
+          "Ronas Corduene üretim artıklarını ve malzeme kalıntılarını sokak hayvanları için hareket ekipmanına dönüştürür — performans parçalarımızla aynı mühendislikle üretilen hayvan tekerlekli sandalyeleri, hareket yardımcıları ve özel destekler.",
       },
     },
   },
@@ -181,6 +201,13 @@ export const SEO: Record<Locale, LocaleSeo> = {
         description:
           "Lîsta parçeyên xwe ava bikin û ji Ronas Corduene re bişînin. Em hebûn, uyandin û şandinê ji bo we piştrast dikin.",
       },
+      initiative: {
+        path: "/initiative",
+        title:
+          "Înîsyatîfa Me | Ji Bermayiyên Hilberînê bo Alavên Livîna Sewalan — Ronas Corduene",
+        description:
+          "Ronas Corduene bermayiyên hilberînê û qutikên madeyan vedigerîne alavên livînê ji bo sewalan — kursiyên çerx, alîkarên livînê û palpişta taybet, bi heman mîhendisiyê wekî parçeyên performansê têne çêkirin.",
+      },
     },
   },
   ar: {
@@ -226,6 +253,13 @@ export const SEO: Record<Locale, LocaleSeo> = {
         title: "قائمة قطعك | روناس كوردوين",
         description:
           "أنشئ قائمة قطعك وأرسلها إلى روناس كوردوين. نؤكد التوفر والتوافق والتسليم لقطع الأداء وهياكل السيارات.",
+      },
+      initiative: {
+        path: "/initiative",
+        title:
+          "مبادرتنا | من بقايا الإنتاج إلى معدات حركة الحيوانات — روناس كوردوين",
+        description:
+          "تحوّل روناس كوردوين بقايا الإنتاج وخُرَد المواد إلى معدات حركة للحيوانات الضالة — كراسي متحركة ومساعدات حركة ودعم مخصص بالهندسة نفسها التي نصنع بها قطع الأداء.",
       },
     },
   },

@@ -6,6 +6,7 @@
   "nav": {
     "home": "Ana Sayfa",
     "about": "Hakkımızda",
+    "initiative": "İnisiyatif",
     "contact": "İletişim",
     "store": "Mağaza",
     "openMenu": "Menüyü aç",
@@ -285,6 +286,58 @@
     "success": {
       "title": "LİSTE GÖNDERİLDİ.",
       "description": "Teşekkürler. Listeniz alındı, detayları teyit etmek için sizinle iletişime geçeceğiz."
+    }
+  },
+  "initiative": {
+    "meta": "05 / RONAS / İNİSİYATİF",
+    "hero": {
+      "label": "AMAÇLA MÜHENDİSLİK",
+      "titleLines": ["ARTIKLAR,", "YENİDEN TASARLANDI."],
+      "body": "Üretim artıkları her zaman atık olmak zorunda değildir. Kesim artıklarını ve malzeme kalıntılarını sokak hayvanları için hareket ekipmanına dönüştürüyoruz — tasarlanmış, üretilmiş ve tıpkı diğer tüm parçalarımız gibi aynı disiplinle monte edilmiş."
+    },
+    "why": {
+      "header": "NEDEN YAPIYORUZ",
+      "titleLines": ["MALZEME", "ATIK", "DEĞİLDİR."],
+      "paragraphs": [
+        "Her üretim sonunda bir şey kalır: kesilmiş karbon, artan alüminyum, kısa boru boyları, fazla bağlantı elemanları.",
+        "Bunları hurdaya göndermek yerine stok olarak görüyoruz. Aero ve performans parçalarımızı şekillendiren aynı mühendislik, hareketi geri kazandıran ekipmana yönlendiriliyor."
+      ],
+      "values": [
+        { "title": "VERİMLİLİK", "body": "Hâlihazırda var olan malzeme, yeniden üretilmesi gerekmeyen malzemedir." },
+        { "title": "HASSASİYET", "body": "Artık parçalar ölçülür, ayrılır ve diğer tüm bileşenlerle aynı toleranslarla değerlendirilir." },
+        { "title": "AMAÇ", "body": "Mühendislik, birinin ne yapabileceğini değiştirdiğinde değer kazanır." }
+      ]
+    },
+    "process": {
+      "header": "SÜREÇ",
+      "titleLines": ["ARTIKTAN", "HAREKETE."],
+      "intro": "Aynı atölye, aynı makineler, farklı bir sonuç.",
+      "flow": ["MALZEME", "SEÇİM", "TASARIM", "ÜRETİM", "HAREKET"],
+      "steps": [
+        { "title": "MALZEME", "body": "Artık karbon, alüminyum, boru ve bağlantı elemanları her üretimin sonunda toplanır." },
+        { "title": "SEÇİM", "body": "Parçalar incelenir, ölçülür ve yapısal uygunluk açısından derecelendirilir." },
+        { "title": "TASARIM", "body": "Her ünite hayvanın boyutu, ağırlığı ve hareket açıklığı etrafında çizilir." },
+        { "title": "ÜRETİM", "body": "Kesme, şekillendirme, yapıştırma ve bitirme, performans parçalarımızla aynı takımlarda yapılır." },
+        { "title": "HAREKET", "body": "Tamamlanan ekipman monte edilir, ayarlanır ve harekete hazır şekilde teslim edilir." }
+      ]
+    },
+    "examples": {
+      "header": "NE ÜRETİYORUZ",
+      "titleLines": ["HAREKET İÇİN", "EKİPMAN."],
+      "intro": "Hayvanlara bağımsızlığını geri veren küçük, amaca özel cihazlar.",
+      "items": [
+        { "title": "HAYVAN TEKERLEKLİ SANDALYELERİ", "body": "Arka bacak veya tam gövde hareketi için hayvana göre ölçülendirilmiş hafif çerçeveler ve tekerlekli destekler." },
+        { "title": "HAREKET YARDIMCILARI", "body": "İyileşme veya kalıcı kısıtlılık sırasında hareketi dengede tutan koşumlar, askılar ve destek çerçeveleri." },
+        { "title": "ÖZEL DESTEK", "body": "Belirli bir hayvan ve ihtiyacı etrafında tasarlanmış tek seferlik destekler, protezler ve bağlantılar." }
+      ],
+      "caption": ["RONAS / İNİSİYATİF", "HAREKET İÇİN ÜRETİLDİ"]
+    },
+    "cta": {
+      "header": "İLETİŞİME GEÇİN",
+      "titleLines": ["YARDIMA İHTİYACI OLAN", "BİR HAYVAN MI BİLİYORSUNUZ?"],
+      "body": "Hareket ekipmanına ihtiyaç duyabilecek bir sokak hayvanı biliyorsanız bize ulaşın. Her vakayı ihtiyaçlarına göre değerlendirir ve üretebileceğimiz çözümle yanıt veririz.",
+      "button": "İLETİŞİME GEÇ",
+      "note": ["RONAS CORDUENE", "İNSAN AMACIYLA MÜHENDİSLİK"]
     }
   }
 }

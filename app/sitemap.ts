@@ -3,7 +3,14 @@ import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { alternateLanguages, SEO, SITE_URL, type PageKey } from "@/lib/seo";
 
-const PAGE_KEYS: PageKey[] = ["home", "about", "store", "contact", "list"];
+const PAGE_KEYS: PageKey[] = [
+  "home",
+  "about",
+  "initiative",
+  "store",
+  "contact",
+  "list",
+];
 
 function absoluteLanguages(path: string): Record<string, string> {
   return Object.fromEntries(

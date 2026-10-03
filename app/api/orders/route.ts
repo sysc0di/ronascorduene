@@ -1,14 +1,11 @@
-import { authenticateAdmin } from "@/lib/admin-session";
 import { OrderStatus } from "@/lib/generated/prisma/enums";
 import {
-  adminOnly,
   buildItemSnapshots,
   createToken,
   findUnavailableProducts,
   listJson,
   loadProductPricing,
   orderInclude,
-  parseOrderQuery,
   parseSubmission,
   serializeOrder,
 } from "@/lib/orders";
@@ -16,51 +13,10 @@ import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
 
-/** Admin only: the list itself lives in the visitor's browser. */
-export async function GET(request: Request) {
-  const denied = adminOnly(Boolean(await authenticateAdmin(request)));
-
-  if (denied) return denied;
-
-  const url = new URL(request.url);
-  const { where, limit, offset } = parseOrderQuery(url);
-
-  const [orders, total, groups] = await Promise.all([
-    prisma.order.findMany({
-      where,
-      include: orderInclude,
-      orderBy: { createdAt: "desc" },
-      take: limit,
-      skip: offset,
-    }),
-    prisma.order.count({ where }),
-    prisma.order.groupBy({
-      by: ["status"],
-      _count: { _all: true },
-    }),
-  ]);
-
-  const statusCounts = Object.fromEntries(
-    Object.values(OrderStatus).map((status) => [status, 0]),
-  ) as Record<string, number>;
-
-  for (const group of groups) {
-    statusCounts[group.status] = group._count._all;
-  }
-
-  return listJson({
-    orders: orders.map(serializeOrder),
-    total,
-    limit,
-    offset,
-    statusCounts,
-  });
-}
-
 /**
  * Public: a submitted list. The visitor sends the whole list that was kept in
  * localStorage together with the contact details, so there is nothing to read
- * back afterwards.
+ * back afterwards. Admin management lives in the separate admin app.
  */
 export async function POST(request: Request) {
   let body: unknown;

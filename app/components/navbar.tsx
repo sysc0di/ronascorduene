@@ -13,6 +13,7 @@ import Image from "next/image";
 import logo from "../../public/ronassimplelogo.png"
 const links = [
   { key: "about", href: "/about" },
+  { key: "initiative", href: "/initiative" },
   { key: "contact", href: "/contact" },
   { key: "store", href: "/store" },
   { key: "list", href: "/list" },
