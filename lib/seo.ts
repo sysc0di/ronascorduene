@@ -96,7 +96,7 @@ export const SEO: Record<Locale, LocaleSeo> = {
           "Build your parts list and send it to Ronas Corduene. We confirm availability, fitment and delivery for performance parts and body kits.",
       },
       initiative: {
-        path: "/initiative",
+        path: "/impact",
         title:
           "Our Initiative | Leftover Materials into Animal Mobility — Ronas Corduene",
         description:
@@ -149,7 +149,7 @@ export const SEO: Record<Locale, LocaleSeo> = {
           "Parça listenizi oluşturun ve Ronas Corduene'e gönderin. Stok, uyum ve teslimatı sizin için teyit ediyoruz.",
       },
       initiative: {
-        path: "/initiative",
+        path: "/impact",
         title:
           "İnisiyatifimiz | Üretim Artıklarından Hayvan Hareket Ekipmanı — Ronas Corduene",
         description:
@@ -202,7 +202,7 @@ export const SEO: Record<Locale, LocaleSeo> = {
           "Lîsta parçeyên xwe ava bikin û ji Ronas Corduene re bişînin. Em hebûn, uyandin û şandinê ji bo we piştrast dikin.",
       },
       initiative: {
-        path: "/initiative",
+        path: "/impact",
         title:
           "Înîsyatîfa Me | Ji Bermayiyên Hilberînê bo Alavên Livîna Sewalan — Ronas Corduene",
         description:
@@ -255,7 +255,7 @@ export const SEO: Record<Locale, LocaleSeo> = {
           "أنشئ قائمة قطعك وأرسلها إلى روناس كوردوين. نؤكد التوفر والتوافق والتسليم لقطع الأداء وهياكل السيارات.",
       },
       initiative: {
-        path: "/initiative",
+        path: "/impact",
         title:
           "مبادرتنا | من بقايا الإنتاج إلى معدات حركة الحيوانات — روناس كوردوين",
         description:
@@ -318,6 +318,77 @@ export function buildMetadata({
     },
     openGraph: {
       type,
+      title: resolvedTitle,
+      description: resolvedDescription,
+      url,
+      siteName: SITE_NAME,
+      locale: ogLocales[locale],
+      alternateLocale: locales
+        .filter((item) => item !== locale)
+        .map((item) => ogLocales[item]),
+      images: [
+        {
+          url: OG_IMAGE,
+          width: OG_IMAGE_WIDTH,
+          height: OG_IMAGE_HEIGHT,
+          alt: `${SITE_NAME} — performance parts and body kits`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: resolvedTitle,
+      description: resolvedDescription,
+      images: [OG_IMAGE],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+  };
+}
+
+/**
+ * Metadata for a CMS-managed page: the title/description come from the
+ * database, with an optional static fallback while the page is still empty.
+ */
+export function buildContentMetadata({
+  locale,
+  path,
+  title,
+  description,
+  fallbackPage,
+}: {
+  locale: Locale;
+  path: string;
+  title?: string;
+  description?: string;
+  fallbackPage?: PageKey;
+}): Metadata {
+  const fallback = fallbackPage ? SEO[locale].pages[fallbackPage] : undefined;
+  const resolvedTitle = title || fallback?.title || SITE_NAME;
+  const resolvedDescription = description || fallback?.description || "";
+  const url = localizedPath(locale, path);
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { absolute: resolvedTitle },
+    description: resolvedDescription,
+    keywords: SEO[locale].keywords,
+    applicationName: SITE_NAME,
+    alternates: {
+      canonical: url,
+      languages: alternateLanguages(path),
+    },
+    openGraph: {
+      type: "website",
       title: resolvedTitle,
       description: resolvedDescription,
       url,

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import type { Dictionary } from "../[lang]/dictionaries";
 import type { Locale } from "@/lib/i18n";
+import { LEGAL_LINKS } from "@/lib/legal";
 
 import "./Footer.css";
 
@@ -17,7 +18,7 @@ export default function Footer({
   const links = [
     { key: "home", href: "" },
     { key: "about", href: "/about" },
-    { key: "initiative", href: "/initiative" },
+    { key: "initiative", href: "/impact" },
     { key: "contact", href: "/contact" },
     { key: "store", href: "/store" },
   ] as const;
@@ -54,6 +55,18 @@ export default function Footer({
       <div className="footer-middle">
         <span>{dict.footer.middle}</span>
       </div>
+
+      <nav className="footer-legal" aria-label={dict.legal.label}>
+        {LEGAL_LINKS.map((link) => (
+          <Link
+            key={link.slug}
+            href={`${base}/legal/${link.slug}`}
+            data-hover-target
+          >
+            {dict.legal[link.labelKey]}
+          </Link>
+        ))}
+      </nav>
 
       <div className="footer-line" />
 

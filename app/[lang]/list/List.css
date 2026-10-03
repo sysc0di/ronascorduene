@@ -593,6 +593,128 @@
     rgba(166, 166, 166, 0.5);
 }
 
+/* =========================================================
+   CONSENT
+======================================================== */
+
+.list-consent-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    rgba(166, 166, 166, 0.2);
+}
+
+/* Beats the generic `.list-form label` column layout on purpose. */
+.list-form .list-consent {
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin: 0;
+
+  cursor: pointer;
+}
+
+.list-form .list-consent input[type="checkbox"] {
+  flex: 0 0 auto;
+
+  width: 16px;
+  height: 16px;
+
+  margin: 2px 0 0;
+
+  padding: 0;
+
+  border: 0;
+
+  accent-color: #bdbdbd;
+
+  cursor: pointer;
+}
+
+.list-consent-body {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.list-consent-label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color:
+    rgba(166, 166, 166, 0.5);
+}
+
+.list-consent-text {
+  font-size: 11px;
+  line-height: 1.7;
+
+  color:
+    rgba(166, 166, 166, 0.72);
+}
+
+.list-consent-link {
+  color: #bdbdbd;
+  text-decoration: none;
+
+  border-bottom:
+    1px solid
+    rgba(166, 166, 166, 0.35);
+
+  transition:
+    color 250ms ease,
+    border-color 250ms ease;
+}
+
+.list-consent-link.is-hovered,
+.list-consent-link:focus-visible {
+  color: #ffffff;
+
+  border-color: #ffffff;
+}
+
+/* The mandatory agreement is the only block that reads as blocking. */
+.list-consent-required .list-consent-label {
+  color:
+    rgba(189, 189, 189, 0.85);
+}
+
+.list-consent-required .list-consent-text {
+  color: #bdbdbd;
+}
+
+/* The KVKK notice informs, it does not ask for consent. */
+.list-consent-notice {
+  cursor: default;
+}
+
+.list-consent-notice .list-consent-text {
+  color:
+    rgba(166, 166, 166, 0.52);
+}
+
+/* Marketing is optional, so it stays visually quieter than the agreement. */
+.list-consent-optional .list-consent-label,
+.list-consent-optional .list-consent-text {
+  color:
+    rgba(166, 166, 166, 0.5);
+}
+
 /* SUMMARY */
 
 .list-summary {

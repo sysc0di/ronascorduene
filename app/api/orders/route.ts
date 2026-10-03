@@ -1,4 +1,5 @@
 import { OrderStatus } from "@/lib/generated/prisma/enums";
+import { LEGAL_DOCUMENT_VERSION } from "@/lib/legal";
 import {
   buildItemSnapshots,
   createToken,
@@ -49,12 +50,20 @@ export async function POST(request: Request) {
     );
   }
 
-  const { items, ...contact } = data;
+  const {
+    items,
+    agreementAccepted,
+    marketingConsent,
+    locale,
+    ...contact
+  } = data;
 
   const products = await loadProductPricing(
     items.map((item) => item.productId),
   );
   const snapshots = buildItemSnapshots(items, products);
+
+  const submittedAt = new Date();
 
   try {
     const order = await prisma.order.create({
@@ -62,7 +71,14 @@ export async function POST(request: Request) {
         ...contact,
         token: createToken(),
         status: OrderStatus.SUBMITTED,
-        submittedAt: new Date(),
+        submittedAt,
+        locale,
+        distanceSalesAccepted: agreementAccepted,
+        preInformationAccepted: agreementAccepted,
+        agreementAcceptedAt: submittedAt,
+        legalVersion: LEGAL_DOCUMENT_VERSION,
+        marketingConsent,
+        marketingConsentAt: marketingConsent ? submittedAt : null,
         items: {
           create: snapshots,
         },

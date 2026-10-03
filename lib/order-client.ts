@@ -12,6 +12,12 @@ export type OrderSubmission = {
   lastName: string;
   notes?: string;
   currency?: string;
+  /** Locale the visitor checked out in; stored on the order. */
+  locale?: string;
+  /** Mandatory: the Distance Sales Agreement + Pre-Information Form consent. */
+  acceptAgreement: boolean;
+  /** Optional, separate from the order agreement. */
+  marketingConsent?: boolean;
   items: { productId: string; quantity: number }[];
 };
 

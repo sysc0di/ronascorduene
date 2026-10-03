@@ -7,8 +7,8 @@ import ScrollIndicator from "../components/ScrollIndicator";
 import ProductSections from "../components/ProductSections";
 import ApproachSection from "../components/ApproachSection";
 import { getDictionary, getLocale, getLocaleFor } from "./dictionaries";
-import { APPROACH_SECTION_KEY, getSiteSection } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
+import { getPage } from "@/lib/pages";
 
 export async function generateMetadata({
   params,
@@ -19,18 +19,19 @@ export async function generateMetadata({
 }
 
 export default async function Home() {
-  const dict = await getDictionary();
-  const locale = await getLocale();
-  const approach = await getSiteSection(APPROACH_SECTION_KEY, locale);
+  const [dict, locale] = await Promise.all([getDictionary(), getLocale()]);
+  const page = await getPage("home", locale);
+
+  const hero = page?.sections.find((section) => section.type === "home-hero");
+  const approach = page?.sections.find(
+    (section) => section.type === "home-approach",
+  );
 
   return (
     <main className="home">
-      <section
-        id="hero"
-        className="hero relative overflow-hidden"
-      >
+      <section id="hero" className="hero relative overflow-hidden">
         <Image
-          src={grtgt}
+          src={hero?.image || grtgt}
           alt={dict.home.heroAlt}
           fill
           priority
@@ -43,7 +44,7 @@ export default async function Home() {
         <div className="relative z-10 flex h-full items-center justify-center text-center">
           <div className="page-title w-full max-w-6xl md:p-12">
             <RonasSignature />
-            <RonasSubtitle text={dict.home.subtitle} />
+            <RonasSubtitle text={hero?.body || dict.home.subtitle} />
           </div>
         </div>
 
@@ -51,8 +52,19 @@ export default async function Home() {
       </section>
 
       <div className="productonhome">
-        <ProductSections dict={dict.home.products} />
-        <ApproachSection dict={dict.home.approach} content={approach} />
+        <ProductSections dict={dict.home.products} locale={locale} />
+        <ApproachSection
+          dict={dict.home.approach}
+          content={
+            approach
+              ? {
+                  image: approach.image,
+                  title: approach.title,
+                  description: approach.body,
+                }
+              : null
+          }
+        />
       </div>
     </main>
   );

@@ -70,6 +70,9 @@ export default function ProductList({
   const [contact, setContact] =
     useState<Contact>(emptyContact);
 
+  const [acceptAgreement, setAcceptAgreement] = useState(false);
+  const [marketingConsent, setMarketingConsent] = useState(false);
+
   const items = sent ?? list.items;
   const total = sent
     ? sent.reduce((sum, item) => sum + item.quantity, 0)
@@ -123,12 +126,21 @@ export default function ProductList({
 
     if (list.items.length === 0) return;
 
+    if (!acceptAgreement) {
+      setErrors([t.consent.agreementRequiredError]);
+
+      return;
+    }
+
     setSending(true);
     setErrors([]);
 
     const result = await submitOrder({
       ...contact,
       currency,
+      locale,
+      acceptAgreement,
+      marketingConsent,
       items: list.items,
     });
 
@@ -487,6 +499,94 @@ export default function ProductList({
                     onChange={updateField("notes")}
                   />
                 </label>
+
+                <div className="list-consent-group">
+                  {/* 1. Mandatory order agreement */}
+                  <label className="list-consent list-consent-required">
+                    <input
+                      type="checkbox"
+                      name="acceptAgreement"
+                      checked={acceptAgreement}
+                      onChange={(event) =>
+                        setAcceptAgreement(
+                          event.target.checked,
+                        )
+                      }
+                      required
+                    />
+
+                    <span className="list-consent-body">
+                      <span className="list-consent-label">
+                        {t.consent.agreementLabel}
+                      </span>
+
+                      <span className="list-consent-text">
+                        {t.consent.agreementBefore}{" "}
+                        <Link
+                          href={`/${locale}/legal/distance-sales`}
+                          className="list-consent-link"
+                          data-hover-target
+                        >
+                          {dict.legal.distanceSales}
+                        </Link>{" "}
+                        {t.consent.agreementBetween}{" "}
+                        <Link
+                          href={`/${locale}/legal/pre-information`}
+                          className="list-consent-link"
+                          data-hover-target
+                        >
+                          {dict.legal.preInformation}
+                        </Link>
+                        {t.consent.agreementAfter}
+                      </span>
+                    </span>
+                  </label>
+
+                  {/* 2. KVKK information notice (not a consent) */}
+                  <p className="list-consent list-consent-notice">
+                    <span className="list-consent-body">
+                      <span className="list-consent-label">
+                        {t.consent.kvkkLabel}
+                      </span>
+
+                      <span className="list-consent-text">
+                        {t.consent.kvkkBefore}{" "}
+                        <Link
+                          href={`/${locale}/legal/kvkk`}
+                          className="list-consent-link"
+                          data-hover-target
+                        >
+                          {t.consent.kvkkLink}
+                        </Link>
+                        {t.consent.kvkkAfter}
+                      </span>
+                    </span>
+                  </p>
+
+                  {/* 3. Optional marketing consent */}
+                  <label className="list-consent list-consent-optional">
+                    <input
+                      type="checkbox"
+                      name="marketingConsent"
+                      checked={marketingConsent}
+                      onChange={(event) =>
+                        setMarketingConsent(
+                          event.target.checked,
+                        )
+                      }
+                    />
+
+                    <span className="list-consent-body">
+                      <span className="list-consent-label">
+                        {t.consent.marketingLabel}
+                      </span>
+
+                      <span className="list-consent-text">
+                        {t.consent.marketingText}
+                      </span>
+                    </span>
+                  </label>
+                </div>
 
                 {errors.length > 0 && (
                   <ul className="list-errors">

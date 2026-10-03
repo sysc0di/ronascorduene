@@ -15,6 +15,16 @@
     "primaryNavigation": "Ana gezinme",
     "list": "Liste"
   },
+  "legal": {
+    "label": "Yasal",
+    "privacy": "Gizlilik Politikası",
+    "kvkk": "KVKK",
+    "cookies": "Çerez Politikası",
+    "terms": "Kullanım Koşulları",
+    "distanceSales": "Mesafeli Satış Sözleşmesi",
+    "preInformation": "Ön Bilgilendirme Formu",
+    "returns": "İade ve Değişim"
+  },
   "sidebar": {
     "tagline": "Yol için tasarlanmış otomotiv ekipmanları.",
     "email": "E-posta",
@@ -283,6 +293,19 @@
     "submit": "LİSTEYİ GÖNDER",
     "sending": "GÖNDERİLİYOR...",
     "backToStore": "KATALOĞA DÖN",
+    "consent": {
+      "agreementLabel": "SİPARİŞ SÖZLEŞMESİ",
+      "agreementBefore": "Okudum ve onaylıyorum:",
+      "agreementBetween": "ve",
+      "agreementAfter": ".",
+      "agreementRequiredError": "Listenizi göndermek için Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu'nu kabul etmelisiniz.",
+      "kvkkLabel": "KİŞİSEL VERİLER",
+      "kvkkBefore": "Kişisel verileriniz",
+      "kvkkLink": "KVKK Aydınlatma Metni",
+      "kvkkAfter": "uyarınca işlenmektedir.",
+      "marketingLabel": "PAZARLAMA",
+      "marketingText": "Yeni ürünler, kampanyalar ve promosyonlar hakkında e-posta/SMS ile bilgi almak istiyorum."
+    },
     "success": {
       "title": "LİSTE GÖNDERİLDİ.",
       "description": "Teşekkürler. Listeniz alındı, detayları teyit etmek için sizinle iletişime geçeceğiz."

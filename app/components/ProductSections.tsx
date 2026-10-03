@@ -1,18 +1,23 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+import { CATEGORY_SLUGS } from "@/lib/catalog-taxonomy";
+
 import type { Dictionary } from "../[lang]/dictionaries";
+import type { Locale } from "@/lib/i18n";
 
 import "./ProductSections.css";
 
 type ProductsDict = Dictionary["home"]["products"];
 
-
 export default function ProductSections({
   dict,
+  locale,
 }: {
   dict: ProductsDict;
+  locale: Locale;
 }) {
   return (
     <section className="products">
@@ -29,6 +34,7 @@ export default function ProductSections({
             number={(index + 1).toString().padStart(2, "0")}
             meta={dict.meta}
             index={index}
+            locale={locale}
           />
         ))}
       </div>
@@ -41,14 +47,25 @@ function ProductItem({
   number,
   meta,
   index,
+  locale,
 }: {
   product: ProductsDict["items"][number];
   number: string;
   meta: string;
   index: number;
+  locale: Locale;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+
+  /*
+   * The three home blocks line up with the store's product families, so each
+   * title deep-links into that family rather than the unfiltered catalog.
+   */
+  const family = CATEGORY_SLUGS[index];
+  const href = family
+    ? `/${locale}/store?family=${family}`
+    : `/${locale}/store`;
 
   /*
    * 0 = LEFT
@@ -103,7 +120,11 @@ function ProductItem({
 
       <div className="product-content">
         <div className="product-title">
-          <h2>{product.title}</h2>
+          <h2>
+            <Link href={href} data-hover-target>
+              {product.title}
+            </Link>
+          </h2>
 
           <p>{product.subtitle}</p>
         </div>

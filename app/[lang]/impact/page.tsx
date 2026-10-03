@@ -4,33 +4,35 @@ import { getDictionary, getLocale, getLocaleFor } from "../dictionaries";
 import { buildContentMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/pages";
 import PageSections from "../components/PageSections";
-import "./About.css";
+import Reveal from "../components/Reveal";
+import "./Initiative.css";
 
 export async function generateMetadata({
   params,
-}: PageProps<"/[lang]/about">): Promise<Metadata> {
+}: PageProps<"/[lang]/impact">): Promise<Metadata> {
   const { lang } = await params;
   const locale = getLocaleFor(lang);
-  const page = await getPage("about", locale);
+  const page = await getPage("impact", locale);
 
   return buildContentMetadata({
     locale,
-    path: "/about",
+    path: "/impact",
     title: page?.seoTitle || page?.title,
     description: page?.seoDescription || page?.subtitle,
-    fallbackPage: "about",
+    fallbackPage: "initiative",
   });
 }
 
-export default async function AboutPage() {
+export default async function ImpactPage() {
   const [dict, locale] = await Promise.all([getDictionary(), getLocale()]);
-  const page = await getPage("about", locale);
+  const page = await getPage("impact", locale);
 
   if (!page) return null;
 
   return (
-    <main className="about-page">
+    <main className="initiative-page">
       <PageSections page={page} dict={dict} locale={locale} />
+      <Reveal />
     </main>
   );
 }

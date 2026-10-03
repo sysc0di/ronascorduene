@@ -135,7 +135,36 @@
 
   opacity: 0.08;
 
+  /* Decorative: its box overlaps the legal links below, so it must never
+     intercept their clicks */
+  pointer-events: none;
   user-select: none;
+}
+
+.footer-legal {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 0 34px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+}
+
+.footer-legal a {
+  color: #555;
+  text-decoration: none;
+
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  transition: color 250ms ease;
+}
+
+.footer-legal a.is-hovered,
+.footer-legal a:focus-visible {
+  color: #fff;
 }
 
 .footer-bottom {

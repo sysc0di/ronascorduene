@@ -15,6 +15,16 @@
     "primaryNavigation": "Rêbernavê sereke",
     "list": "Lîsta"
   },
+  "legal": {
+    "label": "Yasayî",
+    "privacy": "Siyaseta Nepeniyê",
+    "kvkk": "KVKK",
+    "cookies": "Siyaseta Kûkîyan",
+    "terms": "Mercên Bikaranînê",
+    "distanceSales": "Peymana Firotina Dûr",
+    "preInformation": "Forma Agahdariya Pêşîn",
+    "returns": "Veger û Guhertin"
+  },
   "sidebar": {
     "tagline": "Ekipmana otomotivê ya ji bo riyê sêkirî.",
     "email": "E-posta",
@@ -378,6 +388,19 @@
     "submit": "LÎSTEYÊ ŞÎNÎSE",
     "sending": "DİŞÊN...",
     "backToStore": "VEGERÊ KATALOGÊ",
+    "consent": {
+      "agreementLabel": "PEYMANA SIPARÎŞÊ",
+      "agreementBefore": "Min xwendiye û qebûl dikim:",
+      "agreementBetween": "û",
+      "agreementAfter": ".",
+      "agreementRequiredError": "Ji bo şandina lîsteya xwe, ji kerema xwe Peymana Firotanê ya Dûr û Forma Agahdariya Pêşîn qebûl bikin.",
+      "kvkkLabel": "PARASTINA DANEYAN",
+      "kvkkBefore": "Daneyên we yên kesane li gorî",
+      "kvkkLink": "Daxuyaniya Agahdariya KVKK",
+      "kvkkAfter": "têne pêvajokirin.",
+      "marketingLabel": "BAZARKARÎ",
+      "marketingText": "Ez dixwazim di derbarê hilberên nû, kampanya û promosyonan de bi e-name/SMS agahdar bibim."
+    },
     "success": {
       "title": "LÎSTEYÊ HATIR.",
       "description": "Sipas. Lîsta we hate pejmêkirî, ji bo teyîtkirina hûmaneyê em ê bi we re tê Civîn."

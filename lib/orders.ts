@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 
 import { OrderStatus } from "@/lib/generated/prisma/enums";
 import type { Prisma } from "@/lib/generated/prisma/client";
-import { defaultLocale } from "@/lib/i18n";
+import { defaultLocale, hasLocale, type Locale } from "@/lib/i18n";
 import {
   decimalToNumber,
   effectivePrice,
@@ -151,6 +151,13 @@ export function serializeOrder(order: Prisma.OrderGetPayload<{ include: typeof o
     notes: order.notes,
     status: order.status,
     currency,
+    locale: order.locale,
+    distanceSalesAccepted: order.distanceSalesAccepted,
+    preInformationAccepted: order.preInformationAccepted,
+    agreementAcceptedAt: order.agreementAcceptedAt,
+    legalVersion: order.legalVersion,
+    marketingConsent: order.marketingConsent,
+    marketingConsentAt: order.marketingConsentAt,
     subtotal,
     discount,
     total,
@@ -236,6 +243,10 @@ export type SubmissionItem = { productId: string; quantity: number };
 export type OrderSubmission = OrderPayload & {
   items: SubmissionItem[];
   currency: Currency;
+  locale: Locale;
+  /** Always true once parsed; a false/missing value is rejected. */
+  agreementAccepted: true;
+  marketingConsent: boolean;
 };
 
 export const MAX_QUANTITY = 999;
@@ -267,6 +278,25 @@ export function parseSubmission(
   const currency: Currency = isCurrency(rawCurrency)
     ? rawCurrency
     : FALLBACK_CURRENCY;
+
+  const rawLocale =
+    typeof body.locale === "string" ? body.locale.trim().toLowerCase() : "";
+  const locale: Locale = hasLocale(rawLocale) ? rawLocale : defaultLocale;
+
+  /*
+   * The mandatory agreement is a single checkbox covering both documents, so it
+   * has to arrive as an explicit boolean `true`. Anything else (missing, the
+   * string "true", a truthy number) is refused rather than trusted from the
+   * client.
+   */
+  if (body.acceptAgreement !== true) {
+    errors.push(
+      "You must accept the Distance Sales Agreement and Pre-Information Form before submitting the list.",
+    );
+  }
+
+  /* Optional marketing consent is deliberately independent of the agreement. */
+  const marketingConsent = body.marketingConsent === true;
 
   const merged = new Map<string, number>();
   const rawItems = body.items;
@@ -319,6 +349,9 @@ export function parseSubmission(
     data: {
       ...contact.data,
       currency,
+      locale,
+      agreementAccepted: true,
+      marketingConsent,
       items: [...merged].map(([productId, quantity]) => ({
         productId,
         quantity,

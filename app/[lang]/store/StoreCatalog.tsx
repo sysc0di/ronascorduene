@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import {
@@ -67,15 +68,26 @@ export default function StoreCatalog({
   locale: Locale;
   dict: Dictionary;
 }) {
+  /* Home page blocks deep-link here with `?family=<slug>`. */
+  const searchParams = useSearchParams();
+
+  const requestedFamily = searchParams.get("family");
+
+  const initialFamily = (
+    CATEGORY_SLUGS as readonly string[]
+  ).includes(requestedFamily ?? "")
+    ? (requestedFamily as FamilyKey)
+    : null;
+
   const [activeFamily, setActiveFamily] =
-    useState<FamilyKey | null>(null);
+    useState<FamilyKey | null>(initialFamily);
 
   const [activeCategory, setActiveCategory] =
     useState<CategoryKey | null>(null);
 
   const [openFamily, setOpenFamily] =
     useState<FamilyKey | null>(
-      "airflow-dynamics"
+      initialFamily ?? "airflow-dynamics"
     );
 
   const [mobileMenuOpen, setMobileMenuOpen] =
