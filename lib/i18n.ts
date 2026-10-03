@@ -1,4 +1,4 @@
-export const locales = ["en", "tr", "ku"] as const;
+export const locales = ["en", "tr", "ku", "ar"] as const;
 
 export type Locale = (typeof locales)[number];
 
@@ -8,22 +8,40 @@ export function hasLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 
+/** Right-to-left languages get `dir="rtl"` on the document. */
+export const rtlLocales: readonly Locale[] = ["ar"];
+
+export function isRtl(locale: Locale): boolean {
+  return rtlLocales.includes(locale);
+}
+
 export const localeLabels: Record<Locale, string> = {
   en: "EN",
   tr: "TR",
   ku: "KU",
+  ar: "AR",
 };
 
 export const localeNames: Record<Locale, string> = {
   en: "English",
   tr: "Türkçe",
   ku: "Kurmancî",
+  ar: "العربية",
+};
+
+/** BCP-47 tags used for `hreflang` and `Intl` formatting. */
+export const localeTags: Record<Locale, string> = {
+  en: "en",
+  tr: "tr",
+  ku: "ku",
+  ar: "ar",
 };
 
 export const ogLocales: Record<Locale, string> = {
   en: "en_US",
   tr: "tr_TR",
   ku: "ku_TR",
+  ar: "ar_AR",
 };
 
 export const LOCALE_COOKIE = "NEXT_LOCALE";

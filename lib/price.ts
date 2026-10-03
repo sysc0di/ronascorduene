@@ -19,6 +19,7 @@ export const DEFAULT_CURRENCY_BY_LOCALE: Record<Locale, Currency> = {
   en: "TRY",
   tr: "TRY",
   ku: "USD",
+  ar: "USD",
 };
 
 export const FALLBACK_CURRENCY: Currency = "TRY";

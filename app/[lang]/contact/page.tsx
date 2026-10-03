@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
 
-import { getDictionary, getDictionaryFor } from "../dictionaries";
+import { getDictionary, getLocaleFor } from "../dictionaries";
+import { buildMetadata } from "@/lib/seo";
 import "./Contact.css";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/contact">): Promise<Metadata> {
   const { lang } = await params;
-  const dict = getDictionaryFor(lang);
 
-  return {
-    title: dict.nav.contact,
-    description: dict.contact.hero.body,
-    alternates: {
-      canonical: `/${lang}/contact`,
-      languages: { en: "/en/contact", tr: "/tr/contact" },
-    },
-  };
+  return buildMetadata({ locale: getLocaleFor(lang), page: "contact" });
 }
 
 export default async function ContactPage() {

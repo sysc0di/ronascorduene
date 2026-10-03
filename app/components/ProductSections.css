@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
 
-  padding: 100px 48px 140px;
+  padding: 64px 48px 88px;
 
   background: #000;
   color: #a6a6a6;
@@ -16,7 +16,7 @@
 
 .products-header {
   width: min(1400px, 100%);
-  margin: 0 auto 60px;
+  margin: 0 auto 36px;
 
   display: flex;
   justify-content: space-between;
@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
 
-  gap: 120px;
+  gap: 64px;
 
   width: min(1400px, 100%);
   margin: 0 auto;
@@ -57,7 +57,7 @@
 
   width: 100%;
 
-  padding: 24px 0 30px;
+  padding: 14px 0 18px;
 
   cursor: pointer;
 }
@@ -71,7 +71,7 @@
   align-items: center;
   gap: 22px;
 
-  margin-bottom: 22px;
+  margin-bottom: 14px;
 
   color: #555;
 
@@ -106,9 +106,9 @@
 .product-content {
   position: relative;
 
-  margin-top: 34px;
+  margin-top: 20px;
 
-  min-height: 160px;
+  min-height: 96px;
 
   display: flex;
   align-items: center;
@@ -142,7 +142,7 @@
    * Responsive wordmark.
    * It scales according to the product-list width.
    */
-  font-size: clamp(1.5rem, 9.5cqw, 8.5rem);
+  font-size: clamp(1.4rem, 8cqw, 7rem);
 
   font-weight: 700;
 
@@ -161,7 +161,7 @@
 }
 
 .product-title p {
-  margin: 18px 0 0;
+  margin: 10px 0 0;
 
   color: #555;
 
@@ -217,8 +217,8 @@
 
   top: 50%;
 
-  width: min(440px, 32cqw);
-  height: min(300px, 22cqw);
+  width: min(360px, 28cqw);
+  height: min(240px, 18cqw);
 
   opacity: 0;
 
@@ -366,7 +366,7 @@
 
 @supports not (container-type: inline-size) {
   .product-title h2 {
-    font-size: clamp(1.5rem, 8.5vw, 6.5rem);
+    font-size: clamp(1.4rem, 7.5vw, 5.5rem);
   }
 }
 
@@ -376,15 +376,15 @@
 
 @media (max-width: 1200px) {
   .products {
-    padding: 88px 32px 120px;
+    padding: 56px 32px 76px;
   }
 
   .products-list {
-    gap: 100px;
+    gap: 56px;
   }
 
   .product-title h2 {
-    font-size: clamp(1.5rem, 9cqw, 7rem);
+    font-size: clamp(1.4rem, 8cqw, 6rem);
   }
 }
 
@@ -394,24 +394,24 @@
 
 @media (max-width: 900px) {
   .products {
-    padding: 80px 24px 100px;
+    padding: 52px 24px 68px;
   }
 
   .products-header {
-    margin-bottom: 40px;
+    margin-bottom: 28px;
   }
 
   .product-content {
-    min-height: 140px;
+    min-height: 88px;
   }
 
   .product-title h2 {
-    font-size: clamp(1.5rem, 10cqw, 6rem);
+    font-size: clamp(1.4rem, 8.5cqw, 5rem);
   }
 
   .product-preview {
-    width: min(360px, 35cqw);
-    height: min(240px, 25cqw);
+    width: min(320px, 32cqw);
+    height: min(210px, 22cqw);
   }
 }
 
@@ -426,7 +426,7 @@
    * No extra padding on product-item.
    */
   .products {
-    padding: 70px 24px 90px;
+    padding: 46px 24px 60px;
   }
 
   .products-header {
@@ -434,21 +434,21 @@
 
     flex-direction: column;
 
-    gap: 8px;
+    gap: 6px;
 
-    margin-bottom: 34px;
+    margin-bottom: 24px;
   }
 
   .products-list {
     width: 100%;
 
-    gap: 72px;
+    gap: 44px;
   }
 
   .product-item {
     width: 100%;
 
-    padding: 20px 0 24px;
+    padding: 12px 0 16px;
   }
 
   .product-top {
@@ -468,9 +468,9 @@
   .product-content {
     width: 100%;
 
-    min-height: 110px;
+    min-height: 78px;
 
-    margin-top: 28px;
+    margin-top: 16px;
   }
 
   /*
@@ -487,7 +487,7 @@
      * Smaller mobile wordmark so it never reaches
      * or crosses the viewport edge.
      */
-    font-size: clamp(1.5rem, 11.5cqw, 4rem);
+    font-size: clamp(1.35rem, 10cqw, 3.25rem);
 
     line-height: 1.1;
 
@@ -552,11 +552,11 @@
   /* -------------------------------- */
 
   .product-preview {
-    width: 70vw;
-    max-width: 300px;
+    width: 66vw;
+    max-width: 260px;
 
-    height: 46vw;
-    max-height: 190px;
+    height: 42vw;
+    max-height: 165px;
 
     opacity: 0;
 
@@ -588,7 +588,7 @@
 
   @supports not (container-type: inline-size) {
     .product-title h2 {
-      font-size: clamp(1.5rem, 11.5vw, 4rem);
+      font-size: clamp(1.35rem, 10vw, 3.25rem);
     }
   }
 }
@@ -604,11 +604,11 @@
   }
 
   .products-list {
-    gap: 60px;
+    gap: 40px;
   }
 
   .product-title h2 {
-    font-size: clamp(1.4rem, 11vw, 3.2rem);
+    font-size: clamp(1.25rem, 10vw, 2.6rem);
   }
 
   .product-title p {

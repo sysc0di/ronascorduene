@@ -234,7 +234,7 @@
 .about-image-content {
   object-fit: cover;
 
-  filter: grayscale(100%);
+  filter: grayscale(50%);
 
   transform: scale(1.03);
 

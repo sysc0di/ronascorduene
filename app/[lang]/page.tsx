@@ -1,12 +1,22 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import grtgt from "@/public/assets/homebannerimg.jpg";
-import RonasLogo from "../components/RonasLogo";
+import RonasSignature from "../components/RonasSignature";
 import RonasSubtitle from "../components/RonasSubtitle";
 import ScrollIndicator from "../components/ScrollIndicator";
 import ProductSections from "../components/ProductSections";
 import ApproachSection from "../components/ApproachSection";
-import { getDictionary, getLocale } from "./dictionaries";
+import { getDictionary, getLocale, getLocaleFor } from "./dictionaries";
 import { APPROACH_SECTION_KEY, getSiteSection } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: PageProps<"/[lang]">): Promise<Metadata> {
+  const { lang } = await params;
+
+  return buildMetadata({ locale: getLocaleFor(lang), page: "home" });
+}
 
 export default async function Home() {
   const dict = await getDictionary();
@@ -32,7 +42,7 @@ export default async function Home() {
 
         <div className="relative z-10 flex h-full items-center justify-center text-center">
           <div className="page-title w-full max-w-6xl md:p-12">
-            <RonasLogo alt="Ronas Corduene" />
+            <RonasSignature />
             <RonasSubtitle text={dict.home.subtitle} />
           </div>
         </div>

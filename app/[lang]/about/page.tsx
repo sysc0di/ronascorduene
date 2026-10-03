@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import { getDictionary, getDictionaryFor } from "../dictionaries";
+import { getDictionary, getLocaleFor } from "../dictionaries";
+import { buildMetadata } from "@/lib/seo";
 import "./About.css";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/about">): Promise<Metadata> {
   const { lang } = await params;
-  const dict = getDictionaryFor(lang);
 
-  return {
-    title: dict.nav.about,
-    description: dict.about.hero.body,
-    alternates: {
-      canonical: `/${lang}/about`,
-      languages: { en: "/en/about", tr: "/tr/about" },
-    },
-  };
+  return buildMetadata({ locale: getLocaleFor(lang), page: "about" });
 }
 
 export default async function AboutPage() {
@@ -121,7 +114,7 @@ export default async function AboutPage() {
 
         <div className="about-image" data-hover-target>
           <Image
-            src="/assets/approach.jpg"
+            src="/assets/739d6f87-00fc-4c94-aa88-213a021c47a8.jpg"
             alt={about.image.alt}
             fill
             sizes="100vw"

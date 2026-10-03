@@ -10,7 +10,7 @@ import type { Locale } from "@/lib/i18n";
 
 import "./Navbar.css";
 import Image from "next/image";
-import logo from "../../public/ronas-logo.svg"
+import logo from "../../public/ronassimplelogo.png"
 const links = [
   { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },

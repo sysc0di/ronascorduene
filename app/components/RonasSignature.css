@@ -1,0 +1,103 @@
+.ronas-signature-wrap {
+  --ronas-signature-size: clamp(2.4rem, 8.5vw, 6.5rem);
+
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* The name itself is revealed by a widening clip-path, so it reads as if a
+   pen were leaving ink from the left toward the right. */
+.ronas-signature {
+  display: block;
+  margin: 0;
+
+  font-family: "Mr Dafoe", "Brush Script MT", cursive;
+  font-weight: 400;
+  font-size: var(--ronas-signature-size);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+
+  color: #a6a6a6;
+  text-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.7),
+    0 0 34px rgba(255, 255, 255, 0.16);
+
+  clip-path: inset(0 100% 0 0);
+
+  animation:
+    ronas-signature-write
+    2.6s
+    cubic-bezier(0.55, 0.05, 0.25, 1)
+    0.3s
+    forwards;
+}
+
+/* Bright nib that keeps pace with the reveal edge. */
+.ronas-signature-pen {
+  position: absolute;
+
+  top: 14%;
+  bottom: 14%;
+  left: 0;
+
+  width: 2px;
+
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 22px rgba(255, 255, 255, 0.6);
+
+  opacity: 0;
+
+  animation:
+    ronas-signature-pen
+    2.6s
+    cubic-bezier(0.55, 0.05, 0.25, 1)
+    0.3s
+    forwards;
+}
+
+@keyframes ronas-signature-write {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes ronas-signature-pen {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .ronas-signature-wrap {
+    --ronas-signature-size: clamp(2rem, 11vw, 3.4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ronas-signature {
+    animation: none;
+    clip-path: none;
+  }
+
+  .ronas-signature-pen {
+    display: none;
+  }
+}

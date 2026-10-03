@@ -1,26 +1,17 @@
+import type { Metadata } from "next";
+
 import ProductList from "./ProductList";
 
 import { getDictionary, getLocaleFor } from "../dictionaries";
 import { getCatalog } from "@/lib/catalog";
+import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
-}: PageProps<"/[lang]/list">) {
+}: PageProps<"/[lang]/list">): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary();
 
-  return {
-    title: dict.list.label,
-    description: dict.list.description,
-    alternates: {
-      canonical: `/${lang}/list`,
-      languages: {
-        en: "/en/list",
-        tr: "/tr/list",
-        ku: "/ku/list",
-      },
-    },
-  };
+  return buildMetadata({ locale: getLocaleFor(lang), page: "list" });
 }
 
 export default async function ListPage({
