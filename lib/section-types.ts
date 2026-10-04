@@ -51,6 +51,7 @@ export const SECTION_TYPES: SectionTypeDef[] = [
     title: true,
     body: true,
     image: true,
+    href: true,
     titleHint: MULTILINE_HINT,
   },
   {

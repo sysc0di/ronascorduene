@@ -804,6 +804,15 @@ export default function StoreCatalog({
                           className="store-product-img"
                         />
 
+                        {/* The title below is the accessible link to the
+                            product; this only widens the click target. */}
+                        <Link
+                          href={`/${locale}/store/${encodeURIComponent(product.id)}`}
+                          className="store-product-image-link"
+                          tabIndex={-1}
+                          aria-hidden="true"
+                        />
+
                         <span className="store-product-index">
                           {String(
                             index + 1
@@ -833,7 +842,21 @@ export default function StoreCatalog({
                           </span>
 
                           <h2>
-                            {product.name}
+                            <Link
+                              href={`/${locale}/store/${encodeURIComponent(product.id)}`}
+                              className="store-product-link"
+                            >
+                              <span>
+                                {product.name}
+                              </span>
+
+                              <span
+                                className="store-product-arrow"
+                                aria-hidden="true"
+                              >
+                                →
+                              </span>
+                            </Link>
                           </h2>
 
                           <p>

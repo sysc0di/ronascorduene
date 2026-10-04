@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
 
 import { locales } from "@/lib/i18n";
+import { prisma } from "@/lib/prisma";
 import { alternateLanguages, SEO, SITE_URL, type PageKey } from "@/lib/seo";
 import { LEGAL_SLUGS } from "@/lib/legal";
+
+/** The catalog changes whenever a product is edited in the admin panel. */
+export const revalidate = 3600;
 
 const PAGE_KEYS: PageKey[] = [
   "home",
@@ -22,7 +26,7 @@ function absoluteLanguages(path: string): Record<string, string> {
   );
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
   const main = locales.flatMap((locale) =>
@@ -35,6 +39,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified,
         changeFrequency: isHome ? "weekly" : "monthly",
         priority: isHome ? 1 : 0.7,
+        alternates: { languages: absoluteLanguages(path) },
+      } satisfies MetadataRoute.Sitemap[number];
+    }),
+  );
+
+  /* Product pages, keyed by slug; hidden products stay out of the index. */
+  const products = await prisma.product.findMany({
+    where: { visible: true },
+    select: { id: true, updatedAt: true },
+    orderBy: { createdAt: "asc" },
+  });
+
+  const productPages = locales.flatMap((locale) =>
+    products.map((product) => {
+      const path = `/store/${product.id}`;
+
+      return {
+        url: `${SITE_URL}/${locale}${path}`,
+        lastModified: product.updatedAt,
+        changeFrequency: "weekly",
+        priority: 0.8,
         alternates: { languages: absoluteLanguages(path) },
       } satisfies MetadataRoute.Sitemap[number];
     }),
@@ -54,5 +79,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...main, ...legal];
+  return [...main, ...productPages, ...legal];
 }

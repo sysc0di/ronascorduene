@@ -182,6 +182,12 @@
     "title": "JI BO FIT BÛYE.",
     "description": "Katalogê Ronas keşf bikin. Parçeyên ji bo herikîna hewayê, kontrola ajokar û performansa aerodînamîkê hatine çêkirin.",
     "catalog": "KATALOG",
+    "detail": {
+      "back": "KATALOG",
+      "viewDetails": "HESABÊ BİNHÊT",
+      "specifications": "TEKNÎKÎ HÛRÎ",
+      "reference": "REFERANS"
+    },
     "categories": "KATEGORÎ",
     "products": "BERHEM",
     "product": "BERHEM",

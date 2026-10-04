@@ -113,6 +113,9 @@ function renderHomeHero(section: ResolvedSection, ctx: Ctx): ReactNode {
 }
 
 function renderHomeApproach(section: ResolvedSection, ctx: Ctx): ReactNode {
+  /* The home page renders this block through `ApproachSection` with its own
+     styles; this registry entry is the fallback for any other page that
+     reuses the type, so it has to render the text too. */
   return (
     <section className="home-approach-cms" data-section={section.key}>
       {section.image && (
@@ -124,6 +127,24 @@ function renderHomeApproach(section: ResolvedSection, ctx: Ctx): ReactNode {
           className="object-cover"
         />
       )}
+
+      <div className="home-approach-cms-content">
+        {section.eyebrow && (
+          <span className="home-approach-cms-label">{section.eyebrow}</span>
+        )}
+
+        <h2>
+          {section.href ? (
+            <Link href={section.href} data-hover-target>
+              <Heading text={section.title} />
+            </Link>
+          ) : (
+            <Heading text={section.title} />
+          )}
+        </h2>
+
+        <p>{section.body}</p>
+      </div>
     </section>
   );
 }

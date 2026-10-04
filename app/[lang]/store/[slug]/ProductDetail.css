@@ -1,0 +1,510 @@
+/* =========================================================
+   PRODUCT DETAIL
+   Mirrors the catalog's dark palette and hairline borders so
+   the page reads as part of the same storefront.
+========================================================= */
+
+.product-detail {
+  min-height: 100vh;
+
+  background: #050505;
+
+  color: #a6a6a6;
+}
+
+/* =========================================================
+   BAR (BACK LINK + LIST + CURRENCY)
+========================================================= */
+
+.product-detail-bar {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 18px;
+
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding:
+    34px 42px
+    26px;
+
+  border-bottom:
+    1px solid
+    rgba(166, 166, 166, 0.2);
+}
+
+.product-detail-back {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+
+  color: #bdbdbd;
+
+  text-decoration: none;
+
+  transition: color 250ms ease;
+}
+
+.product-detail-back:hover {
+  color: #ffffff;
+}
+
+.product-detail-bar-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 22px;
+}
+
+.product-detail-list-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  border: 1px solid
+    rgba(166, 166, 166, 0.32);
+
+  padding:
+    7px 12px;
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+
+  color: #bdbdbd;
+
+  text-decoration: none;
+
+  transition:
+    border-color 250ms ease,
+    color 250ms ease;
+}
+
+.product-detail-list-link:hover {
+  border-color: #ffffff;
+
+  color: #ffffff;
+}
+
+.product-detail-list-count {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 22px;
+
+  height: 18px;
+
+  border: 1px solid
+    rgba(166, 166, 166, 0.32);
+
+  font-size: 10px;
+
+  letter-spacing: 0.06em;
+}
+
+.product-detail-currency {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  border: 1px solid
+    rgba(166, 166, 166, 0.32);
+
+  padding:
+    7px 10px;
+
+  transition: border-color 250ms ease;
+}
+
+.product-detail-currency:hover,
+.product-detail-currency:focus-within {
+  border-color: #ffffff;
+}
+
+.product-detail-currency-label {
+  font-size: 9px;
+
+  letter-spacing: 0.14em;
+
+  color:
+    rgba(166, 166, 166, 0.52);
+}
+
+.product-detail-currency select {
+  border: 0;
+
+  background: none;
+
+  color: #bdbdbd;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  letter-spacing: 0.12em;
+
+  cursor: pointer;
+
+  outline: none;
+}
+
+.product-detail-currency:hover select,
+.product-detail-currency:focus-within select {
+  color: #ffffff;
+}
+
+.product-detail-currency option {
+  background: #101010;
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.product-detail-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(0, 1fr);
+
+  align-items: start;
+
+  gap: 65px;
+
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding:
+    55px 42px
+    120px;
+}
+
+.product-detail-media {
+  position: relative;
+
+  aspect-ratio: 1 / 0.82;
+
+  overflow: hidden;
+
+  background: #090909;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.05);
+}
+
+.product-detail-image {
+  object-fit: cover;
+
+  filter:
+    grayscale(35%)
+    contrast(0.98);
+}
+
+/* =========================================================
+   PANEL
+========================================================= */
+
+.product-detail-panel {
+  min-width: 0;
+
+  padding-top: 6px;
+}
+
+.product-detail-eyebrow {
+  display: block;
+
+  font-size: 10px;
+
+  letter-spacing: 0.18em;
+
+  color:
+    rgba(166, 166, 166, 0.5);
+}
+
+.product-detail-panel h1 {
+  margin: 22px 0 0;
+
+  font-size:
+    clamp(1.9rem, 3.4vw, 3.1rem);
+
+  font-weight: 500;
+
+  /* The longer locales wrap early, so the leading has to clear
+     the diacritics instead of the 0.78 a single line could take. */
+  line-height: 1.14;
+
+  letter-spacing: -0.02em;
+
+  color: #ffffff;
+}
+
+.product-detail-price {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  gap: 10px;
+
+  margin-top: 26px;
+}
+
+.product-detail-price-current {
+  font-size: 1.15rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.03em;
+
+  color: #ffffff;
+}
+
+.product-detail-price-original {
+  font-size: 0.85rem;
+
+  letter-spacing: 0.03em;
+
+  color:
+    rgba(166, 166, 166, 0.45);
+
+  text-decoration: line-through;
+}
+
+.product-detail-price-badge {
+  padding: 2px 6px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.35);
+
+  border-radius: 2px;
+
+  font-size: 0.62rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+
+  color: #ffffff;
+}
+
+.product-detail-price-save {
+  font-size: 10px;
+
+  letter-spacing: 0.1em;
+
+  color:
+    rgba(166, 166, 166, 0.55);
+}
+
+.product-detail-description {
+  max-width: 520px;
+
+  margin: 30px 0 0;
+
+  font-size: 0.92rem;
+
+  line-height: 1.85;
+
+  letter-spacing: 0.015em;
+
+  color:
+    rgba(166, 166, 166, 0.7);
+}
+
+.product-detail-add {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 34px;
+
+  border: 1px solid
+    rgba(166, 166, 166, 0.28);
+
+  background: none;
+
+  padding:
+    12px 20px;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+
+  color: #bdbdbd;
+
+  cursor: pointer;
+
+  transition:
+    border-color 250ms ease,
+    color 250ms ease;
+}
+
+.product-detail-add:hover {
+  border-color: #ffffff;
+
+  color: #ffffff;
+}
+
+.product-detail-add.is-added {
+  border-color:
+    rgba(166, 166, 166, 0.7);
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   TECHNICAL DETAILS
+========================================================= */
+
+.product-detail-specs {
+  margin-top: 60px;
+
+  padding-top: 26px;
+
+  border-top:
+    1px solid
+    rgba(166, 166, 166, 0.2);
+}
+
+.product-detail-specs h2 {
+  margin: 0 0 6px;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.18em;
+
+  color: #bdbdbd;
+}
+
+.product-detail-specs dl {
+  margin: 0;
+}
+
+.product-detail-spec {
+  display: grid;
+
+  grid-template-columns:
+    minmax(120px, 0.8fr)
+    minmax(0, 1.2fr);
+
+  gap: 18px;
+
+  padding:
+    13px 0;
+
+  border-bottom:
+    1px solid
+    rgba(166, 166, 166, 0.1);
+}
+
+.product-detail-spec dt {
+  font-size: 9.5px;
+
+  letter-spacing: 0.14em;
+
+  color:
+    rgba(166, 166, 166, 0.45);
+}
+
+.product-detail-spec dd {
+  margin: 0;
+
+  font-size: 12.5px;
+
+  line-height: 1.6;
+
+  letter-spacing: 0.02em;
+
+  color: #d2d2d2;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .product-detail-bar {
+    padding:
+      26px 18px
+      20px;
+  }
+
+  .product-detail-bar-actions {
+    gap: 14px;
+  }
+
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+
+    gap: 38px;
+
+    padding:
+      32px 18px
+      80px;
+  }
+
+  .product-detail-media {
+    aspect-ratio: 1 / 0.72;
+  }
+
+  .product-detail-specs {
+    margin-top: 46px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail-spec {
+    grid-template-columns: 1fr;
+
+    gap: 5px;
+  }
+
+  .product-detail-add {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-detail-back,
+  .product-detail-list-link,
+  .product-detail-currency,
+  .product-detail-add {
+    transition: none;
+  }
+}

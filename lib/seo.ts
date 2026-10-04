@@ -358,24 +358,40 @@ export function buildMetadata({
 /**
  * Metadata for a CMS-managed page: the title/description come from the
  * database, with an optional static fallback while the page is still empty.
+ * `image` overrides the share image, which products pass as their own photo.
  */
 export function buildContentMetadata({
   locale,
   path,
   title,
   description,
+  image,
   fallbackPage,
 }: {
   locale: Locale;
   path: string;
   title?: string;
   description?: string;
+  image?: string;
   fallbackPage?: PageKey;
 }): Metadata {
   const fallback = fallbackPage ? SEO[locale].pages[fallbackPage] : undefined;
   const resolvedTitle = title || fallback?.title || SITE_NAME;
   const resolvedDescription = description || fallback?.description || "";
   const url = localizedPath(locale, path);
+  const shareImage = image || OG_IMAGE;
+
+  /* Only the bundled OG image has known dimensions; a product photo does not. */
+  const images = shareImage === OG_IMAGE
+    ? [
+        {
+          url: OG_IMAGE,
+          width: OG_IMAGE_WIDTH,
+          height: OG_IMAGE_HEIGHT,
+          alt: `${SITE_NAME} — performance parts and body kits`,
+        },
+      ]
+    : [{ url: shareImage, alt: resolvedTitle }];
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -397,20 +413,13 @@ export function buildContentMetadata({
       alternateLocale: locales
         .filter((item) => item !== locale)
         .map((item) => ogLocales[item]),
-      images: [
-        {
-          url: OG_IMAGE,
-          width: OG_IMAGE_WIDTH,
-          height: OG_IMAGE_HEIGHT,
-          alt: `${SITE_NAME} — performance parts and body kits`,
-        },
-      ],
+      images,
     },
     twitter: {
       card: "summary_large_image",
       title: resolvedTitle,
       description: resolvedDescription,
-      images: [OG_IMAGE],
+      images: [shareImage],
     },
     robots: {
       index: true,

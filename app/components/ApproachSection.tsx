@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
 
 import type { Dictionary } from "../[lang]/dictionaries";
@@ -13,6 +14,8 @@ type ApproachContent = {
   image: string;
   title: string;
   description: string;
+  /** Admin-managed destination; when empty the title stays plain text. */
+  href?: string;
 };
 
 const DEFAULT_IMAGE = "/assets/739d6f87-00fc-4c94-aa88-213a021c47a8.jpg";
@@ -52,6 +55,14 @@ export default function ApproachSection({
     .split("\n")
     .map((line) => line.trim())
     .filter((line) => line.length > 0);
+  const href = content?.href?.trim() ?? "";
+
+  const wordmark = titleLines.map((line, index) => (
+    <Fragment key={`${line}-${index}`}>
+      {index > 0 && <br />}
+      {line}
+    </Fragment>
+  ));
 
   return (
     <section
@@ -85,12 +96,20 @@ export default function ApproachSection({
           </div>
 
           <h2>
-            {titleLines.map((line, index) => (
-              <Fragment key={`${line}-${index}`}>
-                {index > 0 && <br />}
-                {line}
-              </Fragment>
-            ))}
+            {href ? (
+              <Link
+                href={href}
+                className="approach-link"
+                data-hover-target
+              >
+                {wordmark}
+                <span className="approach-link-arrow" aria-hidden="true">
+                  &#8599;
+                </span>
+              </Link>
+            ) : (
+              wordmark
+            )}
           </h2>
 
           <p>{body}</p>

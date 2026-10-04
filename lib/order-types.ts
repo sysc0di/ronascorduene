@@ -20,3 +20,14 @@ export type CatalogProduct = {
   discountedPriceTry: number | null;
   discountPercentTry: number | null;
 };
+
+/** One "label: value" row of a product's technical details. */
+export type ProductSpec = {
+  label: string;
+  value: string;
+};
+
+/** Everything the catalog knows, plus the per-language technical details. */
+export type ProductDetail = CatalogProduct & {
+  technicalDetails: ProductSpec[];
+};

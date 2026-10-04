@@ -181,6 +181,12 @@
     "title": "UYUM İÇİN ÜRETİLDİ.",
     "description": "Ronas kataloğunu keşfedin. Hava akışı, sürücü kontrolü ve aerodinamik performans için tasarlanmış bileşenler.",
     "catalog": "KATALOG",
+    "detail": {
+      "back": "KATALOĞA DÖN",
+      "viewDetails": "ÜRÜNÜ İNCELE",
+      "specifications": "TEKNİK DETAYLAR",
+      "reference": "REFERANS"
+    },
     "categories": "KATEGORİLER",
     "products": "ÜRÜNLER",
     "product": "ÜRÜN",

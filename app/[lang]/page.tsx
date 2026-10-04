@@ -61,6 +61,7 @@ export default async function Home() {
                   image: approach.image,
                   title: approach.title,
                   description: approach.body,
+                  href: approach.href,
                 }
               : null
           }

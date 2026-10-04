@@ -182,6 +182,12 @@
     "title": "BUILT TO FIT.",
     "description": "Explore the Ronas catalog. Engineered components designed around airflow, driver control and aerodynamic performance.",
     "catalog": "CATALOG",
+    "detail": {
+      "back": "BACK TO CATALOG",
+      "viewDetails": "VIEW DETAILS",
+      "specifications": "TECHNICAL DETAILS",
+      "reference": "REFERENCE"
+    },
     "categories": "CATEGORIES",
     "products": "PRODUCTS",
     "product": "PRODUCT",
