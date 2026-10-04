@@ -1,4 +1,15 @@
+/* `sticky` rather than `fixed` so the bar keeps its slot in the flow: the hero
+   heights are derived from `--navbar-h`, and nothing needs a scroll padding
+   compensation. `body` clips with `overflow-x: clip`, which is not a scroll
+   container, so the bar still pins to the viewport. */
 .navbar {
+  position: sticky;
+  top: 0;
+
+  /* Below the store's mobile overlay (90) and sidebar (100) so those keep
+     covering the bar, but above the navbar's own drawer/backdrop children. */
+  z-index: 50;
+
   width: 100%;
   height: var(--navbar-h, 80px);
   background: #050505;
