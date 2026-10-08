@@ -381,6 +381,20 @@ export default function StoreCatalog({
           <p>
             {t.description}
           </p>
+
+          {/* The catalog sits directly below the hero, so the primary action
+              is a jump into it rather than a link to the same page. */}
+          <a
+            href="#catalog"
+            className="store-hero-cta"
+            data-hover-target
+          >
+            <span>{t.allProducts}</span>
+
+            <span aria-hidden="true">
+              &#8595;
+            </span>
+          </a>
         </div>
       </section>
 
@@ -409,7 +423,10 @@ export default function StoreCatalog({
           MAIN CATALOG
       ================================================= */}
 
-      <section className="store-layout">
+      <section
+        id="catalog"
+        className="store-layout"
+      >
         {/* =================================================
             SIDEBAR
         ================================================= */}

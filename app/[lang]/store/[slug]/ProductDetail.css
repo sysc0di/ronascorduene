@@ -339,14 +339,49 @@
     rgba(166, 166, 166, 0.7);
 }
 
+/* The list action and the enquiry link sit side by side and share the spacing
+   that used to sit on the button alone. */
+.product-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 34px;
+}
+
+.product-detail-contact {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px 4px;
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  color: rgba(166, 166, 166, 0.72);
+  text-decoration: none;
+
+  transition: color 250ms ease;
+}
+
+.product-detail-contact:hover,
+.product-detail-contact:focus-visible {
+  color: #e5e5e5;
+}
+
 .product-detail-add {
   display: inline-flex;
 
   align-items: center;
 
   gap: 12px;
-
-  margin-top: 34px;
 
   border: 1px solid
     rgba(166, 166, 166, 0.28);

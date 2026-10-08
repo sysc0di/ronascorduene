@@ -5,10 +5,15 @@ import {
   getDictionaryFor,
   getLocaleFor,
 } from "../../dictionaries";
-import { buildContentMetadata } from "@/lib/seo";
+import { buildContentMetadata, getLegalSeo } from "@/lib/seo";
 import { getPage } from "@/lib/pages";
 import { isLegalSlug, legalPageKey, LEGAL_SLUGS } from "@/lib/legal";
 import PageSections from "../../components/PageSections";
+
+/** Copy is edited in the admin panel, so the page renders per request.
+ *  A prerendered build would keep serving whatever text existed when the
+ *  site was last deployed. */
+export const dynamic = "force-dynamic";
 
 export const dynamicParams = false;
 
@@ -26,11 +31,16 @@ export async function generateMetadata({
   const locale = getLocaleFor(lang);
   const page = await getPage(legalPageKey(slug), locale);
 
+  /* `subtitle` holds the opening of the document, so it is only usable as a
+     description once it has been trimmed; the per-locale legal copy is the
+     better fallback when the CMS SEO fields are still empty. */
+  const fallback = getLegalSeo(locale, slug);
+
   return buildContentMetadata({
     locale,
     path: `/legal/${slug}`,
-    title: page?.seoTitle || page?.title,
-    description: page?.seoDescription || page?.subtitle,
+    title: page?.seoTitle || page?.title || fallback.title,
+    description: page?.seoDescription || fallback.description,
   });
 }
 

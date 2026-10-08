@@ -936,3 +936,49 @@
     justify-self: start;
   }
 }
+
+/* =========================================================
+   SUCCESS ACTIONS
+========================================================= */
+
+.list-success-actions {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  margin-top: 22px;
+}
+
+.list-success-action {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  border: 1px solid
+    rgba(166, 166, 166, 0.28);
+
+  padding:
+    11px 18px;
+
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  color: #bdbdbd;
+  text-decoration: none;
+
+  transition:
+    border-color 250ms ease,
+    color 250ms ease;
+}
+
+.list-success-action:hover,
+.list-success-action:focus-visible {
+  border-color:
+    rgba(166, 166, 166, 0.62);
+
+  color: #e5e5e5;
+}

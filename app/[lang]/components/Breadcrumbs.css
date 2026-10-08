@@ -1,0 +1,96 @@
+/* Same hairline + muted-grey language as the store hero: one thin rule, small
+   letter-spaced labels, no fills or shadows. */
+.breadcrumbs {
+  max-width: 1440px;
+  margin: 0 auto;
+
+  padding:
+    22px
+    42px
+    0;
+}
+
+.breadcrumbs-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.breadcrumbs-item {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 10px;
+  letter-spacing: 0.14em;
+
+  color:
+    rgba(166, 166, 166, 0.55);
+}
+
+.breadcrumbs-item a {
+  color:
+    rgba(166, 166, 166, 0.62);
+  text-decoration: none;
+
+  transition: color 250ms ease;
+}
+
+.breadcrumbs-item a:hover,
+.breadcrumbs-item a:focus-visible {
+  color: #d4d4d4;
+}
+
+.breadcrumbs-item [aria-current="page"] {
+  color: #bdbdbd;
+}
+
+.breadcrumbs-separator {
+  color:
+    rgba(166, 166, 166, 0.28);
+}
+
+@media (max-width: 1024px) {
+  .breadcrumbs {
+    padding:
+      18px
+      32px
+      0;
+  }
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    padding:
+      16px
+      24px
+      0;
+  }
+}
+
+@media (max-width: 400px) {
+  .breadcrumbs {
+    padding:
+      14px
+      18px
+      0;
+  }
+
+  .breadcrumbs-list {
+    gap: 6px;
+  }
+
+  .breadcrumbs-item {
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+}

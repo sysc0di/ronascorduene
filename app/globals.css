@@ -48,8 +48,8 @@ body {
     width: 100%;
     max-width: 100%;
     padding-inline: var(--gutter);
-    backdrop-filter: blur(3px);
-    background-color: rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0,0,0,0.5);
 }
 .productonhome{
     display: flex;

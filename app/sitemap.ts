@@ -5,8 +5,9 @@ import { prisma } from "@/lib/prisma";
 import { alternateLanguages, SEO, SITE_URL, type PageKey } from "@/lib/seo";
 import { LEGAL_SLUGS } from "@/lib/legal";
 
-/** The catalog changes whenever a product is edited in the admin panel. */
-export const revalidate = 3600;
+/** The catalog changes whenever a product is edited in the admin panel, so it
+ *  is built per request rather than cached for an hour. */
+export const dynamic = "force-dynamic";
 
 const PAGE_KEYS: PageKey[] = [
   "home",

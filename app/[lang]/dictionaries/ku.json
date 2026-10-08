@@ -31,7 +31,8 @@
     "location": "CORDUENE / TIRKIYE"
   },
   "common": {
-    "automotiveEquipment": "EKÎPMANA OTOMOTÎVÊ"
+    "automotiveEquipment": "EKÎPMANA OTOMOTÎVÊ",
+    "breadcrumb": "Rêbername"
   },
   "home": {
     "titleLines": [
@@ -166,7 +167,9 @@
       "subjectPlaceholder": "Em bi çi alîkar bibe?",
       "message": "04 / PEYV",
       "messagePlaceholder": "Ji projeyê xwe bihesibînin...",
-      "submit": "PEYVÊ BIŞÎNIN"
+      "submit": "PEYVÊ BIŞÎNIN",
+      "mailNotice": "E-posta sepana vê wê bi pey re hatî amadekirinê were derxwe. Neh opened, bi tîstîkxwe binavîzê.",
+      "mailSent": "PEY AMADE."
     },
     "closing": {
       "brand": "RONAS CORDUENE",
@@ -463,5 +466,12 @@
       "button": "TÊKILIYÊ DAYNIN",
       "note": ["RONAS CORDUENE", "MÎHENDISÎ BI ARMANA MIROVÎ"]
     }
+  },
+  "notFound": {
+    "meta": "ÇAST 404",
+    "title": "RÛN NEBÎT.",
+    "body": "Rûna ku lê dike tune an jî hatiye guherandin.",
+    "home": "VEGERÊ DESTPÊKÊ",
+    "store": "KATALOGÊ BINÊRE"
   }
 }

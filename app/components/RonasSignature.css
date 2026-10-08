@@ -1,8 +1,36 @@
+/* The wordmark is deliberately small and spread wide: the name reads as a long
+   thin stroke rather than a headline, with the mark sitting above it. */
 .ronas-signature-wrap {
-  --ronas-signature-size: clamp(2.4rem, 8.5vw, 6.5rem);
+  --ronas-signature-size: clamp(1.9rem, 6.2vw, 4.4rem);
+  --ronas-signature-logo: clamp(56px, 8vw, 96px);
 
+  display: block;
+  max-width: 100%;
+
+  text-align: center;
+}
+
+.ronas-signature-logo {
+  display: block;
+
+  width: var(--ronas-signature-logo);
+  height: 300px;
+  width: 300px;
+
+  margin: 0 auto 0.5em;
+
+  opacity: 0;
+  animation: ronas-signature-logo-in 900ms ease 150ms forwards;
+
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.75));
+}
+
+/* The line is the pen's reference box, so it starts at the wordmark rather
+   than at the mark above it. */
+.ronas-signature-line {
   position: relative;
   display: inline-block;
+
   max-width: 100%;
 }
 
@@ -12,11 +40,16 @@
   display: block;
   margin: 0;
 
-  font-family: "Mr Dafoe", "Brush Script MT", cursive;
+  font-family: var(--font-mr-dafoe, "Mr Dafoe"), "Brush Script MT", cursive;
   font-weight: 400;
   font-size: var(--ronas-signature-size);
   line-height: 1.15;
-  letter-spacing: 0.01em;
+
+  /* More tracking than the size reduction takes away: the signature ends up
+     longer on screen while sitting lower on the page. */
+  letter-spacing: 0.2em;
+  text-indent: 0.2em; /* balances the trailing space of the last glyph */
+
   white-space: nowrap;
 
   color: #a6a6a6;
@@ -59,6 +92,18 @@
     forwards;
 }
 
+@keyframes ronas-signature-logo-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 0.95;
+    transform: none;
+  }
+}
+
 @keyframes ronas-signature-write {
   to {
     clip-path: inset(0 0 0 0);
@@ -87,11 +132,17 @@
 
 @media (max-width: 640px) {
   .ronas-signature-wrap {
-    --ronas-signature-size: clamp(2rem, 11vw, 3.4rem);
+    --ronas-signature-size: clamp(1.5rem, 8.5vw, 2.6rem);
+    --ronas-signature-logo: clamp(44px, 14vw, 64px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ronas-signature-logo {
+    animation: none;
+    opacity: 0.95;
+  }
+
   .ronas-signature {
     animation: none;
     clip-path: none;

@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 
+import ContactForm from "./ContactForm";
+
 import type { Dictionary } from "../dictionaries";
 import type { Locale } from "@/lib/i18n";
 import type { ResolvedPage, ResolvedSection } from "@/lib/pages";
@@ -268,7 +270,23 @@ function renderAboutClosing(section: ResolvedSection, ctx: Ctx): ReactNode {
 
       <div className="about-closing-bottom">
         <span>{section.eyebrow}</span>
-        <span>{section.ctaLabel}</span>
+
+        {/* The CMS decides whether there is a call to action here; without one
+            the slot keeps the text it had. */}
+        {section.ctaLabel ? (
+          <Link
+            href={section.href || `/${ctx.locale}/contact`}
+            className="about-closing-cta"
+            data-hover-target
+          >
+            <span>{section.ctaLabel}</span>
+
+            <span aria-hidden="true">&#8599;</span>
+          </Link>
+        ) : (
+          <span>{section.ctaLabel}</span>
+        )}
+
         <span>{ctx.dict.common.automotiveEquipment}</span>
       </div>
     </section>
@@ -342,9 +360,10 @@ function renderContactInfo(section: ResolvedSection, ctx: Ctx): ReactNode {
   );
 }
 
-function renderContactForm(section: ResolvedSection, ctx: Ctx): ReactNode {
-  const { form } = ctx.dict.contact;
-
+function renderContactForm(
+  section: ResolvedSection,
+  ctx: Ctx,
+): ReactNode {
   return (
     <section className="contact-form-section" data-section={section.key}>
       <SectionHeader
@@ -353,42 +372,10 @@ function renderContactForm(section: ResolvedSection, ctx: Ctx): ReactNode {
         className="contact-section-header"
       />
 
-      <form className="contact-form">
-        <div className="contact-form-row">
-          <label>
-            <span>{form.name}</span>
-            <input type="text" name="name" placeholder={form.namePlaceholder} />
-          </label>
-
-          <label>
-            <span>{form.email}</span>
-            <input type="email" name="email" placeholder={form.emailPlaceholder} />
-          </label>
-        </div>
-
-        <label>
-          <span>{form.subject}</span>
-          <input
-            type="text"
-            name="subject"
-            placeholder={form.subjectPlaceholder}
-          />
-        </label>
-
-        <label>
-          <span>{form.message}</span>
-          <textarea
-            name="message"
-            rows={6}
-            placeholder={form.messagePlaceholder}
-          />
-        </label>
-
-        <button type="submit" className="contact-submit" data-hover-target>
-          <span>{form.submit}</span>
-          <span>&#8599;</span>
-        </button>
-      </form>
+      <ContactForm
+        dict={ctx.dict}
+        email={ctx.dict.contact.info.emailValue}
+      />
     </section>
   );
 }

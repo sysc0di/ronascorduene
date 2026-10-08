@@ -31,7 +31,8 @@
     "location": "KORDUENE / TÜRKİYE"
   },
   "common": {
-    "automotiveEquipment": "OTOMOTİV EKİPMANLARI"
+    "automotiveEquipment": "OTOMOTİV EKİPMANLARI",
+    "breadcrumb": "Site haritası yolu"
   },
   "home": {
     "titleLines": [
@@ -165,7 +166,9 @@
       "subjectPlaceholder": "Nasıl yardımcı olabiliriz?",
       "message": "04 / MESAJ",
       "messagePlaceholder": "Projenizden bahsedin...",
-      "submit": "MESAJ GÖNDER"
+      "submit": "MESAJ GÖNDER",
+      "mailNotice": "E-posta uygulamanız bu mesajı göndermeye hazır olarak açılacak. Açılmazsa doğrudan bize yazın.",
+      "mailSent": "MESAJ HAZIR."
     },
     "closing": {
       "brand": "RONAS CORDUENE",
@@ -368,5 +371,12 @@
       "button": "İLETİŞİME GEÇ",
       "note": ["RONAS CORDUENE", "İNSAN AMACIYLA MÜHENDİSLİK"]
     }
+  },
+  "notFound": {
+    "meta": "HATA 404",
+    "title": "SAYFA BULUNAMADI.",
+    "body": "Aradığınız sayfa mevcut değil veya taşınmış.",
+    "home": "ANA SAYFAYA DÖN",
+    "store": "KATALOĞU GÖR"
   }
 }

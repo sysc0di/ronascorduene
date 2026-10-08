@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 
+import Breadcrumbs from "../components/Breadcrumbs";
 import StoreCatalog from "./StoreCatalog";
 
 import { getCatalog } from "@/lib/catalog";
 import { getDictionary, getLocaleFor } from "../dictionaries";
-import { buildMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 /** Products come from the database, so the catalog is rendered per request. */
 export const dynamic = "force-dynamic";
@@ -28,11 +29,27 @@ export default async function StorePage({
     getDictionary(),
   ]);
 
+  const crumbs = [
+    { name: dict.nav.home, href: `/${locale}` },
+    { name: dict.nav.store, href: `/${locale}/store` },
+  ];
+
   return (
-    <StoreCatalog
-      products={products}
-      locale={locale}
-      dict={dict}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd(crumbs)),
+        }}
+      />
+
+      <Breadcrumbs items={crumbs} label={dict.common.breadcrumb} />
+
+      <StoreCatalog
+        products={products}
+        locale={locale}
+        dict={dict}
+      />
+    </>
   );
 }

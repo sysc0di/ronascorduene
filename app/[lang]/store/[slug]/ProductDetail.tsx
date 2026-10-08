@@ -45,6 +45,7 @@ export default function ProductDetail({
 
   const t = dict.store;
   const detail = t.detail;
+  const contactLabel = dict.nav.contact;
 
   const added = inList(product.id);
 
@@ -216,27 +217,41 @@ export default function ProductDetail({
             {product.description}
           </p>
 
-          <button
-            type="button"
-            className={`
-              product-detail-add
-              ${added ? "is-added" : ""}
-            `}
-            onClick={() =>
-              addToList(product.id)
-            }
-            data-hover-target
-          >
-            <span>
-              {added
-                ? t.addedToList
-                : t.addToList}
-            </span>
+          <div className="product-detail-actions">
+            <button
+              type="button"
+              className={`
+                product-detail-add
+                ${added ? "is-added" : ""}
+              `}
+              onClick={() =>
+                addToList(product.id)
+              }
+              data-hover-target
+            >
+              <span>
+                {added
+                  ? t.addedToList
+                  : t.addToList}
+              </span>
 
-            <span aria-hidden="true">
-              {added ? "✓" : "+"}
-            </span>
-          </button>
+              <span aria-hidden="true">
+                {added ? "✓" : "+"}
+              </span>
+            </button>
+
+            {/* Fitment and availability are answered per vehicle, so the
+                enquiry route is the natural second step after the list. */}
+            <Link
+              href={`/${locale}/contact`}
+              className="product-detail-contact"
+              data-hover-target
+            >
+              <span>{contactLabel}</span>
+
+              <span aria-hidden="true">&#8599;</span>
+            </Link>
+          </div>
 
           <section className="product-detail-specs">
             <h2>{detail.specifications}</h2>

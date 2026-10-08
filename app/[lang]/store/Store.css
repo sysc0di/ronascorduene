@@ -1520,3 +1520,53 @@
       8px 12px;
   }
 }
+
+/* =========================================================
+   HERO CTA
+========================================================= */
+
+.store-hero-cta {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 44px;
+
+  border: 1px solid
+    rgba(166, 166, 166, 0.32);
+
+  padding:
+    13px 22px;
+
+  font-size: 10px;
+  letter-spacing: 0.14em;
+
+  color: #bdbdbd;
+  text-decoration: none;
+
+  transition:
+    border-color 250ms ease,
+    color 250ms ease;
+}
+
+.store-hero-cta:hover,
+.store-hero-cta:focus-visible {
+  border-color:
+    rgba(166, 166, 166, 0.7);
+
+  color: #e5e5e5;
+}
+
+/* The catalog grid already starts high on the page, so the jump must not land
+   under the sticky bar. */
+.store-layout {
+  scroll-margin-top: var(--navbar-h, 80px);
+}
+
+@media (max-width: 1024px) {
+  .store-hero-cta {
+    margin-top: 36px;
+  }
+}

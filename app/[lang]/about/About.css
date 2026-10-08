@@ -339,6 +339,7 @@
 
 .about-closing-bottom {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
   padding-top: 26px;
@@ -348,6 +349,26 @@
   letter-spacing: 0.18em;
 
   color: rgba(166, 166, 166, 0.4);
+}
+
+/* The closing label became the page's main action, so it reads as a link while
+   staying inside the same hairline weight as its neighbours. */
+.about-closing-cta {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: rgba(166, 166, 166, 0.72);
+  text-decoration: none;
+
+  transition: color 250ms ease;
+}
+
+.about-closing-cta:hover,
+.about-closing-cta:focus-visible {
+  color: #e5e5e5;
 }
 
 

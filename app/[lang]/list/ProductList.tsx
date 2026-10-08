@@ -212,6 +212,30 @@ export default function ProductList({
               <strong>{t.success.title}</strong>
 
               <p>{t.success.description}</p>
+
+              {/* The form is gone at this point, so the visitor needs somewhere
+                  to go next rather than a dead end. */}
+              <div className="list-success-actions">
+                <Link
+                  href={`/${locale}/store`}
+                  className="list-success-action"
+                  data-hover-target
+                >
+                  <span>{t.backToStore}</span>
+
+                  <span aria-hidden="true">&#8599;</span>
+                </Link>
+
+                <Link
+                  href={`/${locale}/contact`}
+                  className="list-success-action"
+                  data-hover-target
+                >
+                  <span>{dict.nav.contact}</span>
+
+                  <span aria-hidden="true">&#8599;</span>
+                </Link>
+              </div>
             </section>
           )}
 

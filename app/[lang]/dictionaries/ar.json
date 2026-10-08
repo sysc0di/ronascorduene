@@ -31,7 +31,8 @@
     "location": "كوردوين / تركيا"
   },
   "common": {
-    "automotiveEquipment": "معدات السيارات"
+    "automotiveEquipment": "معدات السيارات",
+    "breadcrumb": "مسار التنقل"
   },
   "home": {
     "titleLines": [
@@ -165,7 +166,9 @@
       "subjectPlaceholder": "كيف يمكننا المساعدة؟",
       "message": "04 / الرسالة",
       "messagePlaceholder": "أخبرنا عن مشروعك...",
-      "submit": "أرسل الرسالة"
+      "submit": "أرسل الرسالة",
+      "mailNotice": "سيتم فتح تطبيق البريد مع الرسالة جاهزة للإرسال. إذا لم يفتح، راسلنا مباشرة.",
+      "mailSent": "الرسالة جاهزة."
     },
     "closing": {
       "brand": "RONAS CORDUENE",
@@ -368,5 +371,12 @@
       "button": "تواصل معنا",
       "note": ["RONAS CORDUENE", "هندسة بهدف إنساني"]
     }
+  },
+  "notFound": {
+    "meta": "خطأ 404",
+    "title": "الصفحة غير موجودة.",
+    "body": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "home": "العودة إلى الرئيسية",
+    "store": "تصفّح الكتالوج"
   }
 }

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Mr_Dafoe } from "next/font/google";
 
 import "../globals.css";
 
 import { Navbar } from "../components/navbar";
 import Footer from "../components/Footer";
+import MobileContactBar from "./components/MobileContactBar";
 
 import { getDictionary, getLocale } from "./dictionaries";
 import { defaultLocale, hasLocale, isRtl, locales } from "@/lib/i18n";
@@ -18,6 +19,15 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+/* The hero wordmark is set in Mr Dafoe. Nothing loaded it before, so the
+   "signature" rendered in whatever cursive face the OS happened to offer. */
+const mrDafoe = Mr_Dafoe({
+  weight: "400",
+  variable: "--font-mr-dafoe",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export function generateStaticParams() {
@@ -48,7 +58,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={isRtl(locale) ? "rtl" : "ltr"}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${mrDafoe.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-gray-50 dark:bg-gray-900">
         <script
@@ -60,6 +70,7 @@ export default async function RootLayout({
         <Navbar locale={locale} dict={dict} />
         <main>{children}</main>
         <Footer locale={locale} dict={dict} />
+        <MobileContactBar locale={locale} dict={dict} />
       </body>
     </html>
   );

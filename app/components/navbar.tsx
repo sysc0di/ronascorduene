@@ -10,7 +10,7 @@ import type { Locale } from "@/lib/i18n";
 
 import "./Navbar.css";
 import Image from "next/image";
-import logo from "../../public/ronassimplelogo.png"
+import logo from "../../public/ronaslogo.png"
 const links = [
   { key: "about", href: "/about" },
   { key: "initiative", href: "/impact" },
@@ -58,10 +58,16 @@ export function Navbar({
           data-hover-target
           onClick={() => setOpen(false)}
         >
+          {/* The mark is the link's only content, so its alt is what gives the
+              home link a name; it sits above the fold on every page, hence
+              priority + a `sizes` matching the rendered icon. */}
           <Image
-          className="navbar-logo-icon"
-            src={logo} alt="ronas" />
-
+            className="navbar-logo-icon"
+            src={logo}
+            alt="Ronas Corduene"
+            priority
+            sizes="(max-width: 520px) 32px, 48px"
+          />
         </Link>
 
         <div className="navbar-lang">

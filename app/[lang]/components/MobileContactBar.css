@@ -1,0 +1,68 @@
+/* Mobile only, and deliberately quiet: one hairline above a near-black strip,
+   two equal cells, the same 10px letter-spaced caps as every other control.
+   `env(safe-area-inset-bottom)` keeps it clear of the iOS home indicator. */
+.mobile-contact-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-contact-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    z-index: 40;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+
+    padding-bottom: env(safe-area-inset-bottom);
+
+    border-top:
+      1px solid
+      rgba(166, 166, 166, 0.16);
+
+    background: #050505;
+  }
+
+  /* The list page is a form: its submit button is the action, and a fixed bar
+     would cover it. `:has()` keeps this in CSS instead of a client component. */
+  body:has(.list-page) .mobile-contact-bar {
+    display: none;
+  }
+
+  /* Room for the bar so it never sits on top of the end of the page. */
+  body:not(:has(.list-page)) {
+    padding-bottom:
+      calc(46px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-contact-bar-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+
+    padding: 0 12px;
+
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    color: rgba(166, 166, 166, 0.75);
+    text-decoration: none;
+  }
+
+  .mobile-contact-bar-item + .mobile-contact-bar-item {
+    border-left:
+      1px solid
+      rgba(166, 166, 166, 0.12);
+  }
+
+  .mobile-contact-bar-item:active {
+    color: #e5e5e5;
+  }
+}

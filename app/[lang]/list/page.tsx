@@ -6,6 +6,11 @@ import { getDictionary, getLocaleFor } from "../dictionaries";
 import { getCatalog } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/seo";
 
+/** Copy is edited in the admin panel, so the page renders per request.
+ *  A prerendered build would keep serving whatever text existed when the
+ *  site was last deployed. */
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/list">): Promise<Metadata> {

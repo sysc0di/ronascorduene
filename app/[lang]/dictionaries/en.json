@@ -31,7 +31,8 @@
     "location": "CORDUENE / TURKEY"
   },
   "common": {
-    "automotiveEquipment": "AUTOMOTIVE EQUIPMENT"
+    "automotiveEquipment": "AUTOMOTIVE EQUIPMENT",
+    "breadcrumb": "Breadcrumb"
   },
   "home": {
     "titleLines": [
@@ -166,7 +167,9 @@
       "subjectPlaceholder": "What can we help with?",
       "message": "04 / MESSAGE",
       "messagePlaceholder": "Tell us about your project...",
-      "submit": "SEND MESSAGE"
+      "submit": "SEND MESSAGE",
+      "mailNotice": "Your email app will open with this message ready to send. If it does not, write to us directly.",
+      "mailSent": "MESSAGE READY."
     },
     "closing": {
       "brand": "RONAS CORDUENE",
@@ -369,5 +372,12 @@
       "button": "CONTACT US",
       "note": ["RONAS CORDUENE", "ENGINEERING WITH HUMAN PURPOSE"]
     }
+  },
+  "notFound": {
+    "meta": "ERROR 404",
+    "title": "PAGE NOT FOUND.",
+    "body": "The page you are looking for does not exist or has moved.",
+    "home": "BACK TO HOME",
+    "store": "BROWSE THE CATALOG"
   }
 }
