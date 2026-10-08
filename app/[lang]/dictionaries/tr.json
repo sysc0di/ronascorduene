@@ -13,7 +13,7 @@
     "closeMenu": "Menüyü kapat",
     "language": "Dil",
     "primaryNavigation": "Ana gezinme",
-    "list": "Liste"
+    "list": "Sepet"
   },
   "legal": {
     "label": "Yasal",
@@ -256,9 +256,9 @@
       "title": "ÜRÜN BULUNAMADI",
       "description": "Başka bir kategori deneyin veya filtreleri değiştirin."
     },
-    "addToList": "LİSTEYE EKLE",
+    "addToList": "SEPETE EKLE",
     "addedToList": "EKLENDİ",
-    "goToList": "LİSTEYE GİT",
+    "goToList": "SEPETE GİT",
     "save": "TASARRUF"
   },
   "footer": {
@@ -273,20 +273,20 @@
     "rights": "TÜM HAKLARI SAKLIDIR"
   },
   "list": {
-    "label": "LİSTENİZ",
-    "title": "LİSTENİZİ GÖNDERİN.",
-    "description": "İlgilendiğiniz ürünleri ekleyin, iletişim bilgilerinizi bırakın ve listeyi bize gönderin. Stok uygunluğu, uyum ve teslimat için sizinle iletişime geçelim.",
-    "meta": "ÜRÜN LİSTESİ",
+    "label": "SEPETİNİZ",
+    "title": "SEPETİNİZİ GÖNDERİN.",
+    "description": "İlgilendiğiniz ürünleri ekleyin, iletişim bilgilerinizi bırakın ve sepetinizi bize gönderin. Stok uygunluğu, uyum ve teslimat için sizinle iletişime geçelim.",
+    "meta": "ALIŞVERİŞ SEPETİ",
     "empty": {
-      "title": "LİSTENİZ BOŞ",
-      "description": "Kataloğa göz atın ve ilgilendiğiniz ürünleri listeye ekleyin."
+      "title": "SEPETİNİZ BOŞ",
+      "description": "Kataloğa göz atın ve ilgilendiğiniz ürünleri sepete ekleyin."
     },
     "items": "ÜRÜNLER",
     "quantity": "ADET",
     "increase": "Adet artır",
     "decrease": "Adet azalt",
     "remove": "KALDIR",
-    "clear": "LİSTEYİ TEMİZLE",
+    "clear": "SEPETİ TEMİZLE",
     "total": "TOPLAM",
     "subtotal": "ARA TOPLAM",
     "savings": "TASARRUF",
@@ -299,7 +299,7 @@
     "phone": "TELEFON",
     "notes": "NOTLAR",
     "notesPlaceholder": "Ek detaylar, araç modeli, tercih edilen teslimat saati...",
-    "submit": "LİSTEYİ GÖNDER",
+    "submit": "SİPARİŞİ GÖNDER",
     "sending": "GÖNDERİLİYOR...",
     "backToStore": "KATALOĞA DÖN",
     "consent": {
@@ -307,7 +307,7 @@
       "agreementBefore": "Okudum ve onaylıyorum:",
       "agreementBetween": "ve",
       "agreementAfter": ".",
-      "agreementRequiredError": "Listenizi göndermek için Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu'nu kabul etmelisiniz.",
+      "agreementRequiredError": "Siparişinizi göndermek için Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu'nu kabul etmelisiniz.",
       "kvkkLabel": "KİŞİSEL VERİLER",
       "kvkkBefore": "Kişisel verileriniz",
       "kvkkLink": "KVKK Aydınlatma Metni",
@@ -316,8 +316,8 @@
       "marketingText": "Yeni ürünler, kampanyalar ve promosyonlar hakkında e-posta/SMS ile bilgi almak istiyorum."
     },
     "success": {
-      "title": "LİSTE GÖNDERİLDİ.",
-      "description": "Teşekkürler. Listeniz alındı, detayları teyit etmek için sizinle iletişime geçeceğiz."
+      "title": "SİPARİŞ GÖNDERİLDİ.",
+      "description": "Teşekkürler. Siparişiniz alındı, detayları teyit etmek için sizinle iletişime geçeceğiz."
     }
   },
   "initiative": {

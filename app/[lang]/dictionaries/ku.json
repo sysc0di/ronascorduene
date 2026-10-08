@@ -13,7 +13,7 @@
     "closeMenu": "Menûyê veke",
     "language": "Ziman",
     "primaryNavigation": "Rêbernavê sereke",
-    "list": "Lîsta"
+    "list": "Sepet"
   },
   "legal": {
     "label": "Yasayî",
@@ -257,9 +257,9 @@
       "title": "BERHEM NEHAT DÎTIN",
       "description": "Kategoriyek din biceribînin an jî filtreyan biguherînin."
     },
-    "addToList": "LÎSTEYÊ ZÊDE BÎKÎN",
+    "addToList": "SEPETÊ ZÊDE BÎKÎN",
     "addedToList": "ZÊDE HATIR",
-    "goToList": "BINÊ LÎSTEYÊ",
+    "goToList": "BINÊ SEPETÊ",
     "save": "TESERUF"
   },
   "terms": {
@@ -368,20 +368,20 @@
     "rights": "HEMÛ HIQ HATÎRÎ"
   },
   "list": {
-    "label": "LÎSTA WE",
-    "title": "LÎSTA WE ŞÎNÎŞIN.",
-    "description": "Dilê we yên tê destpeç kirin, agahîyên xebatkirî binivîsîn û lîsta bişînin. Em ji bo stabeya malê, uyandin û teslimatê bi we re tê Civîn.",
-    "meta": "LÎSTA BERHEMAN",
+    "label": "SEPETE WE",
+    "title": "SEPETE WE ŞÎNÎŞIN.",
+    "description": "Dilê we yên tê destpeç kirin, agahîyên xebatkirî binivîsîn û sepete bişînin. Em ji bo stabeya malê, uyandin û teslimatê bi we re tê Civîn.",
+    "meta": "SEPET",
     "empty": {
-      "title": "LÎSTA WE VALA YE",
-      "description": "Kataloga binêrîn û hilberên dilê we zêde bike."
+      "title": "SEPETE WE VALA YE",
+      "description": "Kataloga binêrîn û hilberên dilê we sepete bike."
     },
     "items": "HILBER",
     "quantity": "HEJMAR",
     "increase": "Hejmê zêde bike",
     "decrease": "Hejmê kêm bike",
     "remove": "RÊKE",
-    "clear": "LÎSTA PAZ DE",
+    "clear": "SEPETE PAZ DE",
     "total": "KOMAJÎ",
     "subtotal": "BIN KOMAJÎ",
     "savings": "TESERUF",
@@ -394,7 +394,7 @@
     "phone": "TELEFON",
     "notes": "TÊBÎNÎ",
     "notesPlaceholder": "Zêde têbînî, modela arabê, kî ji bo teslîmatê...",
-    "submit": "LÎSTEYÊ ŞÎNÎSE",
+    "submit": "SİPARİŞÊ ŞÎNÎSE",
     "sending": "DİŞÊN...",
     "backToStore": "VEGERÊ KATALOGÊ",
     "consent": {
@@ -402,7 +402,7 @@
       "agreementBefore": "Min xwendiye û qebûl dikim:",
       "agreementBetween": "û",
       "agreementAfter": ".",
-      "agreementRequiredError": "Ji bo şandina lîsteya xwe, ji kerema xwe Peymana Firotanê ya Dûr û Forma Agahdariya Pêşîn qebûl bikin.",
+      "agreementRequiredError": "Ji bo şandina siparişa xwe, ji kerema xwe Peymana Firotanê ya Dûr û Forma Agahdariya Pêşîn qebûl bikin.",
       "kvkkLabel": "PARASTINA DANEYAN",
       "kvkkBefore": "Daneyên we yên kesane li gorî",
       "kvkkLink": "Daxuyaniya Agahdariya KVKK",
@@ -411,8 +411,8 @@
       "marketingText": "Ez dixwazim di derbarê hilberên nû, kampanya û promosyonan de bi e-name/SMS agahdar bibim."
     },
     "success": {
-      "title": "LÎSTEYÊ HATIR.",
-      "description": "Sipas. Lîsta we hate pejmêkirî, ji bo teyîtkirina hûmaneyê em ê bi we re tê Civîn."
+      "title": "SİPARİŞÊ HATIR.",
+      "description": "Sipas. Siparişa we hate pejmêkirî, ji bo teyîtkirina hûmaneyê em ê bi we re tê Civîn."
     }
   },
   "initiative": {

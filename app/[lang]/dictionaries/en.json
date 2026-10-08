@@ -13,7 +13,7 @@
     "closeMenu": "Close menu",
     "language": "Language",
     "primaryNavigation": "Primary navigation",
-    "list": "List"
+    "list": "Cart"
   },
   "legal": {
     "label": "Legal",
@@ -257,9 +257,9 @@
       "title": "NO PRODUCTS FOUND",
       "description": "Try another category or adjust the selected filters."
     },
-    "addToList": "ADD TO LIST",
+    "addToList": "ADD TO CART",
     "addedToList": "ADDED",
-    "goToList": "GO TO LIST",
+    "goToList": "GO TO CART",
     "save": "SAVE"
   },
   "footer": {
@@ -274,12 +274,12 @@
     "rights": "ALL RIGHTS RESERVED"
   },
   "list": {
-    "label": "YOUR LIST",
-    "title": "SEND YOUR LIST.",
-    "description": "Add the parts you are interested in, leave your contact details and send the list to us. We will get back to you to confirm availability, fitment and delivery.",
-    "meta": "PRODUCT LIST",
+    "label": "YOUR CART",
+    "title": "SEND YOUR CART.",
+    "description": "Add the parts you are interested in, leave your contact details and send your order. We will get back to you to confirm availability, fitment and delivery.",
+    "meta": "SHOPPING CART",
     "empty": {
-      "title": "YOUR LIST IS EMPTY",
+      "title": "YOUR CART IS EMPTY",
       "description": "Browse the catalog and add the products you are interested in."
     },
     "items": "PRODUCTS",
@@ -287,7 +287,7 @@
     "increase": "Increase quantity",
     "decrease": "Decrease quantity",
     "remove": "REMOVE",
-    "clear": "CLEAR LIST",
+    "clear": "CLEAR CART",
     "total": "TOTAL",
     "subtotal": "SUBTOTAL",
     "savings": "YOU SAVE",
@@ -300,7 +300,7 @@
     "phone": "PHONE",
     "notes": "NOTES",
     "notesPlaceholder": "Extra details, vehicle model, preferred delivery time...",
-    "submit": "SEND LIST",
+    "submit": "SEND ORDER",
     "sending": "SENDING...",
     "backToStore": "BACK TO CATALOG",
     "consent": {
@@ -308,7 +308,7 @@
       "agreementBefore": "I have read and agree to the",
       "agreementBetween": "and the",
       "agreementAfter": ".",
-      "agreementRequiredError": "Please accept the Distance Sales Agreement and Pre-Information Form to send your list.",
+      "agreementRequiredError": "Please accept the Distance Sales Agreement and Pre-Information Form to send your order.",
       "kvkkLabel": "DATA PROTECTION",
       "kvkkBefore": "Your personal data is processed in accordance with our",
       "kvkkLink": "KVKK Information Notice",
@@ -317,8 +317,8 @@
       "marketingText": "I would like to receive information about new products, campaigns and promotions via email/SMS."
     },
     "success": {
-      "title": "LIST SENT.",
-      "description": "Thank you. We received your list and will contact you to confirm the details."
+      "title": "ORDER SENT.",
+      "description": "Thank you. We received your order and will contact you to confirm the details."
     }
   },
   "initiative": {

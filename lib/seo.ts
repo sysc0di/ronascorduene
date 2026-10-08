@@ -96,9 +96,9 @@ export const SEO: Record<Locale, LocaleSeo> = {
       },
       list: {
         path: "/list",
-        title: "Your Parts List | Ronas Corduene",
+        title: "Your Cart | Ronas Corduene",
         description:
-          "Build your parts list and send it to Ronas Corduene. We confirm availability, fitment and delivery for performance parts and body kits.",
+          "Build your cart and send it to Ronas Corduene. We confirm availability, fitment and delivery for performance parts and body kits.",
       },
       initiative: {
         path: "/impact",
@@ -149,9 +149,9 @@ export const SEO: Record<Locale, LocaleSeo> = {
       },
       list: {
         path: "/list",
-        title: "Parça Listeniz | Ronas Corduene",
+        title: "Sepetiniz | Ronas Corduene",
         description:
-          "Parça listenizi oluşturun ve Ronas Corduene'e gönderin. Stok, uyum ve teslimatı sizin için teyit ediyoruz.",
+          "Sepetinizi oluşturun ve Ronas Corduene'e gönderin. Stok, uyum ve teslimatı sizin için teyit ediyoruz.",
       },
       initiative: {
         path: "/impact",
@@ -202,9 +202,9 @@ export const SEO: Record<Locale, LocaleSeo> = {
       },
       list: {
         path: "/list",
-        title: "Lîsta Parçeyên We | Ronas Corduene",
+        title: "Sepet | Ronas Corduene",
         description:
-          "Lîsta parçeyên xwe ava bikin û ji Ronas Corduene re bişînin. Em hebûn, uyandin û şandinê ji bo we piştrast dikin.",
+          "Sepeta xwe ava bikin û ji Ronas Corduene re bişînin. Em hebûn, uyandin û şandinê ji bo we piştrast dikin.",
       },
       initiative: {
         path: "/impact",
@@ -255,9 +255,9 @@ export const SEO: Record<Locale, LocaleSeo> = {
       },
       list: {
         path: "/list",
-        title: "قائمة قطعك | روناس كوردوين",
+        title: "سلة قطعك | روناس كوردوين",
         description:
-          "أنشئ قائمة قطعك وأرسلها إلى روناس كوردوين. نؤكد التوفر والتوافق والتسليم لقطع الأداء وهياكل السيارات.",
+          "أنشئ سلتك وأرسلها إلى روناس كوردوين. نؤكد التوفر والتوافق والتسليم لقطع الأداء وهياكل السيارات.",
       },
       initiative: {
         path: "/impact",
@@ -326,7 +326,7 @@ const LEGAL_SEO: Record<
     "distance-sales": {
       title: "Distance Sales Agreement | Ronas Corduene",
       description:
-        "The agreement accepted when a parts list is sent online, covering the seller, the buyer, the goods, payment and delivery.",
+        "The agreement accepted when an order is sent online, covering the seller, the buyer, the goods, payment and delivery.",
     },
     "pre-information": {
       title: "Pre-Information Form | Ronas Corduene",
@@ -363,7 +363,7 @@ const LEGAL_SEO: Record<
     "distance-sales": {
       title: "Mesafeli Satış Sözleşmesi | Ronas Corduene",
       description:
-        "Parça listesi online gönderildiğinde kabul edilen sözleşme: satıcı, alıcı, ürünler, ödeme ve teslimat.",
+        "Sipariş online gönderildiğinde kabul edilen sözleşme: satıcı, alıcı, ürünler, ödeme ve teslimat.",
     },
     "pre-information": {
       title: "Ön Bilgilendirme Formu | Ronas Corduene",
@@ -400,7 +400,7 @@ const LEGAL_SEO: Record<
     "distance-sales": {
       title: "Peymana Firotina Dûr | Ronas Corduene",
       description:
-        "Peymana ku dibe qeydekirin lîsta parçeyên biçûyî werejîn: firoşkar, muşterî, mal, pere û şandin.",
+        "Peymana ku dibe qeydekirin siparişa werejîn: firoşkar, muşterî, mal, pere û şandin.",
     },
     "pre-information": {
       title: "Forma Agahdariya Pêşîn | Ronas Corduene",
@@ -437,7 +437,7 @@ const LEGAL_SEO: Record<
     "distance-sales": {
       title: "عقد البيع عن بعد | روناس كوردوين",
       description:
-        "الاتفاقية التي تُقبل عند إرسال قائمة قطع عبر الإنترنت، وتشمل البائع والمشتري والبضائع والدفع والتسليم.",
+        "الاتفاقية التي تُقبل عند إرسال الطلب عبر الإنترنت، وتشمل البائع والمشتري والبضائع والدفع والتسليم.",
     },
     "pre-information": {
       title: "نموذج المعلومات المسبقة | روناس كوردوين",

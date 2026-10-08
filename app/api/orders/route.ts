@@ -89,7 +89,7 @@ export async function POST(request: Request) {
     return listJson({ order: serializeOrder(order) }, { status: 201 });
   } catch {
     return listJson(
-      { errors: ["Your list could not be sent. Please try again."] },
+      { errors: ["Your order could not be sent. Please try again."] },
       { status: 503 },
     );
   }

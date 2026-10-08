@@ -54,7 +54,7 @@ async function send(
         return {
           ok: false,
           orderId: null,
-          errors: ["Your list could not be sent. Please try again."],
+          errors: ["Y"],
         };
       }
 
@@ -79,7 +79,7 @@ async function send(
           errors:
             rawErrors.length > 0
               ? rawErrors
-              : ["Your list could not be sent. Please try again."],
+              : ["Y"],
         };
       }
 
