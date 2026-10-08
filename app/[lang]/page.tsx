@@ -18,11 +18,6 @@ export async function generateMetadata({
   return buildMetadata({ locale: getLocaleFor(lang), page: "home" });
 }
 
-/** Copy is edited in the admin panel, so the page renders per request.
- *  A prerendered build would keep serving whatever text existed when the
- *  site was last deployed. */
-export const dynamic = "force-dynamic";
-
 export default async function Home() {
   const [dict, locale] = await Promise.all([getDictionary(), getLocale()]);
   const page = await getPage("home", locale);

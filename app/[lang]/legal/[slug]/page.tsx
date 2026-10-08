@@ -10,11 +10,6 @@ import { getPage } from "@/lib/pages";
 import { isLegalSlug, legalPageKey, LEGAL_SLUGS } from "@/lib/legal";
 import PageSections from "../../components/PageSections";
 
-/** Copy is edited in the admin panel, so the page renders per request.
- *  A prerendered build would keep serving whatever text existed when the
- *  site was last deployed. */
-export const dynamic = "force-dynamic";
-
 export const dynamicParams = false;
 
 export function generateStaticParams() {
