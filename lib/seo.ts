@@ -25,8 +25,8 @@ export const OG_IMAGE_WIDTH = 1200;
 export const OG_IMAGE_HEIGHT = 630;
 
 export const BUSINESS = {
-  email: "hello@ronascorduene.com",
-  instagram: "https://www.instagram.com/ronascorduene",
+  email: "info@ronascorduene.com",
+  instagram: "https://www.instagram.com/ronas_corduene",
   locality: "Corduene",
   country: "TR",
 } as const;
@@ -58,7 +58,7 @@ type LocaleSeo = {
 export const SEO: Record<Locale, LocaleSeo> = {
   en: {
     keywords: [
-      "performance parts Turkey",
+      "performance parts",
       "body kits Middle East",
       "car tuning workshop",
       "carbon fiber aero",
@@ -72,15 +72,15 @@ export const SEO: Record<Locale, LocaleSeo> = {
       home: {
         path: "",
         title:
-          "Ronas Corduene — Performance Parts & Body Kits in Turkey & the Middle East",
+          "Ronas Corduene I Born in the Rough. Built to lead.",
         description:
-          "Performance parts, carbon fibre aero and body kits engineered in Turkey and shipped across the Middle East. Air intakes, exhaust manifolds, forged wheels and styling built for the drive.",
+          "Pure engineering, forged in its rugged origins and built to dominate the asphalt. Advanced aerodynamics channeling power with a flawless flow, uncompromising carbon fiber components, and boundary-pushing mechanical performance.",
       },
       about: {
         path: "/about",
         title: "About Ronas Corduene | Performance & Body Kit Workshop",
         description:
-          "Ronas Corduene is a performance and body-kit workshop in Turkey serving the Middle East. Discover the engineering, design and character behind every component we build.",
+          " Discover the engineering, design and character behind every component we build.",
       },
       store: {
         path: "/store",
@@ -90,9 +90,9 @@ export const SEO: Record<Locale, LocaleSeo> = {
       },
       contact: {
         path: "/contact",
-        title: "Contact Ronas Corduene | Performance Workshop in Turkey",
+        title: "Contact Ronas Corduene | Performance Workshop",
         description:
-          "Get in touch with Ronas Corduene for performance parts, body kits and custom builds. Based in Turkey and serving the Middle East.",
+          "Get in touch with Ronas Corduene for performance parts, body kits and custom builds. ",
       },
       list: {
         path: "/list",
@@ -111,7 +111,7 @@ export const SEO: Record<Locale, LocaleSeo> = {
   },
   tr: {
     keywords: [
-      "performans parçaları Türkiye",
+      "performans parçaları",
       "body kit Orta Doğu",
       "araç modifiye atölyesi",
       "karbon fiber aero",
@@ -125,15 +125,15 @@ export const SEO: Record<Locale, LocaleSeo> = {
       home: {
         path: "",
         title:
-          "Ronas Corduene — Türkiye ve Orta Doğu için Performans Parçaları ve Body Kit",
+          "Ronas Corduene | Zorlu koşullarda doğdu. Liderlik için üretildi.",
         description:
-          "Türkiye'de üretilen performans parçaları, karbon fiber aero ve body kitler; Orta Doğu'ya sunulur. Hava emiş, egzoz manifoldu, dövme jant ve stil çözümleri.",
+          "Zorlu doğasında şekillenen ve asfalta hükmeden saf mühendislik. Gücü kusursuz bir akışla yöneten üst düzey hava dinamiği, tavizsiz karbon fiber donanımlar ve sınırları aşan mekanik",
       },
       about: {
         path: "/about",
         title: "Ronas Corduene Hakkında | Performans ve Body Kit Atölyesi",
         description:
-          "Ronas Corduene, Orta Doğu'ya hizmet veren Türkiye merkezli bir performans ve body kit atölyesidir. Ürettiğimiz her parçanın mühendisliğini ve tasarımını keşfedin.",
+          "Ürettiğimiz her parçanın mühendisliğini ve tasarımını keşfedin.",
       },
       store: {
         path: "/store",
@@ -143,9 +143,9 @@ export const SEO: Record<Locale, LocaleSeo> = {
       },
       contact: {
         path: "/contact",
-        title: "İletişim | Türkiye'de Performans Atölyesi",
+        title: "İletişim | Ronas Corduene ",
         description:
-          "Performans parçaları, body kitler ve özel projeler için Ronas Corduene ile iletişime geçin. Türkiye merkezli, Orta Doğu'ya hizmet verir.",
+          "Performans parçaları, body kitler ve özel projeler için Ronas Corduene ile iletişime geçin.",
       },
       list: {
         path: "/list",
@@ -164,7 +164,7 @@ export const SEO: Record<Locale, LocaleSeo> = {
   },
   ku: {
     keywords: [
-      "parçeyên performansê Tirkiye",
+      "parçeyên performansê",
       "body kit Rojhilata Navîn",
       "atolyeya modîfîkasyonê",
       "aero karbonfayber",
@@ -178,15 +178,15 @@ export const SEO: Record<Locale, LocaleSeo> = {
       home: {
         path: "",
         title:
-          "Ronas Corduene — Parçeyên Performansê û Body Kit ji bo Tirkiye û Rojhilata Navîn",
+          "Ronas Corduene I Di dijwariyê de çêbû. Ji bo pêşengiyê hat avakirin.",
         description:
-          "Parçeyên performansê, aero karbonfayber û body kitên li Tirkiyeyê têne çêkirin û ji Rojhilata Navîn re têne şandin. Kirina hewayê, manîfold, dirûv û firseyên duristkirî.",
+          "​Endezyariya xwerû, di koka xwe ya dijwar de hatiye şikilandin û ji bo serweriya li ser asfaltê hatiye avakirin. Aerodînamîka pêşketî ya ku hêzê bi herikînek bêkêmasî araste dike, pêkhateyên fîbera karbonê yên bêtawîz û performansa mekanîkî ya ku sînoran derbas dike.",
       },
       about: {
         path: "/about",
         title: "Derbarê Ronas Corduene | Atolyeya Performans û Body Kit",
         description:
-          "Ronas Corduene atolyeyeke performans û body kit a Tirkiyeyê ye ku ji Rojhilata Navîn re kar dike. Mîhendisî, sêwiran û karaktera her parçeyekê binêre.",
+          " Mîhendisî, sêwiran û karaktera her parçeyekê binêre.",
       },
       store: {
         path: "/store",
@@ -196,9 +196,9 @@ export const SEO: Record<Locale, LocaleSeo> = {
       },
       contact: {
         path: "/contact",
-        title: "Têkildarî | Atolyeya Performans li Tirkiyeyê",
+        title: "Têkildarî | Atolyeya Performans",
         description:
-          "Ji bo parçeyên performansê, body kit û projeyên taybet bi Ronas Corduene re têkiliyê daynin. Li Tirkiyeyê, ji Rojhilata Navîn re.",
+          "Ji bo parçeyên performansê, body kit û projeyên taybet bi Ronas Corduene re têkiliyê daynin.",
       },
       list: {
         path: "/list",
@@ -217,8 +217,8 @@ export const SEO: Record<Locale, LocaleSeo> = {
   },
   ar: {
     keywords: [
-      "قطع أداء تركيا",
-      "هياكل سيارات الشرق الأوسط",
+      "قطع أداء",
+      "هياكل سيارات",
       "ورشة تعديل سيارات",
       "أيرو ألياف الكربون",
       "مدخل هواء بارد",
@@ -230,41 +230,39 @@ export const SEO: Record<Locale, LocaleSeo> = {
     pages: {
       home: {
         path: "",
-        title:
-          "روناس كوردوين — قطع أداء وهياكل سيارات في تركيا والشرق الأوسط",
+        title: "Ronas Corduene | وُلد في الصعاب. صُنع للقيادة.",
         description:
-          "قطع أداء وأيرو من ألياف الكربون وهياكل سيارات مصممة في تركيا ومشحونة إلى الشرق الأوسط. مداخل هواء ومجمعات عادم وجنوط مطروقة وتصميمات مصنوعة للقيادة.",
+          "هندسة خالصة، صِيغت في أصولها القاسية وبُنيت لتهيمن على الأسفلت. ديناميكية هوائية متقدمة توجه القوة بتدفق مثالي، مكونات من ألياف الكربون لا تقبل المساومة، وأداء ميكانيكي يتجاوز الحدود.",
       },
       about: {
         path: "/about",
-        title: "من نحن | ورشة أداء وهياكل سيارات — روناس كوردوين",
+        title: "من نحن | روناس كوردوين",
         description:
-          "روناس كوردوين ورشة أداء وهياكل سيارات في تركيا تخدم الشرق الأوسط. تعرّف على الهندسة والتصميم والشخصية خلف كل قطعة نصنعها.",
+          "تعرّف على الهندسة والتصميم والشخصية خلف كل قطعة نصنعها في روناس كوردوين.",
       },
       store: {
         path: "/store",
-        title: "المتجر — قطع أداء وهياكل سيارات | روناس كوردوين",
+        title: "المتجر — قطع الأداء وهياكل السيارات | روناس كوردوين",
         description:
-          "تصفّح كتالوج روناس كوردوين: مداخل هواء باردة، مجمعات عادم، أيرو من ألياف الكربون، هياكل سيارات وجنوط مطروقة مصنوعة للطريق.",
+          "تصفّح كتالوج روناس كوردوين: مداخل هواء باردة، مجمعات عادم، أيرو من ألياف الكربون، هياكل سيارات وجنوط مطروقة مصممة للأداء.",
       },
       contact: {
         path: "/contact",
-        title: "اتصل بنا | ورشة أداء في تركيا — روناس كوردوين",
+        title: "اتصل بنا | روناس كوردوين",
         description:
-          "تواصل مع روناس كوردوين لقطع الأداء وهياكل السيارات والتعديلات المخصصة. مقرنا تركيا ونخدم الشرق الأوسط.",
+          "تواصل مع روناس كوردوين للاستفسار عن قطع الأداء وهياكل السيارات والتعديلات المخصصة.",
       },
       list: {
         path: "/list",
-        title: "سلة قطعك | روناس كوردوين",
+        title: "قائمة قطعك | روناس كوردوين",
         description:
-          "أنشئ سلتك وأرسلها إلى روناس كوردوين. نؤكد التوفر والتوافق والتسليم لقطع الأداء وهياكل السيارات.",
+          "أنشئ قائمة قطعك وأرسلها إلى روناس كوردوين لتأكيد التوفر والتوافق وتفاصيل التسليم.",
       },
       initiative: {
         path: "/impact",
-        title:
-          "مبادرتنا | من بقايا الإنتاج إلى معدات حركة الحيوانات — روناس كوردوين",
+        title: "مبادرتنا | من بقايا الإنتاج إلى معدات حركة الحيوانات — روناس كوردوين",
         description:
-          "تحوّل روناس كوردوين بقايا الإنتاج وخُرَد المواد إلى معدات حركة للحيوانات الضالة — كراسي متحركة ومساعدات حركة ودعم مخصص بالهندسة نفسها التي نصنع بها قطع الأداء.",
+          "تحوّل روناس كوردوين بقايا الإنتاج وخُرَد المواد إلى معدات حركة للحيوانات الضالة، بما في ذلك الكراسي المتحركة ومساعدات الحركة والدعم المخصص، باستخدام الهندسة نفسها التي نصنع بها قطع الأداء.",
       },
     },
   },
@@ -292,10 +290,9 @@ export function truncateDescription(value: string, max = 158): string {
 }
 
 /**
- * Per-locale SEO copy for the legal documents. The CMS holds the document
- * itself, but its `seoTitle`/`seoDescription` fields are optional and currently
- * empty, so without these every legal page would publish the site name as its
- * title and no description at all. Nothing here adds a legal claim: each line
+ * Per-locale SEO copy for the legal documents. Metadata is code-owned, so this
+ * is the single source for each legal page's title and description; the CMS
+ * only holds the document body. Nothing here adds a legal claim: each line
  * only says what the document is.
  */
 const LEGAL_SEO: Record<
