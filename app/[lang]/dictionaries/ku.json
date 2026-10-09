@@ -6,7 +6,6 @@
   "nav": {
     "home": "Destpêk",
     "about": "Li ser me",
-    "initiative": "Înîsyatîf",
     "contact": "Têkildarî",
     "store": "Dîkan",
     "openMenu": "Menûyê bike",
@@ -225,33 +224,7 @@
       "spoilers-wings": "SPOILER Û BALAFIR"
     },
     "filters": {
-      "material": "MATERYAL",
-      "construction": "AVAKIRIN",
-      "finish": "RÛMET",
       "all": "HEMÛ"
-    },
-    "materials": {
-      "carbon-fiber": "KARBON FIBER",
-      "aluminum": "ALUMÎNYÛM",
-      "stainless-steel": "POLA BÊ ZENG"
-    },
-    "constructions": {
-      "dry-carbon": "DRY CARBON",
-      "high-flow": "HERIKÎNA BILIND",
-      "cast": "DOKIM",
-      "mandrel-bent": "MANDREL BENT",
-      "tubular": "BORÎ",
-      "forged-carbon": "FORGED CARBON",
-      "monocoque": "MONOKOK",
-      "machined": "MEKANÎZE",
-      "pre-preg": "PRE-PREG"
-    },
-    "finishes": {
-      "matte": "MAT",
-      "satin": "SATEN",
-      "polished": "POLÎŞ",
-      "brushed": "FIRÇE",
-      "gloss": "PARLAK"
     },
     "empty": {
       "title": "BERHEM NEHAT DÎTIN",
@@ -413,58 +386,6 @@
     "success": {
       "title": "SİPARİŞÊ HATIR.",
       "description": "Sipas. Siparişa we hate pejmêkirî, ji bo teyîtkirina hûmaneyê em ê bi we re tê Civîn."
-    }
-  },
-  "initiative": {
-    "meta": "05 / RONAS / ÎNÎSYATÎF",
-    "hero": {
-      "label": "MÎHENDISÎ BI ARMAN",
-      "titleLines": ["PARÇEYÊN MAYÎ,", "JI NÛ VE HATINE SÊWIRANDIN."],
-      "body": "Parçeyên mayî yên hilberînê ne mecbûr in her tim bibin bermayî. Em qutikên mayî û bermayiyên madeyan vedigerînin alavên livînê ji bo sewalan — hatine sêwiran, çêkirin û li hev kirin, bi heman dîsîplînê wekî hemû tiştên ku em çêdikin."
-    },
-    "why": {
-      "header": "ÇIMA EM VÊ DİKIN",
-      "titleLines": ["MADE", "BERMAYÎ", "NÎNE."],
-      "paragraphs": [
-        "Di dawiya her hilberînê de tiştek dimîne: karbona jêkirî, alumînyûma zêde, dirêjiyên kurt ên boriyê, kelûpelên zêde.",
-        "Li şûna şandina wan bo bermayiyê, em wan wekî stok dibînin. Heman mîhendisî ya ku perçeyên aero û performansê çêdike, tê destnîşankirin ji bo alavên ku livînê vedigerînin."
-      ],
-      "values": [
-        { "title": "BİXEBITÎN", "body": "Madeya ku berê heye, madeyeke ku pêwîst nake careke din were hilberandin e." },
-        { "title": "SERRASTÎ", "body": "Parçeyên mayî têne pîvandin, veqetandin û bi heman toleransan wekî her parçeyek din têne nirxandin." },
-        { "title": "ARMAN", "body": "Mîhendisî gava ku biguherîne ka kesek çi dikare bike, nirxa xwe dibîne." }
-      ]
-    },
-    "process": {
-      "header": "PÊVAJO",
-      "titleLines": ["JI BERMAYIYÊ", "BO LIVÎNÊ."],
-      "intro": "Heman atolye, heman makîne, encamek cuda.",
-      "flow": ["MADE", "SEÇÎN", "SÊWIRAN", "ÇÊKIRIN", "LIVÎN"],
-      "steps": [
-        { "title": "MADE", "body": "Karbona mayî, alumînyûm, borî û kelûpel di dawiya her avakirinê de têne berhevkirin." },
-        { "title": "SEÇÎN", "body": "Parçe têne kontrol kirin, pîvandin û ji bo guncaviya avahî têne derece kirin." },
-        { "title": "SÊWIRAN", "body": "Her yekîne li gorî mezinahî, giranî û firehiya livîna sewalan tê sêwirandin." },
-        { "title": "ÇÊKIRIN", "body": "Jêkirin, şekildan, zeliqandin û qedandin li ser heman amûran wekî parçeyên me yên performansê têne kirin." },
-        { "title": "LIVÎN", "body": "Alavê qediyayî tê danîn, eyar kirin û amade tê radestkirin da ku bilive." }
-      ]
-    },
-    "examples": {
-      "header": "EM ÇI ÇÊDIKIN",
-      "titleLines": ["ALAV JI BO", "LIVÎNÊ."],
-      "intro": "Amûrên piçûk û armanc-cêkirî ku serbixwebûna sewalan vedigerînin.",
-      "items": [
-        { "title": "KURSIYÊN ÇERX", "body": "Çarçoveyên sivik û palpiştên çerxdilî, li gorî heywanê, ji bo livîna lingên paşîn an tevahiya laş." },
-        { "title": "ALÎKARÊN LIVÎNÊ", "body": "Qayiş, daliqandî û çarçoveyên palpiştê ku livînê di dema başbûnê an kêmasiya mayînde de aram dikin." },
-        { "title": "PALPİŞTA TAYBET", "body": "Palpişt, protez û pêvekirinên yek-carî, ji bo heywanek taybet û pêdiviya wê hatine sêwiran." }
-      ],
-      "caption": ["RONAS / ÎNÎSYATÎF", "JI BO LIVÎNÊ HATIYE ÇÊKIRIN"]
-    },
-    "cta": {
-      "header": "TÊKILIYÊ DAYNIN",
-      "titleLines": ["HEYWEKEK PÊWÎSTIYA", "ALÎKARIYÊ HEYE?"],
-      "body": "Heke hûn heywanek ku dikare alavên livînê bikar bîne dizanin, bi me re têkiliyê daynin. Em her dozê li gorî pêdiviyên wê dinirxînin û bi tiştê ku dikarin çêbikin bersivê didin.",
-      "button": "TÊKILIYÊ DAYNIN",
-      "note": ["RONAS CORDUENE", "MÎHENDISÎ BI ARMANA MIROVÎ"]
     }
   },
   "notFound": {

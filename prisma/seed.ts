@@ -154,10 +154,9 @@ const paragraphs = (value: readonly string[]) => value.join("\n\n");
 
 const HOME_BANNER = "/assets/homebannerimg.jpg";
 const SHARED_IMAGE = "/assets/739d6f87-00fc-4c94-aa88-213a021c47a8.jpg";
-const IMPACT_BAND = "/assets/exhaustmanifolds.jpg";
 
 /** SEO copy for the static pages, reused from `lib/seo.ts` per locale. */
-function staticSeo(locale: SeedLocale, page: "home" | "about" | "contact" | "initiative") {
+function staticSeo(locale: SeedLocale, page: "home" | "about" | "contact") {
   return SEO[locale].pages[page];
 }
 
@@ -290,88 +289,6 @@ const CONTENT_PAGES: SeedPage[] = [
           eyebrow: dict.contact.closing.brand,
           title: lines(dict.contact.closing.titleLines),
           ctaLabel: dict.contact.closing.label,
-        }),
-      },
-    ],
-  },
-  {
-    key: "impact",
-    label: "Impact",
-    seo: (_dict, locale) => {
-      const seo = staticSeo(locale, "initiative");
-      return { title: seo.title, subtitle: seo.description };
-    },
-    sections: [
-      {
-        key: "hero",
-        type: "impact-hero",
-        text: (dict) => ({
-          eyebrow: dict.initiative.hero.label,
-          title: lines(dict.initiative.hero.titleLines),
-          body: dict.initiative.hero.body,
-        }),
-      },
-      {
-        key: "band",
-        type: "impact-band",
-        image: IMPACT_BAND,
-        text: (dict) => ({
-          title: dict.initiative.examples.caption[0],
-          body: dict.initiative.examples.caption[1],
-        }),
-      },
-      {
-        key: "why",
-        type: "impact-why",
-        text: (dict) => ({
-          eyebrow: dict.initiative.why.header,
-          title: lines(dict.initiative.why.titleLines),
-          body: paragraphs(dict.initiative.why.paragraphs),
-          items: dict.initiative.why.values.map((value) => ({
-            title: value.title,
-            body: value.body,
-          })),
-        }),
-      },
-      {
-        key: "process",
-        type: "impact-process",
-        text: (dict) => ({
-          eyebrow: dict.initiative.process.header,
-          title: lines(dict.initiative.process.titleLines),
-          body: dict.initiative.process.intro,
-          items: dict.initiative.process.steps.map((step) => ({
-            title: step.title,
-            body: step.body,
-          })),
-        }),
-      },
-      {
-        key: "examples",
-        type: "impact-examples",
-        text: (dict) => ({
-          eyebrow: dict.initiative.examples.header,
-          title: lines(dict.initiative.examples.titleLines),
-          body: dict.initiative.examples.intro,
-          items: dict.initiative.examples.items.map((item) => ({
-            title: item.title,
-            body: item.body,
-          })),
-        }),
-      },
-      {
-        key: "cta",
-        type: "impact-cta",
-        href: "/contact",
-        text: (dict) => ({
-          eyebrow: dict.initiative.cta.header,
-          title: lines(dict.initiative.cta.titleLines),
-          body: dict.initiative.cta.body,
-          ctaLabel: dict.initiative.cta.button,
-          items: [
-            { title: dict.initiative.cta.note[0], body: "" },
-            { title: dict.initiative.cta.note[1], body: "" },
-          ],
         }),
       },
     ],

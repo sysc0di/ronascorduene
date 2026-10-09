@@ -6,7 +6,6 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "initiative": "Initiative",
     "contact": "Contact",
     "store": "Store",
     "openMenu": "Open menu",
@@ -225,33 +224,7 @@
       "spoilers-wings": "SPOILERS & WINGS"
     },
     "filters": {
-      "material": "MATERIAL",
-      "construction": "CONSTRUCTION",
-      "finish": "FINISH",
       "all": "ALL"
-    },
-    "materials": {
-      "carbon-fiber": "CARBON FIBER",
-      "aluminum": "ALUMINUM",
-      "stainless-steel": "STAINLESS STEEL"
-    },
-    "constructions": {
-      "dry-carbon": "DRY CARBON",
-      "high-flow": "HIGH FLOW",
-      "cast": "CAST",
-      "mandrel-bent": "MANDREL BENT",
-      "tubular": "TUBULAR",
-      "forged-carbon": "FORGED CARBON",
-      "monocoque": "MONOCOQUE",
-      "machined": "MACHINED",
-      "pre-preg": "PRE-PREG"
-    },
-    "finishes": {
-      "matte": "MATTE",
-      "satin": "SATIN",
-      "polished": "POLISHED",
-      "brushed": "BRUSHED",
-      "gloss": "GLOSS"
     },
     "empty": {
       "title": "NO PRODUCTS FOUND",
@@ -319,58 +292,6 @@
     "success": {
       "title": "ORDER SENT.",
       "description": "Thank you. We received your order and will contact you to confirm the details."
-    }
-  },
-  "initiative": {
-    "meta": "05 / RONAS / INITIATIVE",
-    "hero": {
-      "label": "ENGINEERING WITH PURPOSE",
-      "titleLines": ["LEFTOVERS,", "RE-ENGINEERED."],
-      "body": "Production leftovers don't always have to become waste. We redirect offcuts and material scraps into mobility equipment for stray animals — designed, fabricated and fitted with the same discipline as everything we build."
-    },
-    "why": {
-      "header": "WHY WE DO IT",
-      "titleLines": ["MATERIAL", "IS NOT", "WASTE."],
-      "paragraphs": [
-        "Every production run leaves something behind: trimmed carbon, off-cut aluminium, short lengths of tube, surplus hardware.",
-        "Instead of sending it to scrap, we treat it as stock. The same engineering that shapes our aero and performance parts is redirected into equipment that restores movement."
-      ],
-      "values": [
-        { "title": "EFFICIENCY", "body": "Material that already exists is material that does not need to be produced again." },
-        { "title": "PRECISION", "body": "Off-cuts are measured, sorted and specified with the same tolerances as any other component." },
-        { "title": "PURPOSE", "body": "Engineering earns its value when it changes what someone is able to do." }
-      ]
-    },
-    "process": {
-      "header": "THE PROCESS",
-      "titleLines": ["FROM OFF-CUT", "TO MOBILITY."],
-      "intro": "The same workshop, the same machines, a different outcome.",
-      "flow": ["MATERIAL", "SELECTION", "DESIGN", "FABRICATION", "MOBILITY"],
-      "steps": [
-        { "title": "MATERIAL", "body": "Leftover carbon, aluminium, tube and hardware are collected at the end of each build." },
-        { "title": "SELECTION", "body": "Pieces are inspected, measured and graded for structural suitability." },
-        { "title": "DESIGN", "body": "Each unit is drawn around the animal's size, weight and range of motion." },
-        { "title": "FABRICATION", "body": "Cutting, forming, bonding and finishing happen on the same tooling as our performance parts." },
-        { "title": "MOBILITY", "body": "The finished equipment is fitted, adjusted and handed over ready to move." }
-      ]
-    },
-    "examples": {
-      "header": "WHAT WE BUILD",
-      "titleLines": ["EQUIPMENT", "FOR MOVEMENT."],
-      "intro": "Small, purpose-built devices that give animals back their independence.",
-      "items": [
-        { "title": "ANIMAL WHEELCHAIRS", "body": "Lightweight frames and rolling supports sized to the animal, for rear-limb or full-body mobility." },
-        { "title": "MOBILITY AIDS", "body": "Harnesses, slings and support frames that stabilise movement during recovery or long-term impairment." },
-        { "title": "CUSTOM SUPPORT", "body": "One-off braces, prosthetics and fittings designed around a specific animal and its specific need." }
-      ],
-      "caption": ["RONAS / INITIATIVE", "BUILT TO MOVE"]
-    },
-    "cta": {
-      "header": "GET IN TOUCH",
-      "titleLines": ["KNOW AN ANIMAL", "THAT NEEDS HELP?"],
-      "body": "If you know of a stray animal that could use mobility equipment, contact us. We assess each case on its needs and respond with what we can build.",
-      "button": "CONTACT US",
-      "note": ["RONAS CORDUENE", "ENGINEERING WITH HUMAN PURPOSE"]
     }
   },
   "notFound": {

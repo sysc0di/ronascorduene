@@ -11,7 +11,6 @@ export const revalidate = 3600;
 const PAGE_KEYS: PageKey[] = [
   "home",
   "about",
-  "initiative",
   "store",
   "contact",
   "list",

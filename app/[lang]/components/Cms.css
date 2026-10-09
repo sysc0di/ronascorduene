@@ -1,5 +1,5 @@
 /* Shared styles for CMS-driven generic sections and legal documents.
-   Page-specific sections (about/contact/impact) keep using their own CSS. */
+   Page-specific sections (about/contact) keep using their own CSS. */
 
 .cms-section-header {
   display: flex;

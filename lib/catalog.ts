@@ -10,6 +10,7 @@ const translationTextSelect = {
   locale: true,
   name: true,
   description: true,
+  technicalDetails: true,
 } as const;
 
 const catalogSelect = {
@@ -17,9 +18,6 @@ const catalogSelect = {
   family: true,
   category: true,
   image: true,
-  material: true,
-  construction: true,
-  finish: true,
   priceUsd: true,
   discountedPriceUsd: true,
   discountPercentUsd: true,
@@ -31,18 +29,11 @@ const catalogSelect = {
   },
 } as const;
 
-/** The detail page also needs the per-language technical detail rows. */
-const detailSelect = {
-  ...catalogSelect,
-  translations: {
-    select: { ...translationTextSelect, technicalDetails: true },
-  },
-} as const;
-
 type SelectedTranslation = {
   locale: string;
   name: string;
   description: string;
+  technicalDetails: unknown;
 };
 
 function toCatalogProduct(
@@ -51,9 +42,6 @@ function toCatalogProduct(
     family: string;
     category: string;
     image: string;
-    material: string;
-    construction: string;
-    finish: string;
     priceUsd: unknown;
     discountedPriceUsd: unknown;
     discountPercentUsd: number | null;
@@ -70,9 +58,7 @@ function toCatalogProduct(
     category: product.category,
     description: translation?.description ?? "",
     image: product.image,
-    material: product.material,
-    construction: product.construction,
-    finish: product.finish,
+    specs: parseProductSpecs(translation?.technicalDetails),
     priceUsd: decimalToNumber(product.priceUsd),
     discountedPriceUsd: decimalToNumber(product.discountedPriceUsd),
     discountPercentUsd: product.discountPercentUsd,
@@ -116,15 +102,10 @@ export async function getProduct(
 ): Promise<ProductDetail | null> {
   const product = await prisma.product.findFirst({
     where: { id, visible: true },
-    select: detailSelect,
+    select: catalogSelect,
   });
 
   if (!product) return null;
 
-  const translation = pickTranslation(product.translations, locale);
-
-  return {
-    ...toCatalogProduct(product, translation),
-    technicalDetails: parseProductSpecs(translation?.technicalDetails),
-  };
+  return toCatalogProduct(product, pickTranslation(product.translations, locale));
 }

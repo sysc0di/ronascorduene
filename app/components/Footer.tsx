@@ -18,7 +18,6 @@ export default function Footer({
   const links = [
     { key: "home", href: "" },
     { key: "about", href: "/about" },
-    { key: "initiative", href: "/impact" },
     { key: "contact", href: "/contact" },
     { key: "store", href: "/store" },
   ] as const;

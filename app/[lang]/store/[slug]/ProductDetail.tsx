@@ -51,33 +51,9 @@ export default function ProductDetail({
 
   const money = selectMoney(product, currency);
 
-  /* Material, construction and finish are slugs shared with the catalog
-     filters, so their labels come from the dictionaries; the technical
-     details carry their own per-language labels from the database. */
-  const specs = [
-    {
-      label: t.filters.material,
-      value:
-        t.materials[
-          product.material as keyof typeof t.materials
-        ] ?? product.material,
-    },
-    {
-      label: t.filters.construction,
-      value:
-        t.constructions[
-          product.construction as keyof typeof t.constructions
-        ] ?? product.construction,
-    },
-    {
-      label: t.filters.finish,
-      value:
-        t.finishes[
-          product.finish as keyof typeof t.finishes
-        ] ?? product.finish,
-    },
-    ...product.technicalDetails,
-  ];
+  /* The technical details carry their own per-language labels and come from
+     the same translation as the rest of the copy. */
+  const specs = product.specs;
 
   return (
     <div className="product-detail">

@@ -33,11 +33,6 @@ type FamilyKey = CategorySlug;
 
 type CategoryKey = keyof Dictionary["store"]["subcategories"];
 
-type FilterKey =
-  | "material"
-  | "construction"
-  | "finish";
-
 const families: FamilyKey[] = [...CATEGORY_SLUGS];
 
 /* Same source of truth as the admin panel. */
@@ -52,12 +47,6 @@ const familyCategories: Record<
     ),
   ]),
 ) as Record<FamilyKey, CategoryKey[]>;
-
-const filterKeys: FilterKey[] = [
-  "material",
-  "construction",
-  "finish",
-];
 
 export default function StoreCatalog({
   products,
@@ -97,9 +86,7 @@ export default function StoreCatalog({
     useState("");
 
   const [filters, setFilters] =
-    useState<
-      Partial<Record<FilterKey, string>>
-    >({});
+    useState<Record<string, string>>({});
 
   const [mobileFiltersOpen, setMobileFiltersOpen] =
     useState(false);
@@ -232,23 +219,17 @@ export default function StoreCatalog({
         }
 
         /*
-         * ADDITIONAL FILTERS
+         * TECHNICAL SPECS
          */
-        for (
-          const key of filterKeys
-        ) {
-          const selected =
-            filters[key];
-
-          if (
-            !selected ||
-            selected === "all"
-          ) {
+        for (const [label, value] of Object.entries(filters)) {
+          if (!value || value === "all") {
             continue;
           }
 
           if (
-            product[key] !== selected
+            !product.specs.some(
+              (spec) => spec.label === label && spec.value === value,
+            )
           ) {
             return false;
           }
@@ -266,67 +247,40 @@ export default function StoreCatalog({
   ]);
 
   /*
-   * Filtre seçenekleri.
+   * Technical-detail filters, built from the rows the available products
+   * actually carry: one dropdown per spec label, values taken from the data.
    */
-  const filterOptions = useMemo(() => {
-    const available =
-      products.filter((product) => {
-        if (
-          activeFamily &&
-          product.family !==
-          activeFamily
-        ) {
-          return false;
+  const specFacets = useMemo(() => {
+    const available = products.filter((product) => {
+      if (activeFamily && product.family !== activeFamily) {
+        return false;
+      }
+
+      if (activeCategory && product.category !== activeCategory) {
+        return false;
+      }
+
+      return true;
+    });
+
+    const facets = new Map<string, string[]>();
+
+    for (const product of available) {
+      for (const spec of product.specs) {
+        const values = facets.get(spec.label) ?? [];
+
+        if (!values.includes(spec.value)) {
+          values.push(spec.value);
         }
 
-        if (
-          activeCategory &&
-          product.category !==
-          activeCategory
-        ) {
-          return false;
-        }
+        facets.set(spec.label, values);
+      }
+    }
 
-        return true;
-      });
-
-    return {
-      material: [
-        "all",
-        ...Array.from(
-          new Set(
-            available.map(
-              (item) =>
-                item.material
-            )
-          )
-        ),
-      ],
-
-      construction: [
-        "all",
-        ...Array.from(
-          new Set(
-            available.map(
-              (item) =>
-                item.construction
-            )
-          )
-        ),
-      ],
-
-      finish: [
-        "all",
-        ...Array.from(
-          new Set(
-            available.map(
-              (item) =>
-                item.finish
-            )
-          )
-        ),
-      ],
-    };
+    return [...facets.entries()].map(([label, values]) => ({
+      label,
+      values,
+    }));
   }, [
     activeFamily,
     activeCategory,
@@ -344,14 +298,18 @@ export default function StoreCatalog({
     setMobileFiltersOpen(false);
   };
 
-  const updateFilter = (
-    key: FilterKey,
-    value: string
-  ) => {
-    setFilters((current) => ({
-      ...current,
-      [key]: value,
-    }));
+  const updateFilter = (label: string, value: string) => {
+    setFilters((current) => {
+      if (!value || value === "all") {
+        return Object.fromEntries(
+          Object.entries(current).filter(
+            ([key]) => key !== label,
+          ),
+        );
+      }
+
+      return { ...current, [label]: value };
+    });
   };
 
   return (
@@ -696,90 +654,76 @@ export default function StoreCatalog({
               />
             </div>
 
-            <button
-              type="button"
-              className="store-filter-toggle"
-              onClick={() =>
-                setMobileFiltersOpen(
-                  (value) => !value
-                )
-              }
-            >
-              {t.filters?.material ??
-                "FILTERS"}
+            {specFacets.length > 0 && (
+              <>
+                <button
+                  type="button"
+                  className="store-filter-toggle"
+                  onClick={() =>
+                    setMobileFiltersOpen(
+                      (value) => !value
+                    )
+                  }
+                >
+                  {t.detail.specifications}
 
-              <span>
-                {mobileFiltersOpen
-                  ? "−"
-                  : "+"}
-              </span>
-            </button>
+                  <span>
+                    {mobileFiltersOpen
+                      ? "−"
+                      : "+"}
+                  </span>
+                </button>
 
-            <div
-              className={`
-                store-extra-filters
-                ${mobileFiltersOpen
-                  ? "is-open"
-                  : ""
-                }
-              `}
-            >
-              {filterKeys.map(
-                (key) => (
-                  <label
-                    key={key}
-                    className="store-filter"
-                  >
-                    <span>
-                      {
-                        t.filters[
-                        key
-                        ]
-                      }
-                    </span>
-
-                    <select
-                      value={
-                        filters[key] ??
-                        "all"
-                      }
-                      onChange={(
-                        event
-                      ) =>
-                        updateFilter(
-                          key,
-                          event
-                            .currentTarget
-                            .value
-                        )
-                      }
+                <div
+                  className={`
+                    store-extra-filters
+                    ${mobileFiltersOpen
+                      ? "is-open"
+                      : ""
+                    }
+                  `}
+                >
+                  {specFacets.map(({ label, values }) => (
+                    <label
+                      key={label}
+                      className="store-filter"
                     >
-                      {filterOptions[
-                        key
-                      ].map(
-                        (option) => (
+                      <span>
+                        {label}
+                      </span>
+
+                      <select
+                        value={
+                          filters[label] ??
+                          "all"
+                        }
+                        onChange={(event) =>
+                          updateFilter(
+                            label,
+                            event
+                              .currentTarget
+                              .value
+                          )
+                        }
+                      >
+                        <option value="all">
+                          {t.filters.all}
+                        </option>
+
+                        {values.map((option) => (
                           <option
-                            key={
-                              option
-                            }
-                            value={
-                              option
-                            }
+                            key={option}
+                            value={option}
                           >
-                            {option ===
-                              "all"
-                              ? t
-                                .filters
-                                .all
-                              : option}
+                            {option}
                           </option>
-                        )
-                      )}
-                    </select>
-                  </label>
-                )
-              )}
-            </div>
+                        ))}
+                      </select>
+                    </label>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           {/* PRODUCTS */}
@@ -955,31 +899,19 @@ export default function StoreCatalog({
                         </button>
                       </div>
 
-                      <div className="store-product-specs">
-                        <span>
-                          {
-                            t.materials[
-                            product.material as keyof typeof t.materials
-                            ]
-                          }
-                        </span>
-
-                        <span>
-                          {
-                            t.constructions[
-                            product.construction as keyof typeof t.constructions
-                            ]
-                          }
-                        </span>
-
-                        <span>
-                          {
-                            t.finishes[
-                            product.finish as keyof typeof t.finishes
-                            ]
-                          }
-                        </span>
-                      </div>
+                      {product.specs.length > 0 && (
+                        <div className="store-product-specs">
+                          {product.specs
+                            .slice(0, 3)
+                            .map((spec, specIndex) => (
+                              <span
+                                key={`${specIndex}-${spec.label}`}
+                              >
+                                {spec.value}
+                              </span>
+                            ))}
+                        </div>
+                      )}
                     </article>
                   );
                 }

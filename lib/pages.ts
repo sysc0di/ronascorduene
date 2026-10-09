@@ -1,5 +1,5 @@
 import { defaultLocale, type Locale } from "@/lib/i18n";
-import { prisma } from "@/lib/prisma";
+import { PAGES } from "@/lib/pages-data";
 import { pickTranslation } from "@/lib/product-text";
 
 /**
@@ -8,8 +8,11 @@ import { pickTranslation } from "@/lib/product-text";
  * A `Page` is a named collection of ordered `PageSection`s. Section text is
  * stored per locale; `image`/`href` are shared. The frontend renders sections
  * through a type→component registry, so a new page or block is data, not
- * bespoke code. Metadata is code-owned (see `lib/seo.ts`) and is deliberately
- * not read from the database.
+ * bespoke code. Metadata is code-owned (see `lib/seo.ts`).
+ *
+ * The content itself is embedded in `lib/pages-data.ts` rather than read from
+ * the database, so pages are edited in code and are no longer editable in the
+ * admin panel. This module resolves the raw data for one locale.
  */
 
 export type SectionItem = {
@@ -41,46 +44,12 @@ export type ResolvedPage = {
   sections: ResolvedSection[];
 };
 
-function toStringValue(value: unknown): string {
-  return typeof value === "string" ? value : "";
-}
-
-function toItems(value: unknown): SectionItem[] {
-  if (!Array.isArray(value)) return [];
-
-  return value
-    .map((entry) => {
-      if (typeof entry !== "object" || entry === null) return null;
-
-      const record = entry as Record<string, unknown>;
-      const title = toStringValue(record.title);
-      const body = toStringValue(record.body);
-      const href = toStringValue(record.href);
-
-      if (!title && !body && !href) return null;
-
-      return { title, body, href };
-    })
-    .filter((item): item is SectionItem => item !== null);
-}
-
-const pageInclude = {
-  translations: true,
-  sections: {
-    orderBy: { position: "asc" },
-    include: { translations: true },
-  },
-} as const;
-
 /** Resolved content for one locale, with dictionary-style fallbacks. */
 export async function getPage(
   key: string,
   locale: Locale = defaultLocale,
 ): Promise<ResolvedPage | null> {
-  const page = await prisma.page.findUnique({
-    where: { key },
-    include: pageInclude,
-  });
+  const page = PAGES[key];
 
   if (!page) return null;
 
@@ -95,7 +64,7 @@ export async function getPage(
       const text = pickTranslation(section.translations, locale);
 
       return {
-        id: section.id,
+        id: section.key,
         key: section.key,
         type: section.type,
         position: section.position,
@@ -105,7 +74,7 @@ export async function getPage(
         title: text?.title ?? "",
         body: text?.body ?? "",
         ctaLabel: text?.ctaLabel ?? "",
-        items: toItems(text?.items),
+        items: text?.items ?? [],
       };
     }),
   };
