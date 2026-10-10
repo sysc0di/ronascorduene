@@ -508,7 +508,7 @@ export const PAGES: Record<string, PageData> = {
               {
                 "title": "INSTAGRAM",
                 "body": "@RONASCORDUENE",
-                "href": "#"
+                "href": "https://instagram.com/ronas_corduene"
               }
             ]
           },
@@ -532,7 +532,7 @@ export const PAGES: Record<string, PageData> = {
               {
                 "title": "INSTAGRAM",
                 "body": "@RONASCORDUENE",
-                "href": "#"
+                "href": "https://instagram.com/ronas_corduene"
               }
             ]
           },
@@ -556,7 +556,7 @@ export const PAGES: Record<string, PageData> = {
               {
                 "title": "INSTAGRAM",
                 "body": "@ronascorduene",
-                "href": "#"
+                "href": "https://instagram.com/ronas_corduene"
               }
             ]
           },
@@ -580,7 +580,7 @@ export const PAGES: Record<string, PageData> = {
               {
                 "title": "إنستغرام",
                 "body": "@RONASCORDUENE",
-                "href": "#"
+                "href": "https://instagram.com/ronas_corduene"
               }
             ]
           }

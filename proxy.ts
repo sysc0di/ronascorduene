@@ -5,13 +5,19 @@ import { LOCALE_COOKIE, locales, negotiateLocale } from "./lib/i18n";
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const hasLocalePrefix = locales.some(
+  const prefix = locales.find(
     (locale) =>
       pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
 
-  if (hasLocalePrefix) {
-    return NextResponse.next();
+  if (prefix) {
+    /* Forward the matched locale so `global-not-found.tsx` — which does not
+       render the `[lang]` layout and so cannot read the route param — can still
+       pick the right dictionary and text direction. */
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-locale", prefix);
+
+    return NextResponse.next({ request: { headers: requestHeaders } });
   }
 
   const locale = negotiateLocale(

@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 
 import { getDictionary, getLocale } from "./dictionaries";
 
-import NotFoundBody from "./components/NotFoundBody";
-
-import "./NotFound.css";
+import NotFoundBody from "../components/NotFoundBody";
 
 /**
  * 404 for anything inside a locale: an unknown product, a legal slug outside

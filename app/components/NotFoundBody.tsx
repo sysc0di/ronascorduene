@@ -1,7 +1,9 @@
 import Link from "next/link";
 
-import type { Dictionary } from "../dictionaries";
+import type { Dictionary } from "../[lang]/dictionaries";
 import type { Locale } from "@/lib/i18n";
+
+import "./NotFound.css";
 
 /**
  * The 404 body, shared by the locale-scoped `not-found.tsx` and the global
