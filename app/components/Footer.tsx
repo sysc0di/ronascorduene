@@ -20,6 +20,7 @@ export default function Footer({
     { key: "about", href: "/about" },
     { key: "contact", href: "/contact" },
     { key: "store", href: "/store" },
+    { key: "track", href: "/track" },
   ] as const;
 
   return (

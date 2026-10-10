@@ -1,8 +1,10 @@
 import { OrderStatus } from "@/lib/generated/prisma/enums";
+import { notifyOrderCreated } from "@/lib/email";
 import { LEGAL_DOCUMENT_VERSION } from "@/lib/legal";
 import {
   buildItemSnapshots,
   createToken,
+  createUniqueTrackingCode,
   findUnavailableProducts,
   listJson,
   loadProductPricing,
@@ -64,12 +66,14 @@ export async function POST(request: Request) {
   const snapshots = buildItemSnapshots(items, products);
 
   const submittedAt = new Date();
+  const trackingCode = await createUniqueTrackingCode();
 
   try {
     const order = await prisma.order.create({
       data: {
         ...contact,
         token: createToken(),
+        trackingCode,
         status: OrderStatus.SUBMITTED,
         submittedAt,
         locale,
@@ -85,6 +89,8 @@ export async function POST(request: Request) {
       },
       include: orderInclude,
     });
+
+    await notifyOrderCreated(order);
 
     return listJson({ order: serializeOrder(order) }, { status: 201 });
   } catch {

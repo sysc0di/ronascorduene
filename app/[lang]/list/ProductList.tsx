@@ -66,6 +66,7 @@ export default function ProductList({
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
   const [sent, setSent] = useState<StoredListItem[] | null>(null);
+  const [trackingCode, setTrackingCode] = useState<string | null>(null);
 
   const [contact, setContact] =
     useState<Contact>(emptyContact);
@@ -155,6 +156,7 @@ export default function ProductList({
      * Gönderilen liste ekranda kalır, tarayıcıdaki kopya temizlenir.
      */
     setSent(list.items);
+    setTrackingCode(result.trackingCode);
     clear();
     setSending(false);
   };
@@ -204,6 +206,15 @@ export default function ProductList({
           <span>{t.backToStore}</span>
           <span>↗</span>
         </Link>
+
+        <Link
+          href={`/${locale}/track`}
+          className="list-back-link"
+          data-hover-target
+        >
+          <span>{dict.nav.track}</span>
+          <span>↗</span>
+        </Link>
       </section>
       ) : (
         <>
@@ -212,6 +223,16 @@ export default function ProductList({
               <strong>{t.success.title}</strong>
 
               <p>{t.success.description}</p>
+
+              {trackingCode && (
+                <p className="list-success-track">
+                  {t.success.trackLabel}:{" "}
+                  <strong className="list-success-code">
+                    {trackingCode}
+                  </strong>{" "}
+                  {t.success.trackHint}
+                </p>
+              )}
 
               {/* The form is gone at this point, so the visitor needs somewhere
                   to go next rather than a dead end. */}
@@ -235,6 +256,18 @@ export default function ProductList({
 
                   <span aria-hidden="true">&#8599;</span>
                 </Link>
+
+                {trackingCode && (
+                  <Link
+                    href={`/${locale}/track/${trackingCode}`}
+                    className="list-success-action"
+                    data-hover-target
+                  >
+                    <span>{t.success.trackLink}</span>
+
+                    <span aria-hidden="true">&#8599;</span>
+                  </Link>
+                )}
               </div>
             </section>
           )}
@@ -250,6 +283,14 @@ export default function ProductList({
                 </span>
 
                 <div className="list-section-actions">
+                  <Link
+                    href={`/${locale}/track`}
+                    className="list-track-link"
+                    data-hover-target
+                  >
+                    {dict.nav.track}
+                  </Link>
+
                   <label className="list-currency">
                     <span className="list-currency-label">
                       {dict.store.currency}

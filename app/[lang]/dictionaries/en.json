@@ -12,7 +12,8 @@
     "closeMenu": "Close menu",
     "language": "Language",
     "primaryNavigation": "Primary navigation",
-    "list": "Cart"
+    "list": "Cart",
+    "track": "Track Order"
   },
   "legal": {
     "label": "Legal",
@@ -291,8 +292,74 @@
     },
     "success": {
       "title": "ORDER SENT.",
-      "description": "Thank you. We received your order and will contact you to confirm the details."
+      "description": "Thank you. We received your order and will contact you to confirm the details.",
+      "trackLabel": "ORDER NUMBER",
+      "trackHint": "Keep this number and follow your order at",
+      "trackLink": "TRACK YOUR ORDER"
     }
+  },
+  "track": {
+    "meta": "ORDER TRACKING",
+    "eyebrow": "ORDER TRACKING",
+    "titleLines": [
+      "TRACK",
+      "YOUR ORDER."
+    ],
+    "description": "Enter the order number from your confirmation email and follow its status.",
+    "code": "ORDER NUMBER",
+    "placeholder": "RC-XXXXXXXX",
+    "submit": "TRACK ORDER",
+    "invalidCode": "Enter the order number from your confirmation email, for example RC-XXXXXXXX.",
+    "notFound": {
+      "title": "NO ORDER FOUND.",
+      "description": "No order matches this number. Check it in your confirmation email and try again."
+    },
+    "statuses": {
+      "currentStatus": "CURRENT STATUS",
+      "submitted": "ORDER RECEIVED",
+      "submittedDescription": "We received your request and will confirm availability, fitment and delivery.",
+      "processing": "IN PROGRESS",
+      "processingDescription": "Your order is being prepared and confirmed.",
+      "shipped": "SHIPPED",
+      "shippedDescription": "Your order has been shipped and is on its way.",
+      "completed": "COMPLETED",
+      "completedDescription": "Your order has been delivered.",
+      "cancelled": "CANCELLED",
+      "cancelledDescription": "This order has been cancelled."
+    },
+    "timeline": {
+      "submitted": "ORDER RECEIVED",
+      "processing": "CONFIRMED",
+      "shipped": "SHIPPED",
+      "completed": "DELIVERED",
+      "cancelled": "CANCELLED"
+    },
+    "summary": {
+      "orderNumber": "ORDER NUMBER",
+      "submittedAt": "SUBMITTED",
+      "shippedAt": "SHIPPED",
+      "items": "PRODUCTS",
+      "total": "TOTAL",
+      "priceOnRequest": "PRICE ON REQUEST",
+      "backHome": "BACK TO HOME",
+      "checkAnother": "CHECK ANOTHER ORDER"
+    }
+  },
+  "email": {
+    "greeting": "Hello {name},",
+    "createdSubject": "Your order with Ronas Corduene",
+    "createdTitle": "We received your order",
+    "createdBody": "Thank you for your order, {name}. We will confirm availability, fitment and delivery shortly and get back to you with the next steps.",
+    "shippedSubject": "Your Ronas Corduene order is on its way",
+    "shippedTitle": "Your order is on its way",
+    "shippedBody": "Good news — your order has been shipped, {name}. You can follow its status at any time.",
+    "trackTitle": "TRACK YOUR ORDER",
+    "orderNumber": "Order number: {code}",
+    "trackButton": "Track order",
+    "itemsTitle": "ORDERED ITEMS",
+    "total": "TOTAL",
+    "thanks": "Thanks for choosing Ronas Corduene.",
+    "footer": "This is an automated email about an order placed at ronascorduene.com."
   },
   "notFound": {
     "meta": "ERROR 404",

@@ -24,6 +24,7 @@ export type OrderSubmission = {
 export type SubmitResult = {
   ok: boolean;
   orderId: string | null;
+  trackingCode: string | null;
   errors: string[];
 };
 
@@ -54,6 +55,7 @@ async function send(
         return {
           ok: false,
           orderId: null,
+          trackingCode: null,
           errors: ["Y"],
         };
       }
@@ -69,13 +71,17 @@ async function send(
 
       const order =
         "order" in payload && payload.order
-          ? (payload.order as { id?: string })
+          ? (payload.order as {
+              id?: string;
+              trackingCode?: string;
+            })
           : null;
 
       if (!response.ok || rawErrors.length > 0) {
         return {
           ok: false,
           orderId: null,
+          trackingCode: null,
           errors:
             rawErrors.length > 0
               ? rawErrors
@@ -83,12 +89,18 @@ async function send(
         };
       }
 
-      return { ok: true, orderId: order?.id ?? null, errors: [] };
+      return {
+        ok: true,
+        orderId: order?.id ?? null,
+        trackingCode: order?.trackingCode ?? null,
+        errors: [],
+      };
     } catch {
       if (attempt === 1) {
         return {
           ok: false,
           orderId: null,
+          trackingCode: null,
           errors: ["Network error. Please check your connection."],
         };
       }
@@ -98,6 +110,7 @@ async function send(
   return {
     ok: false,
     orderId: null,
+    trackingCode: null,
     errors: ["Network error. Please check your connection."],
   };
 }

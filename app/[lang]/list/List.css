@@ -170,6 +170,24 @@
   opacity: 0.4;
 }
 
+.list-track-link {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+
+  color:
+    rgba(166, 166, 166, 0.52);
+
+  text-decoration: none;
+
+  transition:
+    color 250ms ease;
+}
+
+.list-track-link:hover,
+.list-track-link:focus-visible {
+  color: #ffffff;
+}
+
 .list-section-actions {
   display: inline-flex;
 
@@ -797,6 +815,18 @@
 
   color:
     rgba(166, 166, 166, 0.55);
+}
+
+.list-success-track {
+  margin-top: 14px !important;
+
+  letter-spacing: 0.06em;
+}
+
+.list-success-code {
+  color: #ffffff;
+
+  letter-spacing: 0.1em;
 }
 
 .list-empty {

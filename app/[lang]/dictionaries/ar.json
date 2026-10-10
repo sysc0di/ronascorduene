@@ -12,7 +12,8 @@
     "closeMenu": "أغلق القائمة",
     "language": "اللغة",
     "primaryNavigation": "التنقل الرئيسي",
-    "list": "السلة"
+    "list": "السلة",
+    "track": "تتبع الطلب"
   },
   "legal": {
     "label": "قانوني",
@@ -290,8 +291,74 @@
     },
     "success": {
       "title": "تم إرسال الطلب.",
-      "description": "شكرًا لك. تلقّينا طلبك وسنتواصل معك لتأكيد التفاصيل."
+      "description": "شكرًا لك. تلقّينا طلبك وسنتواصل معك لتأكيد التفاصيل.",
+      "trackLabel": "رقم الطلب",
+      "trackHint": "احتفظ بهذا الرقم وتتبّع طلبك على",
+      "trackLink": "تتبّع الطلب"
     }
+  },
+  "track": {
+    "meta": "تتبع الطلب",
+    "eyebrow": "تتبع الطلب",
+    "titleLines": [
+      "تتبّع",
+      "طلبك."
+    ],
+    "description": "أدخل رقم الطلب من بريد التأكيد وتتبّع حالته.",
+    "code": "رقم الطلب",
+    "placeholder": "RC-XXXXXXXX",
+    "submit": "تتبّع الطلب",
+    "invalidCode": "أدخل رقم الطلب من بريد التأكيد، مثلًا RC-XXXXXXXX.",
+    "notFound": {
+      "title": "لا يوجد طلب.",
+      "description": "لا يوجد طلب يطابق هذا الرقم. تحقق من بريد التأكيد وحاول مرة أخرى."
+    },
+    "statuses": {
+      "currentStatus": "الحالة الحالية",
+      "submitted": "تم استلام الطلب",
+      "submittedDescription": "تلقّينا طلبك وسنؤكد التوفر والتوافق وموعد التسليم.",
+      "processing": "قيد المعالجة",
+      "processingDescription": "يتم الآن تجهيز طلبك وتأكيده.",
+      "shipped": "تم الشحن",
+      "shippedDescription": "تم شحن طلبك وهو في الطريق إليك.",
+      "completed": "مكتمل",
+      "completedDescription": "تم تسليم طلبك.",
+      "cancelled": "ملغي",
+      "cancelledDescription": "تم إلغاء هذا الطلب."
+    },
+    "timeline": {
+      "submitted": "تم الاستلام",
+      "processing": "مؤكد",
+      "shipped": "تم الشحن",
+      "completed": "تم التسليم",
+      "cancelled": "تم الإلغاء"
+    },
+    "summary": {
+      "orderNumber": "رقم الطلب",
+      "submittedAt": "أُرسل الطلب",
+      "shippedAt": "تم الشحن",
+      "items": "المنتجات",
+      "total": "الإجمالي",
+      "priceOnRequest": "السعر عند الطلب",
+      "backHome": "العودة إلى الرئيسية",
+      "checkAnother": "تتبّع طلبًا آخر"
+    }
+  },
+  "email": {
+    "greeting": "مرحبًا {name}،",
+    "createdSubject": "طلبك لدى روناس كوردوين",
+    "createdTitle": "لقد استلمنا طلبك",
+    "createdBody": "شكرًا لطلبك، {name}. سنؤكد التوفر والتوافق وموعد التسليم قريبًا ونتواصل معك بالخطوات التالية.",
+    "shippedSubject": "طلبك لدى روناس كوردوين في الطريق",
+    "shippedTitle": "طلبك في الطريق",
+    "shippedBody": "بشرى سارة — تم شحن طلبك، {name}. يمكنك متابعة حالته في أي وقت.",
+    "trackTitle": "تتبّع طلبك",
+    "orderNumber": "رقم الطلب: {code}",
+    "trackButton": "تتبّع الطلب",
+    "itemsTitle": "عناصر الطلب",
+    "total": "الإجمالي",
+    "thanks": "شكرًا لاختيارك روناس كوردوين.",
+    "footer": "هذه رسالة تلقائية حول طلب أُرسل عبر ronascorduene.com."
   },
   "notFound": {
     "meta": "خطأ 404",

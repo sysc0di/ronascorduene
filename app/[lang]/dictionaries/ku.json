@@ -12,7 +12,8 @@
     "closeMenu": "Menûyê veke",
     "language": "Ziman",
     "primaryNavigation": "Rêbernavê sereke",
-    "list": "Sepet"
+    "list": "Sepet",
+    "track": "Şopandina Siparişê"
   },
   "legal": {
     "label": "Yasayî",
@@ -385,8 +386,74 @@
     },
     "success": {
       "title": "SİPARİŞÊ HATIR.",
-      "description": "Sipas. Siparişa we hate pejmêkirî, ji bo teyîtkirina hûmaneyê em ê bi we re tê Civîn."
+      "description": "Sipas. Siparişa we hate pejmêkirî, ji bo teyîtkirina hûmaneyê em ê bi we re tê Civîn.",
+      "trackLabel": "HEJMARA SİPARİŞÊ",
+      "trackHint": "Vê hejmarê bihêlin û siparişa xwe bişopînin:",
+      "trackLink": "SİPARİŞÊ BİŞOPÎNE"
     }
+  },
+  "track": {
+    "meta": "ŞOPANDİNA SİPARİŞÊ",
+    "eyebrow": "ŞOPANDİNA SİPARİŞÊ",
+    "titleLines": [
+      "SİPARİŞA XWE",
+      "BİŞOPÎNE."
+    ],
+    "description": "Hejmara siparişê ji e-nameya pejirandina xwe binivîsin û rewşa wê bişopînin.",
+    "code": "HEJMARA SİPARİŞÊ",
+    "placeholder": "RC-XXXXXXXX",
+    "submit": "SİPARİŞÊ BİŞOPÎNE",
+    "invalidCode": "Hejmara siparişê ji e-nameya pejirandina xwe binivîsin, mînak RC-XXXXXXXX.",
+    "notFound": {
+      "title": "SİPARİŞ NEBÜ.",
+      "description": "Bi vê hejmarê re tu sipariş tunin. Ji e-nameya pejirandina xwe kontrol bikin û dîsa biceribînin."
+    },
+    "statuses": {
+      "currentStatus": "REWŞA NÛ",
+      "submitted": "SİPARİŞ HAT",
+      "submittedDescription": "Em daxwaziya we wergirtin; em ê hebûn, tamkirin û şandinê piştrast bikin.",
+      "processing": "TÊ AMEDEKIRIN",
+      "processingDescription": "Siparişa we tê amadekirin û teyîtkirin.",
+      "shipped": "HAT ŞANDIN",
+      "shippedDescription": "Siparişa we hat şandin û di rê de ye.",
+      "completed": "TEMAM BÜ",
+      "completedDescription": "Siparişa we hat radestkirin.",
+      "cancelled": "HAT BETALKIRIN",
+      "cancelledDescription": "Ev sipariş hat betalkirin."
+    },
+    "timeline": {
+      "submitted": "SİPARİŞ HAT",
+      "processing": "HAT TEYÎTKİRİN",
+      "shipped": "HAT ŞANDIN",
+      "completed": "HAT RADESTKİRİN",
+      "cancelled": "HAT BETALKIRIN"
+    },
+    "summary": {
+      "orderNumber": "HEJMARA SİPARİŞÊ",
+      "submittedAt": "PEJMÊKİRİN",
+      "shippedAt": "ŞANDİN",
+      "items": "ÜRÜN",
+      "total": "TEMAŞ",
+      "priceOnRequest": "BİHA LI SER DAXWAZÊ",
+      "backHome": "VEGERÊ DESTPÊKÊ",
+      "checkAnother": "SİPARİŞEKE DIN BİŞOPÎNE"
+    }
+  },
+  "email": {
+    "greeting": "Silav {name},",
+    "createdSubject": "Siparişa we ya Ronas Corduene",
+    "createdTitle": "Em siparişa we wergirtin",
+    "createdBody": "Em siparişa we wergirtin, spas {name}. Em ê hebûn, tamkirin û şandinê bi kurtî piştrast bikin û ji we re vegerin.",
+    "shippedSubject": "Siparişa we ya Ronas Corduene hat şandin",
+    "shippedTitle": "Siparişa we hat şandin",
+    "shippedBody": "Nûçeyek baş — siparişa we hat şandin, {name}. Hûn dikarin di her demê de rewşa wê bişopînin.",
+    "trackTitle": "SİPARİŞÊ BİŞOPÎNE",
+    "orderNumber": "Hejmara siparişê: {code}",
+    "trackButton": "Siparişê bişopîne",
+    "itemsTitle": "TIŞTÊN SİPARİŞÊ",
+    "total": "TEMAŞ",
+    "thanks": "Spas ji bo hilbijartina Ronas Corduene.",
+    "footer": "Ev e-nameyeke otomatîk e derbarê siparişeke ku li ronascorduene.com hatiye dan."
   },
   "notFound": {
     "meta": "ÇAST 404",

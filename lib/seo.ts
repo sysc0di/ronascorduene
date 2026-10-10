@@ -36,7 +36,8 @@ export type PageKey =
   | "about"
   | "store"
   | "contact"
-  | "list";
+  | "list"
+  | "track";
 
 type PageSeo = {
   /** Path after the locale segment, "" for the home page. */
@@ -99,6 +100,12 @@ export const SEO: Record<Locale, LocaleSeo> = {
         description:
           "Build your cart and send it to Ronas Corduene. We confirm availability, fitment and delivery for performance parts and body kits.",
       },
+      track: {
+        path: "/track",
+        title: "Track Your Order | Ronas Corduene",
+        description:
+          "Enter your Ronas Corduene order number and follow its status from submission to delivery.",
+      },
     },
   },
   tr: {
@@ -144,6 +151,12 @@ export const SEO: Record<Locale, LocaleSeo> = {
         title: "Sepetiniz | Ronas Corduene",
         description:
           "Sepetinizi oluşturun ve Ronas Corduene'e gönderin. Stok, uyum ve teslimatı sizin için teyit ediyoruz.",
+      },
+      track: {
+        path: "/track",
+        title: "Sipariş Takibi | Ronas Corduene",
+        description:
+          "Ronas Corduene sipariş numaranızı girin ve siparişinizi gönderimden teslimata kadar takip edin.",
       },
     },
   },
@@ -191,6 +204,12 @@ export const SEO: Record<Locale, LocaleSeo> = {
         description:
           "Sepeta xwe ava bikin û ji Ronas Corduene re bişînin. Em hebûn, uyandin û şandinê ji bo we piştrast dikin.",
       },
+      track: {
+        path: "/track",
+        title: "Şopandina Siparişê | Ronas Corduene",
+        description:
+          "Hejmara siparişa Ronas Corduene ya xwe binivîsin û siparişa xwe ji şandinê heya radestkirinê bişopînin.",
+      },
     },
   },
   ar: {
@@ -235,6 +254,12 @@ export const SEO: Record<Locale, LocaleSeo> = {
         title: "قائمة قطعك | روناس كوردوين",
         description:
           "أنشئ قائمة قطعك وأرسلها إلى روناس كوردوين لتأكيد التوفر والتوافق وتفاصيل التسليم.",
+      },
+      track: {
+        path: "/track",
+        title: "تتبع طلبك | روناس كوردوين",
+        description:
+          "أدخل رقم طلبك لدى روناس كوردوين وتابع حالته من الإرسال حتى التسليم.",
       },
     },
   },

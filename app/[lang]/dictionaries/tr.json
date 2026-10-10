@@ -12,7 +12,8 @@
     "closeMenu": "Menüyü kapat",
     "language": "Dil",
     "primaryNavigation": "Ana gezinme",
-    "list": "Sepet"
+    "list": "Sepet",
+    "track": "Sipariş Takibi"
   },
   "legal": {
     "label": "Yasal",
@@ -290,8 +291,74 @@
     },
     "success": {
       "title": "SİPARİŞ GÖNDERİLDİ.",
-      "description": "Teşekkürler. Siparişiniz alındı, detayları teyit etmek için sizinle iletişime geçeceğiz."
+      "description": "Teşekkürler. Siparişiniz alındı, detayları teyit etmek için sizinle iletişime geçeceğiz.",
+      "trackLabel": "SİPARİŞ NUMARASI",
+      "trackHint": "Bu numarayı saklayın ve siparişinizi takip edin:",
+      "trackLink": "SİPARİŞİ TAKİP ET"
     }
+  },
+  "track": {
+    "meta": "SİPARİŞ TAKİBİ",
+    "eyebrow": "SİPARİŞ TAKİBİ",
+    "titleLines": [
+      "SİPARİŞİNİ",
+      "TAKİP ET."
+    ],
+    "description": "Onay e-postanızdaki sipariş numarasını girin ve durumunu takip edin.",
+    "code": "SİPARİŞ NUMARASI",
+    "placeholder": "RC-XXXXXXXX",
+    "submit": "SİPARİŞİ TAKİP ET",
+    "invalidCode": "Onay e-postanızdaki sipariş numarasını girin, örneğin RC-XXXXXXXX.",
+    "notFound": {
+      "title": "SİPARİŞ BULUNAMADI.",
+      "description": "Bu numarayla eşleşen bir sipariş yok. Onay e-postanızdan kontrol edip tekrar deneyin."
+    },
+    "statuses": {
+      "currentStatus": "GÜNCEL DURUM",
+      "submitted": "SİPARİŞ ALINDI",
+      "submittedDescription": "Başvurunuzu aldık; stok, uyum ve teslimatı teyit edeceğiz.",
+      "processing": "HAZIRLANIYOR",
+      "processingDescription": "Siparişiniz hazırlanıyor ve teyit ediliyor.",
+      "shipped": "KARGOYA VERİLDİ",
+      "shippedDescription": "Siparişiniz kargoya verildi ve yolda.",
+      "completed": "TAMAMLANDI",
+      "completedDescription": "Siparişiniz teslim edildi.",
+      "cancelled": "İPTAL EDİLDİ",
+      "cancelledDescription": "Bu sipariş iptal edildi."
+    },
+    "timeline": {
+      "submitted": "SİPARİŞ ALINDI",
+      "processing": "TEYİT EDİLDİ",
+      "shipped": "KARGOYA VERİLDİ",
+      "completed": "TESLİM EDİLDİ",
+      "cancelled": "İPTAL EDİLDİ"
+    },
+    "summary": {
+      "orderNumber": "SİPARİŞ NUMARASI",
+      "submittedAt": "GÖNDERİLDİ",
+      "shippedAt": "KARGOYA VERİLDİ",
+      "items": "ÜRÜNLER",
+      "total": "TOPLAM",
+      "priceOnRequest": "FİYAT İSTEK ÜZERİNE",
+      "backHome": "ANA SAYFAYA DÖN",
+      "checkAnother": "BAŞKA SİPARİŞİ TAKİP ET"
+    }
+  },
+  "email": {
+    "greeting": "Merhaba {name},",
+    "createdSubject": "Ronas Corduene siparişiniz",
+    "createdTitle": "Siparişinizi aldık",
+    "createdBody": "Siparişiniz için teşekkürler, {name}. Stok, uyum ve teslimatı kısa süre içinde teyit edip sonraki adımlar için size döneceğiz.",
+    "shippedSubject": "Ronas Corduene siparişiniz kargoya verildi",
+    "shippedTitle": "Siparişiniz kargoya verildi",
+    "shippedBody": "İyi haber — siparişiniz kargoya verildi, {name}. Durumunu istediğiniz zaman takip edebilirsiniz.",
+    "trackTitle": "SİPARİŞİ TAKİP ET",
+    "orderNumber": "Sipariş numarası: {code}",
+    "trackButton": "Siparişi takip et",
+    "itemsTitle": "SİPARİŞ ÜRÜNLERİ",
+    "total": "TOPLAM",
+    "thanks": "Ronas Corduene'yi tercih ettiğiniz için teşekkürler.",
+    "footer": "Bu, ronascorduene.com üzerinden verilen bir sipariş hakkında gönderilen otomatik bir e-postadır."
   },
   "notFound": {
     "meta": "HATA 404",
