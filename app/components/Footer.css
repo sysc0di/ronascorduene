@@ -185,6 +185,18 @@
   letter-spacing: 0.16em;
 }
 
+.footer-credit a {
+  color: #666;
+  text-decoration: none;
+
+  transition: color 250ms ease;
+}
+
+.footer-credit a.is-hovered,
+.footer-credit a:focus-visible {
+  color: #fff;
+}
+
 @media (max-width: 900px) {
   .footer {
     padding-bottom: max(24px, env(safe-area-inset-bottom));

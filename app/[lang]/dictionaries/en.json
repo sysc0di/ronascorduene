@@ -245,7 +245,8 @@
     "middle": "RONAS",
     "copyright": "© {year} RONAS CORDUENE",
     "label": "AUTOMOTIVE EQUIPMENT",
-    "rights": "ALL RIGHTS RESERVED"
+    "rights": "ALL RIGHTS RESERVED",
+    "builtBy": "Site built by"
   },
   "list": {
     "label": "YOUR CART",

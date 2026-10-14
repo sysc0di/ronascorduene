@@ -76,6 +76,18 @@ export default function Footer({
         <span>{dict.footer.label}</span>
 
         <span>{dict.footer.rights}</span>
+
+        <span className="footer-credit">
+          {dict.footer.builtBy}{" "}
+          <a
+            href="https://mithrabyte.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-hover-target
+          >
+            Mithrabyte
+          </a>
+        </span>
       </div>
     </footer>
   );
