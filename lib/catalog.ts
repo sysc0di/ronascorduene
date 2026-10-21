@@ -18,6 +18,7 @@ const catalogSelect = {
   family: true,
   category: true,
   image: true,
+  gallery: true,
   priceUsd: true,
   discountedPriceUsd: true,
   discountPercentUsd: true,
@@ -42,6 +43,7 @@ function toCatalogProduct(
     family: string;
     category: string;
     image: string;
+    gallery: string[];
     priceUsd: unknown;
     discountedPriceUsd: unknown;
     discountPercentUsd: number | null;
@@ -58,6 +60,7 @@ function toCatalogProduct(
     category: product.category,
     description: translation?.description ?? "",
     image: product.image,
+    gallery: product.gallery ?? [],
     specs: parseProductSpecs(translation?.technicalDetails),
     priceUsd: decimalToNumber(product.priceUsd),
     discountedPriceUsd: decimalToNumber(product.discountedPriceUsd),

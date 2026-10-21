@@ -16,6 +16,8 @@ export type CatalogProduct = {
   category: string;
   description: string;
   image: string;
+  /** Extra angles of the product, shown next to the main image. */
+  gallery: string[];
   /** Per-language technical details; also the source of the store filters. */
   specs: ProductSpec[];
   priceUsd: number | null;

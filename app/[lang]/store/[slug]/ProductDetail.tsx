@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 import { useLocalList } from "@/lib/order-storage";
 import { useCurrency } from "@/lib/use-currency";
@@ -39,6 +40,11 @@ export default function ProductDetail({
 }) {
   const [currency, setCurrency] =
     useCurrency(locale);
+
+  /* The main image comes first, the gallery follows it. */
+  const images = [product.image, ...product.gallery];
+  const [activeImage, setActiveImage] =
+    useState(0);
 
   const { count: listCount, has: inList, add: addToList } =
     useLocalList();
@@ -115,18 +121,63 @@ export default function ProductDetail({
       </div>
 
       <div className="product-detail-grid">
-        <div className="product-detail-media">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            priority
-            sizes="
-              (max-width: 900px) 100vw,
-              55vw
-            "
-            className="product-detail-image"
-          />
+        <div className="product-detail-media-column">
+          <div className="product-detail-media">
+            <Image
+              src={
+                images[activeImage] ??
+                product.image
+              }
+              alt={product.name}
+              fill
+              priority
+              sizes="
+                (max-width: 900px) 100vw,
+                55vw
+              "
+              className="product-detail-image"
+            />
+          </div>
+
+          {product.gallery.length > 0 && (
+            <ul className="product-detail-gallery">
+              {images.map(
+                (url, index) => (
+                  <li key={url}>
+                    <button
+                      type="button"
+                      className={`
+                        product-detail-thumbnail
+                        ${index === activeImage
+                          ? "is-active"
+                          : ""}
+                      `}
+                      onClick={() =>
+                        setActiveImage(index)
+                      }
+                      aria-label={`${product.name} — ${index + 1}`}
+                      aria-current={
+                        index === activeImage
+                          ? "true"
+                          : undefined
+                      }
+                    >
+                      <Image
+                        src={url}
+                        alt=""
+                        fill
+                        sizes="
+                          (max-width: 900px) 20vw,
+                          80px
+                        "
+                        className="product-detail-thumbnail-image"
+                      />
+                    </button>
+                  </li>
+                ),
+              )}
+            </ul>
+          )}
         </div>
 
         <div className="product-detail-panel">
