@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+import { isVideoUrl } from "@/lib/media";
 import { useLocalList } from "@/lib/order-storage";
 import { useCurrency } from "@/lib/use-currency";
 import {
@@ -41,10 +42,15 @@ export default function ProductDetail({
   const [currency, setCurrency] =
     useCurrency(locale);
 
-  /* The main image comes first, the gallery follows it. */
+  /* The main image comes first, the gallery follows it. The gallery may hold
+     videos, so the active item decides what the media box shows. */
   const images = [product.image, ...product.gallery];
   const [activeImage, setActiveImage] =
     useState(0);
+
+  const active =
+    images[activeImage] ?? product.image;
+  const activeIsVideo = isVideoUrl(active);
 
   const { count: listCount, has: inList, add: addToList } =
     useLocalList();
@@ -123,20 +129,27 @@ export default function ProductDetail({
       <div className="product-detail-grid">
         <div className="product-detail-media-column">
           <div className="product-detail-media">
-            <Image
-              src={
-                images[activeImage] ??
-                product.image
-              }
-              alt={product.name}
-              fill
-              priority
-              sizes="
-                (max-width: 900px) 100vw,
-                55vw
-              "
-              className="product-detail-image"
-            />
+            {activeIsVideo ? (
+              <video
+                src={active}
+                controls
+                playsInline
+                preload="metadata"
+                className="product-detail-video"
+              />
+            ) : (
+              <Image
+                src={active}
+                alt={product.name}
+                fill
+                priority
+                sizes="
+                  (max-width: 900px) 100vw,
+                  55vw
+                "
+                className="product-detail-image"
+              />
+            )}
           </div>
 
           {product.gallery.length > 0 && (
@@ -162,16 +175,24 @@ export default function ProductDetail({
                           : undefined
                       }
                     >
-                      <Image
-                        src={url}
-                        alt=""
-                        fill
-                        sizes="
-                          (max-width: 900px) 20vw,
-                          80px
-                        "
-                        className="product-detail-thumbnail-image"
-                      />
+                      {isVideoUrl(url) ? (
+                        <span className="product-detail-thumbnail-video">
+                          <span aria-hidden="true">
+                            ▶
+                          </span>
+                        </span>
+                      ) : (
+                        <Image
+                          src={url}
+                          alt=""
+                          fill
+                          sizes="
+                            (max-width: 900px) 20vw,
+                            80px
+                          "
+                          className="product-detail-thumbnail-image"
+                        />
+                      )}
                     </button>
                   </li>
                 ),
