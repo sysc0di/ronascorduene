@@ -354,11 +354,10 @@ export default function ProductList({
                     </div>
 
                     <div className="list-item-info">
-                      <span className="list-item-category">
+                      <span className="list-item-collection">
                         {product
-                          ? dict.store.subcategories[
-                              product.category as keyof typeof dict.store.subcategories
-                            ]
+                          ? product.collections[0]?.name ??
+                            product.id
                           : t.removed}
                       </span>
 

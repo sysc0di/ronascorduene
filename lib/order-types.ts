@@ -9,11 +9,17 @@ export type ProductSpec = {
   value: string;
 };
 
+/** A collection as the storefront needs it: link target and display name. */
+export type CollectionSummary = {
+  id: string;
+  name: string;
+  slug: string;
+};
+
 export type CatalogProduct = {
   id: string;
   name: string;
-  family: string;
-  category: string;
+  collections: CollectionSummary[];
   description: string;
   image: string;
   /** Extra angles of the product, shown next to the main image. */

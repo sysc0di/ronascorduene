@@ -4,7 +4,11 @@ import { parseProductSpecs } from "@/lib/product-specs";
 import { pickTranslation } from "@/lib/product-text";
 import { prisma } from "@/lib/prisma";
 
-import type { CatalogProduct, ProductDetail } from "@/lib/order-types";
+import type {
+  CatalogProduct,
+  CollectionSummary,
+  ProductDetail,
+} from "@/lib/order-types";
 
 const translationTextSelect = {
   locale: true,
@@ -13,10 +17,16 @@ const translationTextSelect = {
   technicalDetails: true,
 } as const;
 
+const collectionSummarySelect = {
+  id: true,
+  name: true,
+  slug: true,
+  sortOrder: true,
+  visible: true,
+} as const;
+
 const catalogSelect = {
   id: true,
-  family: true,
-  category: true,
   image: true,
   gallery: true,
   priceUsd: true,
@@ -25,6 +35,9 @@ const catalogSelect = {
   priceTry: true,
   discountedPriceTry: true,
   discountPercentTry: true,
+  collections: {
+    select: { collection: { select: collectionSummarySelect } },
+  },
   translations: {
     select: translationTextSelect,
   },
@@ -37,13 +50,41 @@ type SelectedTranslation = {
   technicalDetails: unknown;
 };
 
+type SelectedCollection = {
+  id: string;
+  name: string;
+  slug: string;
+  sortOrder: number;
+  visible: boolean;
+};
+
+type SelectedCollectionLink = {
+  collection: SelectedCollection;
+};
+
+/**
+ * Hidden collections never reach the storefront, and the row order is the
+ * admin's sort order rather than insertion order.
+ */
+function visibleCollections(
+  links: SelectedCollectionLink[],
+): CollectionSummary[] {
+  return links
+    .map((link) => link.collection)
+    .filter((collection) => collection.visible)
+    .sort(
+      (a, b) =>
+        a.sortOrder - b.sortOrder || a.name.localeCompare(b.name),
+    )
+    .map(({ id, name, slug }) => ({ id, name, slug }));
+}
+
 function toCatalogProduct(
   product: {
     id: string;
-    family: string;
-    category: string;
     image: string;
     gallery: string[];
+    collections: SelectedCollectionLink[];
     priceUsd: unknown;
     discountedPriceUsd: unknown;
     discountPercentUsd: number | null;
@@ -56,8 +97,7 @@ function toCatalogProduct(
   return {
     id: product.id,
     name: translation?.name ?? "",
-    family: product.family,
-    category: product.category,
+    collections: visibleCollections(product.collections),
     description: translation?.description ?? "",
     image: product.image,
     gallery: product.gallery ?? [],
@@ -92,6 +132,17 @@ export async function getCatalog(
       pickTranslation(product.translations, locale),
     ),
   );
+}
+
+/** Visible collections for the storefront selector row. */
+export async function getCollections(): Promise<CollectionSummary[]> {
+  const collections = await prisma.collection.findMany({
+    where: { visible: true },
+    orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
+    select: { id: true, name: true, slug: true },
+  });
+
+  return collections;
 }
 
 /**

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Breadcrumbs from "../components/Breadcrumbs";
 import StoreCatalog from "./StoreCatalog";
 
-import { getCatalog } from "@/lib/catalog";
+import { getCatalog, getCollections } from "@/lib/catalog";
 import { getDictionary, getLocaleFor } from "../dictionaries";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
@@ -24,8 +24,9 @@ export default async function StorePage({
   const { lang } = await params;
   const locale = getLocaleFor(lang);
 
-  const [products, dict] = await Promise.all([
+  const [products, collections, dict] = await Promise.all([
     getCatalog(locale),
+    getCollections(),
     getDictionary(),
   ]);
 
@@ -47,6 +48,7 @@ export default async function StorePage({
 
       <StoreCatalog
         products={products}
+        collections={collections}
         locale={locale}
         dict={dict}
       />

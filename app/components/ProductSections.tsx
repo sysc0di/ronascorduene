@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { CATEGORY_SLUGS } from "@/lib/catalog-taxonomy";
-
 import type { Dictionary } from "../[lang]/dictionaries";
 import type { Locale } from "@/lib/i18n";
 
@@ -59,13 +57,10 @@ function ProductItem({
   const [visible, setVisible] = useState(false);
 
   /*
-   * The three home blocks line up with the store's product families, so each
-   * title deep-links into that family rather than the unfiltered catalog.
+   * The home blocks are editorial product lines, not store taxonomy, so they
+   * open the full catalog rather than guessing a collection.
    */
-  const family = CATEGORY_SLUGS[index];
-  const href = family
-    ? `/${locale}/store?family=${family}`
-    : `/${locale}/store`;
+  const href = `/${locale}/store`;
 
   /*
    * 0 = LEFT

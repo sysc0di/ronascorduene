@@ -64,13 +64,22 @@ function round2(value: number): number {
 async function seedDemoPricing() {
   const products = await prisma.product.findMany({
     where: { OR: [{ priceTry: null }, { priceUsd: null }] },
-    select: { id: true, category: true, priceTry: true, priceUsd: true },
+    select: {
+      id: true,
+      priceTry: true,
+      priceUsd: true,
+      collections: {
+        take: 1,
+        select: { collection: { select: { slug: true } } },
+      },
+    },
   });
 
   let updated = 0;
 
   for (const product of products) {
-    const demo = DEMO_PRICING[product.category];
+    const demo =
+      DEMO_PRICING[product.collections[0]?.collection.slug ?? ""];
 
     if (!demo) continue;
 

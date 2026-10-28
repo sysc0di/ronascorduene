@@ -191,7 +191,6 @@
       "specifications": "TEKNÎKÎ HÛRÎ",
       "reference": "REFERANS"
     },
-    "categories": "KATEGORÎ",
     "products": "BERHEM",
     "product": "BERHEM",
     "search": "LÊGERÎN",
@@ -200,36 +199,14 @@
     "currency": "DIRAV",
     "clear": "PAQIJ KIRIN",
     "close": "GIRTIN",
-    "openCategories": "KATEGORIYAN VEKE",
     "allProducts": "HEMÛ BERHEM",
-    "families": {
-      "airflow-dynamics": "DÎNAMÎKÊN HERIKÎNA HEWAYÊ",
-      "driver-interface": "RÛYÊ SIVARÊ",
-      "structural-aero": "AERODÎNAMÎKA AVAHÎ"
-    },
-    "subcategories": {
-      "intake-manifolds": "MANÎFOLDÊN HILGIRTINA HEWAYÊ",
-      "cold-air-intakes": "HILGIRTINA HEWAYA SAR",
-      "carbon-airboxes": "QUTIYÊN HEWAYÊN KARBONÊ",
-      "air-intake-piping": "BORIYÊN HILGIRTINA HEWAYÊ",
-      "exhaust-manifolds": "MANÎFOLDÊN DERXISTINA GAZÊ",
-      "headlight-intakes": "DERZIYA HEWAYÊ YA FARÊ",
-      "brake-cooling-ducts": "KANALÊN SAR-KIRINA FRENA",
-      "carbon-fiber-steering-wheels": "DOLABÊN KARBON FIBER",
-      "racing-seats": "CIHÊN RACE / PERFORMANSÊ",
-      "shift-knobs": "TOPIKÊN GEARÊ",
-      "carbon-fiber-interior-trims": "DETAYÊN NAVXWEYÊ KARBON FIBER",
-      "carbon-fiber-hoods": "KAPOTÊN KARBON FIBER",
-      "trunks-tailgates": "DERÎYÊN BAGAJÊ",
-      "lightweight-doors": "DERÎYÊN SIVIK",
-      "spoilers-wings": "SPOILER Û BALAFIR"
-    },
+    "collections": "KOLEKSİYON",
     "filters": {
       "all": "HEMÛ"
     },
     "empty": {
       "title": "BERHEM NEHAT DÎTIN",
-      "description": "Kategoriyek din biceribînin an jî filtreyan biguherînin."
+      "description": "Koleksiyonek din biceribînin an jî filtreyan biguherînin."
     },
     "addToList": "SEPETÊ ZÊDE BÎKÎN",
     "addedToList": "ZÊDE HATIR",

@@ -35,8 +35,6 @@ model User {
 
 model Product {
   id                 String   @id
-  family             String
-  category           String
   image              String
   /// Extra images shown as a gallery on the product detail page, after
   /// `image`. Stored as delivery URLs, like `image` itself.
@@ -65,11 +63,42 @@ model Product {
 
   translations ProductTranslation[]
   orderItems   OrderItem[]
+  collections  ProductCollection[]
 
   @@index([visible])
-  @@index([family])
-  @@index([category])
   @@map("products")
+}
+
+/// A flat grouping shown as the collection row on the storefront. Products and
+/// collections are many-to-many: a product can sit in several collections and
+/// a collection can hold any number of products.
+model Collection {
+  id        String   @id
+  name      String
+  slug      String   @unique
+  sortOrder Int      @default(0)
+  image     String?
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products ProductCollection[]
+
+  @@map("collections")
+}
+
+/// Explicit join so associations can be replaced without touching products.
+model ProductCollection {
+  productId    String
+  collectionId String
+  createdAt    DateTime @default(now())
+
+  product    Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  collection Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  @@id([productId, collectionId])
+  @@index([collectionId])
+  @@map("product_collections")
 }
 
 /// Per-language product text. Product content lives in the database, not in

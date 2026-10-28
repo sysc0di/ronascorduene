@@ -24,10 +24,10 @@ import type { Dictionary } from "../../dictionaries";
 
 import "./ProductDetail.css";
 
-/** Kept on the page so a visitor can walk back into the catalog they came
- *  from instead of landing on an unfiltered grid. */
-function catalogHref(locale: Locale, family: string): string {
-  return `/${locale}/store?family=${encodeURIComponent(family)}`;
+/** Kept on the page so a visitor can walk back into the collection they came
+ *  from instead of landing on the unfiltered grid. */
+function catalogHref(locale: Locale, collectionSlug: string): string {
+  return `/${locale}/store?collection=${encodeURIComponent(collectionSlug)}`;
 }
 
 export default function ProductDetail({
@@ -67,14 +67,17 @@ export default function ProductDetail({
      the same translation as the rest of the copy. */
   const specs = product.specs;
 
+  const primaryCollection = product.collections[0];
+
   return (
     <div className="product-detail">
       <div className="product-detail-bar">
         <Link
-          href={catalogHref(
-            locale,
-            product.family
-          )}
+          href={
+            primaryCollection
+              ? catalogHref(locale, primaryCollection.slug)
+              : `/${locale}/store`
+          }
           className="product-detail-back"
           data-hover-target
         >
@@ -203,16 +206,11 @@ export default function ProductDetail({
 
         <div className="product-detail-panel">
           <span className="product-detail-eyebrow">
-            {
-              t.families[
-                product.family as keyof typeof t.families
-              ] ?? product.family
-            }{" / "}
-            {
-              t.subcategories[
-                product.category as keyof typeof t.subcategories
-              ] ?? product.category
-            }
+            {product.collections.length > 0
+              ? product.collections
+                  .map((collection) => collection.name)
+                  .join(" / ")
+              : product.id}
           </span>
 
           <h1>{product.name}</h1>

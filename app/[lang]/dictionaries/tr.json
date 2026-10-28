@@ -190,7 +190,6 @@
       "specifications": "TEKNİK DETAYLAR",
       "reference": "REFERANS"
     },
-    "categories": "KATEGORİLER",
     "products": "ÜRÜNLER",
     "product": "ÜRÜN",
     "search": "ARAMA",
@@ -199,36 +198,14 @@
     "currency": "PARA BİRİMİ",
     "clear": "TEMİZLE",
     "close": "KAPAT",
-    "openCategories": "KATEGORİLERİ AÇ",
     "allProducts": "TÜM ÜRÜNLER",
-    "families": {
-      "airflow-dynamics": "HAVA AKIŞ DİNAMİKLERİ",
-      "driver-interface": "SÜRÜCÜ ARAYÜZÜ",
-      "structural-aero": "YAPISAL AERODİNAMİ"
-    },
-    "subcategories": {
-      "intake-manifolds": "EMME MANİFOLDLARI",
-      "cold-air-intakes": "SOĞUK HAVA EMİŞLERİ",
-      "carbon-airboxes": "KARBON HAVA KAZANLARI",
-      "air-intake-piping": "HAVA EMİŞ BORULARI",
-      "exhaust-manifolds": "EGZOZ MANİFOLDLARI / HEADERS",
-      "brake-cooling-ducts": "FREN HAVA SOĞUTMA KANALLARI",
-      "headlight-intakes": "FAR HAVA GİRİŞLERİ",
-      "carbon-fiber-steering-wheels": "KARBON FİBER DİREKSİYONLAR",
-      "racing-seats": "YARIŞ / PERFORMANS KOLTUKLARI",
-      "shift-knobs": "VİTES TOPUZLARI",
-      "carbon-fiber-interior-trims": "KARBON FİBER İÇ TRİMLER",
-      "carbon-fiber-hoods": "KARBON FİBER KAPUTLAR",
-      "trunks-tailgates": "BAGAJ KAPAKLARI",
-      "lightweight-doors": "HAFİFLETİLMİŞ KAPILAR",
-      "spoilers-wings": "SPOILER VE KANATLAR"
-    },
+    "collections": "KOLEKSİYONLAR",
     "filters": {
       "all": "TÜMÜ"
     },
     "empty": {
       "title": "ÜRÜN BULUNAMADI",
-      "description": "Başka bir kategori deneyin veya filtreleri değiştirin."
+      "description": "Başka bir koleksiyon deneyin veya filtreleri değiştirin."
     },
     "addToList": "SEPETE EKLE",
     "addedToList": "EKLENDİ",

@@ -46,8 +46,6 @@ export const orderInclude = {
         select: {
           id: true,
           image: true,
-          family: true,
-          category: true,
           visible: true,
           translations: {
             select: { locale: true, name: true },
@@ -150,8 +148,6 @@ export function serializeOrder(order: Prisma.OrderGetPayload<{ include: typeof o
             id: item.product.id,
             name: pickTranslation(item.product.translations, defaultLocale)?.name ?? "",
             image: item.product.image,
-            family: item.product.family,
-            category: item.product.category,
             visible: item.product.visible,
           }
         : null,

@@ -7,7 +7,6 @@ import ProductDetail from "./ProductDetail";
 import { getProduct } from "@/lib/catalog";
 import type { ProductDetail as Product } from "@/lib/order-types";
 import type { Locale } from "@/lib/i18n";
-import { categoryLabel } from "@/lib/catalog-taxonomy";
 import {
   CURRENCIES,
   effectivePrice,
@@ -59,26 +58,28 @@ export async function generateMetadata({
 }
 
 /**
- * Home > Store > Family > Product. The family step points at the filtered
- * catalog the home page already deep-links into, so the whole trail is made of
- * URLs that already exist.
+ * Home > Store > Collection > Product. The collection step points at the
+ * filtered catalog the collection row already links to, so the whole trail is
+ * made of URLs that already exist.
  */
 function productCrumbs(
   product: Product,
   locale: Locale,
   dict: Awaited<ReturnType<typeof getDictionary>>,
 ): BreadcrumbItem[] {
-  const family = dict.store.families[
-    product.family as keyof typeof dict.store.families
-  ];
+  const primary = product.collections[0];
 
   return [
     { name: dict.nav.home, href: `/${locale}` },
     { name: dict.nav.store, href: `/${locale}/store` },
-    {
-      name: family ?? categoryLabel(product.family),
-      href: `/${locale}/store?family=${encodeURIComponent(product.family)}`,
-    },
+    ...(primary
+      ? [
+          {
+            name: primary.name,
+            href: `/${locale}/store?collection=${encodeURIComponent(primary.slug)}`,
+          },
+        ]
+      : []),
     { name: product.name, href: `/${locale}/store/${product.id}` },
   ];
 }
@@ -116,7 +117,9 @@ function productJsonLd(
         description: product.description,
         image: [absoluteImage(product.image)],
         sku: product.id,
-        category: product.category,
+        ...(product.collections[0]
+          ? { category: product.collections[0].name }
+          : {}),
         brand: { "@type": "Brand", name: SITE_NAME },
         /* A product with no price in any currency has no offer to declare; an
            empty array would be invalid, and stock is not tracked anywhere. */

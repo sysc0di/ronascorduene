@@ -5,11 +5,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
-import {
-  CATEGORY_SLUGS,
-  SUBCATEGORIES,
-  type CategorySlug,
-} from "@/lib/catalog-taxonomy";
 import { useLocalList } from "@/lib/order-storage";
 import { useCurrency } from "@/lib/use-currency";
 import {
@@ -23,67 +18,35 @@ import {
   type Currency,
 } from "@/lib/price";
 
-import type { CatalogProduct } from "@/lib/order-types";
+import type { CatalogProduct, CollectionSummary } from "@/lib/order-types";
 import type { Dictionary } from "../dictionaries";
 import type { Locale } from "@/lib/i18n";
 
 import "./Store.css";
 
-type FamilyKey = CategorySlug;
-
-type CategoryKey = keyof Dictionary["store"]["subcategories"];
-
-const families: FamilyKey[] = [...CATEGORY_SLUGS];
-
-/* Same source of truth as the admin panel. */
-const familyCategories: Record<
-  FamilyKey,
-  CategoryKey[]
-> = Object.fromEntries(
-  CATEGORY_SLUGS.map((family) => [
-    family,
-    SUBCATEGORIES[family].map(
-      (subcategory) => subcategory.slug as CategoryKey,
-    ),
-  ]),
-) as Record<FamilyKey, CategoryKey[]>;
-
 export default function StoreCatalog({
   products,
+  collections,
   locale,
   dict,
 }: {
   products: CatalogProduct[];
+  collections: CollectionSummary[];
   locale: Locale;
   dict: Dictionary;
 }) {
-  /* Home page blocks deep-link here with `?family=<slug>`. */
+  /* The collection is URL state, so the browser's back button and shared
+     links both land on the same filtered view. */
   const searchParams = useSearchParams();
 
-  const requestedFamily = searchParams.get("family");
+  const requestedCollection = searchParams.get("collection");
 
-  const initialFamily = (
-    CATEGORY_SLUGS as readonly string[]
-  ).includes(requestedFamily ?? "")
-    ? (requestedFamily as FamilyKey)
-    : null;
+  const activeCollection =
+    collections.find(
+      (collection) => collection.slug === requestedCollection,
+    ) ?? null;
 
-  const [activeFamily, setActiveFamily] =
-    useState<FamilyKey | null>(initialFamily);
-
-  const [activeCategory, setActiveCategory] =
-    useState<CategoryKey | null>(null);
-
-  const [openFamily, setOpenFamily] =
-    useState<FamilyKey | null>(
-      initialFamily ?? "airflow-dynamics"
-    );
-
-  const [mobileMenuOpen, setMobileMenuOpen] =
-    useState(false);
-
-  const [search, setSearch] =
-    useState("");
+  const [search, setSearch] = useState("");
 
   const [filters, setFilters] =
     useState<Record<string, string>>({});
@@ -111,61 +74,6 @@ export default function StoreCatalog({
   };
 
   /*
-   * Ana kategori seçimi.
-   */
-  const selectFamily = (
-    family: FamilyKey
-  ) => {
-    setActiveFamily(family);
-    setActiveCategory(null);
-
-    setOpenFamily(family);
-
-    setFilters({});
-
-    setMobileMenuOpen(false);
-    setMobileFiltersOpen(false);
-  };
-
-  /*
-   * Alt kategori seçimi.
-   */
-  const selectCategory = (
-    category: CategoryKey
-  ) => {
-    const product =
-      products.find(
-        (item) =>
-          item.category === category
-      );
-
-    if (product) {
-      setActiveFamily(
-        product.family as FamilyKey
-      );
-    }
-
-    setActiveCategory(category);
-    setFilters({});
-
-    setMobileMenuOpen(false);
-    setMobileFiltersOpen(false);
-  };
-
-  /*
-   * Tüm ürünler.
-   */
-  const selectAll = () => {
-    setActiveFamily(null);
-    setActiveCategory(null);
-
-    setFilters({});
-
-    setMobileMenuOpen(false);
-    setMobileFiltersOpen(false);
-  };
-
-  /*
    * Aktif ürünler.
    */
   const filteredProducts = useMemo(() => {
@@ -175,23 +83,14 @@ export default function StoreCatalog({
     return products.filter(
       (product) => {
         /*
-         * FAMILY
+         * COLLECTION
          */
         if (
-          activeFamily &&
-          product.family !==
-          activeFamily
-        ) {
-          return false;
-        }
-
-        /*
-         * CATEGORY
-         */
-        if (
-          activeCategory &&
-          product.category !==
-          activeCategory
+          activeCollection &&
+          !product.collections.some(
+            (collection) =>
+              collection.slug === activeCollection.slug,
+          )
         ) {
           return false;
         }
@@ -203,8 +102,9 @@ export default function StoreCatalog({
           const searchableText = [
             product.name,
             product.description,
-            product.category,
-            product.family,
+            ...product.collections.map(
+              (collection) => collection.name,
+            ),
           ]
             .join(" ")
             .toLowerCase();
@@ -239,8 +139,7 @@ export default function StoreCatalog({
       }
     );
   }, [
-    activeFamily,
-    activeCategory,
+    activeCollection,
     filters,
     search,
     products,
@@ -252,15 +151,12 @@ export default function StoreCatalog({
    */
   const specFacets = useMemo(() => {
     const available = products.filter((product) => {
-      if (activeFamily && product.family !== activeFamily) {
-        return false;
-      }
+      if (!activeCollection) return true;
 
-      if (activeCategory && product.category !== activeCategory) {
-        return false;
-      }
-
-      return true;
+      return product.collections.some(
+        (collection) =>
+          collection.slug === activeCollection.slug,
+      );
     });
 
     const facets = new Map<string, string[]>();
@@ -281,18 +177,12 @@ export default function StoreCatalog({
       label,
       values,
     }));
-  }, [
-    activeFamily,
-    activeCategory,
-    products,
-  ]);
+  }, [activeCollection, products]);
 
   /*
    * Reset
    */
   const resetFilters = () => {
-    setActiveFamily(null);
-    setActiveCategory(null);
     setFilters({});
     setSearch("");
     setMobileFiltersOpen(false);
@@ -356,224 +246,57 @@ export default function StoreCatalog({
         </div>
       </section>
 
-      {/* =================================================
-          MOBILE CATEGORY BUTTON
-      ================================================= */}
-
-      <div className="store-mobile-controls">
-        <button
-          type="button"
-          onClick={() =>
-            setMobileMenuOpen(true)
-          }
-        >
-          <span>
-            {t.categories}
-          </span>
-
-          <span className="store-control-icon">
-            +
-          </span>
-        </button>
-      </div>
-
-      {/* =================================================
-          MAIN CATALOG
-      ================================================= */}
+      {/* MAIN CATALOG */}
 
       <section
         id="catalog"
         className="store-layout"
       >
-        {/* =================================================
-            SIDEBAR
-        ================================================= */}
-
-        <aside
-          className={`
-            store-sidebar
-            ${mobileMenuOpen
-              ? "is-open"
-              : ""
-            }
-          `}
-        >
-          <div className="store-sidebar-header">
-            <span>
-              {t.categories}
-            </span>
-
-            <button
-              type="button"
-              onClick={() =>
-                setMobileMenuOpen(false)
-              }
-              aria-label={t.close}
-            >
-              ×
-            </button>
-          </div>
-
-          <div className="store-sidebar-content">
-            {/* ALL */}
-
-            <button
-              type="button"
-              className={`
-                store-all-category
-                ${activeFamily === null &&
-                  activeCategory === null
-                  ? "is-active"
-                  : ""
-                }
-              `}
-              onClick={selectAll}
-            >
-              <span>
-                {t.allProducts}
-              </span>
-
-              <span>+</span>
-            </button>
-
-            {/* FAMILIES */}
-
-            {families.map(
-              (family) => {
-                const isFamilyActive =
-                  activeFamily ===
-                  family;
-
-                const isOpen =
-                  openFamily ===
-                  family;
-
-                return (
-                  <div
-                    key={family}
-                    className={`
-                      store-family
-                      ${isFamilyActive
-                        ? "is-active"
-                        : ""
-                      }
-                    `}
-                  >
-                    <button
-                      type="button"
-                      className="store-family-title"
-                      onClick={() => {
-                        setOpenFamily(
-                          isOpen
-                            ? null
-                            : family
-                        );
-
-                        selectFamily(
-                          family
-                        );
-                      }}
-                    >
-                      <span>
-                        {
-                          t.families[
-                          family
-                          ]
-                        }
-                      </span>
-
-                      <span
-                        className={`
-                          store-family-symbol
-                          ${isOpen
-                            ? "is-open"
-                            : ""
-                          }
-                        `}
-                      >
-                        +
-                      </span>
-                    </button>
-
-                    <div
-                      className={`
-                        store-subcategories
-                        ${isOpen
-                          ? "is-open"
-                          : ""
-                        }
-                      `}
-                    >
-                      {familyCategories[
-                        family
-                      ].map(
-                        (category) => (
-                          <button
-                            key={
-                              category
-                            }
-                            type="button"
-                            className={
-                              activeCategory ===
-                                category
-                                ? "is-active"
-                                : ""
-                            }
-                            onClick={() =>
-                              selectCategory(
-                                category
-                              )
-                            }
-                          >
-                            {
-                              t
-                                .subcategories[
-                              category
-                              ]
-                            }
-                          </button>
-                        )
-                      )}
-                    </div>
-                  </div>
-                );
-              }
-            )}
-          </div>
-        </aside>
-
-        {/* MOBILE OVERLAY */}
-
-        {mobileMenuOpen && (
-          <button
-            type="button"
-            aria-label={t.close}
-            className="store-mobile-overlay"
-            onClick={() =>
-              setMobileMenuOpen(false)
-            }
-          />
-        )}
-
-        {/* =================================================
-            PRODUCTS AREA
-        ================================================= */}
-
         <div className="store-content">
+          {/* COLLECTION ROW */}
+
+          {collections.length > 0 && (
+            <nav
+              className="store-collections"
+              aria-label={t.collections}
+            >
+              <div className="store-collections-scroll">
+                <Link
+                  href={`/${locale}/store`}
+                  scroll={false}
+                  className={`store-collection${activeCollection === null ? " is-active" : ""}`}
+                  aria-current={activeCollection === null ? "page" : undefined}
+                >
+                  {t.allProducts}
+                </Link>
+
+                {collections.map((collection) => {
+                  const active = activeCollection?.id === collection.id;
+
+                  return (
+                    <Link
+                      key={collection.id}
+                      href={`/${locale}/store?collection=${encodeURIComponent(collection.slug)}`}
+                      scroll={false}
+                      className={`store-collection${active ? " is-active" : ""}`}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {collection.name}
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
+          )}
+
           {/* HEADER */}
 
           <div className="store-content-header">
             <div>
               <span className="store-section-label">
-                {activeCategory
-                  ? t.subcategories[
-                  activeCategory
-                  ]
-                  : activeFamily
-                    ? t.families[
-                    activeFamily
-                    ]
-                    : t.allProducts}
+                {activeCollection
+                  ? activeCollection.name
+                  : t.allProducts}
               </span>
 
               <div className="store-result-count">
@@ -783,25 +506,15 @@ export default function StoreCatalog({
                           )}
                         </span>
 
-                        <span className="store-product-category">
-                          {
-                            t.subcategories[
-                            product.category as CategoryKey
-                            ]
-                          }
-                        </span>
+                        {product.collections[0] && (
+                          <span className="store-product-collection">
+                            {product.collections[0].name}
+                          </span>
+                        )}
                       </div>
 
                       <div className="store-product-info">
                         <div>
-                          <span className="store-product-family">
-                            {
-                              t.families[
-                              product.family as FamilyKey
-                              ]
-                            }
-                          </span>
-
                           <h2>
                             <Link
                               href={`/${locale}/store/${encodeURIComponent(product.id)}`}

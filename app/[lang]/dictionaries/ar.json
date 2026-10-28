@@ -190,7 +190,6 @@
       "specifications": "التفاصيل الفنية",
       "reference": "المرجع"
     },
-    "categories": "الفئات",
     "products": "المنتجات",
     "product": "منتج",
     "search": "بحث",
@@ -199,36 +198,14 @@
     "currency": "العملة",
     "clear": "مسح",
     "close": "إغلاق",
-    "openCategories": "افتح الفئات",
     "allProducts": "كل المنتجات",
-    "families": {
-      "airflow-dynamics": "ديناميكية تدفق الهواء",
-      "driver-interface": "واجهة السائق",
-      "structural-aero": "الأيرو الهيكلي"
-    },
-    "subcategories": {
-      "intake-manifolds": "مجمعات السحب",
-      "cold-air-intakes": "مداخل الهواء البارد",
-      "carbon-airboxes": "صناديق هواء كربونية",
-      "air-intake-piping": "أنابيب سحب الهواء",
-      "exhaust-manifolds": "مجمعات العادم",
-      "headlight-intakes": "مداخل هواء المصابيح الأمامية",
-      "brake-cooling-ducts": "قنوات تبريد الفرامل",
-      "carbon-fiber-steering-wheels": "مقود ألياف الكربون",
-      "racing-seats": "مقاعد السباق / الأداء",
-      "shift-knobs": "مقابض ناقل الحركة",
-      "carbon-fiber-interior-trims": "تطعيمات داخلية من ألياف الكربون",
-      "carbon-fiber-hoods": "أغطية محرك من ألياف الكربون",
-      "trunks-tailgates": "صناديق وأبواب خلفية",
-      "lightweight-doors": "أبواب خفيفة الوزن",
-      "spoilers-wings": "سبويلرات وأجنحة"
-    },
+    "collections": "المجموعات",
     "filters": {
       "all": "الكل"
     },
     "empty": {
       "title": "لا توجد منتجات",
-      "description": "جرّب فئة أخرى أو عدّل الفلاتر المحددة."
+      "description": "جرّب مجموعة أخرى أو عدّل الفلاتر المحددة."
     },
     "addToList": "أضف إلى السلة",
     "addedToList": "تمت الإضافة",

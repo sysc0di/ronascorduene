@@ -191,7 +191,6 @@
       "specifications": "TECHNICAL DETAILS",
       "reference": "REFERENCE"
     },
-    "categories": "CATEGORIES",
     "products": "PRODUCTS",
     "product": "PRODUCT",
     "search": "SEARCH",
@@ -200,36 +199,14 @@
     "currency": "CURRENCY",
     "clear": "CLEAR",
     "close": "CLOSE",
-    "openCategories": "OPEN CATEGORIES",
     "allProducts": "ALL PRODUCTS",
-    "families": {
-      "airflow-dynamics": "AIRFLOW DYNAMICS",
-      "driver-interface": "DRIVER INTERFACE",
-      "structural-aero": "STRUCTURAL AERO"
-    },
-    "subcategories": {
-      "intake-manifolds": "INTAKE MANIFOLDS",
-      "cold-air-intakes": "COLD AIR INTAKES",
-      "carbon-airboxes": "CARBON AIRBOXES",
-      "air-intake-piping": "AIR INTAKE PIPING",
-      "exhaust-manifolds": "EXHAUST MANIFOLDS",
-      "headlight-intakes": "HEADLIGHT INTAKES",
-      "brake-cooling-ducts": "BRAKE COOLING DUCTS",
-      "carbon-fiber-steering-wheels": "CARBON FIBER STEERING WHEELS",
-      "racing-seats": "RACING / PERFORMANCE SEATS",
-      "shift-knobs": "SHIFT KNOBS",
-      "carbon-fiber-interior-trims": "CARBON FIBER INTERIOR TRIMS",
-      "carbon-fiber-hoods": "CARBON FIBER HOODS / BONNETS",
-      "trunks-tailgates": "TRUNKS & TAILGATES",
-      "lightweight-doors": "LIGHTWEIGHT DOORS",
-      "spoilers-wings": "SPOILERS & WINGS"
-    },
+    "collections": "COLLECTIONS",
     "filters": {
       "all": "ALL"
     },
     "empty": {
       "title": "NO PRODUCTS FOUND",
-      "description": "Try another category or adjust the selected filters."
+      "description": "Try another collection or adjust the selected filters."
     },
     "addToList": "ADD TO CART",
     "addedToList": "ADDED",
