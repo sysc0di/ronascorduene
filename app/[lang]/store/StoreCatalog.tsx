@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import { useLocalList } from "@/lib/order-storage";
@@ -38,6 +38,7 @@ export default function StoreCatalog({
   /* The collection is URL state, so the browser's back button and shared
      links both land on the same filtered view. */
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const requestedCollection = searchParams.get("collection");
 
@@ -186,6 +187,11 @@ export default function StoreCatalog({
     setFilters({});
     setSearch("");
     setMobileFiltersOpen(false);
+
+    /* The collection is URL state, so clearing the filters must also clear it. */
+    if (requestedCollection !== null) {
+      router.push(`/${locale}/store`, { scroll: false });
+    }
   };
 
   const updateFilter = (label: string, value: string) => {
