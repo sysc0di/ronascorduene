@@ -223,7 +223,8 @@
     "copyright": "© {year} RONAS CORDUENE",
     "label": "AUTOMOTIVE EQUIPMENT",
     "rights": "ALL RIGHTS RESERVED",
-    "builtBy": "Site built by"
+    "builtBy": "Site built by",
+    "backToTop": "Back to top"
   },
   "list": {
     "label": "YOUR CART",

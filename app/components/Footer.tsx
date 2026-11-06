@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import type { Dictionary } from "../[lang]/dictionaries";
@@ -71,6 +73,16 @@ export default function Footer({
       <div className="footer-line" />
 
       <div className="footer-bottom">
+        <button
+          type="button"
+          className="footer-back-to-top"
+          onClick={() =>
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          }
+        >
+          {dict.footer.backToTop}
+        </button>
+
         <span>{dict.footer.copyright.replace("{year}", String(new Date().getFullYear()))}</span>
 
         <span>{dict.footer.label}</span>
@@ -80,10 +92,30 @@ export default function Footer({
         <span className="footer-credit">
           {dict.footer.builtBy}{" "}
           <a
-            href="https://mithrabyte.com"
+            href="https://mithrabyte.com/?utm_source=ronascorduene&utm_medium=footer&utm_campaign=site_credit"
             target="_blank"
             rel="noopener noreferrer"
             data-hover-target
+            onClick={() => {
+              const w = window as unknown as {
+                gtag?: (...args: unknown[]) => void;
+                dataLayer?: unknown[];
+              };
+              if (typeof w.gtag === "function") {
+                w.gtag("event", "outbound_click", {
+                  link_url: "https://mithrabyte.com",
+                  link_text: "Mithrabyte",
+                  source: "footer",
+                });
+              } else if (Array.isArray(w.dataLayer)) {
+                w.dataLayer.push({
+                  event: "outbound_click",
+                  link_url: "https://mithrabyte.com",
+                  link_text: "Mithrabyte",
+                  source: "footer",
+                });
+              }
+            }}
           >
             Mithrabyte
           </a>

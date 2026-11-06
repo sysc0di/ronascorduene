@@ -603,6 +603,244 @@
   }
 }
 
+/* ============================================================ */
+/* SLIDESHOW                                                    */
+/* ============================================================ */
+
+.product-slideshow {
+  position: relative;
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  outline: none;
+}
+
+.product-slideshow-track {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2536 / 894;
+  max-height: 720px;
+  overflow: hidden;
+  background: #0a0a0a;
+  border: 1px solid rgba(166, 166, 166, 0.12);
+}
+
+.product-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(6%);
+  transition:
+    opacity 600ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.product-slide-link {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.product-slide-image {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: clip-path 900ms cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.product-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.product-slide:not(.is-active) .product-slide-image {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+}
+
+.product-slide-image img {
+  object-fit: cover;
+}
+
+.product-slide-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 40px;
+  color: #a6a6a6;
+}
+
+.product-slide-number {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #555;
+}
+
+.product-slide-caption h3 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #a6a6a6;
+  transition: color 300ms ease;
+}
+
+.product-slide-caption h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-slide.is-active .product-slide-caption h3 {
+  color: #ffffff;
+}
+
+.product-slide-caption p {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+/* nav */
+.product-slideshow-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.product-slideshow-nav button {
+  pointer-events: auto;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(166, 166, 166, 0.25);
+  background: rgba(0, 0, 0, 0.5);
+  color: #a6a6a6;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease;
+  backdrop-filter: blur(4px);
+}
+
+.product-slideshow-nav button:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* dots */
+.product-slideshow-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.product-slideshow-dot {
+  width: 28px;
+  height: 2px;
+  border: none;
+  background: rgba(166, 166, 166, 0.25);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 300ms ease,
+    width 300ms ease;
+}
+
+.product-slideshow-dot.is-active {
+  background: #ffffff;
+  width: 48px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-slide,
+  .product-slide-image {
+    transition: none;
+  }
+}
+
+/* tablet */
+@media (max-width: 900px) {
+  .product-slideshow-track {
+    aspect-ratio: 4 / 3;
+  }
+  .product-slide {
+    grid-template-columns: 1fr;
+  }
+  .product-slide-caption {
+    padding: 20px 24px;
+  }
+}
+
+/* phone: stacked */
+@media (max-width: 600px) {
+  .product-slideshow-track {
+    aspect-ratio: auto;
+    max-height: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: visible;
+    background: transparent;
+    border: none;
+  }
+  .product-slide {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    display: block;
+    transition: none;
+  }
+  .product-slide-image {
+    position: relative;
+    aspect-ratio: 2536 / 894;
+    clip-path: none !important;
+  }
+  .product-slide-link {
+    position: relative;
+    inset: auto;
+  }
+  .product-slide-caption {
+    padding: 14px 4px;
+  }
+  .product-slideshow-nav {
+    display: none;
+  }
+  .product-slideshow-dots {
+    display: none;
+  }
+}
+
 /* -------------------------------- */
 /* VERY SMALL PHONES */
 /* -------------------------------- */
