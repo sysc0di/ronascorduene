@@ -618,7 +618,6 @@
   position: relative;
   width: 100%;
   aspect-ratio: 2536 / 894;
-  max-height: 720px;
   overflow: hidden;
   background: #0a0a0a;
   border: 1px solid rgba(166, 166, 166, 0.12);
@@ -662,7 +661,7 @@
 }
 
 .product-slide-image img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .product-slide-caption {
@@ -790,7 +789,7 @@
 /* tablet */
 @media (max-width: 900px) {
   .product-slideshow-track {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 2536 / 894;
   }
   .product-slide {
     grid-template-columns: 1fr;
@@ -800,8 +799,8 @@
   }
 }
 
-/* phone: stacked */
-@media (max-width: 600px) {
+/* tablet + phone: stacked, all images visible */
+@media (max-width: 900px) {
   .product-slideshow-track {
     aspect-ratio: auto;
     max-height: none;
