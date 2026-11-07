@@ -52,7 +52,11 @@ export default async function Home() {
       </section>
 
       <div className="productonhome">
-        <ProductSections dict={dict.home.products} locale={locale} />
+        <ProductSections
+          dict={dict.home.products}
+          locale={locale}
+          buttonLabel={dict.nav.store}
+        />
         <ApproachSection
           dict={dict.home.approach}
           content={

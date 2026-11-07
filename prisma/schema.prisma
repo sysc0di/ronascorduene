@@ -87,6 +87,20 @@ model Collection {
   @@map("collections")
 }
 
+/// Editorial cards shown on the home page strip. When the table is empty the
+/// storefront falls back to the bundled public assets.
+model HomeSlide {
+  id             String   @id @default(uuid())
+  image          String
+  collectionSlug String
+  sortOrder      Int      @default(0)
+  visible        Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("home_slides")
+}
+
 /// Explicit join so associations can be replaced without touching products.
 model ProductCollection {
   productId    String
